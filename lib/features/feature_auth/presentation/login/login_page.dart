@@ -14,7 +14,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: Colors.red,
+        color: Theme.of(context).primaryColor,
       ),
     );
   }

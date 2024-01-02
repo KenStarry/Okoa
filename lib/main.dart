@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:okoa/core/data/api/api.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/presentation/login/login_page.dart';
+import 'package:okoa/theme/my_theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:get/get.dart';
 
@@ -20,9 +21,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
-      home: LoginPage(),
+    return GetMaterialApp(
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
+      theme: MyTheme.lightTheme,
+      darkTheme: MyTheme.darkTheme,
     );
   }
 }
