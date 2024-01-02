@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okoa/theme/material_generator.dart';
 
 import 'colors.dart';
 
@@ -6,6 +7,7 @@ class MyTheme {
   /// Light Theme
   static ThemeData get lightTheme => ThemeData(
       primaryColor: accent,
+      primarySwatch: generateMaterialColor(accent),
       scaffoldBackgroundColor: bgColorLightMode,
       iconTheme: const IconThemeData(color: textBlack300),
       useMaterial3: true,
@@ -27,6 +29,7 @@ class MyTheme {
   /// Dark Theme
   static ThemeData get darkTheme => ThemeData(
       primaryColor: accent,
+      primarySwatch: generateMaterialColor(accent),
       scaffoldBackgroundColor: bgColorDarkMode,
       iconTheme: const IconThemeData(color: textWhite300),
       useMaterial3: true,
