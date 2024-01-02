@@ -2,8 +2,18 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 /// Generate Material Colors
-MaterialColor generateMaterialColor(Color color) =>
-    MaterialColor(color.value, {});
+MaterialColor generateMaterialColor(Color color) => MaterialColor(color.value, {
+      50: tintColor(color, 0.9),
+      100: tintColor(color, 0.8),
+      200: tintColor(color, 0.6),
+      300: tintColor(color, 0.4),
+      400: tintColor(color, 0.2),
+      500: color,
+      600: shadeColor(color, 0.1),
+      700: shadeColor(color, 0.2),
+      800: shadeColor(color, 0.3),
+      900: shadeColor(color, 0.4)
+    });
 
 /// Tint Generator
 int tintValue(int value, double factor) =>
