@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:okoa/theme/colors.dart';
 import 'package:okoa/theme/material_generator.dart';
 
@@ -17,7 +18,15 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: generateMaterialColor(accent).shade50,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+
+            //  logo
+          ],
+        ),
       ),
     );
   }

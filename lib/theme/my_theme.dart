@@ -8,7 +8,7 @@ class MyTheme {
   static ThemeData get lightTheme => ThemeData(
       primaryColor: accent,
       primarySwatch: generateMaterialColor(accent),
-      scaffoldBackgroundColor: bgColorLightMode,
+      scaffoldBackgroundColor: generateMaterialColor(accent).shade50,
       iconTheme: const IconThemeData(color: textBlack300),
       useMaterial3: true,
       textTheme: const TextTheme(
