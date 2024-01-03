@@ -53,7 +53,7 @@ class LoginCard extends StatelessWidget {
                       color: Theme.of(context).scaffoldBackgroundColor,
                       width: 3,
                       strokeAlign: BorderSide.strokeAlignOutside)),
-              child: Center(
+              child: const Center(
                 child: Icon(
                   Icons.face_6_rounded,
                   size: 32,
