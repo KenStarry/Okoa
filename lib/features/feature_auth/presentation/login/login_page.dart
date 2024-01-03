@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:okoa/core/presentation/extensions/build_context_extensions.dart';
-import 'package:okoa/features/feature_auth/presentation/login/components/login_card.dart';
+import 'package:okoa/features/feature_auth/presentation/components/auth_card.dart';
 import 'package:okoa/theme/colors.dart';
 import 'package:okoa/theme/material_generator.dart';
 
@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: 150),
 
                 //  login card
-                const LoginCard(),
+                const AuthCard(),
 
                 const SizedBox(height: 24),
 

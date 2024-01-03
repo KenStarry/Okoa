@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:okoa/features/feature_auth/presentation/login/components/login_card_clipper.dart';
 import 'package:okoa/features/feature_auth/presentation/login/components/login_textfield.dart';
 
-class LoginCard extends StatelessWidget {
-  const LoginCard({super.key});
+class AuthCard extends StatelessWidget {
+  const AuthCard({super.key});
 
   @override
   Widget build(BuildContext context) {
