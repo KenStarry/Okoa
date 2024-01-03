@@ -49,9 +49,9 @@ class LoginCard extends StatelessWidget {
 
                       //  login with google
                       Container(
-                        width: 50,
-                        height: 50,
-                        padding: const EdgeInsets.all(14),
+                        width: 40,
+                        height: 40,
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
                             color: Theme.of(context).scaffoldBackgroundColor,

@@ -44,7 +44,32 @@ class _LoginPageState extends State<LoginPage> {
                     width: 150),
 
                 //  login card
-                LoginCard()
+                const LoginCard(),
+
+                const SizedBox(height: 24),
+
+                //  Create account text
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("No account? ",
+                        style: Theme.of(context).textTheme.bodyMedium),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text("Create one.",
+                          style: TextStyle(
+                              fontSize: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .fontSize,
+                              fontWeight: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .fontWeight,
+                              color: Theme.of(context).primaryColor)),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
