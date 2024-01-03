@@ -8,15 +8,32 @@ class LoginCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
+      width: double.infinity,
+      height: 405,
       child: Stack(
         children: [
+          //  Rectangular outline
+          Align(
+            alignment: AlignmentDirectional.bottomCenter,
+            child: Container(
+              width: 250,
+              height: 10,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColorLight, borderRadius: BorderRadius.circular(100)),
+            ),
+          ),
+
+          //  Clip Form Field
           ClipPath(
             clipper: LoginCardClipper(),
             child: Container(
               height: 400,
               width: double.infinity,
-              decoration:
-                  BoxDecoration(color: Theme.of(context).primaryColorLight),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColorLight,
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16))),
               child: Container(width: double.infinity, height: double.infinity),
             ),
           ),
