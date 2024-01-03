@@ -70,28 +70,37 @@ class _LoginPageState extends State<LoginPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                            text: "No account? ",
-                            style: Theme.of(context).textTheme.bodyMedium),
-                        TextSpan(
-                            text: "Create one.",
-                            style: TextStyle(
-                                fontSize: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .fontSize,
-                                fontWeight: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .fontWeight,
-                                color: Theme.of(context).primaryColor),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                _authController.setIsLogin(isLogin: false);
-                              }),
-                      ])),
+                      Obx(
+                        () => RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              text: _authController.isLogin.value
+                                  ? "No account? "
+                                  : "Have an account? ",
+                              style: Theme.of(context).textTheme.bodyMedium),
+                          TextSpan(
+                              text: _authController.isLogin.value
+                                  ? "Create one."
+                                  : "Login",
+                              style: TextStyle(
+                                  fontSize: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .fontSize,
+                                  fontWeight: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .fontWeight,
+                                  color: Theme.of(context).primaryColor),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  _authController.setIsLogin(
+                                      isLogin: _authController.isLogin.value
+                                          ? false
+                                          : true);
+                                }),
+                        ])),
+                      ),
                     ],
                   ),
                 )
