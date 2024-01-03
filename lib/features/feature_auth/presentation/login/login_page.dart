@@ -54,19 +54,8 @@ class _LoginPageState extends State<LoginPage> {
                   width: double.infinity,
                   height: 50,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                        ),
-                        child: const Center(
-                          child: Icon(Icons.arrow_back_rounded),
-                        ),
-                      ),
                       RichText(
                           text: TextSpan(children: [
                         TextSpan(
