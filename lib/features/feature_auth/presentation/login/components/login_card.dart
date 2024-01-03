@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:okoa/features/feature_auth/presentation/login/components/login_card_clipper.dart';
 import 'package:okoa/features/feature_auth/presentation/login/components/login_textfield.dart';
 
@@ -55,6 +56,14 @@ class LoginCard extends StatelessWidget {
                       //  login field
                       LoginTextField(
                         onChanged: (value) {},
+                      ),
+
+                      //  login with google
+                      SvgPicture.asset(
+                        "assets/images/google_logo.svg",
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.fill,
                       )
                     ],
                   ),
