@@ -10,10 +10,8 @@ import 'package:get/get.dart';
 void main() async {
   //  Supabase
   await Supabase.initialize(
-      url: Api.url,
-      anonKey: Api.anonKey,
-      authOptions:
-          const FlutterAuthClientOptions(authFlowType: AuthFlowType.pkce));
+      url: "https://fsjkcmvvtuccbvbpauon.supabase.co",
+      anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZzamtjbXZ2dHVjY2J2YnBhdW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQwNjAzNTIsImV4cCI6MjAxOTYzNjM1Mn0.aGIQy25qbj2Bf6OzrGuEuJObB90vnI_GietrQogBv5Q");
 
   //  Dependencies
   invokeDI();

@@ -110,9 +110,14 @@ class _AuthCardState extends State<AuthCard> {
                         ? () {
                             //  Login
                           }
-                        : () {
+                        : () async {
                             //  Sign Up
-                          
+                            print(
+                                "EMAIL : ${emailController.text}, PASSWORD : ${newPassController.text}");
+
+                            await _authController.signUp(
+                                email: emailController.text,
+                                password: newPassController.text);
                           },
                     child: Text(
                         _authController.isLogin.value ? "Login" : "Sign Up")))

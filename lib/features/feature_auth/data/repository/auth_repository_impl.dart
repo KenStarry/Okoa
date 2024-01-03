@@ -8,14 +8,10 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<void> signUp({required String email, required String password}) async {
     try {
-      final response =
-          await supabase.auth.signUp(email: email, password: password);
-
-      if (response.session != null) {
-        print("SUCCESSFUL SIGN UP!!");
-      }
-    } catch (error) {
-      throw Exception(error);
+      await supabase.auth
+          .signUp(email: email, password: password);
+    } on SupabaseRealtimeError catch (error) {
+      throw Exception(error.message);
     }
   }
 }
