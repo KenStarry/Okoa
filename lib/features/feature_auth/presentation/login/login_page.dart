@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -52,11 +53,13 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("No account? ",
-                        style: Theme.of(context).textTheme.bodyMedium),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text("Create one.",
+                    RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: "No account? ",
+                          style: Theme.of(context).textTheme.bodyMedium),
+                      TextSpan(
+                          text: "Create one.",
                           style: TextStyle(
                               fontSize: Theme.of(context)
                                   .textTheme
@@ -66,8 +69,9 @@ class _LoginPageState extends State<LoginPage> {
                                   .textTheme
                                   .bodyMedium!
                                   .fontWeight,
-                              color: Theme.of(context).primaryColor)),
-                    ),
+                              color: Theme.of(context).primaryColor),
+                          recognizer: TapGestureRecognizer()..onTap = () {}),
+                    ])),
                   ],
                 )
               ],
