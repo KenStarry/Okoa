@@ -4,7 +4,17 @@ import 'package:flutter_svg/svg.dart';
 import 'auth_textfield.dart';
 
 class SignUpContent extends StatelessWidget {
-  const SignUpContent({super.key});
+  final TextEditingController emailController;
+  final TextEditingController usernameController;
+  final TextEditingController newPassController;
+  final TextEditingController confirmPassController;
+
+  const SignUpContent(
+      {super.key,
+      required this.emailController,
+      required this.usernameController,
+      required this.newPassController,
+      required this.confirmPassController});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +31,14 @@ class SignUpContent extends StatelessWidget {
         //  login email field
         AuthTextField(
           hintText: "Email Address",
+          controller: emailController,
           prefixIcon: Icons.email_rounded,
           onChanged: (value) {},
         ),
 
         AuthTextField(
           hintText: "Username",
+          controller: usernameController,
           prefixIcon: Icons.email_rounded,
           onChanged: (value) {},
         ),
@@ -34,6 +46,7 @@ class SignUpContent extends StatelessWidget {
         //  login password field
         AuthTextField(
           hintText: "New password",
+          controller: newPassController,
           prefixIcon: Icons.key_rounded,
           suffixIcon: Icons.visibility,
           obscureText: true,
@@ -42,6 +55,7 @@ class SignUpContent extends StatelessWidget {
 
         AuthTextField(
           hintText: "Confirm password",
+          controller: confirmPassController,
           prefixIcon: Icons.key_rounded,
           suffixIcon: Icons.visibility,
           obscureText: true,

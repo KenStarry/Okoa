@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AuthTextField extends StatefulWidget {
+class AuthTextField extends StatelessWidget {
   final bool obscureText;
   final String hintText;
+  final TextEditingController controller;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final Function(String?) onChanged;
@@ -12,36 +13,23 @@ class AuthTextField extends StatefulWidget {
       this.obscureText = false,
       this.prefixIcon,
       this.suffixIcon,
+      required this.controller,
       required this.hintText,
       required this.onChanged});
 
   @override
-  State<AuthTextField> createState() => _AuthTextFieldState();
-}
-
-class _AuthTextFieldState extends State<AuthTextField> {
-  late final TextEditingController _textEditingController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _textEditingController = TextEditingController();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: _textEditingController,
-      obscureText: widget.obscureText,
+      controller: controller,
+      obscureText: obscureText,
       textAlign: TextAlign.start,
       style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
-          hintText: widget.hintText,
+          hintText: hintText,
           hintStyle: Theme.of(context).textTheme.bodyMedium,
-          prefixIcon: Icon(widget.prefixIcon),
-          suffixIcon: Icon(widget.suffixIcon)),
-      onChanged: widget.onChanged,
+          prefixIcon: Icon(prefixIcon),
+          suffixIcon: Icon(suffixIcon)),
+      onChanged: onChanged,
     );
   }
 }
