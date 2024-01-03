@@ -107,10 +107,10 @@ class LoginCard extends StatelessWidget {
             ),
           ),
 
-          //  next button
+          //  login button
           Align(
               alignment: AlignmentDirectional.bottomCenter,
-              child: FilledButton(onPressed: () {}, child: const Text("Next")))
+              child: FilledButton(onPressed: () {}, child: const Text("Login")))
         ],
       ),
     );
