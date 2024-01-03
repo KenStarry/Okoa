@@ -16,12 +16,25 @@ class AuthCard extends StatefulWidget {
 
 class _AuthCardState extends State<AuthCard> {
   late final AuthController _authController;
+  late final TextEditingController loginEmailController;
+  late final TextEditingController loginPassController;
+  late final TextEditingController emailController;
+  late final TextEditingController usernameController;
+  late final TextEditingController newPassController;
+  late final TextEditingController confirmPassController;
 
   @override
   void initState() {
     super.initState();
 
     _authController = Get.find<AuthController>();
+
+    loginEmailController = TextEditingController();
+    loginPassController = TextEditingController();
+    emailController = TextEditingController();
+    usernameController = TextEditingController();
+    newPassController = TextEditingController();
+    confirmPassController = TextEditingController();
   }
 
   @override
@@ -53,8 +66,16 @@ class _AuthCardState extends State<AuthCard> {
                           vertical: 16, horizontal: 32),
                       margin: const EdgeInsets.only(top: 100),
                       child: _authController.isLogin.value
-                          ? const LoginContent()
-                          : const SignUpContent())),
+                          ? LoginContent(
+                              emailController: loginEmailController,
+                              passController: loginPassController,
+                            )
+                          : SignUpContent(
+                              emailController: emailController,
+                              usernameController: usernameController,
+                              newPassController: newPassController,
+                              confirmPassController: confirmPassController,
+                            ))),
             ),
 
             //  login icon
