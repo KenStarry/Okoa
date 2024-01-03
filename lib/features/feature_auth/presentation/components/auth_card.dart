@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:okoa/features/feature_auth/presentation/components/login_content.dart';
 import 'package:okoa/features/feature_auth/presentation/login/components/login_card_clipper.dart';
 import 'package:okoa/features/feature_auth/presentation/login/components/login_textfield.dart';
 
@@ -37,56 +38,7 @@ class _AuthCardState extends State<AuthCard> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                   margin: const EdgeInsets.only(top: 100),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      //  login text
-                      Text(
-                        "Login",
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-
-                      //  login email field
-                      LoginTextField(
-                        hintText: "Enter your email",
-                        prefixIcon: Icons.email_rounded,
-                        onChanged: (value) {},
-                      ),
-
-                      //  login password field
-                      LoginTextField(
-                        hintText: "Enter your password",
-                        prefixIcon: Icons.key_rounded,
-                        suffixIcon: Icons.visibility,
-                        obscureText: true,
-                        onChanged: (value) {},
-                      ),
-
-                      //  login with google
-                      Container(
-                        width: 40,
-                        height: 40,
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Theme.of(context).scaffoldBackgroundColor,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  spreadRadius: 3,
-                                  blurRadius: 15)
-                            ]),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: SvgPicture.asset(
-                            "assets/images/google_logo.svg",
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                  child: LoginContent()
                 )),
           ),
 
