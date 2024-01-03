@@ -39,7 +39,8 @@ class LoginCard extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                   margin: const EdgeInsets.only(top: 100),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -52,7 +53,9 @@ class LoginCard extends StatelessWidget {
                       ),
 
                       //  login field
-                      const LoginTextField()
+                      LoginTextField(
+                        onChanged: (value) {},
+                      )
                     ],
                   ),
                 )),

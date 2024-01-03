@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LoginTextField extends StatefulWidget {
-  const LoginTextField({super.key});
+  final bool obscureText;
+  final Function(String?) onChanged;
+
+  const LoginTextField(
+      {super.key, this.obscureText = false, required this.onChanged});
 
   @override
   State<LoginTextField> createState() => _LoginTextFieldState();
@@ -21,14 +25,14 @@ class _LoginTextFieldState extends State<LoginTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: _textEditingController,
-      obscureText: false,
+      obscureText: widget.obscureText,
       textAlign: TextAlign.center,
       style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: "Enter your email",
         hintStyle: Theme.of(context).textTheme.bodyMedium,
       ),
-      onChanged: (value){},
+      onChanged: widget.onChanged,
     );
   }
 }
