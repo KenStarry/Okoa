@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okoa/features/feature_auth/presentation/login/components/login_card_clipper.dart';
+import 'package:okoa/features/feature_auth/presentation/login/components/login_textfield.dart';
 
 class LoginCard extends StatelessWidget {
   const LoginCard({super.key});
@@ -38,15 +39,20 @@ class LoginCard extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                   margin: const EdgeInsets.only(top: 100),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       //  login text
                       Text(
                         "Login",
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
+
+                      //  login field
+                      const LoginTextField()
                     ],
                   ),
                 )),
