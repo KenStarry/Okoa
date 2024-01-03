@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../login/components/login_textfield.dart';
+import 'auth_textfield.dart';
 
 class LoginContent extends StatelessWidget {
   const LoginContent({super.key});
@@ -19,14 +19,14 @@ class LoginContent extends StatelessWidget {
         ),
 
         //  login email field
-        LoginTextField(
+        AuthTextField(
           hintText: "Enter your email",
           prefixIcon: Icons.email_rounded,
           onChanged: (value) {},
         ),
 
         //  login password field
-        LoginTextField(
+        AuthTextField(
           hintText: "Enter your password",
           prefixIcon: Icons.key_rounded,
           suffixIcon: Icons.visibility,

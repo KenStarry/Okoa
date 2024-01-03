@@ -7,17 +7,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/extensions/build_context_extensions.dart';
 import 'package:okoa/features/feature_auth/presentation/components/auth_card.dart';
 import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
-import 'package:okoa/theme/colors.dart';
-import 'package:okoa/theme/material_generator.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _AuthPageState extends State<AuthPage> {
   late final AuthController _authController;
 
   @override

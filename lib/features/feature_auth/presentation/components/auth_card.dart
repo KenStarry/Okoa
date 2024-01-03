@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:okoa/features/feature_auth/presentation/components/login_content.dart';
 import 'package:okoa/features/feature_auth/presentation/components/sign_up_content.dart';
 import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
-import 'package:okoa/features/feature_auth/presentation/login/components/login_card_clipper.dart';
-import 'package:okoa/features/feature_auth/presentation/login/components/login_textfield.dart';
+import 'package:okoa/features/feature_auth/presentation/components/auth_card_clipper.dart';
+import 'package:okoa/features/feature_auth/presentation/components/auth_textfield.dart';
 
 class AuthCard extends StatefulWidget {
   const AuthCard({super.key});
@@ -36,7 +36,7 @@ class _AuthCardState extends State<AuthCard> {
           children: [
             //  Clip Form Field
             ClipPath(
-              clipper: LoginCardClipper(),
+              clipper: AuthCardClipper(),
               child: AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
                   height: _authController.isLogin.value ? 425 : 475,

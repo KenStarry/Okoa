@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LoginTextField extends StatefulWidget {
+class AuthTextField extends StatefulWidget {
   final bool obscureText;
   final String hintText;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final Function(String?) onChanged;
 
-  const LoginTextField(
+  const AuthTextField(
       {super.key,
       this.obscureText = false,
       this.prefixIcon,
@@ -16,10 +16,10 @@ class LoginTextField extends StatefulWidget {
       required this.onChanged});
 
   @override
-  State<LoginTextField> createState() => _LoginTextFieldState();
+  State<AuthTextField> createState() => _AuthTextFieldState();
 }
 
-class _LoginTextFieldState extends State<LoginTextField> {
+class _AuthTextFieldState extends State<AuthTextField> {
   late final TextEditingController _textEditingController;
 
   @override
