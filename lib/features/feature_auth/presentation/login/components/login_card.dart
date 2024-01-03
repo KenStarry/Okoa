@@ -59,11 +59,26 @@ class LoginCard extends StatelessWidget {
                       ),
 
                       //  login with google
-                      SvgPicture.asset(
-                        "assets/images/google_logo.svg",
+                      Container(
                         width: 50,
                         height: 50,
-                        fit: BoxFit.fill,
+                        padding: const EdgeInsets.all(14),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 3,
+                                  blurRadius: 15)
+                            ]),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: SvgPicture.asset(
+                            "assets/images/google_logo.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       )
                     ],
                   ),
