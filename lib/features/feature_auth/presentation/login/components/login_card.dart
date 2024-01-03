@@ -44,12 +44,15 @@ class LoginCard extends StatelessWidget {
                       //  login email field
                       LoginTextField(
                         hintText: "Enter your email",
+                        prefixIcon: Icons.email_rounded,
                         onChanged: (value) {},
                       ),
 
                       //  login password field
                       LoginTextField(
                         hintText: "Enter your password",
+                        prefixIcon: Icons.key_rounded,
+                        suffixIcon: Icons.visibility,
                         obscureText: true,
                         onChanged: (value) {},
                       ),
