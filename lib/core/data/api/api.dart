@@ -3,7 +3,7 @@ import "package:envied/envied.dart";
 part 'api.g.dart';
 
 //  dart run build_runner build -d
-@Envied(path: '.env')
+@Envied(path: 'api.env')
 abstract class Api {
   //  Url
   @EnviedField(varName: 'SUPABASE_URL', defaultValue: '', obfuscate: true)
