@@ -9,7 +9,11 @@ import 'package:get/get.dart';
 
 void main() async {
   //  Supabase
-  await Supabase.initialize(url: Api.url, anonKey: Api.anonKey);
+  await Supabase.initialize(
+      url: Api.url,
+      anonKey: Api.anonKey,
+      authOptions:
+          const FlutterAuthClientOptions(authFlowType: AuthFlowType.pkce));
 
   //  Dependencies
   invokeDI();
