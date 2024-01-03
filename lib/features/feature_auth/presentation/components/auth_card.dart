@@ -85,7 +85,13 @@ class _AuthCardState extends State<AuthCard> {
             Align(
                 alignment: AlignmentDirectional.bottomCenter,
                 child: FilledButton(
-                    onPressed: () {},
+                    onPressed: _authController.isLogin.value
+                        ? () {
+                            //  Login
+                          }
+                        : () {
+                            //  Sign Up
+                          },
                     child: Text(
                         _authController.isLogin.value ? "Login" : "Sign Up")))
           ],
