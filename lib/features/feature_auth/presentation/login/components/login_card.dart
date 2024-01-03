@@ -28,15 +28,28 @@ class LoginCard extends StatelessWidget {
           ClipPath(
             clipper: LoginCardClipper(),
             child: Container(
-              height: 400,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColorLight,
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(16))),
-              child: Container(width: double.infinity, height: double.infinity),
-            ),
+                height: 400,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColorLight,
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(16),
+                        bottomRight: Radius.circular(16))),
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  padding: const EdgeInsets.all(16),
+                  margin: const EdgeInsets.only(top: 100),
+                  child: Column(
+                    children: [
+                      //  login text
+                      Text(
+                        "Login",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                )),
           ),
 
           //  profile pic icon
