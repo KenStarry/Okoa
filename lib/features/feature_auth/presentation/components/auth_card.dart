@@ -112,6 +112,7 @@ class _AuthCardState extends State<AuthCard> {
                           }
                         : () {
                             //  Sign Up
+                          
                           },
                     child: Text(
                         _authController.isLogin.value ? "Login" : "Sign Up")))
