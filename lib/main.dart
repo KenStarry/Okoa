@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okoa/core/data/api/api.dart';
+import 'package:okoa/di/controllers_di.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/presentation/login/login_page.dart';
 import 'package:okoa/theme/my_theme.dart';
@@ -12,6 +13,7 @@ void main() async {
 
   //  Dependencies
   invokeDI();
+  initializeControllers();
 
   runApp(const MyApp());
 }
