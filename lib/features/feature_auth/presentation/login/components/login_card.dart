@@ -11,15 +11,14 @@ class LoginCard extends StatelessWidget {
     return Container(
       color: Colors.transparent,
       width: double.infinity,
-      height: 375,
+      height: 450,
       child: Stack(
         children: [
-
           //  Clip Form Field
           ClipPath(
             clipper: LoginCardClipper(),
             child: Container(
-                height: 350,
+                height: 425,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     color: Theme.of(context).primaryColorLight,
@@ -42,8 +41,16 @@ class LoginCard extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
 
-                      //  login field
+                      //  login email field
                       LoginTextField(
+                        hintText: "Enter your email",
+                        onChanged: (value) {},
+                      ),
+
+                      //  login password field
+                      LoginTextField(
+                        hintText: "Enter your password",
+                        obscureText: true,
                         onChanged: (value) {},
                       ),
 
@@ -74,7 +81,7 @@ class LoginCard extends StatelessWidget {
                 )),
           ),
 
-          //  profile pic icon
+          //  login icon
           Positioned(
             left: (MediaQuery.of(context).size.width * 0.5) - 50,
             top: 15,
@@ -90,7 +97,7 @@ class LoginCard extends StatelessWidget {
                       strokeAlign: BorderSide.strokeAlignOutside)),
               child: const Center(
                 child: Icon(
-                  Icons.face_6_rounded,
+                  Icons.login,
                   size: 32,
                 ),
               ),
@@ -100,7 +107,7 @@ class LoginCard extends StatelessWidget {
           //  next button
           Align(
               alignment: AlignmentDirectional.bottomCenter,
-              child: FilledButton(onPressed: () {}, child: Text("Next")))
+              child: FilledButton(onPressed: () {}, child: const Text("Next")))
         ],
       ),
     );

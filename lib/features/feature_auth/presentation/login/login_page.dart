@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 70),
+                const SizedBox(height: 24),
                 //  logo
                 SvgPicture.asset(
                     context.isDarkMode
