@@ -22,26 +22,31 @@ class _LoginPageState extends State<LoginPage> {
           statusBarIconBrightness:
               context.isDarkMode ? Brightness.light : Brightness.dark),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         extendBodyBehindAppBar: false,
         body: Container(
           width: double.infinity,
           height: double.infinity,
           padding: const EdgeInsets.all(16),
           color: Theme.of(context).scaffoldBackgroundColor,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              //  logo
-              SvgPicture.asset(
-                  context.isDarkMode
-                      ? "assets/images/logo_alt_dark_mode.svg"
-                      : "assets/images/logo_alt_light_mode.svg",
-                  width: 150),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 100),
+                //  logo
+                SvgPicture.asset(
+                    context.isDarkMode
+                        ? "assets/images/logo_alt_dark_mode.svg"
+                        : "assets/images/logo_alt_light_mode.svg",
+                    width: 150),
 
-              //  login card
-              LoginCard()
-            ],
+                //  login card
+                LoginCard()
+              ],
+            ),
           ),
         ),
       ),
