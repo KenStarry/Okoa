@@ -19,7 +19,8 @@ class LoginCard extends StatelessWidget {
               width: 250,
               height: 10,
               decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColorLight, borderRadius: BorderRadius.circular(100)),
+                  color: Theme.of(context).primaryColorLight,
+                  borderRadius: BorderRadius.circular(100)),
             ),
           ),
 
@@ -52,6 +53,12 @@ class LoginCard extends StatelessWidget {
                       color: Theme.of(context).scaffoldBackgroundColor,
                       width: 3,
                       strokeAlign: BorderSide.strokeAlignOutside)),
+              child: Center(
+                child: Icon(
+                  Icons.face_6_rounded,
+                  size: 32,
+                ),
+              ),
             ),
           )
         ],
