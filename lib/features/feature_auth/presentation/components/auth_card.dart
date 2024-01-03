@@ -3,12 +3,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:okoa/features/feature_auth/presentation/login/components/login_card_clipper.dart';
 import 'package:okoa/features/feature_auth/presentation/login/components/login_textfield.dart';
 
-class AuthCard extends StatelessWidget {
+class AuthCard extends StatefulWidget {
   const AuthCard({super.key});
 
   @override
+  State<AuthCard> createState() => _AuthCardState();
+}
+
+class _AuthCardState extends State<AuthCard> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(seconds: 1),
       color: Colors.transparent,
       width: double.infinity,
       height: 450,
