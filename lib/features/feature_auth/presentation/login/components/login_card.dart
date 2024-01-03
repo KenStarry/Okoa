@@ -14,7 +14,7 @@ class LoginCard extends StatelessWidget {
       child: Container(
         height: 400,
         width: double.infinity,
-        color: generateMaterialColor(accent).shade100,
+        color: Theme.of(context).primaryColorLight,
       ),
     );
   }
