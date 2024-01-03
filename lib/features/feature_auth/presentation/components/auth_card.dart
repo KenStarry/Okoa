@@ -28,7 +28,7 @@ class _AuthCardState extends State<AuthCard> {
   Widget build(BuildContext context) {
     return Obx(
       () => AnimatedContainer(
-        duration: const Duration(seconds: 1),
+        duration: const Duration(milliseconds: 350),
         color: Colors.transparent,
         width: double.infinity,
         height: _authController.isLogin.value ? 450 : 500,
@@ -37,8 +37,9 @@ class _AuthCardState extends State<AuthCard> {
             //  Clip Form Field
             ClipPath(
               clipper: LoginCardClipper(),
-              child: Container(
-                  height: 425,
+              child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 350),
+                  height: _authController.isLogin.value ? 425 : 475,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Theme.of(context).primaryColorLight,
@@ -57,9 +58,10 @@ class _AuthCardState extends State<AuthCard> {
             ),
 
             //  login icon
-            Positioned(
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 350),
               left: (MediaQuery.of(context).size.width * 0.5) - 50,
-              top: 15,
+              top: _authController.isLogin.value ? 15 : 20,
               child: Container(
                 width: 70,
                 height: 70,
@@ -82,8 +84,10 @@ class _AuthCardState extends State<AuthCard> {
             //  login button
             Align(
                 alignment: AlignmentDirectional.bottomCenter,
-                child:
-                    FilledButton(onPressed: () {}, child: const Text("Login")))
+                child: FilledButton(
+                    onPressed: () {},
+                    child: Text(
+                        _authController.isLogin.value ? "Login" : "Sign Up")))
           ],
         ),
       ),

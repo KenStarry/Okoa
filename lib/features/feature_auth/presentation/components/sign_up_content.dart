@@ -20,7 +20,13 @@ class SignUpContent extends StatelessWidget {
 
         //  login email field
         LoginTextField(
-          hintText: "Enter your email",
+          hintText: "Email Address",
+          prefixIcon: Icons.email_rounded,
+          onChanged: (value) {},
+        ),
+
+        LoginTextField(
+          hintText: "Username",
           prefixIcon: Icons.email_rounded,
           onChanged: (value) {},
         ),
@@ -41,29 +47,6 @@ class SignUpContent extends StatelessWidget {
           obscureText: true,
           onChanged: (value) {},
         ),
-
-        //  login with google
-        Container(
-          width: 40,
-          height: 40,
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: Theme.of(context).scaffoldBackgroundColor,
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 3,
-                    blurRadius: 15)
-              ]),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: SvgPicture.asset(
-              "assets/images/google_logo.svg",
-              fit: BoxFit.fill,
-            ),
-          ),
-        )
       ],
     );
   }
