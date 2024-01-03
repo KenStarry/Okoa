@@ -6,4 +6,6 @@ void authDI({required GetIt locator}) {
 
   /// Repository
   locator.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
+
+  /// Use Cases
 }
