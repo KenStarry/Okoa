@@ -69,6 +69,9 @@ class _AuthCardState extends State<AuthCard> {
                           ? LoginContent(
                               emailController: loginEmailController,
                               passController: loginPassController,
+                              signInWithGoogle: () async {
+                                await _authController.signInWithGoogle();
+                              },
                             )
                           : SignUpContent(
                               emailController: emailController,
