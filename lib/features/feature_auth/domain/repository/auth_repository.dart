@@ -10,5 +10,6 @@ abstract class AuthRepository {
   Future<void> signIn({required String email, required String password});
 
   /// Auth Subscription
-  StreamSubscription<AuthState> authSubscription();
+  StreamSubscription<AuthState> authSubscription(
+      {required Function(AuthState) onAuthStateChanged});
 }
