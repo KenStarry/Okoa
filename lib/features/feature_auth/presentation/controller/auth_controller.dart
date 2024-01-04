@@ -14,4 +14,9 @@ class AuthController extends GetxController {
   Future<void> signUp(
           {required String email, required String password}) async =>
       await authUseCase.signUp.call(email: email, password: password);
+
+  /// Sign In
+  Future<void> signIn(
+          {required String email, required String password}) async =>
+      await authUseCase.signIn.call(email: email, password: password);
 }
