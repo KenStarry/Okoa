@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +12,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late final AuthController _authController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _authController = Get.find<AuthController>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
@@ -20,6 +30,16 @@ class _HomePageState extends State<HomePage> {
               Get.context!.isDarkMode ? Brightness.light : Brightness.dark),
       child: Scaffold(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            actions: [
+              IconButton(
+                  onPressed: () async {
+                    _authController.signOut();
+                  },
+                  icon: Icon(Icons.logout_rounded))
+            ],
+          ),
           body: SafeArea(child: Text("Home Page"))),
     );
   }
