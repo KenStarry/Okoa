@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'auth_textfield.dart';
 
-class SignUpContent extends StatelessWidget {
+class SignUpContent extends StatefulWidget {
   final TextEditingController emailController;
   final TextEditingController usernameController;
   final TextEditingController newPassController;
@@ -15,6 +15,14 @@ class SignUpContent extends StatelessWidget {
       required this.usernameController,
       required this.newPassController,
       required this.confirmPassController});
+
+  @override
+  State<SignUpContent> createState() => _SignUpContentState();
+}
+
+class _SignUpContentState extends State<SignUpContent> {
+  bool obscureNewPass = true;
+  bool obscureConfirmPass = true;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +39,14 @@ class SignUpContent extends StatelessWidget {
         //  login email field
         AuthTextField(
           hintText: "Email Address",
-          controller: emailController,
+          controller: widget.emailController,
           prefixIcon: Icons.email_rounded,
           onChanged: (value) {},
         ),
 
         AuthTextField(
           hintText: "Username",
-          controller: usernameController,
+          controller: widget.usernameController,
           prefixIcon: Icons.email_rounded,
           onChanged: (value) {},
         ),
@@ -46,20 +54,35 @@ class SignUpContent extends StatelessWidget {
         //  login password field
         AuthTextField(
           hintText: "New password",
-          controller: newPassController,
+          controller: widget.newPassController,
           prefixIcon: Icons.key_rounded,
-          suffixIcon: Icons.visibility,
-          obscureText: true,
+          suffixIcon:
+              obscureNewPass ? Icons.visibility : Icons.visibility_off_rounded,
+          isPasswordField: true,
+          obscureText: obscureNewPass,
           onChanged: (value) {},
+          onObscure: () {
+            setState(() {
+              obscureNewPass = !obscureNewPass;
+            });
+          },
         ),
 
         AuthTextField(
           hintText: "Confirm password",
-          controller: confirmPassController,
+          controller: widget.confirmPassController,
           prefixIcon: Icons.key_rounded,
-          suffixIcon: Icons.visibility,
-          obscureText: true,
+          suffixIcon: obscureConfirmPass
+              ? Icons.visibility
+              : Icons.visibility_off_rounded,
+          obscureText: obscureConfirmPass,
+          isPasswordField: true,
           onChanged: (value) {},
+          onObscure: () {
+            setState(() {
+              obscureConfirmPass = !obscureConfirmPass;
+            });
+          },
         ),
       ],
     );
