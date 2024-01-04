@@ -10,7 +10,7 @@ abstract class AuthRepository {
   Future<void> signIn({required String email, required String password});
 
   /// Sign In with Google
-  // Future<AuthResponse>
+  Future<AuthResponse> signInWithGoogle();
 
   /// Sign Out
   Future<void> signOut();
