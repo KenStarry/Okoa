@@ -107,8 +107,11 @@ class _AuthCardState extends State<AuthCard> {
                 alignment: AlignmentDirectional.bottomCenter,
                 child: FilledButton(
                     onPressed: _authController.isLogin.value
-                        ? () {
+                        ? () async {
                             //  Login
+                            await _authController.signIn(
+                                email: loginEmailController.text,
+                                password: loginPassController.text);
                           }
                         : () async {
                             //  Sign Up
