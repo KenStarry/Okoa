@@ -80,8 +80,7 @@ class _AuthPageState extends State<AuthPage> {
                         margin: const EdgeInsets.symmetric(horizontal: 16),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            color:
-                                Theme.of(context).scaffoldBackgroundColor,
+                            color: Theme.of(context).scaffoldBackgroundColor,
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black.withOpacity(0.2),
@@ -101,9 +100,14 @@ class _AuthPageState extends State<AuthPage> {
                               ),
                             ),
                             const SizedBox(width: 16),
-                            Text("Sign in with Google",
-                                style:
-                                    Theme.of(context).textTheme.bodyMedium),
+                            Obx(
+                              () => Text(
+                                  _authController.isLogin.value
+                                      ? "Sign in with Google"
+                                      : "Sign Up with Google",
+                                  style:
+                                      Theme.of(context).textTheme.bodyMedium),
+                            ),
                           ],
                         ),
                       ),

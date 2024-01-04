@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:okoa/theme/material_generator.dart';
 
 import 'colors.dart';
@@ -14,6 +15,15 @@ class MyTheme {
       filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
               backgroundColor: accent, foregroundColor: textBlack500)),
+      textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: accent
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+          iconColor: accent,
+          prefixIconColor: textBlack300,
+          suffixIconColor: textBlack300,
+          focusedBorder:
+          UnderlineInputBorder(borderSide: BorderSide(color: accent))),
       useMaterial3: true,
       textTheme: const TextTheme(
         bodySmall: TextStyle(
@@ -40,6 +50,15 @@ class MyTheme {
       filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
               backgroundColor: accent, foregroundColor: textBlack500)),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: accent
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+          iconColor: accent,
+          prefixIconColor: textWhite300,
+          suffixIconColor: textWhite300,
+          focusedBorder:
+              UnderlineInputBorder(borderSide: BorderSide(color: accent))),
       useMaterial3: true,
       textTheme: const TextTheme(
         bodySmall: TextStyle(
