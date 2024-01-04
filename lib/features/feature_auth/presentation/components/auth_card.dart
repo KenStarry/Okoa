@@ -43,7 +43,7 @@ class _AuthCardState extends State<AuthCard> {
       () => AnimatedContainer(
         duration: const Duration(milliseconds: 350),
         width: double.infinity,
-        height: _authController.isLogin.value ? 400 : 500,
+        height: _authController.isLogin.value ? 350 : 500,
         child: Column(
           children: [
             //  Clip Form Field
@@ -61,7 +61,7 @@ class _AuthCardState extends State<AuthCard> {
                       width: double.infinity,
                       height: double.infinity,
                       padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 32),
+                          vertical: 16, horizontal: 16),
                       child: _authController.isLogin.value
                           ? LoginContent(
                               emailController: loginEmailController,

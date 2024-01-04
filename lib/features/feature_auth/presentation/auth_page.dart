@@ -77,6 +77,7 @@ class _AuthPageState extends State<AuthPage> {
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(16),
+                        margin: const EdgeInsets.symmetric(horizontal: 16),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
                             color:
