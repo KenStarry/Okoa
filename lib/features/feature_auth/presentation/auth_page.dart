@@ -23,6 +23,10 @@ class _AuthPageState extends State<AuthPage> {
     super.initState();
 
     _authController = Get.find<AuthController>();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _authController.setIsLogin(isLogin: true);
+    });
   }
 
   @override
