@@ -44,6 +44,12 @@ class AuthController extends GetxController {
           {required String email, required String password}) async =>
       await authUseCase.signIn.call(email: email, password: password);
 
+  /// Sign Out
+  Future<void> signOut() async => await authUseCase.signOut();
+
+  /// Get Auth User
+  User? getAuthUser() => authUseCase.getAuthUser();
+
   /// Auth Subscription
   StreamSubscription<AuthState> authSubscription(
           {required Function(AuthState) onAuthStateChanged}) =>
