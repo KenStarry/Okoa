@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/domain/use_case/auth_use_cases.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthController extends GetxController {
   final authUseCase = locator.get<AuthUseCases>();
@@ -19,4 +22,9 @@ class AuthController extends GetxController {
   Future<void> signIn(
           {required String email, required String password}) async =>
       await authUseCase.signIn.call(email: email, password: password);
+
+  /// Auth Subscription
+  StreamSubscription<AuthState> authSubscription(
+          {required Function(AuthState) onAuthStateChanged}) =>
+      authUseCase.authSubscription.call(onAuthStateChanged: onAuthStateChanged);
 }
