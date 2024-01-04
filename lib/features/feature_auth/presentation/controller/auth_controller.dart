@@ -8,8 +8,29 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class AuthController extends GetxController {
   final authUseCase = locator.get<AuthUseCases>();
 
+  late final StreamSubscription<AuthState> _subscription;
+  final currentEvent = AuthChangeEvent.signedOut.obs;
+  final currentSession = Rxn<Session>();
+
   //  current screen
   final isLogin = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    //  subscribe to auth
+    _subscription = authSubscription(onAuthStateChanged: (authState) {
+      currentEvent.value = authState.event;
+      currentSession.value = authState.session;
+    });
+  }
+
+  @override
+  void onClose() {
+    _subscription.cancel();
+    super.onClose();
+  }
 
   void setIsLogin({required bool isLogin}) => this.isLogin.value = isLogin;
 
