@@ -37,6 +37,10 @@ class AuthRepositoryImpl extends AuthRepository {
     }
   }
 
+  /// Auth User
+  @override
+  User? getAuthUser() => supabase.auth.currentUser;
+
   /// Auth Subscription
   @override
   StreamSubscription<AuthState> authSubscription(
