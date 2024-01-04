@@ -3,12 +3,19 @@ import 'package:flutter_svg/svg.dart';
 
 import 'auth_textfield.dart';
 
-class LoginContent extends StatelessWidget {
+class LoginContent extends StatefulWidget {
   final TextEditingController emailController;
   final TextEditingController passController;
 
   const LoginContent(
       {super.key, required this.emailController, required this.passController});
+
+  @override
+  State<LoginContent> createState() => _LoginContentState();
+}
+
+class _LoginContentState extends State<LoginContent> {
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class LoginContent extends StatelessWidget {
 
         //  login email field
         AuthTextField(
-          controller: emailController,
+          controller: widget.emailController,
           hintText: "Enter your email",
           prefixIcon: Icons.email_rounded,
           onChanged: (value) {},
@@ -32,12 +39,19 @@ class LoginContent extends StatelessWidget {
 
         //  login password field
         AuthTextField(
-          controller: passController,
+          controller: widget.passController,
           hintText: "Enter your password",
           prefixIcon: Icons.key_rounded,
-          suffixIcon: Icons.visibility,
-          obscureText: true,
+          isPasswordField: true,
+          suffixIcon:
+              obscureText ? Icons.visibility : Icons.visibility_off_rounded,
+          obscureText: obscureText,
           onChanged: (value) {},
+          onObscure: () {
+            setState(() {
+              obscureText = !obscureText;
+            });
+          },
         ),
       ],
     );

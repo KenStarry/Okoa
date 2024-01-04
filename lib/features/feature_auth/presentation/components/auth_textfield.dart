@@ -2,20 +2,24 @@ import 'package:flutter/material.dart';
 
 class AuthTextField extends StatelessWidget {
   final bool obscureText;
+  final bool isPasswordField;
   final String hintText;
   final TextEditingController controller;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
   final Function(String?) onChanged;
+  final VoidCallback? onObscure;
 
   const AuthTextField(
       {super.key,
       this.obscureText = false,
+      this.isPasswordField = false,
       this.prefixIcon,
       this.suffixIcon,
       required this.controller,
       required this.hintText,
-      required this.onChanged});
+      required this.onChanged,
+      this.onObscure});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,9 @@ class AuthTextField extends StatelessWidget {
           hintText: hintText,
           hintStyle: Theme.of(context).textTheme.bodyMedium,
           prefixIcon: Icon(prefixIcon),
-          suffixIcon: Icon(suffixIcon)),
+          suffixIcon: isPasswordField
+              ? IconButton(onPressed: onObscure, icon: Icon(suffixIcon))
+              : Icon(suffixIcon)),
       onChanged: onChanged,
     );
   }
