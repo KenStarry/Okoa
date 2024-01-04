@@ -9,6 +9,9 @@ abstract class AuthRepository {
   /// Sign In
   Future<void> signIn({required String email, required String password});
 
+  /// Sign Out
+  Future<void> signOut();
+
   /// Auth Subscription
   StreamSubscription<AuthState> authSubscription(
       {required Function(AuthState) onAuthStateChanged});

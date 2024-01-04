@@ -27,6 +27,16 @@ class AuthRepositoryImpl extends AuthRepository {
     }
   }
 
+  /// Sign Out
+  @override
+  Future<void> signOut() async {
+    try {
+      await supabase.auth.signOut(scope: SignOutScope.local);
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
   /// Auth Subscription
   @override
   StreamSubscription<AuthState> authSubscription(
