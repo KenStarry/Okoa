@@ -112,9 +112,6 @@ class _AuthCardState extends State<AuthCard> {
                           }
                         : () async {
                             //  Sign Up
-                            print(
-                                "EMAIL : ${emailController.text}, PASSWORD : ${newPassController.text}");
-
                             await _authController.signUp(
                                 email: emailController.text,
                                 password: newPassController.text);
