@@ -5,6 +5,7 @@ import 'package:okoa/features/feature_auth/domain/use_case/auth_subscription.dar
 import 'package:okoa/features/feature_auth/domain/use_case/auth_use_cases.dart';
 import 'package:okoa/features/feature_auth/domain/use_case/get_auth_user.dart';
 import 'package:okoa/features/feature_auth/domain/use_case/sign_in.dart';
+import 'package:okoa/features/feature_auth/domain/use_case/sign_in_with_google.dart';
 import 'package:okoa/features/feature_auth/domain/use_case/sign_out.dart';
 import 'package:okoa/features/feature_auth/domain/use_case/sign_up.dart';
 
@@ -16,6 +17,7 @@ void authDI({required GetIt locator}) {
   locator.registerLazySingleton<AuthUseCases>(() => AuthUseCases(
       signUp: SignUp(),
       signIn: SignIn(),
+      signInWithGoogle: SignInWithGoogle(),
       signOut: SignOut(),
       getAuthUser: GetAuthUser(),
       authSubscription: AuthSubscription()));
