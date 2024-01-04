@@ -65,6 +65,51 @@ class _AuthPageState extends State<AuthPage> {
 
                 const SizedBox(height: 24),
 
+                Column(
+                  children: [
+                    Text("OR", style: Theme.of(context).textTheme.bodyMedium),
+                    const SizedBox(height: 16),
+                    //  login with google
+                    GestureDetector(
+                      onTap: () async {
+                        await _authController.signInWithGoogle();
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color:
+                                Theme.of(context).scaffoldBackgroundColor,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 3,
+                                  blurRadius: 15)
+                            ]),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: SvgPicture.asset(
+                                "assets/images/google_logo.svg",
+                                width: 24,
+                                height: 24,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Text("Sign in with Google",
+                                style:
+                                    Theme.of(context).textTheme.bodyMedium),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+
                 //  Create account text
                 Container(
                   width: double.infinity,

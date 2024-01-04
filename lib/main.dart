@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
             : const AuthPage(),
         debugShowCheckedModeBanner: false,
         theme: MyTheme.lightTheme,
-        darkTheme: MyTheme.lightTheme,
+        darkTheme: MyTheme.darkTheme,
       ),
     );
   }
