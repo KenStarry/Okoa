@@ -44,6 +44,10 @@ class AuthController extends GetxController {
           {required String email, required String password}) async =>
       await authUseCase.signIn.call(email: email, password: password);
 
+  /// Google Sign In
+  Future<AuthResponse> signInWithGoogle() async =>
+      await authUseCase.signInWithGoogle();
+
   /// Sign Out
   Future<void> signOut() async => await authUseCase.signOut();
 
