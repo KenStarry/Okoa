@@ -44,8 +44,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Obx(
       () => GetMaterialApp(
-        home: _authController.currentEvent.value == AuthChangeEvent.signedIn ||
-                _authController.currentSession.value != null
+        home: _authController.currentSession.value != null
             ? const HomePage()
             : const AuthPage(),
         debugShowCheckedModeBanner: false,
