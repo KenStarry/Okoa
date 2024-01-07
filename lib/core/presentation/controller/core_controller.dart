@@ -2,25 +2,15 @@ import 'package:get/get.dart';
 import 'package:okoa/core/domain/use_case/core_use_cases.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
-import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
 
 class CoreController extends GetxController {
-  final authController = Get.find<AuthController>();
   final useCase = locator.get<CoreUseCases>();
 
   /// User Data
   final okoaUser = Rxn<OkoaUser>();
 
-  @override
-  void onInit() {
-    super.onInit();
-
-    listenToUserDataonDB(
-        uid: authController.getAuthUser()!.id,
-        onGetUserData: (user) {
-          okoaUser.value = user;
-        });
-  }
+  void setOkoaUserData({required OkoaUser okoaUser}) =>
+      this.okoaUser.value = okoaUser;
 
   //  get user data from DB
   Future<void> getUserDataFromDatabase(

@@ -22,6 +22,14 @@ class _HomePageState extends State<HomePage> {
 
     _authController = Get.find<AuthController>();
     _coreController = Get.find<CoreController>();
+
+    if (_authController.currentSession.value != null) {
+      _coreController.listenToUserDataonDB(
+          uid: _authController.getAuthUser()!.id,
+          onGetUserData: (user) {
+            _coreController.setOkoaUserData(okoaUser: user);
+          });
+    }
   }
 
   @override
