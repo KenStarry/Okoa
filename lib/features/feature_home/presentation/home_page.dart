@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
+import 'package:okoa/features/feature_home/presentation/components/sos_status_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -40,18 +41,13 @@ class _HomePageState extends State<HomePage> {
           statusBarIconBrightness:
               Get.context!.isDarkMode ? Brightness.light : Brightness.dark),
       child: Scaffold(
+        extendBodyBehindAppBar: true,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            actions: [
-              IconButton(
-                  onPressed: () async {
-                    _authController.signOut();
-                  },
-                  icon: Icon(Icons.logout_rounded))
+          body: CustomScrollView(
+            slivers: [
+              SOSStatusSection()
             ],
-          ),
-          body: SafeArea(child: Text("Home Page"))),
+          )),
     );
   }
 }
