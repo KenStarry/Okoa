@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:okoa/core/domain/repository/core_repository.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -19,5 +21,22 @@ class CoreRepositoryimpl extends CoreRepository {
     } catch (error) {
       throw Exception(error);
     }
+  }
+
+  @override
+  void listenToUserDataonDB(
+      {required String uid,
+      required Function(OkoaUser okoaUser) onGetUserData}) {
+    supabase
+        .from('users')
+        .stream(primaryKey: ['id'])
+        .eq('id', uid)
+        .limit(1)
+        .listen((data) {
+          //  get the first element
+          final userDataJson = data[0];
+
+          onGetUserData(OkoaUser.fromJson(userDataJson));
+        });
   }
 }
