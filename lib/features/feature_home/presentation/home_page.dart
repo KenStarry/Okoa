@@ -58,9 +58,9 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
                 height: 550,
                 margin: EdgeInsets.only(left: 100),
-                color: Colors.red,
+                color: Theme.of(context).primaryColor,
               ),
-              CustomScrollView(
+              const CustomScrollView(
                 slivers: [
                   SOSStatusSection(),
                   HomeContentSection()

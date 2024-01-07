@@ -16,7 +16,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
         height: 450,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100)),
-          color: Colors.red,
+          color: Theme.of(context).primaryColor,
         ),
       ),
     );

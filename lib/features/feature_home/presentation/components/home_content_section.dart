@@ -13,10 +13,21 @@ class _HomeContentSectionState extends State<HomeContentSection> {
     return SliverToBoxAdapter(
       child: Container(
         width: double.infinity,
-        height: 500,
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(topRight: Radius.circular(100)),
           color: Theme.of(context).scaffoldBackgroundColor,
+        ),
+        child: Wrap(
+          children: [
+            Text("Partners", style: Theme.of(context).textTheme.titleMedium,),
+
+            Container(
+              width: double.infinity,
+              height: 800,
+              color: Theme.of(context).scaffoldBackgroundColor,
+            )
+          ],
         ),
       ),
     );
