@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,12 +14,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late final AuthController _authController;
+  late final CoreController _coreController;
 
   @override
   void initState() {
     super.initState();
 
     _authController = Get.find<AuthController>();
+    _coreController = Get.find<CoreController>();
   }
 
   @override
