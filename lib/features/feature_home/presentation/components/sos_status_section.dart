@@ -18,6 +18,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100)),
           color: Theme.of(context).primaryColor,
         ),
+
       ),
     );
   }
