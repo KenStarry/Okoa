@@ -43,9 +43,18 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          body: CustomScrollView(
-            slivers: [
-              SOSStatusSection()
+          body: Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.blue,
+              ),
+              CustomScrollView(
+                slivers: [
+                  SOSStatusSection()
+                ],
+              )
             ],
           )),
     );

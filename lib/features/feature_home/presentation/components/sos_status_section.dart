@@ -13,8 +13,11 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
     return SliverToBoxAdapter(
       child: Container(
         width: double.infinity,
-        height: 400,
-        color: Colors.red,
+        height: 500,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100)),
+          color: Colors.red,
+        ),
       ),
     );
   }
