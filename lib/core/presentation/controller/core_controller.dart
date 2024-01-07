@@ -16,7 +16,9 @@ class CoreController extends GetxController {
     super.onInit();
 
     getUserDataFromDatabase(
-        uid: authController.getAuthUser()!.id, onGetUserData: (user) {});
+        uid: authController.getAuthUser()!.id, onGetUserData: (user) {
+          print("------------USER OBJECT DATA : $user}");
+    });
   }
 
   //  get user data from DB

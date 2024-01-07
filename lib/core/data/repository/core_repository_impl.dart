@@ -15,7 +15,7 @@ class CoreRepositoryimpl extends CoreRepository {
       final userData =
           await supabase.from('users').select().eq('id', uid).single();
 
-      print("----------USER DATA : $userData");
+      onGetUserData(OkoaUser.fromJson(userData));
     } catch (error) {
       throw Exception(error);
     }

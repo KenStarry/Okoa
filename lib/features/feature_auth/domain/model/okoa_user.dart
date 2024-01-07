@@ -6,11 +6,14 @@ part 'okoa_user.g.dart';
 
 @freezed
 class OkoaUser with _$OkoaUser {
+  @JsonSerializable(explicitToJson: true)
   const factory OkoaUser(
-      {@Default('') String userName,
-      @Default('') String email,
-      @Default('') String phone,
-      @Default('') String avatarUrl}) = _OkoaUser;
+      {@JsonKey(name: 'id') @Default('') String userId,
+      @JsonKey(name: 'email_address') @Default('') String email,
+      @JsonKey(name: 'created_at') @Default('') String createdAt,
+      @JsonKey(name: 'username') @Default('') String userName,
+      @JsonKey(name: 'phone_number') @Default('') String phone,
+      @JsonKey(name: 'avatar_url') @Default('') String avatarUrl}) = _OkoaUser;
 
   factory OkoaUser.fromJson(Map<String, dynamic> json) =>
       _$OkoaUserFromJson(json);

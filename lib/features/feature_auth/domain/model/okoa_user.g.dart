@@ -8,16 +8,20 @@ part of 'okoa_user.dart';
 
 _$OkoaUserImpl _$$OkoaUserImplFromJson(Map<String, dynamic> json) =>
     _$OkoaUserImpl(
-      userName: json['userName'] as String? ?? '',
-      email: json['email'] as String? ?? '',
-      phone: json['phone'] as String? ?? '',
-      avatarUrl: json['avatarUrl'] as String? ?? '',
+      userId: json['id'] as String? ?? '',
+      email: json['email_address'] as String? ?? '',
+      createdAt: json['created_at'] as String? ?? '',
+      userName: json['username'] as String? ?? '',
+      phone: json['phone_number'] as String? ?? '',
+      avatarUrl: json['avatar_url'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$OkoaUserImplToJson(_$OkoaUserImpl instance) =>
     <String, dynamic>{
-      'userName': instance.userName,
-      'email': instance.email,
-      'phone': instance.phone,
-      'avatarUrl': instance.avatarUrl,
+      'id': instance.userId,
+      'email_address': instance.email,
+      'created_at': instance.createdAt,
+      'username': instance.userName,
+      'phone_number': instance.phone,
+      'avatar_url': instance.avatarUrl,
     };
