@@ -15,7 +15,7 @@ class CoreController extends GetxController {
   void onInit() {
     super.onInit();
 
-    getUserDataFromDatabase(
+    listenToUserDataonDB(
         uid: authController.getAuthUser()!.id,
         onGetUserData: (user) {
           okoaUser.value = user;
