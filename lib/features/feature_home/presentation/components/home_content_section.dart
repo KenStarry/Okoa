@@ -10,6 +10,15 @@ class HomeContentSection extends StatefulWidget {
 class _HomeContentSectionState extends State<HomeContentSection> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SliverToBoxAdapter(
+      child: Container(
+        width: double.infinity,
+        height: 500,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(topRight: Radius.circular(100)),
+          color: Theme.of(context).scaffoldBackgroundColor,
+        ),
+      ),
+    );
   }
 }

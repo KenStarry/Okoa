@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
+import 'package:okoa/features/feature_home/presentation/components/home_content_section.dart';
 import 'package:okoa/features/feature_home/presentation/components/sos_status_section.dart';
 
 class HomePage extends StatefulWidget {
@@ -45,20 +46,24 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           body: Stack(
             children: [
+              //  Main background color
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Colors.blue,
+                color: Theme.of(context).scaffoldBackgroundColor,
               ),
+
+              //  SOS Extension
               Container(
                 width: double.infinity,
-                height: double.infinity,
+                height: 550,
                 margin: EdgeInsets.only(left: 100),
-                color: Colors.green,
+                color: Colors.red,
               ),
               CustomScrollView(
                 slivers: [
-                  SOSStatusSection()
+                  SOSStatusSection(),
+                  HomeContentSection()
                 ],
               )
             ],
