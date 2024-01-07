@@ -10,7 +10,7 @@ class CoreRepositoryimpl extends CoreRepository {
   @override
   Future<void> getUserDataFromDatabase(
       {required String uid,
-      required Function(OkoaUser p1) onGetUserData}) async {
+      required Function(OkoaUser okoaUser) onGetUserData}) async {
     try {
       final userData =
           await supabase.from('users').select().eq('id', uid).single();
