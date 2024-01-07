@@ -27,4 +27,9 @@ class CoreController extends GetxController {
           {required String uid,
           required Function(OkoaUser okoaUser) onGetUserData}) async =>
       useCase.getUserDataFromDB.call(uid: uid, onGetUserData: onGetUserData);
+
+  void listenToUserDataonDB(
+          {required String uid,
+          required Function(OkoaUser okoaUser) onGetUserData}) =>
+      useCase.listenToUserDataOnDB.call(uid: uid, onGetUserData: onGetUserData);
 }
