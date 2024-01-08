@@ -19,25 +19,30 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(56)),
           color: Theme.of(context).primaryColor,
         ),
-        child: Center(
-          child: AvatarGlow(
-            glowShape: BoxShape.circle,
-            glowCount: 3,
-            glowRadiusFactor: 0.4,
-            glowColor: Colors.red,
-            child: Container(
-              width: 150,
-              height: 150,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Theme.of(context).scaffoldBackgroundColor),
-              child: Icon(
-                Icons.dangerous_rounded,
-                color: Colors.red,
-                size: 48,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            //  home appbar
+            AvatarGlow(
+              glowShape: BoxShape.circle,
+              glowCount: 3,
+              glowRadiusFactor: 0.4,
+              glowColor: Colors.red,
+              child: Container(
+                width: 150,
+                height: 150,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).scaffoldBackgroundColor),
+                child: Icon(
+                  Icons.dangerous_rounded,
+                  color: Colors.red,
+                  size: 48,
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

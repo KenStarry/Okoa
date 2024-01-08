@@ -39,8 +39,7 @@ class _HomePageState extends State<HomePage> {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness:
-              Get.context!.isDarkMode ? Brightness.light : Brightness.dark),
+          statusBarIconBrightness: Brightness.light),
       child: Scaffold(
         extendBodyBehindAppBar: true,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
