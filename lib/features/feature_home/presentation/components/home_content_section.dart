@@ -15,7 +15,7 @@ class _HomeContentSectionState extends State<HomeContentSection> {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(topRight: Radius.circular(100)),
+          borderRadius: const BorderRadius.only(topRight: Radius.circular(56)),
           color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: Wrap(

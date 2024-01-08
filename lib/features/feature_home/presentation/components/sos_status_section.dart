@@ -16,21 +16,26 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
         width: double.infinity,
         height: 450,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100)),
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(56)),
           color: Theme.of(context).primaryColor,
         ),
         child: Center(
           child: AvatarGlow(
             glowShape: BoxShape.circle,
             glowCount: 3,
-            glowRadiusFactor: 0.3,
-            glowColor: Colors.greenAccent,
+            glowRadiusFactor: 0.4,
+            glowColor: Colors.red,
             child: Container(
-              width: 200,
-              height: 200,
+              width: 150,
+              height: 150,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.greenAccent),
+                  color: Theme.of(context).scaffoldBackgroundColor),
+              child: Icon(
+                Icons.dangerous_rounded,
+                color: Colors.red,
+                size: 48,
+              ),
             ),
           ),
         ),
