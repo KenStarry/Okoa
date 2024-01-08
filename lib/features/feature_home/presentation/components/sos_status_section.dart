@@ -1,5 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
 
 class SOSStatusSection extends StatefulWidget {
@@ -29,20 +30,30 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
             AvatarGlow(
               glowShape: BoxShape.circle,
               glowCount: 3,
-              glowRadiusFactor: 0.4,
-              glowColor: Colors.red,
+              glowRadiusFactor: 0.3,
+              glowColor: Colors.redAccent,
               child: Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).scaffoldBackgroundColor),
-                child: Icon(
-                  Icons.dangerous_rounded,
-                  color: Colors.red,
-                  size: 48,
-                ),
-              ),
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            blurRadius: 5,
+                            spreadRadius: 5)
+                      ]),
+                  child: Center(
+                    child: Text(
+                      "SOS",
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: Theme.of(context).textTheme.titleLarge!.fontWeight,
+                        color: Colors.redAccent
+                      ),
+                    ),
+                  )),
             ),
           ],
         ),

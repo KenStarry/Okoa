@@ -21,7 +21,7 @@ class HomeAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
-            child: Center(child: Icon(Icons.person_rounded)),
+            child: const Center(child: Icon(Icons.person_rounded)),
           )
         ],
       ),
