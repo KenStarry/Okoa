@@ -1,5 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
 
 class SOSStatusSection extends StatefulWidget {
   const SOSStatusSection({super.key});
@@ -24,6 +25,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             //  home appbar
+            HomeAppBar(),
             AvatarGlow(
               glowShape: BoxShape.circle,
               glowCount: 3,
