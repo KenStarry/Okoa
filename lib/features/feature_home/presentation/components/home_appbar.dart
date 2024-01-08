@@ -8,7 +8,7 @@ class HomeAppBar extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-      color: Colors.red,
+      color: Colors.transparent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -19,8 +19,9 @@ class HomeAppBar extends StatelessWidget {
             height: 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.blue,
+              color: Theme.of(context).scaffoldBackgroundColor,
             ),
+            child: Center(child: Icon(Icons.person_rounded)),
           )
         ],
       ),
