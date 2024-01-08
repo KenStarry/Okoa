@@ -16,6 +16,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
       child: Container(
         width: double.infinity,
         height: 450,
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(56)),
           color: Theme.of(context).primaryColor,
