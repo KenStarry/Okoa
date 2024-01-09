@@ -41,8 +41,15 @@ class _HomePageState extends State<HomePage> {
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.light),
       child: Scaffold(
-        extendBodyBehindAppBar: true,
+          extendBodyBehindAppBar: true,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              //  add partner page
+            },
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(Icons.add_rounded),
+          ),
           body: Stack(
             children: [
               //  Main background color
@@ -60,10 +67,7 @@ class _HomePageState extends State<HomePage> {
                 color: Theme.of(context).scaffoldBackgroundColor,
               ),
               const CustomScrollView(
-                slivers: [
-                  SOSStatusSection(),
-                  HomeContentSection()
-                ],
+                slivers: [SOSStatusSection(), HomeContentSection()],
               )
             ],
           )),
