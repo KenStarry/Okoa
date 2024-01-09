@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:okoa/features/feature_home/presentation/home_page.dart';
+import 'package:okoa/features/feature_main/presentation/controller/main_controller.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -12,6 +14,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   late final List<GButton> tabs;
   late final List<Widget> pages;
+  late final MainController _mainController;
 
   @override
   void initState() {
@@ -46,15 +49,19 @@ class _MainScreenState extends State<MainScreen> {
       HomePage(),
       HomePage(),
     ];
+
+    _mainController = Get.find<MainController>();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: IndexedStack(
-        index: 0,
-        children: pages,
+      body: Obx(
+        () => IndexedStack(
+          index: _mainController.activeBottomBarIndex.value,
+          children: pages,
+        ),
       ),
       bottomNavigationBar: Container(
         color: Colors.transparent,
@@ -67,7 +74,9 @@ class _MainScreenState extends State<MainScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
             activeColor: Theme.of(context).primaryColor,
             tabs: tabs,
-            onTabChange: (index) {},
+            onTabChange: (index) {
+              _mainController.setActiveBottomBarIndex(index: index);
+            },
           ),
         ),
       ),
