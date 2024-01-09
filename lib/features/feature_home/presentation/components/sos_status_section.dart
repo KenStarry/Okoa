@@ -2,6 +2,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
+import 'package:okoa/theme/colors.dart';
 
 class SOSStatusSection extends StatefulWidget {
   const SOSStatusSection({super.key});
@@ -24,7 +25,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                 begin: AlignmentDirectional.topCenter,
                 end: AlignmentDirectional.bottomCenter,
                 colors: [
-                  Colors.greenAccent,
+                  accent,
                   Theme.of(context).scaffoldBackgroundColor,
                 ])),
         child: Column(
@@ -37,7 +38,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
               glowShape: BoxShape.circle,
               glowCount: 3,
               glowRadiusFactor: 0.3,
-              glowColor: Colors.greenAccent,
+              glowColor: accent,
               child: Container(
                   width: 200,
                   height: 200,
@@ -52,17 +53,21 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                       ]),
                   child: Center(
                     child: Text(
-                      "SOS",
+                      "SAFE",
                       style: TextStyle(
                           fontSize: 48,
                           fontWeight: Theme.of(context)
                               .textTheme
                               .titleLarge!
                               .fontWeight,
-                          color: Colors.greenAccent),
+                          color: accent),
                     ),
                   )),
             ),
+            Text(
+              "Everything seems fine, you're safe.",
+              style: Theme.of(context).textTheme.bodyMedium,
+            )
           ],
         ),
       ),
