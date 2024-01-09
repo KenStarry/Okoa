@@ -16,7 +16,7 @@ class _HomeContentSectionState extends State<HomeContentSection> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(topRight: Radius.circular(56)),
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(context).primaryColorLight,
         ),
         child: Wrap(
           children: [
@@ -25,7 +25,7 @@ class _HomeContentSectionState extends State<HomeContentSection> {
             Container(
               width: double.infinity,
               height: 800,
-              color: Theme.of(context).scaffoldBackgroundColor,
+              color: Theme.of(context).primaryColorLight,
             )
           ],
         ),

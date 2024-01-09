@@ -18,9 +18,16 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
         width: double.infinity,
         height: 450,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(56)),
-          color: Theme.of(context).primaryColor,
-        ),
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(56)),
+            color: Theme.of(context).primaryColor,
+            gradient: LinearGradient(
+                begin: AlignmentDirectional.topCenter,
+                end: AlignmentDirectional.bottomCenter,
+                colors: [
+                  Colors.greenAccent,
+                  Theme.of(context).scaffoldBackgroundColor,
+                  Theme.of(context).scaffoldBackgroundColor,
+                ])),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,7 +38,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
               glowShape: BoxShape.circle,
               glowCount: 3,
               glowRadiusFactor: 0.3,
-              glowColor: Colors.redAccent,
+              glowColor: Colors.greenAccent,
               child: Container(
                   width: 200,
                   height: 200,
@@ -48,10 +55,12 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                     child: Text(
                       "SOS",
                       style: TextStyle(
-                        fontSize: 48,
-                        fontWeight: Theme.of(context).textTheme.titleLarge!.fontWeight,
-                        color: Colors.redAccent
-                      ),
+                          fontSize: 48,
+                          fontWeight: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .fontWeight,
+                          color: Colors.greenAccent),
                     ),
                   )),
             ),

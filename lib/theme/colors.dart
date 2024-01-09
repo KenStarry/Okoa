@@ -3,7 +3,7 @@ import 'dart:ui';
 /// General Colors - light 90%, dark 70%
 const accent = Color(0xFF48CAE4);
 const backgroundLight = Color(0xFFFFFFFF);
-const backgroundDark = Color(0xff132338);
+const backgroundDark = Color(0xff071423);
 
 /// Light Mode Colors
 const bgColorLightMode = Color(0xFFFFFFFF);

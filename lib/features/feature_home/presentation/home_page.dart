@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Theme.of(context).scaffoldBackgroundColor,
+                color: Theme.of(context).primaryColorLight,
               ),
 
               //  SOS Extension
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
                 height: 550,
                 margin: EdgeInsets.only(left: 100),
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).scaffoldBackgroundColor,
               ),
               const CustomScrollView(
                 slivers: [
