@@ -65,6 +65,7 @@ class _MainScreenState extends State<MainScreen> {
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             tabBackgroundColor: Theme.of(context).primaryColorLight,
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+            activeColor: Theme.of(context).primaryColor,
             tabs: tabs,
             onTabChange: (index) {},
           ),
