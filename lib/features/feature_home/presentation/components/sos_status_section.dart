@@ -26,7 +26,6 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                 colors: [
                   Colors.greenAccent,
                   Theme.of(context).scaffoldBackgroundColor,
-                  Theme.of(context).scaffoldBackgroundColor,
                 ])),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
