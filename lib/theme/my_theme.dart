@@ -43,7 +43,7 @@ class MyTheme {
   /// Dark Theme
   static ThemeData get darkTheme => ThemeData(
       primaryColor: accent,
-      primaryColorLight: generateMaterialColor(accent).shade800,
+      primaryColorLight: bgColorDarkModeAlt,
       primarySwatch: generateMaterialColor(accent),
       scaffoldBackgroundColor: bgColorDarkMode,
       iconTheme: const IconThemeData(color: textWhite300),

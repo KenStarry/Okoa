@@ -16,6 +16,7 @@ const textBlack100 = Color(0xFF5F5F5F);
 /// Dark Mode Colors
 /// 0a1d26 - nice dark blue
 const bgColorDarkMode = Color(0xff212529);
+const bgColorDarkModeAlt = Color(0xff171c1e);
 const bgDarkColor = Color(0xFF121517);
 const textWhite900 = Color(0xFFFFFFFF);
 const textWhite700 = Color(0xFFE5E5E5);
