@@ -51,17 +51,30 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                             blurRadius: 5,
                             spreadRadius: 5)
                       ]),
-                  child: Center(
-                    child: Text(
-                      "SAFE",
-                      style: TextStyle(
-                          fontSize: 48,
-                          fontWeight: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .fontWeight,
-                          color: accent),
-                    ),
+                  child: Stack(
+                    children: [
+                      //  logo to represent current status
+                      // Center(
+                      //   child: Icon(Icons.alert,
+                      //       size: 150,
+                      //       color: Theme.of(context)
+                      //           .iconTheme
+                      //           .color!
+                      //           .withOpacity(0.05)),
+                      // ),
+                      Center(
+                        child: Text(
+                          "SAFE",
+                          style: TextStyle(
+                              fontSize: 48,
+                              fontWeight: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .fontWeight,
+                              color: accent),
+                        ),
+                      )
+                    ],
                   )),
             ),
             Text(
