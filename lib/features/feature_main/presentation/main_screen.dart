@@ -9,14 +9,18 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   late final List<Widget> tabs;
 
   @override
   void initState() {
     super.initState();
 
-    tabs = [];
+    tabs = const [
+      GButton(icon: Icons.home_rounded, text: "Home"),
+      GButton(icon: Icons.map_rounded, text: "Track"),
+      GButton(icon: Icons.add_alert_rounded, text: "Notifications"),
+      GButton(icon: Icons.settings_rounded, text: "Settings"),
+    ];
   }
 
   @override
