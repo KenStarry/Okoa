@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
 import 'package:okoa/theme/colors.dart';
 
@@ -39,43 +40,49 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
               glowCount: 3,
               glowRadiusFactor: 0.3,
               glowColor: accent,
-              child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
-                            blurRadius: 5,
-                            spreadRadius: 5)
-                      ]),
-                  child: Stack(
-                    children: [
-                      //  logo to represent current status
-                      // Center(
-                      //   child: Icon(Icons.alert,
-                      //       size: 150,
-                      //       color: Theme.of(context)
-                      //           .iconTheme
-                      //           .color!
-                      //           .withOpacity(0.05)),
-                      // ),
-                      Center(
-                        child: Text(
-                          "SAFE",
-                          style: TextStyle(
-                              fontSize: 48,
-                              fontWeight: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .fontWeight,
-                              color: accent),
-                        ),
-                      )
-                    ],
-                  )),
+              child: GestureDetector(
+                onTap: (){
+                  //  open SOS bottomsheet
+                  Get.bottomSheet(Text("Hello"));
+                },
+                child: Container(
+                    width: 200,
+                    height: 200,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              blurRadius: 5,
+                              spreadRadius: 5)
+                        ]),
+                    child: Stack(
+                      children: [
+                        //  logo to represent current status
+                        // Center(
+                        //   child: Icon(Icons.alert,
+                        //       size: 150,
+                        //       color: Theme.of(context)
+                        //           .iconTheme
+                        //           .color!
+                        //           .withOpacity(0.05)),
+                        // ),
+                        Center(
+                          child: Text(
+                            "SAFE",
+                            style: TextStyle(
+                                fontSize: 48,
+                                fontWeight: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .fontWeight,
+                                color: accent),
+                          ),
+                        )
+                      ],
+                    )),
+              ),
             ),
             Text(
               "Everything seems fine, you're safe.",
