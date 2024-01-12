@@ -35,7 +35,9 @@ class _TrackLocationPageState extends State<TrackLocationPage> {
 
           const SizedBox(height: 24),
 
-          FilledButton(onPressed: (){}, child: Text("Grant Permission"))
+          FilledButton(onPressed: (){
+            //  request storage permission
+          }, child: const Text("Grant Permission"))
         ],
       ),
     );
