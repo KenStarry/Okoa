@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class TrackLocationPage extends StatefulWidget {
   const TrackLocationPage({super.key});
@@ -13,7 +14,15 @@ class _TrackLocationPageState extends State<TrackLocationPage> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: Colors.redAccent,
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          //  map image
+          SvgPicture.asset("assets/images/map.svg", width: 200, height: 200)
+        ],
+      ),
     );
   }
 }
