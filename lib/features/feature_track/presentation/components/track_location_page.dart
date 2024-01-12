@@ -31,7 +31,11 @@ class _TrackLocationPageState extends State<TrackLocationPage> {
             "Grant location access to enable Okoa keep you safe.",
             style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
-          )
+          ),
+
+          const SizedBox(height: 24),
+
+          FilledButton(onPressed: (){}, child: Text("Grant Permission"))
         ],
       ),
     );
