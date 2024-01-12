@@ -19,9 +19,11 @@ class _TrackPageState extends State<TrackPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: GoogleMap(
-          mapType: MapType.hybrid,
+          mapType: MapType.normal,
           initialCameraPosition:
-              CameraPosition(target: sourceLocation, zoom: 14.5)),
+              CameraPosition(target: sourceLocation, zoom: 14.5),
+          myLocationButtonEnabled: true,
+          myLocationEnabled: true),
     );
   }
 }
