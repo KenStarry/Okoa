@@ -9,8 +9,6 @@ class TrackController extends GetxController {
     super.onInit();
 
     checkLocationPermissionStatus();
-
-    print("LOCATION PERMISSION STATUS : ${locationPermissionStatus.value}");
   }
 
   void checkLocationPermissionStatus() async =>
