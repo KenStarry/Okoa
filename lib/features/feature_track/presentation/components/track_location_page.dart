@@ -34,11 +34,11 @@ class _TrackLocationPageState extends State<TrackLocationPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text("Location", style: Theme.of(context).textTheme.titleMedium),
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
           //  map image
-          SvgPicture.asset("assets/images/map.svg", width: 200, height: 200),
+          SvgPicture.asset("assets/images/map.svg", width: 220, height: 220),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
 
           Text(
             "Grant location access to enable Okoa keep you safe.",
@@ -46,7 +46,7 @@ class _TrackLocationPageState extends State<TrackLocationPage> {
             textAlign: TextAlign.center,
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
 
           FilledButton(onPressed: (){
             //  request storage permission
