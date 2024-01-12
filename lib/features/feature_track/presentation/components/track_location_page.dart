@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:okoa/features/feature_track/presentation/controller/track_controller.dart';
 
 class TrackLocationPage extends StatefulWidget {
   const TrackLocationPage({super.key});
@@ -9,6 +12,16 @@ class TrackLocationPage extends StatefulWidget {
 }
 
 class _TrackLocationPageState extends State<TrackLocationPage> {
+
+  late final TrackController _trackController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _trackController = Get.find<TrackController>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,6 +50,7 @@ class _TrackLocationPageState extends State<TrackLocationPage> {
 
           FilledButton(onPressed: (){
             //  request storage permission
+            _trackController.requestLocationPermission();
           }, child: const Text("Grant Permission"))
         ],
       ),
