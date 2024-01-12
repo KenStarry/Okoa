@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:okoa/features/feature_track/presentation/components/track_location_page.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_map.dart';
 
 class TrackPage extends StatefulWidget {
@@ -18,7 +19,12 @@ class _TrackPageState extends State<TrackPage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        child: TrackMap(),
+        child: const Stack(
+          children: [
+            TrackMap(),
+            TrackLocationPage()
+          ],
+        ),
       ),
     );
   }
