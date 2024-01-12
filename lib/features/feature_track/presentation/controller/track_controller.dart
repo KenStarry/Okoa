@@ -14,13 +14,9 @@ class TrackController extends GetxController {
   void checkLocationPermissionStatus() async =>
       locationPermissionStatus.value = await Permission.location.status;
 
-  void requestLocationPermission() {
-    Permission.location
-        .onGrantedCallback(
-            () => locationPermissionStatus.value = PermissionStatus.granted)
-        .onDeniedCallback(
-            () => locationPermissionStatus.value = PermissionStatus.denied)
-        .onPermanentlyDeniedCallback(() => locationPermissionStatus.value =
-            PermissionStatus.permanentlyDenied);
+  void requestLocationPermission() async {
+    final status = await Permission.location.request();
+
+    locationPermissionStatus.value = status;
   }
 }
