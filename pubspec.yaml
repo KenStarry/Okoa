@@ -41,6 +41,7 @@ dependencies:
   google_maps_flutter: ^2.5.2
   location: ^5.0.3
   rive: ^0.12.4
+  lottie: ^3.0.0
 
 # Dev Dependencies
 dev_dependencies:
