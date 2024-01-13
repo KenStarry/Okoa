@@ -33,8 +33,8 @@ class _TrackPageState extends State<TrackPage> {
             height: double.infinity,
             child: _trackController.locationPermissionStatus.value ==
                     PermissionStatus.granted
-                ? TrackMap()
-                : TrackLocationPage()),
+                ? const TrackMap()
+                : const TrackLocationPage()),
       ),
     );
   }
