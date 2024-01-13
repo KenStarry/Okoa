@@ -14,7 +14,6 @@ class TrackMap extends StatefulWidget {
 
 class _TrackMapState extends State<TrackMap> {
   late final TrackController _trackController;
-  late final LatLng sourceLocation;
   late final Completer<GoogleMapController> _googleMapController;
 
   @override
@@ -22,7 +21,6 @@ class _TrackMapState extends State<TrackMap> {
     super.initState();
 
     _trackController = Get.find<TrackController>();
-    sourceLocation = const LatLng(-1.2663447549789835, 36.837615802117085);
     _googleMapController = Completer<GoogleMapController>();
   }
 
@@ -39,6 +37,9 @@ class _TrackMapState extends State<TrackMap> {
                 zoom: 14.5),
             myLocationButtonEnabled: true,
             myLocationEnabled: true,
+            onMapCreated: (GoogleMapController controller) {
+              _googleMapController.complete(controller);
+            },
             markers: {
               Marker(
                   markerId: MarkerId("currentLocation"),
