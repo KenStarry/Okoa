@@ -20,8 +20,7 @@ class TrackRepositoryImpl extends TrackRepository {
 
   /// Listen to current location
   @override
-  Stream listenToCurrentLocation(
-      {required Function(LocationData locationData) onLocationChanged}) {
-
-  }
+  void listenToCurrentLocation(
+          {required Function(LocationData locationData) onLocationChanged}) =>
+      location.onLocationChanged.listen(onLocationChanged);
 }

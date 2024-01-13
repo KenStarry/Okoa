@@ -5,6 +5,6 @@ abstract class TrackRepository {
   Future<void> requestLocationService();
 
   /// Listen to Current Location
-  Stream listenToCurrentLocation(
+  void listenToCurrentLocation(
       {required Function(LocationData locationData) onLocationChanged});
 }
