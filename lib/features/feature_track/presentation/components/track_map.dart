@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -13,6 +15,7 @@ class TrackMap extends StatefulWidget {
 class _TrackMapState extends State<TrackMap> {
   late final TrackController _trackController;
   late final LatLng sourceLocation;
+  late final Completer<GoogleMapController> _googleMapController;
 
   @override
   void initState() {
@@ -20,6 +23,7 @@ class _TrackMapState extends State<TrackMap> {
 
     _trackController = Get.find<TrackController>();
     sourceLocation = const LatLng(-1.2663447549789835, 36.837615802117085);
+    _googleMapController = Completer<GoogleMapController>();
   }
 
   @override
