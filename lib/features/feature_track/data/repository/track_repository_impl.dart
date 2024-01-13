@@ -7,4 +7,8 @@ class TrackRepositoryImpl extends TrackRepository {
 
   Future<bool> _checkLocationServiceEnabled() async =>
       await location.serviceEnabled();
+
+  @override
+  Future<void> requestLocationService() async =>
+      await location.requestService();
 }
