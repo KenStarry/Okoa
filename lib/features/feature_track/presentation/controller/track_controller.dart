@@ -12,6 +12,7 @@ class TrackController extends GetxController {
     super.onInit();
 
     checkLocationPermissionStatus();
+    requestLocationService();
   }
 
   void checkLocationPermissionStatus() async =>
@@ -24,6 +25,6 @@ class TrackController extends GetxController {
   }
 
   /// Location Service
-  Future<void> requestLocationService() async =>
+  void requestLocationService() async =>
       await useCase.requestLocationService();
 }
