@@ -22,6 +22,19 @@ class _TrackMapState extends State<TrackMap> {
 
     _trackController = Get.find<TrackController>();
     _googleMapController = Completer<GoogleMapController>();
+
+    ever(_trackController.currentLocation, (currentLocation) async {
+      if (currentLocation != null) {
+        final GoogleMapController myController =
+            await _googleMapController.future;
+
+        await myController.animateCamera(CameraUpdate.newCameraPosition(
+            CameraPosition(
+                zoom: 14.5,
+                target: LatLng(
+                    currentLocation.latitude!, currentLocation.longitude!))));
+      }
+    });
   }
 
   @override
