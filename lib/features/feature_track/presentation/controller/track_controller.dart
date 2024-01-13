@@ -19,6 +19,10 @@ class TrackController extends GetxController {
 
     checkLocationPermissionStatus();
     requestLocationService();
+
+    listenToCurrentLocation(onLocationChanged: (locationData) {
+      currentLocation.value = locationData;
+    });
   }
 
   void checkLocationPermissionStatus() async => locationPermissionStatus.value =
