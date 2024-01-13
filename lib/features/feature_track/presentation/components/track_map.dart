@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okoa/features/feature_track/presentation/controller/track_controller.dart';
@@ -95,5 +98,21 @@ class _TrackMapState extends State<TrackMap> {
     setState(() {
       isLoaded = true;
     });
+  }
+
+  Future<Marker> _generateMarkerFromWidget(
+      {required Map<String, dynamic> data, LatLng? position}) async {
+    RenderRepaintBoundary boundary = data['globalKey']
+        .currentContext
+        ?.findRenderObject() as RenderRepaintBoundary;
+
+    final ui.Image myImage = await boundary.toImage();
+    ByteData? byteData =
+        await myImage.toByteData(format: ui.ImageByteFormat.png);
+
+    return Marker(
+        markerId: MarkerId(data['id']),
+        position: position ?? const LatLng(0, 0),
+        icon: BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List()));
   }
 }
