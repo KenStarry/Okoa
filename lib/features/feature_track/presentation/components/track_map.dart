@@ -27,6 +27,8 @@ class _TrackMapState extends State<TrackMap> {
   void initState() {
     super.initState();
 
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) async => await _buildMarkers());
     _trackController = Get.find<TrackController>();
     _googleMapController = Completer<GoogleMapController>();
 
@@ -34,15 +36,15 @@ class _TrackMapState extends State<TrackMap> {
       {
         'id': '1',
         'globalKey': GlobalKey(),
-        'widget': Container(
-          width: 50,
-          height: 50,
-          color: Colors.redAccent,
+        'widget': UnconstrainedBox(
+          child: Container(
+            width: 50,
+            height: 50,
+            color: Colors.redAccent,
+          ),
         )
       }
     ];
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => _buildMarkers());
 
     ever(_trackController.currentLocation, (currentLocation) async {
       if (currentLocation != null) {
@@ -62,14 +64,15 @@ class _TrackMapState extends State<TrackMap> {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        final currentUserLocation = _trackController.currentLocation.value!;
-        return isLoaded
-            ? GoogleMap(
+        final currentUserLocation = _trackController.currentLocation.value;
+        return currentUserLocation == null
+            ? CircularProgressIndicator()
+            : GoogleMap(
                 mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
                     target: LatLng(currentUserLocation.latitude!,
                         currentUserLocation.longitude!),
-                    zoom: 14.5),
+                    zoom: 17.5),
                 myLocationButtonEnabled: true,
                 myLocationEnabled: true,
                 onMapCreated: (GoogleMapController controller) {
@@ -77,14 +80,10 @@ class _TrackMapState extends State<TrackMap> {
                 },
                 markers: {
                     Marker(
-                        markerId: MarkerId("currentLocation"),
+                        markerId: const MarkerId('starry'),
                         position: LatLng(currentUserLocation.latitude!,
                             currentUserLocation.longitude!))
-                  })
-            : RepaintBoundary(
-                key: markersData[0]['globalKey'],
-                child: markersData[0]['widget'],
-              );
+                  });
       },
     );
   }
@@ -105,6 +104,11 @@ class _TrackMapState extends State<TrackMap> {
     RenderRepaintBoundary boundary = data['globalKey']
         .currentContext
         ?.findRenderObject() as RenderRepaintBoundary;
+
+    if (boundary.debugNeedsPaint) {
+      await Future.delayed(const Duration(milliseconds: 20));
+      return _generateMarkerFromWidget(data: data);
+    }
 
     final ui.Image myImage = await boundary.toImage();
     ByteData? byteData =
