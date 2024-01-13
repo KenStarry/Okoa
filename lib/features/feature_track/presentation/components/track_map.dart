@@ -25,19 +25,23 @@ class _TrackMapState extends State<TrackMap> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => GoogleMap(
-          mapType: MapType.normal,
-          initialCameraPosition:
-              CameraPosition(target: sourceLocation, zoom: 14.5),
-          myLocationButtonEnabled: true,
-          myLocationEnabled: true,
-          markers: {
-            Marker(
-                markerId: MarkerId("currentLocation"),
-                position: LatLng(
-                    _trackController.currentLocation.value!.latitude!,
-                    _trackController.currentLocation.value!.longitude!))
-          }),
+      () {
+        final currentUserLocation = _trackController.currentLocation.value!;
+        return GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: CameraPosition(
+                target: LatLng(currentUserLocation.latitude!,
+                    currentUserLocation.longitude!),
+                zoom: 14.5),
+            myLocationButtonEnabled: true,
+            myLocationEnabled: true,
+            markers: {
+              Marker(
+                  markerId: MarkerId("currentLocation"),
+                  position: LatLng(currentUserLocation.latitude!,
+                      currentUserLocation.longitude!))
+            });
+      },
     );
   }
 }
