@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 import 'package:location/location.dart';
+import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_track/domain/use_case/track_use_case.dart';
 import 'package:permission_handler/permission_handler.dart'
     as permission_handler;
 
 class TrackController extends GetxController {
+  final coreController = Get.find<CoreController>();
   final useCase = locator.get<TrackUseCase>();
 
   final locationPermissionStatus =
@@ -20,8 +22,14 @@ class TrackController extends GetxController {
     checkLocationPermissionStatus();
     requestLocationService();
 
-    listenToCurrentLocation(onLocationChanged: (locationData) {
+    listenToCurrentLocation(onLocationChanged: (locationData) async {
       currentLocation.value = locationData;
+
+      //  update latitude and longitude in core controller
+      await coreController.updateUserDataOnDB(data: {
+        'latitude': locationData.latitude,
+        'longitude': locationData.longitude,
+      }, onResponse: (state) {});
     });
   }
 

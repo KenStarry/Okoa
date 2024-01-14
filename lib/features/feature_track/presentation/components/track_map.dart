@@ -68,7 +68,7 @@ class _TrackMapState extends State<TrackMap> {
       () {
         final currentUserLocation = _trackController.currentLocation.value;
         return currentUserLocation == null
-            ? const LottieLoader()
+            ? const CircularProgressIndicator()
             : GoogleMap(
                 mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
