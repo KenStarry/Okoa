@@ -3,6 +3,8 @@ import 'package:okoa/core/domain/use_case/core_use_cases.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 
+import '../../domain/model/response_state.dart';
+
 class CoreController extends GetxController {
   final useCase = locator.get<CoreUseCases>();
 
@@ -17,6 +19,14 @@ class CoreController extends GetxController {
           {required String uid,
           required Function(OkoaUser okoaUser) onGetUserData}) async =>
       useCase.getUserDataFromDB.call(uid: uid, onGetUserData: onGetUserData);
+
+  //  update user data
+  Future<void> updateUserDataOnDB(
+          {required Map<String, dynamic> data,
+          String? uid,
+          required Function(ResponseState response) onResponse}) async =>
+      await useCase.updateUserDataOnDB
+          .call(data: data, onResponse: onResponse, uid: uid);
 
   void listenToUserDataonDB(
           {required String uid,
