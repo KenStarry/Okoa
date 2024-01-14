@@ -5,6 +5,7 @@ import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../di/di.dart';
+import '../../domain/model/response_state.dart';
 
 class CoreRepositoryimpl extends CoreRepository {
   final supabase = locator.get<SupabaseClient>();
@@ -25,7 +26,9 @@ class CoreRepositoryimpl extends CoreRepository {
 
   @override
   Future<void> updateUserDataOnDB(
-      {required Map<String, dynamic> data, String? uid}) async {
+      {required Map<String, dynamic> data,
+      String? uid,
+      required Function(ResponseState response) onResponse}) async {
     try {
       final currentUserId = supabase.auth.currentUser!.id;
 

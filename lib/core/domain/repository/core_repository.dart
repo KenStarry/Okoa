@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:okoa/core/domain/model/response_state.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -11,7 +12,7 @@ abstract class CoreRepository {
   Future<void> updateUserDataOnDB(
       {required Map<String, dynamic> data,
       String? uid,
-      required Function(Response response) onResponse});
+      required Function(ResponseState response) onResponse});
 
   /// Listen to User Data
   void listenToUserDataonDB(
