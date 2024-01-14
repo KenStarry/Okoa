@@ -2,12 +2,10 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:custom_map_markers/custom_map_markers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/features/feature_track/presentation/components/custom_user_marker.dart';
 import 'package:okoa/features/feature_track/presentation/controller/track_controller.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
@@ -58,42 +56,6 @@ class _TrackMapState extends State<TrackMap> {
       }
     });
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Obx(
-  //     () {
-  //       final currentUserLocation = _trackController.currentLocation.value;
-  //       return currentUserLocation == null
-  //           ? const UnconstrainedBox(child: CircularProgressIndicator())
-  //           : CustomGoogleMapMarkerBuilder(
-  //               screenshotDelay: const Duration(seconds: 1),
-  //               customMarkers: [
-  //                 MarkerData(
-  //                     marker: Marker(
-  //                         markerId: const MarkerId('starry'),
-  //                         position: LatLng(currentUserLocation.latitude!,
-  //                             currentUserLocation.longitude!)),
-  //                     child: const CustomUserMarker())
-  //               ],
-  //               builder: (BuildContext context, Set<Marker>? markers) {
-  //                 return GoogleMap(
-  //                     mapType: MapType.normal,
-  //                     initialCameraPosition: CameraPosition(
-  //                         target: LatLng(currentUserLocation.latitude!,
-  //                             currentUserLocation.longitude!),
-  //                         zoom: 17.5),
-  //                     myLocationButtonEnabled: true,
-  //                     myLocationEnabled: true,
-  //                     onMapCreated: (GoogleMapController controller) {
-  //                       _googleMapController.complete(controller);
-  //                     },
-  //                     markers: markers ?? {});
-  //               },
-  //             );
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
