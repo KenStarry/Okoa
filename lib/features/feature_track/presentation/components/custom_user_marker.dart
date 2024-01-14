@@ -8,7 +8,7 @@ class CustomUserMarker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: 70,
         height: 70,
         child: Stack(
@@ -21,10 +21,19 @@ class CustomUserMarker extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
-                        color: bgColorDarkMode,
-                        width: 5),
-                    color: accent),
+                    border: Border.all(color: bgColorDarkMode, width: 5),
+                    gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [accent, bgColorDarkMode])),
+                child: const Center(
+                    child: Text(
+                  "S",
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: textBlack900),
+                )),
               ),
             ),
             Align(

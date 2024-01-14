@@ -87,7 +87,8 @@ class _TrackMapState extends State<TrackMap> {
   }
 
   Future<BitmapDescriptor> getBitmapDescriptor() async =>
-      await const CustomUserMarker().toBitmapDescriptor();
+      await const CustomUserMarker()
+          .toBitmapDescriptor(waitToRender: const Duration(seconds: 1));
 
   Future<void> _buildMarkers() async {
     await Future.wait(markersData.map((data) async {
