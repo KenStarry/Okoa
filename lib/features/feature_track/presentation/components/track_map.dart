@@ -94,6 +94,8 @@ class _TrackMapState extends State<TrackMap> {
       BitmapDescriptor marker = await getBitmapDescriptor();
       _markerIcons[data['id']] = marker;
     }));
+
+    setState(() {});
   }
 
   Future<BitmapDescriptor> _generateBytesFromWidget(
