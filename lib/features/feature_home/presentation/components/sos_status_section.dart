@@ -20,7 +20,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
         width: double.infinity,
         height: 450,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(56)),
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
             color: Theme.of(context).primaryColor,
             gradient: LinearGradient(
                 begin: AlignmentDirectional.topCenter,

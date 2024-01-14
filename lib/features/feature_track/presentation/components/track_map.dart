@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okoa/features/feature_track/presentation/components/custom_user_marker.dart';
+import 'package:okoa/features/feature_track/presentation/components/track_map_content.dart';
 import 'package:okoa/features/feature_track/presentation/controller/track_controller.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
 
@@ -96,11 +97,7 @@ class _TrackMapState extends State<TrackMap> {
                     );
             },
           ),
-          Container(
-            width: double.infinity,
-            height: 120,
-            color: Colors.redAccent,
-          ),
+          const TrackMapContent()
         ],
       ),
     );
