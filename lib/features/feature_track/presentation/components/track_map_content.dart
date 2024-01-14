@@ -19,6 +19,8 @@ class _TrackMapContentState extends State<TrackMapContent> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text("Focus", style: Theme.of(context).textTheme.titleSmall),
 
@@ -26,6 +28,7 @@ class _TrackMapContentState extends State<TrackMapContent> {
               Row(
                 children: [
                   const Icon(Icons.my_location_rounded, color: Colors.greenAccent),
+                  const SizedBox(width: 8),
                   Text("Live location on", style: TextStyle(
                     fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
                     fontWeight: Theme.of(context).textTheme.bodySmall!.fontWeight,
