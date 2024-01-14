@@ -18,7 +18,23 @@ class _TrackMapContentState extends State<TrackMapContent> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Focus", style: Theme.of(context).textTheme.titleSmall)
+          Row(
+            children: [
+              Text("Focus", style: Theme.of(context).textTheme.titleSmall),
+
+              //  live location sharing on
+              Row(
+                children: [
+                  const Icon(Icons.my_location_rounded, color: Colors.greenAccent),
+                  Text("Live location on", style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
+                    fontWeight: Theme.of(context).textTheme.bodySmall!.fontWeight,
+                    color: Colors.greenAccent
+                  ),)
+                ],
+              )
+            ],
+          )
         ],
       ),
     );
