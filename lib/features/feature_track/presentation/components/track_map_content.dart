@@ -12,8 +12,8 @@ class _TrackMapContentState extends State<TrackMapContent> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 120,
-      color: Colors.redAccent,
+      height: double.infinity,
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

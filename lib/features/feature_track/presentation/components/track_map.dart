@@ -72,6 +72,7 @@ class _TrackMapState extends State<TrackMap> {
               return currentUserLocation == null
                   ? const UnconstrainedBox(child: CircularProgressIndicator())
                   : Expanded(
+                      flex: 3,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: GoogleMap(
@@ -97,7 +98,7 @@ class _TrackMapState extends State<TrackMap> {
                     );
             },
           ),
-          const TrackMapContent()
+          const Expanded(flex: 1, child: TrackMapContent())
         ],
       ),
     );
