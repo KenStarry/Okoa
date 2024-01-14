@@ -13,7 +13,9 @@ class OkoaUser with _$OkoaUser {
       @JsonKey(name: 'created_at') @Default('') String createdAt,
       @JsonKey(name: 'username') @Default('') String userName,
       @JsonKey(name: 'phone_number') @Default('') String phone,
-      @JsonKey(name: 'avatar_url') @Default('') String avatarUrl}) = _OkoaUser;
+      @JsonKey(name: 'avatar_url') @Default('') String avatarUrl,
+      @JsonKey(name: 'latitude') @Default('') double latitude,
+      @JsonKey(name: 'longitude') @Default('') double longitude}) = _OkoaUser;
 
   factory OkoaUser.fromJson(Map<String, dynamic> json) =>
       _$OkoaUserFromJson(json);

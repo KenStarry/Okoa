@@ -32,6 +32,10 @@ mixin _$OkoaUser {
   String get phone => throw _privateConstructorUsedError;
   @JsonKey(name: 'avatar_url')
   String get avatarUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'latitude')
+  double get latitude => throw _privateConstructorUsedError;
+  @JsonKey(name: 'longitude')
+  double get longitude => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +54,9 @@ abstract class $OkoaUserCopyWith<$Res> {
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'username') String userName,
       @JsonKey(name: 'phone_number') String phone,
-      @JsonKey(name: 'avatar_url') String avatarUrl});
+      @JsonKey(name: 'avatar_url') String avatarUrl,
+      @JsonKey(name: 'latitude') double latitude,
+      @JsonKey(name: 'longitude') double longitude});
 }
 
 /// @nodoc
@@ -72,6 +78,8 @@ class _$OkoaUserCopyWithImpl<$Res, $Val extends OkoaUser>
     Object? userName = null,
     Object? phone = null,
     Object? avatarUrl = null,
+    Object? latitude = null,
+    Object? longitude = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -98,6 +106,14 @@ class _$OkoaUserCopyWithImpl<$Res, $Val extends OkoaUser>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -116,7 +132,9 @@ abstract class _$$OkoaUserImplCopyWith<$Res>
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'username') String userName,
       @JsonKey(name: 'phone_number') String phone,
-      @JsonKey(name: 'avatar_url') String avatarUrl});
+      @JsonKey(name: 'avatar_url') String avatarUrl,
+      @JsonKey(name: 'latitude') double latitude,
+      @JsonKey(name: 'longitude') double longitude});
 }
 
 /// @nodoc
@@ -136,6 +154,8 @@ class __$$OkoaUserImplCopyWithImpl<$Res>
     Object? userName = null,
     Object? phone = null,
     Object? avatarUrl = null,
+    Object? latitude = null,
+    Object? longitude = null,
   }) {
     return _then(_$OkoaUserImpl(
       userId: null == userId
@@ -162,6 +182,14 @@ class __$$OkoaUserImplCopyWithImpl<$Res>
           ? _value.avatarUrl
           : avatarUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -176,7 +204,9 @@ class _$OkoaUserImpl implements _OkoaUser {
       @JsonKey(name: 'created_at') this.createdAt = '',
       @JsonKey(name: 'username') this.userName = '',
       @JsonKey(name: 'phone_number') this.phone = '',
-      @JsonKey(name: 'avatar_url') this.avatarUrl = ''});
+      @JsonKey(name: 'avatar_url') this.avatarUrl = '',
+      @JsonKey(name: 'latitude') this.latitude = '',
+      @JsonKey(name: 'longitude') this.longitude = ''});
 
   factory _$OkoaUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$OkoaUserImplFromJson(json);
@@ -199,10 +229,16 @@ class _$OkoaUserImpl implements _OkoaUser {
   @override
   @JsonKey(name: 'avatar_url')
   final String avatarUrl;
+  @override
+  @JsonKey(name: 'latitude')
+  final double latitude;
+  @override
+  @JsonKey(name: 'longitude')
+  final double longitude;
 
   @override
   String toString() {
-    return 'OkoaUser(userId: $userId, email: $email, createdAt: $createdAt, userName: $userName, phone: $phone, avatarUrl: $avatarUrl)';
+    return 'OkoaUser(userId: $userId, email: $email, createdAt: $createdAt, userName: $userName, phone: $phone, avatarUrl: $avatarUrl, latitude: $latitude, longitude: $longitude)';
   }
 
   @override
@@ -218,13 +254,17 @@ class _$OkoaUserImpl implements _OkoaUser {
                 other.userName == userName) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl));
+                other.avatarUrl == avatarUrl) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, userId, email, createdAt, userName, phone, avatarUrl);
+  int get hashCode => Object.hash(runtimeType, userId, email, createdAt,
+      userName, phone, avatarUrl, latitude, longitude);
 
   @JsonKey(ignore: true)
   @override
@@ -247,7 +287,9 @@ abstract class _OkoaUser implements OkoaUser {
       @JsonKey(name: 'created_at') final String createdAt,
       @JsonKey(name: 'username') final String userName,
       @JsonKey(name: 'phone_number') final String phone,
-      @JsonKey(name: 'avatar_url') final String avatarUrl}) = _$OkoaUserImpl;
+      @JsonKey(name: 'avatar_url') final String avatarUrl,
+      @JsonKey(name: 'latitude') final double latitude,
+      @JsonKey(name: 'longitude') final double longitude}) = _$OkoaUserImpl;
 
   factory _OkoaUser.fromJson(Map<String, dynamic> json) =
       _$OkoaUserImpl.fromJson;
@@ -270,6 +312,12 @@ abstract class _OkoaUser implements OkoaUser {
   @override
   @JsonKey(name: 'avatar_url')
   String get avatarUrl;
+  @override
+  @JsonKey(name: 'latitude')
+  double get latitude;
+  @override
+  @JsonKey(name: 'longitude')
+  double get longitude;
   @override
   @JsonKey(ignore: true)
   _$$OkoaUserImplCopyWith<_$OkoaUserImpl> get copyWith =>
