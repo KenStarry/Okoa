@@ -28,25 +28,24 @@ class _TrackMapState extends State<TrackMap> {
   void initState() {
     super.initState();
 
-    // WidgetsBinding.instance
-    //     .addPostFrameCallback((_) async => await _buildMarkers());
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) async => await _buildMarkers());
     _trackController = Get.find<TrackController>();
     _googleMapController = Completer<GoogleMapController>();
 
-    // markersData = [
-    //   {
-    //     'id': '1',
-    //     'globalKey': GlobalKey(),
-    //     'widget': UnconstrainedBox(
-    //       child: Container(
-    //         width: 50,
-    //         height: 50,
-    //         color: Colors.redAccent,
-    //       ),
-    //     )
-    //   }
-    // ];
-
+    markersData = [
+      {
+        'id': '1',
+        'globalKey': GlobalKey(),
+        'widget': UnconstrainedBox(
+          child: Container(
+            width: 50,
+            height: 50,
+            color: Colors.redAccent,
+          ),
+        )
+      }
+    ];
 
     ever(_trackController.currentLocation, (currentLocation) async {
       if (currentLocation != null) {
@@ -68,31 +67,32 @@ class _TrackMapState extends State<TrackMap> {
       () {
         final currentUserLocation = _trackController.currentLocation.value;
         return currentUserLocation == null
-            ? const CircularProgressIndicator()
-            : GoogleMap(
-                mapType: MapType.normal,
-                initialCameraPosition: CameraPosition(
-                    target: LatLng(currentUserLocation.latitude!,
-                        currentUserLocation.longitude!),
-                    zoom: 17.5),
-                myLocationButtonEnabled: true,
-                myLocationEnabled: true,
-                onMapCreated: (GoogleMapController controller) {
-                  _googleMapController.complete(controller);
-                },
-                markers: {
-                    Marker(
-                        markerId: const MarkerId('starry'),
-                        position: LatLng(currentUserLocation.latitude!,
-                            currentUserLocation.longitude!))
-                  });
+            ? UnconstrainedBox(child: const CircularProgressIndicator())
+            : isLoaded
+                ? GoogleMap(
+                    mapType: MapType.normal,
+                    initialCameraPosition: CameraPosition(
+                        target: LatLng(currentUserLocation.latitude!,
+                            currentUserLocation.longitude!),
+                        zoom: 17.5),
+                    myLocationButtonEnabled: true,
+                    myLocationEnabled: true,
+                    onMapCreated: (GoogleMapController controller) {
+                      _googleMapController.complete(controller);
+                    },
+                    markers: _markers.values.toSet())
+                : RepaintBoundary(
+                    key: markersData[0]['globalKey'],
+                    child: markersData[0]['widget'],
+                  );
       },
     );
   }
 
-  Future<void> _buildMarkers() async {
+  Future<void> _buildMarkers({LatLng? position}) async {
     await Future.wait(markersData.map((data) async {
-      Marker marker = await _generateMarkerFromWidget(data: data);
+      Marker marker =
+          await _generateMarkerFromWidget(data: data, position: position);
       _markers[marker.markerId.value] = marker;
     }));
 
@@ -103,9 +103,8 @@ class _TrackMapState extends State<TrackMap> {
 
   Future<Marker> _generateMarkerFromWidget(
       {required Map<String, dynamic> data, LatLng? position}) async {
-    RenderRepaintBoundary boundary = data['globalKey']
-        .currentContext
-        ?.findRenderObject() as RenderRepaintBoundary;
+    final RenderRepaintBoundary boundary =
+        data['globalKey'].currentContext?.findRenderObject();
 
     if (boundary.debugNeedsPaint) {
       await Future.delayed(const Duration(milliseconds: 20));
@@ -113,7 +112,7 @@ class _TrackMapState extends State<TrackMap> {
     }
 
     final ui.Image myImage = await boundary.toImage();
-    ByteData? byteData =
+    final ByteData? byteData =
         await myImage.toByteData(format: ui.ImageByteFormat.png);
 
     return Marker(
