@@ -59,30 +59,50 @@ class _TrackMapState extends State<TrackMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-        final currentUserLocation = _trackController.currentLocation.value;
-        return currentUserLocation == null
-            ? UnconstrainedBox(child: const CircularProgressIndicator())
-            : GoogleMap(
-                mapType: MapType.normal,
-                initialCameraPosition: CameraPosition(
-                    target: LatLng(currentUserLocation.latitude!,
-                        currentUserLocation.longitude!),
-                    zoom: 17.5),
-                myLocationButtonEnabled: true,
-                myLocationEnabled: true,
-                onMapCreated: (GoogleMapController controller) {
-                  _googleMapController.complete(controller);
-                },
-                markers: {
-                    Marker(
-                        markerId: const MarkerId('starry'),
-                        position: LatLng(currentUserLocation.latitude!,
-                            currentUserLocation.longitude!),
-                        icon: _markerIcons['starry']!)
-                  });
-      },
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: Column(
+        children: [
+          Obx(
+            () {
+              final currentUserLocation =
+                  _trackController.currentLocation.value;
+              return currentUserLocation == null
+                  ? const UnconstrainedBox(child: CircularProgressIndicator())
+                  : Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: GoogleMap(
+                            mapType: MapType.normal,
+                            initialCameraPosition: CameraPosition(
+                                target: LatLng(currentUserLocation.latitude!,
+                                    currentUserLocation.longitude!),
+                                zoom: 17.5),
+                            myLocationButtonEnabled: false,
+                            myLocationEnabled: false,
+                            onMapCreated: (GoogleMapController controller) {
+                              _googleMapController.complete(controller);
+                            },
+                            markers: {
+                              Marker(
+                                  markerId: const MarkerId('starry'),
+                                  position: LatLng(
+                                      currentUserLocation.latitude!,
+                                      currentUserLocation.longitude!),
+                                  icon: _markerIcons['starry']!)
+                            }),
+                      ),
+                    );
+            },
+          ),
+          Container(
+            width: double.infinity,
+            height: 120,
+            color: Colors.redAccent,
+          ),
+        ],
+      ),
     );
   }
 
