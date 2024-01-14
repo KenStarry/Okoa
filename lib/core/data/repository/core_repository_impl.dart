@@ -25,12 +25,14 @@ class CoreRepositoryimpl extends CoreRepository {
 
   @override
   Future<void> updateUserDataOnDB(
-      {required String columnName, required columnValue, String? uid}) async {
+      {required Map<String, dynamic> data, String? uid}) async {
     try {
       final currentUserId = supabase.auth.currentUser!.id;
 
-      await supabase.from('users').update({columnName: columnValue}).match(
-          {'id': uid ?? currentUserId});
+      await supabase
+          .from('users')
+          .update(data)
+          .match({'id': uid ?? currentUserId});
     } catch (error) {
       throw Exception(error);
     }

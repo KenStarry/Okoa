@@ -8,7 +8,7 @@ abstract class CoreRepository {
 
   /// Update User Data
   Future<void> updateUserDataOnDB(
-      {required String columnName, required dynamic columnValue, String? uid});
+      {required Map<String, dynamic> data, String? uid});
 
   /// Listen to User Data
   void listenToUserDataonDB(
