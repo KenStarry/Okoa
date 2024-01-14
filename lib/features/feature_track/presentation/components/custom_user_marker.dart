@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:okoa/core/presentation/extensions/build_context_extensions.dart';
+import 'package:okoa/theme/colors.dart';
 
 class CustomUserMarker extends StatelessWidget {
   const CustomUserMarker({super.key});
@@ -7,7 +9,7 @@ class CustomUserMarker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 70,
+        width: 70,
         height: 70,
         child: Stack(
           children: [
@@ -16,10 +18,13 @@ class CustomUserMarker extends StatelessWidget {
               child: Container(
                 width: 50,
                 height: 50,
-                margin: const EdgeInsets.only(bottom: 8),
+                margin: const EdgeInsets.only(bottom: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Colors.redAccent),
+                    border: Border.all(
+                        color: bgColorDarkMode,
+                        width: 5),
+                    color: accent),
               ),
             ),
             Align(
@@ -29,7 +34,7 @@ class CustomUserMarker extends StatelessWidget {
                 child: Container(
                   width: 20,
                   height: 20,
-                  color: Colors.redAccent,
+                  color: bgColorDarkMode,
                 ),
               ),
             )
