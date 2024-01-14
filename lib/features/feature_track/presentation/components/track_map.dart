@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
+import 'package:okoa/features/feature_track/presentation/components/custom_user_marker.dart';
 import 'package:okoa/features/feature_track/presentation/controller/track_controller.dart';
 
 class TrackMap extends StatefulWidget {
@@ -38,13 +39,7 @@ class _TrackMapState extends State<TrackMap> {
       {
         'id': 'starry',
         'globalKey': GlobalKey(),
-        'widget': UnconstrainedBox(
-          child: Container(
-            width: 50,
-            height: 50,
-            color: Colors.redAccent
-          ),
-        )
+        'widget': const CustomUserMarker()
       }
     ];
 
@@ -121,6 +116,6 @@ class _TrackMapState extends State<TrackMap> {
     final ByteData? byteData =
         await myImage.toByteData(format: ui.ImageByteFormat.png);
 
-    return BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List());
+    return BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List(), size: Size(50, 50));
   }
 }
