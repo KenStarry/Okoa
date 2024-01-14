@@ -24,6 +24,19 @@ class CoreRepositoryimpl extends CoreRepository {
   }
 
   @override
+  Future<void> updateUserDataOnDB(
+      {required String columnName, required columnValue, String? uid}) async {
+    try {
+      final currentUserId = supabase.auth.currentUser!.id;
+
+      await supabase.from('users').update({columnName: columnValue}).match(
+          {'id': uid ?? currentUserId});
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
+  @override
   void listenToUserDataonDB(
       {required String uid,
       required Function(OkoaUser okoaUser) onGetUserData}) {

@@ -6,6 +6,10 @@ abstract class CoreRepository {
   Future<void> getUserDataFromDatabase(
       {required String uid, required Function(OkoaUser) onGetUserData});
 
+  /// Update User Data
+  Future<void> updateUserDataOnDB(
+      {required String columnName, required dynamic columnValue, String? uid});
+
   /// Listen to User Data
   void listenToUserDataonDB(
       {required String uid,
