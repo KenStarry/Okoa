@@ -33,7 +33,7 @@ class _TrackMapContentState extends State<TrackMapContent> {
                     fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
                     fontWeight: Theme.of(context).textTheme.bodySmall!.fontWeight,
                     color: Colors.greenAccent
-                  ),)
+                  ))
                 ],
               )
             ],
