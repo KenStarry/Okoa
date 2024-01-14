@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -8,7 +9,9 @@ abstract class CoreRepository {
 
   /// Update User Data
   Future<void> updateUserDataOnDB(
-      {required Map<String, dynamic> data, String? uid});
+      {required Map<String, dynamic> data,
+      String? uid,
+      required Function(Response response) onResponse});
 
   /// Listen to User Data
   void listenToUserDataonDB(
