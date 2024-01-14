@@ -20,7 +20,7 @@ class _TrackMapState extends State<TrackMap> {
   late final TrackController _trackController;
   late final Completer<GoogleMapController> _googleMapController;
   late final List<Map<String, dynamic>> markersData;
-  final Map<String, Marker> _markers = {};
+  final Map<String, BitmapDescriptor> _markerIcons = {};
 
   bool isLoaded = false;
 
@@ -28,20 +28,21 @@ class _TrackMapState extends State<TrackMap> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) async => await _buildMarkers());
     _trackController = Get.find<TrackController>();
     _googleMapController = Completer<GoogleMapController>();
 
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) async => await _buildMarkers());
+
     markersData = [
       {
-        'id': '1',
+        'id': 'starry',
         'globalKey': GlobalKey(),
         'widget': UnconstrainedBox(
           child: Container(
             width: 50,
             height: 50,
-            color: Colors.redAccent,
+            color: Colors.redAccent
           ),
         )
       }
@@ -80,7 +81,13 @@ class _TrackMapState extends State<TrackMap> {
                     onMapCreated: (GoogleMapController controller) {
                       _googleMapController.complete(controller);
                     },
-                    markers: _markers.values.toSet())
+                    markers: {
+                        Marker(
+                            markerId: const MarkerId('starry'),
+                            position: LatLng(currentUserLocation.latitude!,
+                                currentUserLocation.longitude!),
+                            icon: _markerIcons['starry']!)
+                      })
                 : RepaintBoundary(
                     key: markersData[0]['globalKey'],
                     child: markersData[0]['widget'],
@@ -89,11 +96,10 @@ class _TrackMapState extends State<TrackMap> {
     );
   }
 
-  Future<void> _buildMarkers({LatLng? position}) async {
+  Future<void> _buildMarkers() async {
     await Future.wait(markersData.map((data) async {
-      Marker marker =
-          await _generateMarkerFromWidget(data: data, position: position);
-      _markers[marker.markerId.value] = marker;
+      BitmapDescriptor marker = await _generateBytesFromWidget(data: data);
+      _markerIcons[data['id']] = marker;
     }));
 
     setState(() {
@@ -101,23 +107,20 @@ class _TrackMapState extends State<TrackMap> {
     });
   }
 
-  Future<Marker> _generateMarkerFromWidget(
-      {required Map<String, dynamic> data, LatLng? position}) async {
+  Future<BitmapDescriptor> _generateBytesFromWidget(
+      {required Map<String, dynamic> data}) async {
     final RenderRepaintBoundary boundary =
         data['globalKey'].currentContext?.findRenderObject();
 
     if (boundary.debugNeedsPaint) {
       await Future.delayed(const Duration(milliseconds: 20));
-      return _generateMarkerFromWidget(data: data);
+      return _generateBytesFromWidget(data: data);
     }
 
-    final ui.Image myImage = await boundary.toImage();
+    final ui.Image myImage = await boundary.toImage(pixelRatio: 2);
     final ByteData? byteData =
         await myImage.toByteData(format: ui.ImageByteFormat.png);
 
-    return Marker(
-        markerId: MarkerId(data['id']),
-        position: position ?? const LatLng(0, 0),
-        icon: BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List()));
+    return BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List());
   }
 }
