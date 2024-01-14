@@ -14,8 +14,8 @@ _$OkoaUserImpl _$$OkoaUserImplFromJson(Map<String, dynamic> json) =>
       userName: json['username'] as String? ?? '',
       phone: json['phone_number'] as String? ?? '',
       avatarUrl: json['avatar_url'] as String? ?? '',
-      latitude: (json['latitude'] as num?)?.toDouble() ?? '',
-      longitude: (json['longitude'] as num?)?.toDouble() ?? '',
+      latitude: (json['latitude'] as num?)?.toDouble() ?? 0.0,
+      longitude: (json['longitude'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$OkoaUserImplToJson(_$OkoaUserImpl instance) =>

@@ -205,8 +205,8 @@ class _$OkoaUserImpl implements _OkoaUser {
       @JsonKey(name: 'username') this.userName = '',
       @JsonKey(name: 'phone_number') this.phone = '',
       @JsonKey(name: 'avatar_url') this.avatarUrl = '',
-      @JsonKey(name: 'latitude') this.latitude = '',
-      @JsonKey(name: 'longitude') this.longitude = ''});
+      @JsonKey(name: 'latitude') this.latitude = 0.0,
+      @JsonKey(name: 'longitude') this.longitude = 0.0});
 
   factory _$OkoaUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$OkoaUserImplFromJson(json);
