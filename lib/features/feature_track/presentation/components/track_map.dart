@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/features/feature_track/presentation/controller/track_controller.dart';
 
 class TrackMap extends StatefulWidget {
@@ -27,24 +28,25 @@ class _TrackMapState extends State<TrackMap> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) async => await _buildMarkers());
+    // WidgetsBinding.instance
+    //     .addPostFrameCallback((_) async => await _buildMarkers());
     _trackController = Get.find<TrackController>();
     _googleMapController = Completer<GoogleMapController>();
 
-    markersData = [
-      {
-        'id': '1',
-        'globalKey': GlobalKey(),
-        'widget': UnconstrainedBox(
-          child: Container(
-            width: 50,
-            height: 50,
-            color: Colors.redAccent,
-          ),
-        )
-      }
-    ];
+    // markersData = [
+    //   {
+    //     'id': '1',
+    //     'globalKey': GlobalKey(),
+    //     'widget': UnconstrainedBox(
+    //       child: Container(
+    //         width: 50,
+    //         height: 50,
+    //         color: Colors.redAccent,
+    //       ),
+    //     )
+    //   }
+    // ];
+
 
     ever(_trackController.currentLocation, (currentLocation) async {
       if (currentLocation != null) {
@@ -66,7 +68,7 @@ class _TrackMapState extends State<TrackMap> {
       () {
         final currentUserLocation = _trackController.currentLocation.value;
         return currentUserLocation == null
-            ? CircularProgressIndicator()
+            ? const LottieLoader()
             : GoogleMap(
                 mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
