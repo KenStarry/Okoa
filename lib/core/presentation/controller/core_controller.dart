@@ -14,6 +14,15 @@ class CoreController extends GetxController {
 
   final hasInternet = false.obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+
+    listenToInternetStatus(onStatusChanged: (status) {
+      hasInternet.value = status == InternetConnectionStatus.connected;
+    });
+  }
+
   void setOkoaUserData({required OkoaUser okoaUser}) =>
       this.okoaUser.value = okoaUser;
 
