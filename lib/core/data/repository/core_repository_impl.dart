@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:okoa/core/domain/repository/core_repository.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -9,6 +10,12 @@ import '../../domain/model/response_state.dart';
 
 class CoreRepositoryimpl extends CoreRepository {
   final supabase = locator.get<SupabaseClient>();
+
+  @override
+  void listenToInternetStatus(
+          {required Function(InternetConnectionStatus status)
+              onStatusChanged}) =>
+      InternetConnectionChecker().onStatusChange.listen(onStatusChanged);
 
   @override
   Future<void> getUserDataFromDatabase(
