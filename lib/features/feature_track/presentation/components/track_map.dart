@@ -6,10 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
+import 'package:okoa/core/data/api/api.dart';
 import 'package:okoa/features/feature_track/presentation/components/custom_user_marker.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_map_content.dart';
 import 'package:okoa/features/feature_track/presentation/controller/track_controller.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 class TrackMap extends StatefulWidget {
   const TrackMap({super.key});
@@ -93,9 +96,9 @@ class _TrackMapState extends State<TrackMap> {
                                       currentUserLocation.latitude!,
                                       currentUserLocation.longitude!),
                                   icon: _markerIcons['starry']!,
-                              onTap: () {
+                                  onTap: () {
                                     //  open bottomsheet for current user
-                              })
+                                  })
                             }),
                       ),
                     );
@@ -120,21 +123,51 @@ class _TrackMapState extends State<TrackMap> {
     setState(() {});
   }
 
-  Future<BitmapDescriptor> _generateBytesFromWidget(
-      {required Map<String, dynamic> data}) async {
-    final RenderRepaintBoundary boundary =
-        data['globalKey'].currentContext?.findRenderObject();
+  //  Polyline points
+  void getPolylinePoints(
+      {required LocationData sourceLocation,
+      required LocationData destination}) async {
+    PolylinePoints polylinePoints = PolylinePoints();
 
-    if (boundary.debugNeedsPaint) {
-      await Future.delayed(const Duration(milliseconds: 20));
-      return _generateBytesFromWidget(data: data);
+    PolylineResult polylineResult =
+        await polylinePoints.getRouteBetweenCoordinates(
+            Api.googleApiKey,
+            PointLatLng(sourceLocation.latitude!, sourceLocation.longitude!),
+            PointLatLng(destination.latitude!, destination.longitude!));
+
+    if (polylineResult.points.isNotEmpty) {
+      for (PointLatLng point in polylineResult.points) {
+
+      }
     }
-
-    final ui.Image myImage = await boundary.toImage(pixelRatio: 2);
-    final ByteData? byteData =
-        await myImage.toByteData(format: ui.ImageByteFormat.png);
-
-    return BitmapDescriptor.fromBytes(byteData!.buffer.asUint8List(),
-        size: Size(50, 50));
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
