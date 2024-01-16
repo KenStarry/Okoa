@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:okoa/core/domain/use_case/core_use_cases.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
@@ -11,8 +12,15 @@ class CoreController extends GetxController {
   /// User Data
   final okoaUser = Rxn<OkoaUser>();
 
+  final hasInternet = false.obs;
+
   void setOkoaUserData({required OkoaUser okoaUser}) =>
       this.okoaUser.value = okoaUser;
+
+  void listenToInternetStatus(
+          {required Function(InternetConnectionStatus status)
+              onStatusChanged}) =>
+      useCase.listenToInternetStatus.call(onStatusChanged: onStatusChanged);
 
   //  get user data from DB
   Future<void> getUserDataFromDatabase(
