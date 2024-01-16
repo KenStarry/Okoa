@@ -92,7 +92,10 @@ class _TrackMapState extends State<TrackMap> {
                                   position: LatLng(
                                       currentUserLocation.latitude!,
                                       currentUserLocation.longitude!),
-                                  icon: _markerIcons['starry']!)
+                                  icon: _markerIcons['starry']!,
+                              onTap: () {
+                                    //  open bottomsheet for current user
+                              })
                             }),
                       ),
                     );

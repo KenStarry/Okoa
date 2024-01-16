@@ -43,6 +43,7 @@ dependencies:
   rive: ^0.12.4
   lottie: ^3.0.0
   widget_to_marker: ^1.0.4
+  internet_connection_checker: ^1.0.0+1
 
 # Dev Dependencies
 dev_dependencies:
