@@ -122,25 +122,6 @@ class _TrackMapState extends State<TrackMap> {
 
     setState(() {});
   }
-
-  //  Polyline points
-  void getPolylinePoints(
-      {required LocationData sourceLocation,
-      required LocationData destination}) async {
-    PolylinePoints polylinePoints = PolylinePoints();
-
-    PolylineResult polylineResult =
-        await polylinePoints.getRouteBetweenCoordinates(
-            Api.googleApiKey,
-            PointLatLng(sourceLocation.latitude!, sourceLocation.longitude!),
-            PointLatLng(destination.latitude!, destination.longitude!));
-
-    if (polylineResult.points.isNotEmpty) {
-      for (PointLatLng point in polylineResult.points) {
-
-      }
-    }
-  }
 }
 
 
