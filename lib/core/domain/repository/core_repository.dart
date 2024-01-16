@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:okoa/core/domain/model/response_state.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -18,4 +19,8 @@ abstract class CoreRepository {
   void listenToUserDataonDB(
       {required String uid,
       required Function(OkoaUser okoaUser) onGetUserData});
+
+  /// Listen to Internet Status
+  void listenToInternetStatus(
+      {required Function(InternetConnectionStatus status) onStatusChanged});
 }
