@@ -12,4 +12,8 @@ abstract class Api {
   //  Anon Key
   @EnviedField(varName: 'SUPABASE_ANON_KEY', defaultValue: '', obfuscate: true)
   static final String anonKey = _Api.anonKey;
+
+  //  GOOGLE API Key
+  @EnviedField(varName: 'GOOGLE_API_KEY', defaultValue: '', obfuscate: true)
+  static final String googleApiKey = _Api.googleApiKey;
 }
