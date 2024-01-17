@@ -21,18 +21,18 @@ class CustomUserMarker extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    border: Border.all(color: bgColorDarkMode, width: 5),
+                    border: Border.all(color: accent, width: 5),
                     gradient: const LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [accent, bgColorDarkMode])),
+                        colors: [bgColorLightMode, accent])),
                 child: const Center(
                     child: Text(
                   "S",
                   style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: textWhite900),
+                      color: textBlack900),
                 )),
               ),
             ),
@@ -43,7 +43,7 @@ class CustomUserMarker extends StatelessWidget {
                 child: Container(
                   width: 20,
                   height: 20,
-                  color: bgColorDarkMode,
+                  color: accent,
                 ),
               ),
             )

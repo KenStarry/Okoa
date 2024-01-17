@@ -110,6 +110,10 @@ class _TrackMapState extends State<TrackMap> {
                                       Polyline(
                                           polylineId: const PolylineId(
                                               "Equity bank polyline"),
+                                          color: Theme.of(context).primaryColor,
+                                          startCap: Cap.roundCap,
+                                          endCap: Cap.roundCap,
+                                          width: 5,
                                           points: _trackController
                                               .polylineCoordinates)
                                     }
