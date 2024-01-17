@@ -68,6 +68,7 @@ class _TrackMapState extends State<TrackMap> {
 
         await myController.animateCamera(CameraUpdate.newCameraPosition(
             CameraPosition(
+              zoom: 18,
                 target: LatLng(
                     currentLocation.latitude!, currentLocation.longitude!))));
       }
@@ -91,13 +92,13 @@ class _TrackMapState extends State<TrackMap> {
                       flex: 3,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
-                        child: Obx(
+                        child: _markerIcons.isEmpty ? const UnconstrainedBox(child: CircularProgressIndicator()) : Obx(
                           () => GoogleMap(
                               mapType: MapType.normal,
                               initialCameraPosition: CameraPosition(
                                   target: LatLng(currentUserLocation.latitude!,
                                       currentUserLocation.longitude!),
-                                  zoom: 17.5),
+                                  zoom: 18),
                               myLocationButtonEnabled: false,
                               myLocationEnabled: false,
                               onMapCreated: (GoogleMapController controller) {
