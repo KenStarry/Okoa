@@ -18,6 +18,7 @@ class _TrackMapContentState extends State<TrackMapContent> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          //  header
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,6 +38,18 @@ class _TrackMapContentState extends State<TrackMapContent> {
                 ],
               )
             ],
+          ),
+
+          const SizedBox(height: 16),
+
+          //  partners live on the map
+          Expanded(
+            flex: 2,
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.redAccent,
+            ),
           )
         ],
       ),
