@@ -66,6 +66,7 @@ class _TrackMapState extends State<TrackMap> {
         final GoogleMapController myController =
             await _googleMapController.future;
 
+        //  Get current zoom level
         final zoomLevel = await myController.getZoomLevel();
 
         await myController.animateCamera(CameraUpdate.newCameraPosition(
