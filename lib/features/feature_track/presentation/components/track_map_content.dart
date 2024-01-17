@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okoa/features/feature_track/presentation/components/track_partner_card.dart';
 
 class TrackMapContent extends StatefulWidget {
   const TrackMapContent({super.key});
@@ -53,7 +54,7 @@ class _TrackMapContentState extends State<TrackMapContent> {
               height: double.infinity,
               color: Colors.redAccent,
               child: ListView.separated(
-                itemBuilder: (context, index) => Text("Hello"),
+                itemBuilder: (context, index) => const TrackPartnerCard(),
                 separatorBuilder: (context, index) => SizedBox(width: 8),
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
