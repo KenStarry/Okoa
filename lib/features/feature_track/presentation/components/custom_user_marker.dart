@@ -26,14 +26,14 @@ class CustomUserMarker extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [bgColorLightMode, accent])),
-                child: const Center(
-                    child: Text(
-                  "S",
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: textBlack900),
-                )),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.asset(
+                    "assets/images/curly_hair_man.png",
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
               ),
             ),
             Align(
