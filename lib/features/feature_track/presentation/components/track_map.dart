@@ -27,6 +27,9 @@ class _TrackMapState extends State<TrackMap> {
   late final List<Map<String, dynamic>> markersData;
   final Map<String, BitmapDescriptor> _markerIcons = {};
 
+  final LatLng destination =
+      const LatLng(0.28312695556758094, 34.75168063532842);
+
   bool isLoaded = false;
 
   @override
@@ -36,15 +39,26 @@ class _TrackMapState extends State<TrackMap> {
     _trackController = Get.find<TrackController>();
     _googleMapController = Completer<GoogleMapController>();
 
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) async => await _buildMarkers());
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _buildMarkers();
+      _trackController.getPolylinePoints(
+          sourceLocation: LatLng(
+              _trackController.currentLocation.value!.latitude!,
+              _trackController.currentLocation.value!.longitude!),
+          destination: destination);
+    });
 
     markersData = [
       {
         'id': 'starry',
         'globalKey': GlobalKey(),
         'widget': const CustomUserMarker()
-      }
+      },
+      {
+        'id': 'equity',
+        'globalKey': GlobalKey(),
+        'widget': const CustomUserMarker()
+      },
     ];
 
     ever(_trackController.currentLocation, (currentLocation) async {
@@ -54,7 +68,6 @@ class _TrackMapState extends State<TrackMap> {
 
         await myController.animateCamera(CameraUpdate.newCameraPosition(
             CameraPosition(
-                zoom: 14.5,
                 target: LatLng(
                     currentLocation.latitude!, currentLocation.longitude!))));
       }
@@ -78,28 +91,48 @@ class _TrackMapState extends State<TrackMap> {
                       flex: 3,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
-                        child: GoogleMap(
-                            mapType: MapType.normal,
-                            initialCameraPosition: CameraPosition(
-                                target: LatLng(currentUserLocation.latitude!,
-                                    currentUserLocation.longitude!),
-                                zoom: 17.5),
-                            myLocationButtonEnabled: false,
-                            myLocationEnabled: false,
-                            onMapCreated: (GoogleMapController controller) {
-                              _googleMapController.complete(controller);
-                            },
-                            markers: {
-                              Marker(
-                                  markerId: const MarkerId('starry'),
-                                  position: LatLng(
-                                      currentUserLocation.latitude!,
+                        child: Obx(
+                          () => GoogleMap(
+                              mapType: MapType.normal,
+                              initialCameraPosition: CameraPosition(
+                                  target: LatLng(currentUserLocation.latitude!,
                                       currentUserLocation.longitude!),
-                                  icon: _markerIcons['starry']!,
-                                  onTap: () {
-                                    //  open bottomsheet for current user
-                                  })
-                            }),
+                                  zoom: 17.5),
+                              myLocationButtonEnabled: false,
+                              myLocationEnabled: false,
+                              onMapCreated: (GoogleMapController controller) {
+                                _googleMapController.complete(controller);
+                              },
+                              polylines: _trackController
+                                      .polylineCoordinates.isNotEmpty
+                                  ? {
+                                      Polyline(
+                                          polylineId: const PolylineId(
+                                              "Equity bank polyline"),
+                                          points: _trackController
+                                              .polylineCoordinates)
+                                    }
+                                  : {},
+                              markers: {
+                                Marker(
+                                    markerId: const MarkerId('starry'),
+                                    position: LatLng(
+                                        currentUserLocation.latitude!,
+                                        currentUserLocation.longitude!),
+                                    icon: _markerIcons['starry']!,
+                                    onTap: () {
+                                      //  open bottomsheet for current user
+                                    }),
+                                Marker(
+                                    markerId: const MarkerId('equity'),
+                                    position: LatLng(destination.latitude,
+                                        destination.longitude),
+                                    icon: _markerIcons['equity']!,
+                                    onTap: () {
+                                      //  open bottomsheet for current user
+                                    }),
+                              }),
+                        ),
                       ),
                     );
             },
@@ -123,32 +156,3 @@ class _TrackMapState extends State<TrackMap> {
     setState(() {});
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
