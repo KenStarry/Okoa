@@ -25,6 +25,7 @@ class MyTheme {
           focusedBorder:
           UnderlineInputBorder(borderSide: BorderSide(color: accent))),
       useMaterial3: true,
+      fontFamily: 'DMSans',
       textTheme: const TextTheme(
         bodySmall: TextStyle(
             fontSize: 11, fontWeight: FontWeight.w500, color: textBlack500),
@@ -60,6 +61,7 @@ class MyTheme {
           focusedBorder:
               UnderlineInputBorder(borderSide: BorderSide(color: accent))),
       useMaterial3: true,
+      fontFamily: 'DMSans',
       textTheme: const TextTheme(
         bodySmall: TextStyle(
             fontSize: 11, fontWeight: FontWeight.w500, color: textWhite500),
