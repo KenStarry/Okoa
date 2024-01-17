@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:okoa/core/presentation/extensions/build_context_extensions.dart';
 import 'package:okoa/theme/colors.dart';
 
 class CustomUserMarker extends StatelessWidget {

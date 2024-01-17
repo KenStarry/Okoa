@@ -66,9 +66,11 @@ class _TrackMapState extends State<TrackMap> {
         final GoogleMapController myController =
             await _googleMapController.future;
 
+        final zoomLevel = await myController.getZoomLevel();
+
         await myController.animateCamera(CameraUpdate.newCameraPosition(
             CameraPosition(
-              zoom: 18,
+                zoom: zoomLevel,
                 target: LatLng(
                     currentLocation.latitude!, currentLocation.longitude!))));
       }
@@ -77,7 +79,7 @@ class _TrackMapState extends State<TrackMap> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
       child: Column(
@@ -92,52 +94,58 @@ class _TrackMapState extends State<TrackMap> {
                       flex: 3,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
-                        child: _markerIcons.isEmpty ? const UnconstrainedBox(child: CircularProgressIndicator()) : Obx(
-                          () => GoogleMap(
-                              mapType: MapType.normal,
-                              initialCameraPosition: CameraPosition(
-                                  target: LatLng(currentUserLocation.latitude!,
-                                      currentUserLocation.longitude!),
-                                  zoom: 18),
-                              myLocationButtonEnabled: false,
-                              myLocationEnabled: false,
-                              onMapCreated: (GoogleMapController controller) {
-                                _googleMapController.complete(controller);
-                              },
-                              polylines: _trackController
-                                      .polylineCoordinates.isNotEmpty
-                                  ? {
-                                      Polyline(
-                                          polylineId: const PolylineId(
-                                              "Equity bank polyline"),
-                                          color: Theme.of(context).primaryColor,
-                                          startCap: Cap.roundCap,
-                                          endCap: Cap.roundCap,
-                                          width: 5,
-                                          points: _trackController
-                                              .polylineCoordinates)
-                                    }
-                                  : {},
-                              markers: {
-                                Marker(
-                                    markerId: const MarkerId('starry'),
-                                    position: LatLng(
-                                        currentUserLocation.latitude!,
-                                        currentUserLocation.longitude!),
-                                    icon: _markerIcons['starry']!,
-                                    onTap: () {
-                                      //  open bottomsheet for current user
+                        child: _markerIcons.isEmpty
+                            ? const UnconstrainedBox(
+                                child: CircularProgressIndicator())
+                            : Obx(
+                                () => GoogleMap(
+                                    mapType: MapType.normal,
+                                    initialCameraPosition: CameraPosition(
+                                        target: LatLng(
+                                            currentUserLocation.latitude!,
+                                            currentUserLocation.longitude!),
+                                        zoom: 18),
+                                    myLocationButtonEnabled: false,
+                                    myLocationEnabled: false,
+                                    onMapCreated:
+                                        (GoogleMapController controller) {
+                                      _googleMapController.complete(controller);
+                                    },
+                                    polylines: _trackController
+                                            .polylineCoordinates.isNotEmpty
+                                        ? {
+                                            Polyline(
+                                                polylineId: const PolylineId(
+                                                    "Equity bank polyline"),
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                startCap: Cap.roundCap,
+                                                endCap: Cap.roundCap,
+                                                width: 5,
+                                                points: _trackController
+                                                    .polylineCoordinates)
+                                          }
+                                        : {},
+                                    markers: {
+                                      Marker(
+                                          markerId: const MarkerId('starry'),
+                                          position: LatLng(
+                                              currentUserLocation.latitude!,
+                                              currentUserLocation.longitude!),
+                                          icon: _markerIcons['starry']!,
+                                          onTap: () {
+                                            //  open bottomsheet for current user
+                                          }),
+                                      Marker(
+                                          markerId: const MarkerId('equity'),
+                                          position: LatLng(destination.latitude,
+                                              destination.longitude),
+                                          icon: _markerIcons['equity']!,
+                                          onTap: () {
+                                            //  open bottomsheet for current user
+                                          }),
                                     }),
-                                Marker(
-                                    markerId: const MarkerId('equity'),
-                                    position: LatLng(destination.latitude,
-                                        destination.longitude),
-                                    icon: _markerIcons['equity']!,
-                                    onTap: () {
-                                      //  open bottomsheet for current user
-                                    }),
-                              }),
-                        ),
+                              ),
                       ),
                     );
             },
