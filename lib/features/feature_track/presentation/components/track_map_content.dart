@@ -28,13 +28,16 @@ class _TrackMapContentState extends State<TrackMapContent> {
               //  live location sharing on
               Row(
                 children: [
-                  const Icon(Icons.my_location_rounded, color: Colors.greenAccent),
+                  const Icon(Icons.my_location_rounded,
+                      color: Colors.greenAccent),
                   const SizedBox(width: 8),
-                  Text("Live location on", style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
-                    fontWeight: Theme.of(context).textTheme.bodySmall!.fontWeight,
-                    color: Colors.greenAccent
-                  ))
+                  Text("Live location on",
+                      style: TextStyle(
+                          fontSize:
+                              Theme.of(context).textTheme.bodySmall!.fontSize,
+                          fontWeight:
+                              Theme.of(context).textTheme.bodySmall!.fontWeight,
+                          color: Colors.greenAccent))
                 ],
               )
             ],
@@ -49,6 +52,13 @@ class _TrackMapContentState extends State<TrackMapContent> {
               width: double.infinity,
               height: double.infinity,
               color: Colors.redAccent,
+              child: ListView.separated(
+                itemBuilder: (context, index) => Text("Hello"),
+                separatorBuilder: (context, index) => SizedBox(width: 8),
+                itemCount: 10,
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+              ),
             ),
           )
         ],
