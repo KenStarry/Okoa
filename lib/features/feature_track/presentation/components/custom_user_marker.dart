@@ -12,6 +12,7 @@ class CustomUserMarker extends StatelessWidget {
         height: 70,
         child: Stack(
           children: [
+            //  profile pic
             Align(
               alignment: AlignmentDirectional.center,
               child: Container(
@@ -35,6 +36,8 @@ class CustomUserMarker extends StatelessWidget {
                 ),
               ),
             ),
+
+            //  triangle cutout
             Align(
               alignment: AlignmentDirectional.bottomCenter,
               child: ClipPath(
