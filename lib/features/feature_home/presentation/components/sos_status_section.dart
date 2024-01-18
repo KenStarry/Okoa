@@ -21,7 +21,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
       child: Container(
         width: double.infinity,
         height: 460,
-        padding: const EdgeInsets.only(top: 40, bottom: 16),
+        padding: const EdgeInsets.only(top: 50, bottom: 16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
             color: Theme.of(context).scaffoldBackgroundColor),
@@ -73,15 +73,16 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
               height: 90,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               color: Colors.transparent,
-              child: ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => SosQuickActions(
-                        title: sosCategories[index].title,
-                        iconData: sosCategories[index].iconData,
-                      ),
-                  separatorBuilder: (context, index) => SizedBox(width: 24),
-                  itemCount: sosCategories.length),
+              child: Wrap(
+                runSpacing: 24,
+                spacing: 24,
+                direction: Axis.horizontal,
+                alignment: WrapAlignment.center,
+                children: sosCategories
+                    .map((category) => SosQuickActions(
+                        title: category.title, iconData: category.iconData))
+                    .toList(),
+              ),
             )
           ],
         ),

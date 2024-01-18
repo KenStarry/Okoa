@@ -15,8 +15,15 @@ class SosQuickActions extends StatelessWidget {
           width: 60,
           height: 60,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(24),
               color: Theme.of(context).primaryColorLight),
+          child: Center(
+            child: Icon(
+              iconData,
+              color: Theme.of(context).iconTheme.color,
+              size: 24,
+            ),
+          ),
         ),
         const SizedBox(height: 8),
         Text(
