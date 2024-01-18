@@ -1,9 +1,13 @@
+import 'package:flutter_contacts/contact.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart'
     as permission_handler;
 
 class PartnerController extends GetxController {
   final contactsPermissionGranted = false.obs;
+
+  final contacts = <Contact>[].obs;
 
   @override
   void onInit() {
@@ -23,4 +27,7 @@ class PartnerController extends GetxController {
 
     contactsPermissionGranted.value = status.isGranted;
   }
+
+  void getContacts() async =>
+      contacts.value = await FlutterContacts.getContacts(withProperties: true);
 }

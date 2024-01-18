@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../controller/partner_controller.dart';
 
 class ContactsScreen extends StatefulWidget {
   const ContactsScreen({super.key});
@@ -8,6 +12,16 @@ class ContactsScreen extends StatefulWidget {
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
+
+  late final PartnerController _partnerController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _partnerController = Get.find<PartnerController>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
