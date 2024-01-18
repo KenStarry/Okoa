@@ -55,7 +55,7 @@ class _TrackMapContentState extends State<TrackMapContent> {
               color: Theme.of(context).scaffoldBackgroundColor,
               child: ListView.separated(
                 itemBuilder: (context, index) => const TrackPartnerCard(),
-                separatorBuilder: (context, index) => SizedBox(width: 16),
+                separatorBuilder: (context, index) => const SizedBox(width: 20),
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
