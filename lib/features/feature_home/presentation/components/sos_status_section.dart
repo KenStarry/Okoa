@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
 import 'package:okoa/features/feature_home/presentation/components/sos_quick_actions.dart';
+import 'package:okoa/features/feature_home/presentation/utils/home_constants.dart';
 import 'package:okoa/theme/colors.dart';
 
 class SOSStatusSection extends StatefulWidget {
@@ -75,9 +76,12 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
               child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => SosQuickActions(),
+                  itemBuilder: (context, index) => SosQuickActions(
+                        title: sosCategories[index].title,
+                        iconData: sosCategories[index].iconData,
+                      ),
                   separatorBuilder: (context, index) => SizedBox(width: 24),
-                  itemCount: 10),
+                  itemCount: sosCategories.length),
             )
           ],
         ),

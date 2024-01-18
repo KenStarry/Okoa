@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SosQuickActions extends StatelessWidget {
-  const SosQuickActions({super.key});
+  final String title;
+  final IconData iconData;
+
+  const SosQuickActions(
+      {super.key, required this.title, required this.iconData});
 
   @override
   Widget build(BuildContext context) {
@@ -11,14 +15,14 @@ class SosQuickActions extends StatelessWidget {
           width: 60,
           height: 60,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Theme.of(context).primaryColorLight
-          ),
+              borderRadius: BorderRadius.circular(16),
+              color: Theme.of(context).primaryColorLight),
         ),
-
         const SizedBox(height: 8),
-
-        Text("Category", style: Theme.of(context).textTheme.bodySmall,)
+        Text(
+          title,
+          style: Theme.of(context).textTheme.bodySmall,
+        )
       ],
     );
   }
