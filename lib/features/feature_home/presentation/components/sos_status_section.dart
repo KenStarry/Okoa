@@ -19,6 +19,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
       child: Container(
         width: double.infinity,
         height: 450,
+        padding: const EdgeInsets.only(top: 50),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
             color: Theme.of(context).scaffoldBackgroundColor),
@@ -28,6 +29,8 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
           children: [
             //  home appbar
             const HomeAppBar(),
+
+            //  shield
             AvatarGlow(
               glowShape: BoxShape.circle,
               glowCount: 2,
@@ -54,7 +57,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                       children: [
                         //  logo to represent current status
                         Center(
-                          child: Icon(Icons.security_rounded,
+                          child: Icon(Icons.shield_moon_rounded,
                               size: 120,
                               color: Theme.of(context).primaryColor),
                         ),
@@ -62,9 +65,12 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                     )),
               ),
             ),
-            Text(
-              "Everything seems fine, you're safe.",
-              style: Theme.of(context).textTheme.bodyMedium,
+
+            //  quick actions
+            Container(
+              width: double.infinity,
+              height: 100,
+              color: Colors.redAccent,
             )
           ],
         ),
