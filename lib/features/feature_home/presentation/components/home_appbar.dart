@@ -82,12 +82,16 @@ class _HomeAppBarState extends State<HomeAppBar> {
                           height: 5,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(100),
-                            color: Colors.greenAccent,
+                            color: _coreController.hasInternet.value
+                                ? Colors.greenAccent
+                                : Colors.redAccent,
                           ),
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          "Online",
+                          _coreController.hasInternet.value
+                              ? "Online"
+                              : "Offline",
                           style: Theme.of(context).textTheme.bodySmall,
                         )
                       ],
