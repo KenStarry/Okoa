@@ -80,7 +80,10 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                 alignment: WrapAlignment.center,
                 children: sosCategories
                     .map((category) => SosQuickActions(
-                        title: category.title, iconData: category.iconData))
+                          title: category.title,
+                          iconData: category.iconData,
+                          onTap: () {},
+                        ))
                     .toList(),
               ),
             )
