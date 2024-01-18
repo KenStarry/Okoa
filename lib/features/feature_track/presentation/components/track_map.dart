@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:okoa/core/data/api/api.dart';
+import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_track/presentation/components/custom_user_marker.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_map_content.dart';
 import 'package:okoa/features/feature_track/presentation/controller/track_controller.dart';
@@ -90,7 +91,9 @@ class _TrackMapState extends State<TrackMap> {
               final currentUserLocation =
                   _trackController.currentLocation.value;
               return currentUserLocation == null
-                  ? const UnconstrainedBox(child: CircularProgressIndicator())
+                  ? const Expanded(
+                      flex: 3,
+                      child: Center(child: CircularProgressIndicator()))
                   : Expanded(
                       flex: 3,
                       child: ClipRRect(
