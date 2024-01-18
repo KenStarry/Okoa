@@ -41,9 +41,15 @@ class _HomeAppBarState extends State<HomeAppBar> {
               ),
               child: _coreController.okoaUser.value != null &&
                       _coreController.okoaUser.value!.avatarUrl.isNotEmpty
-                  ? CachedNetworkImage(
-                      imageUrl: _coreController.okoaUser.value!.avatarUrl,
-                      fit: BoxFit.cover,
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: CachedNetworkImage(
+                        imageUrl: _coreController.okoaUser.value!.avatarUrl,
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(
+                                color: Theme.of(context).primaryColor),
+                        fit: BoxFit.cover,
+                      ),
                     )
                   : const Icon(Icons.person_rounded),
             ),
