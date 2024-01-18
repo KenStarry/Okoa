@@ -5,6 +5,13 @@ import 'package:permission_handler/permission_handler.dart'
 class PartnerController extends GetxController {
   final contactsPermissionGranted = false.obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+
+    checkContactPermission();
+  }
+
   void checkContactPermission() async {
     final status = await permission_handler.Permission.contacts.status;
 
