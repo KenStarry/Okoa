@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:okoa/features/feature_add_partner/presentation/controller/partner_controller.dart';
 
-class ContactsPermissionScreen extends StatelessWidget {
+class ContactsPermissionScreen extends StatefulWidget {
   const ContactsPermissionScreen({super.key});
+
+  @override
+  State<ContactsPermissionScreen> createState() => _ContactsPermissionScreenState();
+}
+
+class _ContactsPermissionScreenState extends State<ContactsPermissionScreen> {
+
+  late final PartnerController _partnerController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _partnerController = Get.find<PartnerController>();
+  }
 
   @override
   Widget build(BuildContext context) {
