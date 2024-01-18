@@ -45,7 +45,9 @@ class _ContactsPermissionScreenState extends State<ContactsPermissionScreen> {
             fit: BoxFit.contain,
           ),
           const SizedBox(height: 48),
-          FilledButton(onPressed: (){}, child: Text("Grant Permission"))
+          FilledButton(onPressed: () {
+            _partnerController.requestContactPermission();
+          }, child: Text("Grant Permission"))
         ],
       ),
     );
