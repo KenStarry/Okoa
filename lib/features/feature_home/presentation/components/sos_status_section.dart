@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
+import 'package:okoa/features/feature_home/presentation/components/sos_quick_actions.dart';
 import 'package:okoa/theme/colors.dart';
 
 class SOSStatusSection extends StatefulWidget {
@@ -19,7 +20,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
       child: Container(
         width: double.infinity,
         height: 450,
-        padding: const EdgeInsets.only(top: 50),
+        padding: const EdgeInsets.only(top: 40),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
             color: Theme.of(context).scaffoldBackgroundColor),
@@ -58,8 +59,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                         //  logo to represent current status
                         Center(
                           child: Icon(Icons.shield_moon_rounded,
-                              size: 120,
-                              color: Theme.of(context).primaryColor),
+                              size: 120, color: Theme.of(context).primaryColor),
                         ),
                       ],
                     )),
@@ -69,8 +69,15 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
             //  quick actions
             Container(
               width: double.infinity,
-              height: 100,
+              height: 80,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               color: Colors.redAccent,
+              child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => SosQuickActions(),
+                  separatorBuilder: (context, index) => SizedBox(width: 24),
+                  itemCount: 10),
             )
           ],
         ),
