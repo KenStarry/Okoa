@@ -12,9 +12,13 @@ class SosQuickActions extends StatelessWidget {
           height: 60,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: Colors.greenAccent
+            color: Theme.of(context).primaryColorLight
           ),
-        )
+        ),
+
+        const SizedBox(height: 8),
+
+        Text("Category", style: Theme.of(context).textTheme.bodySmall,)
       ],
     );
   }

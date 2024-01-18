@@ -19,13 +19,13 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
     return SliverToBoxAdapter(
       child: Container(
         width: double.infinity,
-        height: 450,
-        padding: const EdgeInsets.only(top: 40),
+        height: 460,
+        padding: const EdgeInsets.only(top: 40, bottom: 16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
             color: Theme.of(context).scaffoldBackgroundColor),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             //  home appbar
@@ -69,9 +69,9 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
             //  quick actions
             Container(
               width: double.infinity,
-              height: 80,
+              height: 90,
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              color: Colors.redAccent,
+              color: Colors.transparent,
               child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
