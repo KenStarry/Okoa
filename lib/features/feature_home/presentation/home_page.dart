@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
+import 'package:okoa/features/feature_add_partner/presentation/add_partner_page.dart';
 import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_content_section.dart';
 import 'package:okoa/features/feature_home/presentation/components/sos_status_section.dart';
@@ -46,6 +47,7 @@ class _HomePageState extends State<HomePage> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               //  add partner page
+              Get.to(() => const AddPartnerPage());
             },
             backgroundColor: Theme.of(context).primaryColor,
             child: const Icon(Icons.add_rounded),
