@@ -21,65 +21,43 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
         height: 450,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50)),
-            color: Theme.of(context).primaryColor,
-            gradient: LinearGradient(
-                begin: AlignmentDirectional.topCenter,
-                end: AlignmentDirectional.bottomCenter,
-                colors: [
-                  accent,
-                  Theme.of(context).scaffoldBackgroundColor,
-                ])),
+            color: Theme.of(context).scaffoldBackgroundColor),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             //  home appbar
-            HomeAppBar(),
+            const HomeAppBar(),
             AvatarGlow(
               glowShape: BoxShape.circle,
-              glowCount: 3,
+              glowCount: 2,
               glowRadiusFactor: 0.3,
               glowColor: accent,
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   //  open SOS bottomsheet
                   Get.bottomSheet(Text("Hello"));
                 },
                 child: Container(
-                    width: 200,
-                    height: 200,
+                    width: 180,
+                    height: 180,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Theme.of(context).scaffoldBackgroundColor,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.black.withOpacity(0.3),
-                              blurRadius: 5,
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 10,
                               spreadRadius: 5)
                         ]),
                     child: Stack(
                       children: [
                         //  logo to represent current status
-                        // Center(
-                        //   child: Icon(Icons.alert,
-                        //       size: 150,
-                        //       color: Theme.of(context)
-                        //           .iconTheme
-                        //           .color!
-                        //           .withOpacity(0.05)),
-                        // ),
                         Center(
-                          child: Text(
-                            "SAFE",
-                            style: TextStyle(
-                                fontSize: 48,
-                                fontWeight: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge!
-                                    .fontWeight,
-                                color: accent),
-                          ),
-                        )
+                          child: Icon(Icons.security_rounded,
+                              size: 120,
+                              color: Theme.of(context).primaryColor),
+                        ),
                       ],
                     )),
               ),
