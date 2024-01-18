@@ -55,14 +55,46 @@ class _HomeAppBarState extends State<HomeAppBar> {
             ),
           ),
 
-          const SizedBox(width: 8),
+          const SizedBox(width: 12),
 
           //  profile name
-          Obx(() => Text(_coreController.okoaUser.value != null &&
-                  _coreController.okoaUser.value!.userName.isNotEmpty
-              ? _coreController.okoaUser.value!.userName
-              : "Anonymous",
-          style: Theme.of(context).textTheme.titleSmall,))
+          Obx(() => Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      _coreController.okoaUser.value != null &&
+                              _coreController
+                                  .okoaUser.value!.userName.isNotEmpty
+                          ? _coreController.okoaUser.value!.userName
+                          : "Anonymous",
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+
+                    const SizedBox(height: 8),
+
+                    //  internet connection status
+                    Row(
+                      children: [
+                        Container(
+                          width: 5,
+                          height: 5,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.greenAccent,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          "Online",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ))
         ],
       ),
     );
