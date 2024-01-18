@@ -27,7 +27,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
       color: Colors.transparent,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           //  profile pic
@@ -53,7 +53,16 @@ class _HomeAppBarState extends State<HomeAppBar> {
                     )
                   : const Icon(Icons.person_rounded),
             ),
-          )
+          ),
+
+          const SizedBox(width: 8),
+
+          //  profile name
+          Obx(() => Text(_coreController.okoaUser.value != null &&
+                  _coreController.okoaUser.value!.userName.isNotEmpty
+              ? _coreController.okoaUser.value!.userName
+              : "Anonymous",
+          style: Theme.of(context).textTheme.titleSmall,))
         ],
       ),
     );
