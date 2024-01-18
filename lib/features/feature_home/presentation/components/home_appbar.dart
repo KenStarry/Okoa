@@ -1,7 +1,24 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:okoa/core/presentation/controller/core_controller.dart';
 
-class HomeAppBar extends StatelessWidget {
+class HomeAppBar extends StatefulWidget {
   const HomeAppBar({super.key});
+
+  @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
+  late final CoreController _coreController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _coreController = Get.find<CoreController>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +31,22 @@ class HomeAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           //  profile pic
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Theme.of(context).scaffoldBackgroundColor,
+          Obx(
+            () => Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Theme.of(context).scaffoldBackgroundColor,
+              ),
+              child: _coreController.okoaUser.value != null &&
+                      _coreController.okoaUser.value!.avatarUrl.isNotEmpty
+                  ? CachedNetworkImage(
+                      imageUrl: _coreController.okoaUser.value!.avatarUrl,
+                      fit: BoxFit.cover,
+                    )
+                  : const Icon(Icons.person_rounded),
             ),
-            child: const Center(child: Icon(Icons.person_rounded)),
           )
         ],
       ),
