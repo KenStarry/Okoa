@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 import '../controller/partner_controller.dart';
 
@@ -25,15 +26,31 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () {
-
-        print("CONTACTS : ${_partnerController.contacts.value}");
-
-        return SliverToBoxAdapter(
-          child: Text("Hello"),
-        );
-      },
-    );
+    return MultiSliver(children: [
+      //  contacts list
+      Obx(
+        () => _partnerController.contacts.value == null
+            ? const SliverFillRemaining(
+                child: Center(
+                    child:
+                        UnconstrainedBox(child: CircularProgressIndicator())),
+              )
+            : _partnerController.contacts.value!.isNotEmpty
+                ? SliverPadding(
+                    padding: const EdgeInsets.all(16),
+                    sliver: SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                            (context, index) => Container(
+                                  color: Colors.red,
+                                  width: 100,
+                                  height: 50,
+                                ),
+                            childCount:
+                                _partnerController.contacts.value!.length)),
+                  )
+                : const SliverFillRemaining(
+                    child: Center(child: Text("No contacts found"))),
+      )
+    ]);
   }
 }

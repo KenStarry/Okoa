@@ -10,7 +10,7 @@ class PartnerController extends GetxController {
   final useCase = locator.get<PartnerUseCases>();
   final contactsPermissionGranted = false.obs;
 
-  final contacts = <Contact>[].obs;
+  final contacts = Rxn<List<Contact>>();
 
   @override
   void onInit() {
