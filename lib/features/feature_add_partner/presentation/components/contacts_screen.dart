@@ -141,8 +141,24 @@ class _ContactsScreenState extends State<ContactsScreen> {
                               )
                             : ListView.builder(
                                 physics: const BouncingScrollPhysics(),
-                                itemBuilder: (context, index) =>
-                                    ContactCard(contact: contactsOnOkoa[index]),
+                                itemBuilder: (context, index) {
+                                  final contactImage = allUsers == null
+                                      ? ''
+                                      : allUsers
+                                          .firstWhere((user) =>
+                                              user.phone.replaceAll(' ', '') ==
+                                              contactsOnOkoa[index]
+                                                  .phones
+                                                  .map((phone) => phone.number
+                                                      .replaceAll(' ', ''))
+                                                  .toList()[0])
+                                          .avatarUrl;
+
+                                  return ContactCard(
+                                    contact: contactsOnOkoa[index],
+                                    contactUserImage: contactImage,
+                                  );
+                                },
                                 itemCount: contactsOnOkoa.length,
                               ),
                   );

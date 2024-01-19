@@ -4,8 +4,10 @@ import 'package:flutter_contacts/contact.dart';
 
 class ContactCard extends StatefulWidget {
   final Contact contact;
+  final String contactUserImage;
 
-  const ContactCard({super.key, required this.contact});
+  const ContactCard(
+      {super.key, required this.contact, required this.contactUserImage});
 
   @override
   State<ContactCard> createState() => _ContactCardState();
@@ -32,16 +34,17 @@ class _ContactCardState extends State<ContactCard> {
               borderRadius: BorderRadius.circular(100),
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: CachedNetworkImage(
-                imageUrl:
-                    'https://images.unsplash.com/photo-1629450646257-87251b691036?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                placeholder: (context, url) => CircularProgressIndicator(
-                    color: Theme.of(context).primaryColor),
-                fit: BoxFit.cover,
-              ),
-            ),
+            child: widget.contactUserImage.isEmpty
+                ? const Icon(Icons.person_rounded)
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: CachedNetworkImage(
+                      imageUrl: widget.contactUserImage,
+                      placeholder: (context, url) => CircularProgressIndicator(
+                          color: Theme.of(context).primaryColor),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
           ),
           const SizedBox(width: 12),
           //  name
