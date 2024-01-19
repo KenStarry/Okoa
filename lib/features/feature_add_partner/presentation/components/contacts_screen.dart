@@ -28,27 +28,31 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiSliver(children: [
-      //  contacts list
-      Obx(
-        () => _partnerController.contacts.value == null
-            ? const SliverFillRemaining(
-                child: Center(child: LottieLoader()),
-              )
-            : _partnerController.contacts.value!.isNotEmpty
-                ? SliverPadding(
-                    padding: const EdgeInsets.all(16),
-                    sliver: SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                            (context, index) => ContactCard(
-                                contact:
-                                    _partnerController.contacts.value![index]),
-                            childCount:
-                                _partnerController.contacts.value!.length)),
-                  )
-                : const SliverFillRemaining(
-                    child: Center(child: Text("No contacts found"))),
-      )
-    ]);
+    return SliverFillRemaining(
+      child: Column(
+        children: [
+          //  contacts header
+          //  contacts list
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50), color: Colors.red),
+              child: Obx(
+                () => ListView.separated(
+                  itemBuilder: (context, index) => ContactCard(
+                      contact: _partnerController.contacts.value![index]),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 16),
+                  itemCount: _partnerController.contacts.value!.length,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
