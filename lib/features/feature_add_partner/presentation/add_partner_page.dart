@@ -32,6 +32,16 @@ class _AddPartnerPageState extends State<AddPartnerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        label: const Row(
+          children: [
+            Text("Send Requests"),
+            SizedBox(width: 8),
+            Icon(Icons.send_rounded)
+          ],
+        ),
+      ),
       body: Obx(
         () => CustomScrollView(
           physics: const BouncingScrollPhysics(),
