@@ -53,8 +53,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                               .textTheme
                               .titleMedium!
                               .fontWeight,
-                          color:
-                              Theme.of(context).textTheme.bodyLarge!.color)),
+                          color: Theme.of(context).textTheme.bodyLarge!.color)),
                 ),
                 Expanded(
                   child: Container(
@@ -98,7 +97,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
               height: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(50),
+                      topLeft: Radius.circular(50)),
                   color: Theme.of(context).primaryColorLight),
               child: Obx(
                 () => _partnerController.contacts.value == null
@@ -107,13 +108,11 @@ class _ContactsScreenState extends State<ContactsScreen> {
                         ? const Center(
                             child: Text("No contacts found."),
                           )
-                        : ListView.separated(
+                        : ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) => ContactCard(
                                 contact:
                                     _partnerController.contacts.value![index]),
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(height: 24),
                             itemCount:
                                 _partnerController.contacts.value!.length,
                           ),

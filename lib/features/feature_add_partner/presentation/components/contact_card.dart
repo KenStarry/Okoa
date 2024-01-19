@@ -16,9 +16,8 @@ class _ContactCardState extends State<ContactCard> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 80,
+      height: 100,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
         color: Theme.of(context).primaryColorLight,
       ),
       child: Row(
@@ -27,8 +26,8 @@ class _ContactCardState extends State<ContactCard> {
         children: [
           //  profile pic
           Container(
-            width: 50,
-            height: 50,
+            width: 60,
+            height: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
               color: Theme.of(context).scaffoldBackgroundColor,
@@ -46,28 +45,33 @@ class _ContactCardState extends State<ContactCard> {
           ),
           const SizedBox(width: 12),
           //  name
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                widget.contact.displayName,
-                style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
-                    fontWeight:
-                        Theme.of(context).textTheme.titleMedium!.fontWeight,
-                    color: Theme.of(context).textTheme.bodyLarge!.color),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                widget.contact.phones[0].number,
-                style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
-                    fontWeight:
-                        Theme.of(context).textTheme.bodySmall!.fontWeight,
-                    color: Theme.of(context).textTheme.bodyMedium!.color),
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  widget.contact.displayName,
+                  style: TextStyle(
+                      fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
+                      fontWeight:
+                          Theme.of(context).textTheme.titleMedium!.fontWeight,
+                      color: Theme.of(context).textTheme.bodyLarge!.color),
+                ),
+
+                const SizedBox(height: 12),
+            
+                //  phone number
+                Text(
+                  widget.contact.phones[0].number,
+                  style: TextStyle(
+                      fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
+                      fontWeight:
+                          Theme.of(context).textTheme.bodySmall!.fontWeight,
+                      color: Theme.of(context).textTheme.bodyMedium!.color),
+                ),
+              ],
+            ),
           )
         ],
       ),
