@@ -18,6 +18,10 @@ class MyTheme {
           backgroundColor: Colors.transparent
         )
       ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: accent,
+          foregroundColor: textBlack700
+      ),
       filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
               backgroundColor: accent, foregroundColor: textBlack500)),
@@ -54,6 +58,10 @@ class MyTheme {
       primarySwatch: generateMaterialColor(accent),
       scaffoldBackgroundColor: bgColorDarkMode,
       iconTheme: const IconThemeData(color: textWhite300),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: accent,
+        foregroundColor: textBlack700
+      ),
       textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
               foregroundColor: accent,
