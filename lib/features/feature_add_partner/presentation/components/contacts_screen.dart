@@ -32,14 +32,25 @@ class _ContactsScreenState extends State<ContactsScreen> {
       child: Column(
         children: [
           //  contacts header
+          Expanded(
+            flex: 1,
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              color: Colors.red,
+            ),
+          ),
+
           //  contacts list
           Expanded(
+            flex: 3,
             child: Container(
               width: double.infinity,
               height: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50), color: Theme.of(context).primaryColorLight),
+                  borderRadius: BorderRadius.circular(50),
+                  color: Theme.of(context).primaryColorLight),
               child: Obx(
                 () => _partnerController.contacts.value == null
                     ? const Center(child: LottieLoader())
@@ -48,6 +59,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                             child: Text("No contacts found."),
                           )
                         : ListView.separated(
+                            physics: const BouncingScrollPhysics(),
                             itemBuilder: (context, index) => ContactCard(
                                 contact:
                                     _partnerController.contacts.value![index]),
