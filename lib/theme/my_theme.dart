@@ -12,6 +12,12 @@ class MyTheme {
       primarySwatch: generateMaterialColor(accent),
       scaffoldBackgroundColor: bgColorLightMode,
       iconTheme: const IconThemeData(color: textBlack300),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: accent,
+          backgroundColor: bgColorLightMode
+        )
+      ),
       filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
               backgroundColor: accent, foregroundColor: textBlack500)),
@@ -48,6 +54,12 @@ class MyTheme {
       primarySwatch: generateMaterialColor(accent),
       scaffoldBackgroundColor: bgColorDarkMode,
       iconTheme: const IconThemeData(color: textWhite300),
+      textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+              foregroundColor: accent,
+              backgroundColor: bgColorDarkMode
+          )
+      ),
       filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
               backgroundColor: accent, foregroundColor: textBlack500)),
