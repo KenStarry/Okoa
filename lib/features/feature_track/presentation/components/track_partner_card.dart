@@ -16,7 +16,7 @@ class TrackPartnerCard extends StatelessWidget {
         Container(
           width: 80,
           height: 80,
-          margin: const EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10, top: 8),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(200),
               color: Theme.of(context).scaffoldBackgroundColor,
