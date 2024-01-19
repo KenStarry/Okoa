@@ -21,7 +21,13 @@ class ContactCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //  name
-          Text(contact.displayName, style: Theme.of(context).textTheme.bodyLarge,)
+          Text(
+            contact.displayName,
+            style: TextStyle(
+                fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
+                fontWeight: Theme.of(context).textTheme.titleMedium!.fontWeight,
+                color: Theme.of(context).textTheme.bodyLarge!.color),
+          )
         ],
       ),
     );
