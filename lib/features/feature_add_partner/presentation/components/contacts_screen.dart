@@ -30,6 +30,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
   Widget build(BuildContext context) {
     return SliverFillRemaining(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //  contacts header
           Expanded(
@@ -40,7 +41,17 @@ class _ContactsScreenState extends State<ContactsScreen> {
               color: Colors.red,
             ),
           ),
-
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text("Contacts on Okoa",
+                style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
+                    fontWeight:
+                        Theme.of(context).textTheme.titleMedium!.fontWeight,
+                    color: Theme.of(context).textTheme.bodyLarge!.color)),
+          ),
+          const SizedBox(height: 16),
           //  contacts list
           Expanded(
             flex: 3,
