@@ -19,12 +19,19 @@ class ContactCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 350),
         width: double.infinity,
         height: 100,
+        padding: isSelected
+            ? const EdgeInsets.symmetric(horizontal: 16)
+            : EdgeInsets.zero,
+        margin: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
-          color: isSelected ? Theme.of(context).scaffoldBackgroundColor : Theme.of(context).primaryColorLight,
-        ),
+            color: isSelected
+                ? Theme.of(context).scaffoldBackgroundColor
+                : Theme.of(context).primaryColorLight,
+            borderRadius: BorderRadius.circular(24)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,

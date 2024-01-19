@@ -142,7 +142,6 @@ class _ContactsScreenState extends State<ContactsScreen> {
             child: Container(
                 width: double.infinity,
                 height: double.infinity,
-                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(50),
@@ -150,6 +149,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     color: Theme.of(context).primaryColorLight),
                 child: Column(
                   children: [
+                    const SizedBox(height: 16),
                     Text("Contacts on Okoa",
                         style: TextStyle(
                             fontSize:
@@ -160,6 +160,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                 .fontWeight,
                             color:
                                 Theme.of(context).textTheme.bodyLarge!.color)),
+                    const SizedBox(height: 16),
                     Obx(() {
                       final allUsers = _coreController.okoaUsers.value;
                       List<Contact> contactsOnOkoa = <Contact>[];
@@ -200,6 +201,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                 )
                               : Expanded(
                                   child: ListView.builder(
+                                    padding: EdgeInsets.zero,
                                     physics: const BouncingScrollPhysics(),
                                     itemBuilder: (context, index) {
                                       final currentUser = allUsers?.firstWhere(
