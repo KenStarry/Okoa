@@ -167,8 +167,11 @@ class ContactCard extends StatelessWidget {
                             strokeAlign: BorderSide.strokeAlignOutside),
                         color: Theme.of(context).scaffoldBackgroundColor),
                     child: Center(
-                      child: Icon(Icons.done_rounded,
-                          color: Theme.of(context).primaryColor),
+                      child: Icon(
+                        Icons.done_rounded,
+                        color: Theme.of(context).primaryColor,
+                        size: 16,
+                      ),
                     ),
                   ),
                 ),
