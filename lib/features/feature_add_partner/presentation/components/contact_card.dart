@@ -21,12 +21,28 @@ class ContactCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //  name
-          Text(
-            contact.displayName,
-            style: TextStyle(
-                fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
-                fontWeight: Theme.of(context).textTheme.titleMedium!.fontWeight,
-                color: Theme.of(context).textTheme.bodyLarge!.color),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                contact.displayName,
+                style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
+                    fontWeight: Theme.of(context).textTheme.titleMedium!.fontWeight,
+                    color: Theme.of(context).textTheme.bodyLarge!.color),
+              ),
+
+              const SizedBox(height: 12),
+
+              Text(
+                contact.phones[0].number,
+                style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
+                    fontWeight: Theme.of(context).textTheme.bodySmall!.fontWeight,
+                    color: Theme.of(context).textTheme.bodyMedium!.color),
+              ),
+            ],
           )
         ],
       ),
