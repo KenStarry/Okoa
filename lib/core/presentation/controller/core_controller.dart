@@ -11,6 +11,7 @@ class CoreController extends GetxController {
 
   /// User Data
   final okoaUser = Rxn<OkoaUser>();
+  final okoaUsers = Rxn<List<OkoaUser>>();
 
   final hasInternet = false.obs;
 
@@ -32,9 +33,8 @@ class CoreController extends GetxController {
       useCase.listenToInternetStatus.call(onStatusChanged: onStatusChanged);
 
   //  get all users from DB
-  Future<void> getAllUsersFromDB(
-          {required Function(List<OkoaUser> users) onFetchUsers}) async =>
-      await useCase.getAllUsersFromDB.call(onFetchUsers: onFetchUsers);
+  Future<void> getAllUsersFromDB() async => await useCase.getAllUsersFromDB
+      .call(onFetchUsers: (users) => okoaUsers.value = users);
 
   //  get user data from DB
   Future<void> getUserDataFromDatabase(
