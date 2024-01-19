@@ -8,9 +8,9 @@ class AddPartnerAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      systemOverlayStyle: const SystemUiOverlayStyle(
+      systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light),
+          statusBarIconBrightness: context.isDarkMode ? Brightness.light : Brightness.dark),
       title: Text("Add Partner", style: Theme.of(context).textTheme.titleSmall),
       centerTitle: true,
       leading: IconButton(
