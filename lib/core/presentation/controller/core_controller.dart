@@ -31,6 +31,11 @@ class CoreController extends GetxController {
               onStatusChanged}) =>
       useCase.listenToInternetStatus.call(onStatusChanged: onStatusChanged);
 
+  //  get all users from DB
+  Future<void> getAllUsersFromDB(
+          {required Function(List<OkoaUser> users) onFetchUsers}) async =>
+      await useCase.getAllUsersFromDB.call(onFetchUsers: onFetchUsers);
+
   //  get user data from DB
   Future<void> getUserDataFromDatabase(
           {required String uid,
