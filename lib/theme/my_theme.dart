@@ -15,7 +15,7 @@ class MyTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: accent,
-          backgroundColor: bgColorLightMode
+          backgroundColor: Colors.transparent
         )
       ),
       filledButtonTheme: FilledButtonThemeData(
@@ -57,7 +57,7 @@ class MyTheme {
       textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
               foregroundColor: accent,
-              backgroundColor: bgColorDarkMode
+              backgroundColor: Colors.transparent
           )
       ),
       filledButtonTheme: FilledButtonThemeData(
