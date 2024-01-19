@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
@@ -40,40 +41,54 @@ class _ContactsScreenState extends State<ContactsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //  contacts header
-          Container(
-            width: double.infinity,
-            height: 180,
-            decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text("Requests",
-                      style: TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.bodyLarge!.fontSize,
-                          fontWeight: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .fontWeight,
-                          color: Theme.of(context).textTheme.bodyLarge!.color)),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    child: Obx(
-                      () {
-                        return _partnerController
-                                .selectedPartnersIdAgainstName.isEmpty
-                            ? const Center(
-                                child: Text("No partners selected"),
-                              )
-                            : ListView.separated(
+          Obx(
+            () => Container(
+              width: double.infinity,
+              height: 200,
+              decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+              ),
+              child: _partnerController.selectedPartnersIdAgainstName.isEmpty
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/images/partners.svg",
+                          width: 150,
+                          height: 150,
+                        ),
+                        const SizedBox(height: 12),
+                        Text("Select contacts to add as partners.",
+                            style: Theme.of(context).textTheme.bodyMedium)
+                      ],
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Text("Requests",
+                              style: TextStyle(
+                                  fontSize: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .fontSize,
+                                  fontWeight: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .fontWeight,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .color)),
+                        ),
+                        Expanded(
+                          child: Container(
+                              width: double.infinity,
+                              height: double.infinity,
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                              child: ListView.separated(
                                 itemBuilder: (context, index) => index == 0
                                     ? Padding(
                                         padding:
@@ -115,23 +130,11 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                     .selectedPartnersIdAgainstName.length,
                                 scrollDirection: Axis.horizontal,
                                 physics: const BouncingScrollPhysics(),
-                              );
-                      },
+                              )),
+                        )
+                      ],
                     ),
-                  ),
-                )
-              ],
             ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text("Contacts on Okoa",
-                style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
-                    fontWeight:
-                        Theme.of(context).textTheme.titleMedium!.fontWeight,
-                    color: Theme.of(context).textTheme.bodyLarge!.color)),
           ),
           const SizedBox(height: 16),
           Expanded(
@@ -145,70 +148,90 @@ class _ContactsScreenState extends State<ContactsScreen> {
                         topRight: Radius.circular(50),
                         topLeft: Radius.circular(50)),
                     color: Theme.of(context).primaryColorLight),
-                child: Obx(() {
-                  final allUsers = _coreController.okoaUsers.value;
-                  List<Contact> contactsOnOkoa = <Contact>[];
+                child: Column(
+                  children: [
+                    Text("Contacts on Okoa",
+                        style: TextStyle(
+                            fontSize:
+                                Theme.of(context).textTheme.bodyLarge!.fontSize,
+                            fontWeight: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .fontWeight,
+                            color:
+                                Theme.of(context).textTheme.bodyLarge!.color)),
+                    Obx(() {
+                      final allUsers = _coreController.okoaUsers.value;
+                      List<Contact> contactsOnOkoa = <Contact>[];
 
-                  if (_partnerController.contacts.value != null &&
-                      allUsers != null) {
-                    contactsOnOkoa = _partnerController.contacts.value!
-                        .where((contact) => contact.phones
-                            .map((phone) => phone.number.replaceAll(' ', ''))
-                            .toList()
-                            .any((number) => allUsers
-                                .map((user) => user.phone.replaceAll(' ', ''))
+                      if (_partnerController.contacts.value != null &&
+                          allUsers != null) {
+                        contactsOnOkoa = _partnerController.contacts.value!
+                            .where((contact) => contact.phones
+                                .map(
+                                    (phone) => phone.number.replaceAll(' ', ''))
                                 .toList()
-                                .contains(number)))
-                        .toList();
-                  }
+                                .any((number) => allUsers
+                                    .map((user) =>
+                                        user.phone.replaceAll(' ', ''))
+                                    .toList()
+                                    .contains(number)))
+                            .toList();
+                      }
 
-                  return Obx(
-                    () => _partnerController.contacts.value == null
-                        ? Container(
-                            width: double.infinity,
-                            height: double.infinity,
-                            color: Theme.of(context).primaryColorLight,
-                            child: const Center(child: LottieLoader()))
-                        : _partnerController.contacts.value!.isEmpty
-                            ? Container(
-                                width: double.infinity,
-                                height: double.infinity,
-                                color: Theme.of(context).primaryColorLight,
-                                child: const Center(
-                                  child: Text("No contacts found."),
-                                ),
-                              )
-                            : ListView.builder(
-                                physics: const BouncingScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                  final currentUser = allUsers?.firstWhere(
-                                      (user) =>
-                                          user.phone.replaceAll(' ', '') ==
-                                          contactsOnOkoa[index]
-                                              .phones
-                                              .map((phone) => phone.number
-                                                  .replaceAll(' ', ''))
-                                              .toList()[0]);
-                                  final contactImage = currentUser == null
-                                      ? ''
-                                      : currentUser.avatarUrl;
+                      return _partnerController.contacts.value == null
+                          ? Expanded(
+                              child: Container(
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  color: Theme.of(context).primaryColorLight,
+                                  child: const Center(child: LottieLoader())),
+                            )
+                          : _partnerController.contacts.value!.isEmpty
+                              ? Expanded(
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    color: Theme.of(context).primaryColorLight,
+                                    child: const Center(
+                                      child: Text("No contacts found."),
+                                    ),
+                                  ),
+                                )
+                              : Expanded(
+                                  child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
+                                    itemBuilder: (context, index) {
+                                      final currentUser = allUsers?.firstWhere(
+                                          (user) =>
+                                              user.phone.replaceAll(' ', '') ==
+                                              contactsOnOkoa[index]
+                                                  .phones
+                                                  .map((phone) => phone.number
+                                                      .replaceAll(' ', ''))
+                                                  .toList()[0]);
+                                      final contactImage = currentUser == null
+                                          ? ''
+                                          : currentUser.avatarUrl;
 
-                                  return ContactCard(
-                                    contact: contactsOnOkoa[index],
-                                    contactUserImage: contactImage,
-                                    onTap: () {
-                                      //  add user to list of selected user
-                                      _partnerController.togglePartner(
-                                          uid: currentUser?.userId,
-                                          contactName: contactsOnOkoa[index]
-                                              .displayName);
+                                      return ContactCard(
+                                        contact: contactsOnOkoa[index],
+                                        contactUserImage: contactImage,
+                                        onTap: () {
+                                          //  add user to list of selected user
+                                          _partnerController.togglePartner(
+                                              uid: currentUser?.userId,
+                                              contactName: contactsOnOkoa[index]
+                                                  .displayName);
+                                        },
+                                      );
                                     },
-                                  );
-                                },
-                                itemCount: contactsOnOkoa.length,
-                              ),
-                  );
-                })),
+                                    itemCount: contactsOnOkoa.length,
+                                  ),
+                                );
+                    }),
+                  ],
+                )),
           )
         ],
       ),
