@@ -39,15 +39,23 @@ class _ContactsScreenState extends State<ContactsScreen> {
               height: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50), color: Colors.red),
+                  borderRadius: BorderRadius.circular(50), color: Theme.of(context).primaryColorLight),
               child: Obx(
-                () => ListView.separated(
-                  itemBuilder: (context, index) => ContactCard(
-                      contact: _partnerController.contacts.value![index]),
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 16),
-                  itemCount: _partnerController.contacts.value!.length,
-                ),
+                () => _partnerController.contacts.value == null
+                    ? const Center(child: LottieLoader())
+                    : _partnerController.contacts.value!.isEmpty
+                        ? const Center(
+                            child: Text("No contacts found."),
+                          )
+                        : ListView.separated(
+                            itemBuilder: (context, index) => ContactCard(
+                                contact:
+                                    _partnerController.contacts.value![index]),
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(height: 24),
+                            itemCount:
+                                _partnerController.contacts.value!.length,
+                          ),
               ),
             ),
           )

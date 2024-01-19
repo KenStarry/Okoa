@@ -17,10 +17,9 @@ class _ContactCardState extends State<ContactCard> {
     return Container(
       width: double.infinity,
       height: 80,
-      margin: const EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: Theme.of(context).primaryColorLight,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
