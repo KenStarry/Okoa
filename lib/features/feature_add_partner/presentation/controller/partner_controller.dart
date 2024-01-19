@@ -43,12 +43,10 @@ class PartnerController extends GetxController {
 
     if (uid != null && contactName != null) {
       if (keys.contains(uid)) {
-        keys.removeWhere((id) => id == id);
+        selectedPartnersIdAgainstName.removeWhere((key, value) => key == uid);
       } else {
         selectedPartnersIdAgainstName[uid] = contactName;
       }
     }
-
-    print("SELECTED KEYS : ${selectedPartnersIdAgainstName}");
   }
 }

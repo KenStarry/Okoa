@@ -88,6 +88,10 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                                       .keys
                                                       .toList()[index])
                                               .avatarUrl,
+                                          contactName: _partnerController
+                                              .selectedPartnersIdAgainstName
+                                              .values
+                                              .toList()[index],
                                         ),
                                       )
                                     : TrackPartnerCard(
@@ -100,6 +104,10 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                                     .keys
                                                     .toList()[index])
                                             .avatarUrl,
+                                        contactName: _partnerController
+                                            .selectedPartnersIdAgainstName
+                                            .values
+                                            .toList()[index],
                                       ),
                                 separatorBuilder: (context, index) =>
                                     const SizedBox(width: 24),

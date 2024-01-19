@@ -6,8 +6,9 @@ import '../../../../theme/colors.dart';
 
 class TrackPartnerCard extends StatelessWidget {
   final String? avatarUrl;
+  final String? contactName;
 
-  const TrackPartnerCard({super.key, this.avatarUrl});
+  const TrackPartnerCard({super.key, this.avatarUrl, this.contactName});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,7 @@ class TrackPartnerCard extends StatelessWidget {
         ),
 
         //  partner name
-        Text("Ken S.", style: Theme.of(context).textTheme.bodyMedium)
+        Text(contactName ?? "No name", style: Theme.of(context).textTheme.bodyMedium)
       ],
     );
   }
