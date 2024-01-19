@@ -68,27 +68,43 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Obx(
                       () {
-                        return _partnerController.selectedPartners.isEmpty
+                        return _partnerController
+                                .selectedPartnersIdAgainstName.isEmpty
                             ? const Center(
                                 child: Text("No partners selected"),
                               )
                             : ListView.separated(
                                 itemBuilder: (context, index) => index == 0
                                     ? Padding(
-                                        padding: const EdgeInsets.only(left: 16),
+                                        padding:
+                                            const EdgeInsets.only(left: 16),
                                         child: TrackPartnerCard(
-                                          avatarUrl: _partnerController
-                                              .selectedPartners[index].avatarUrl,
+                                          avatarUrl: _coreController
+                                              .okoaUsers.value!
+                                              .firstWhere((user) =>
+                                                  user.userId ==
+                                                  _partnerController
+                                                      .selectedPartnersIdAgainstName
+                                                      .keys
+                                                      .toList()[index])
+                                              .avatarUrl,
                                         ),
                                       )
                                     : TrackPartnerCard(
-                                        avatarUrl: _partnerController
-                                            .selectedPartners[index].avatarUrl,
+                                        avatarUrl: _coreController
+                                            .okoaUsers.value!
+                                            .firstWhere((user) =>
+                                                user.userId ==
+                                                _partnerController
+                                                    .selectedPartnersIdAgainstName
+                                                    .keys
+                                                    .toList()[index])
+                                            .avatarUrl,
                                       ),
                                 separatorBuilder: (context, index) =>
                                     const SizedBox(width: 24),
-                                itemCount:
-                                    _partnerController.selectedPartners.length,
+                                itemCount: _partnerController
+                                    .selectedPartnersIdAgainstName.length,
                                 scrollDirection: Axis.horizontal,
                                 physics: const BouncingScrollPhysics(),
                               );
@@ -175,7 +191,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                     onTap: () {
                                       //  add user to list of selected user
                                       _partnerController.togglePartner(
-                                          user: currentUser);
+                                          uid: currentUser?.userId,
+                                          contactName: contactsOnOkoa[index]
+                                              .displayName);
                                     },
                                   );
                                 },

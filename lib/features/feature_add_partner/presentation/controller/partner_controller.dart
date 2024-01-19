@@ -12,7 +12,7 @@ class PartnerController extends GetxController {
   final contactsPermissionGranted = false.obs;
 
   final contacts = Rxn<List<Contact>>();
-  final selectedPartners = <OkoaUser>[].obs;
+  final selectedPartnersIdAgainstName = <String, dynamic>{}.obs;
 
   @override
   void onInit() {
@@ -37,13 +37,18 @@ class PartnerController extends GetxController {
       });
 
   //  select a partner
-  void togglePartner({required OkoaUser? user}) {
-    if (user != null) {
-      if (selectedPartners.contains(user)) {
-        selectedPartners.removeWhere((myUser) => myUser.userId == user.userId);
+  void togglePartner({required String? uid, required String? contactName}) {
+    final keys = selectedPartnersIdAgainstName.keys.toList();
+    final values = selectedPartnersIdAgainstName.keys.toList();
+
+    if (uid != null && contactName != null) {
+      if (keys.contains(uid)) {
+        keys.removeWhere((id) => id == id);
       } else {
-        selectedPartners.add(user);
+        selectedPartnersIdAgainstName[uid] = contactName;
       }
     }
+
+    print("SELECTED KEYS : ${selectedPartnersIdAgainstName}");
   }
 }
