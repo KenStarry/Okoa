@@ -16,7 +16,9 @@ class _LottieLoaderState extends State<LottieLoader> {
       height: double.infinity,
       color: Theme.of(context).scaffoldBackgroundColor,
       child: Center(
-        child: Lottie.asset("assets/lottie/loading.json"),
+        child: UnconstrainedBox(
+            child: Lottie.asset("assets/lottie/loading.json",
+                width: 100, height: 100)),
       ),
     );
   }

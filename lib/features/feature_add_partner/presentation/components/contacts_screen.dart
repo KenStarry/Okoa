@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../controller/partner_controller.dart';
@@ -31,9 +32,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
       Obx(
         () => _partnerController.contacts.value == null
             ? const SliverFillRemaining(
-                child: Center(
-                    child:
-                        UnconstrainedBox(child: CircularProgressIndicator())),
+                child: Center(child: LottieLoader()),
               )
             : _partnerController.contacts.value!.isNotEmpty
                 ? SliverPadding(
