@@ -28,6 +28,9 @@ class PartnerController extends GetxController {
     contactsPermissionGranted.value = status.isGranted;
   }
 
-  void getContacts() async =>
+  void getContacts() async {
+    if (contactsPermissionGranted.value) {
       contacts.value = await FlutterContacts.getContacts(withProperties: true);
+    }
+  }
 }

@@ -12,7 +12,6 @@ class ContactsScreen extends StatefulWidget {
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
-
   late final PartnerController _partnerController;
 
   @override
@@ -20,12 +19,21 @@ class _ContactsScreenState extends State<ContactsScreen> {
     super.initState();
 
     _partnerController = Get.find<PartnerController>();
+
+    _partnerController.getContacts();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Text("Hello"),
+    return Obx(
+      () {
+
+        print("CONTACTS : ${_partnerController.contacts.value}");
+
+        return SliverToBoxAdapter(
+          child: Text("Hello"),
+        );
+      },
     );
   }
 }
