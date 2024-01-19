@@ -103,10 +103,19 @@ class _ContactsScreenState extends State<ContactsScreen> {
                   color: Theme.of(context).primaryColorLight),
               child: Obx(
                 () => _partnerController.contacts.value == null
-                    ? const Center(child: LottieLoader())
+                    ? Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        color: Theme.of(context).primaryColorLight,
+                        child: const Center(child: LottieLoader()))
                     : _partnerController.contacts.value!.isEmpty
-                        ? const Center(
-                            child: Text("No contacts found."),
+                        ? Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            color: Theme.of(context).primaryColorLight,
+                            child: const Center(
+                              child: Text("No contacts found."),
+                            ),
                           )
                         : ListView.builder(
                             physics: const BouncingScrollPhysics(),
