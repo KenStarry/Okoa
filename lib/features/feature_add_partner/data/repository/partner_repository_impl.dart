@@ -3,8 +3,15 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:okoa/features/feature_add_partner/domain/repository/partner_repository.dart';
 import 'package:permission_handler/permission_handler.dart'
     as permission_handler;
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../../../di/di.dart';
+import '../../domain/model/okoa_partner.dart';
 
 class PartnerRepositoryImpl extends PartnerRepository {
+
+  final supabase = locator.get<SupabaseClient>();
+
   ///  Check contacts permission
   @override
   void checkContactPermission(
@@ -35,5 +42,19 @@ class PartnerRepositoryImpl extends PartnerRepository {
     final status = await permission_handler.Permission.contacts.request();
 
     onRequestPermission(status.isGranted);
+  }
+
+  /// Send Partnering request
+  @override
+  Future<void> sendPartnerRequest({required List<OkoaPartner> requestedPartners}) async {
+    try {
+
+      //  update received list of partners
+
+      //  update sent list of current user
+
+    } catch (error) {
+      throw Exception(error);
+    }
   }
 }

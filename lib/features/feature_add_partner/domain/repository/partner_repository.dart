@@ -1,5 +1,7 @@
 import 'package:flutter_contacts/contact.dart';
 
+import '../model/okoa_partner.dart';
+
 abstract class PartnerRepository {
   //  Check permission
   void checkContactPermission(
@@ -12,4 +14,8 @@ abstract class PartnerRepository {
   //  Get contacts
   void getContacts(
       {required Function(List<Contact> contacts) onContactsFetched});
+
+  //  Send Partner Request
+  Future<void> sendPartnerRequest(
+      {required List<OkoaPartner> requestedPartners});
 }
