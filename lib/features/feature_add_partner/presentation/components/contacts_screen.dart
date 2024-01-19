@@ -37,8 +37,23 @@ class _ContactsScreenState extends State<ContactsScreen> {
             flex: 1,
             child: Container(
               width: double.infinity,
+              height: double.infinity,
               padding: const EdgeInsets.all(16),
-              color: Colors.red,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColorLight,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Requests",
+                      style: TextStyle(
+                          fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
+                          fontWeight:
+                              Theme.of(context).textTheme.titleMedium!.fontWeight,
+                          color: Theme.of(context).textTheme.bodyLarge!.color)),
+
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 16),
