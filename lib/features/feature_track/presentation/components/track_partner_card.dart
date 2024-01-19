@@ -1,10 +1,13 @@
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../theme/colors.dart';
 
 class TrackPartnerCard extends StatelessWidget {
-  const TrackPartnerCard({super.key});
+  final String? avatarUrl;
+
+  const TrackPartnerCard({super.key, this.avatarUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +31,21 @@ class TrackPartnerCard extends StatelessWidget {
               ]),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(200),
-            child: Image.asset(
-              "assets/images/curly_hair_man.png",
-              width: double.infinity,
-              height: double.infinity,
-            ),
+            child: avatarUrl == null
+                ? Image.asset(
+                    "assets/images/curly_hair_man.png",
+                    width: double.infinity,
+                    height: double.infinity,
+                  )
+                : avatarUrl != null && avatarUrl!.isNotEmpty
+                    ? CachedNetworkImage(
+                        imageUrl: avatarUrl!,
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(
+                                color: Theme.of(context).primaryColor),
+                        fit: BoxFit.cover,
+                      )
+                    : const Icon(Icons.person_rounded),
           ),
         ),
 
