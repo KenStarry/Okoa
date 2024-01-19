@@ -222,6 +222,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                               .contacts.value![index],
                                           contactUserImage:
                                               currentUser?.avatarUrl ?? '',
+                                          isOkoaUser: currentUser != null,
                                           isSelected: _partnerController
                                               .selectedPartnersIdAgainstName
                                               .keys
