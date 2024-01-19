@@ -33,7 +33,9 @@ class _AddPartnerPageState extends State<AddPartnerPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          //  send requests
+        },
         label: const Row(
           children: [
             Text("Send Requests"),
