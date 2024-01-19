@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
+import 'package:okoa/features/feature_add_partner/presentation/components/contact_card.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../controller/partner_controller.dart';
@@ -39,11 +40,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     padding: const EdgeInsets.all(16),
                     sliver: SliverList(
                         delegate: SliverChildBuilderDelegate(
-                            (context, index) => Container(
-                                  color: Colors.red,
-                                  width: 100,
-                                  height: 50,
-                                ),
+                            (context, index) => ContactCard(
+                                contact:
+                                    _partnerController.contacts.value![index]),
                             childCount:
                                 _partnerController.contacts.value!.length)),
                   )
