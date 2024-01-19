@@ -67,24 +67,32 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     height: double.infinity,
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Obx(
-                      () => _partnerController.selectedPartners.isEmpty
-                          ? const Center(
-                              child: Text("No partners selected"),
-                            )
-                          : ListView.separated(
-                              itemBuilder: (context, index) => index == 0
-                                  ? const Padding(
-                                      padding: EdgeInsets.only(left: 16),
-                                      child: TrackPartnerCard(),
-                                    )
-                                  : const TrackPartnerCard(),
-                              separatorBuilder: (context, index) =>
-                                  const SizedBox(width: 24),
-                              itemCount:
-                                  _partnerController.selectedPartners.length,
-                              scrollDirection: Axis.horizontal,
-                              physics: const BouncingScrollPhysics(),
-                            ),
+                      () {
+                        return _partnerController.selectedPartners.isEmpty
+                            ? const Center(
+                                child: Text("No partners selected"),
+                              )
+                            : ListView.separated(
+                                itemBuilder: (context, index) => index == 0
+                                    ? Padding(
+                                        padding: const EdgeInsets.only(left: 16),
+                                        child: TrackPartnerCard(
+                                          avatarUrl: _partnerController
+                                              .selectedPartners[index].avatarUrl,
+                                        ),
+                                      )
+                                    : TrackPartnerCard(
+                                        avatarUrl: _partnerController
+                                            .selectedPartners[index].avatarUrl,
+                                      ),
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox(width: 24),
+                                itemCount:
+                                    _partnerController.selectedPartners.length,
+                                scrollDirection: Axis.horizontal,
+                                physics: const BouncingScrollPhysics(),
+                              );
+                      },
                     ),
                   ),
                 )
