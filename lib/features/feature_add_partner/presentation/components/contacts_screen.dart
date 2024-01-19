@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/contact.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
@@ -28,6 +29,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
     _partnerController = Get.find<PartnerController>();
 
     _partnerController.getContacts();
+
+    _coreController.getAllUsersFromDB();
   }
 
   @override
@@ -103,41 +106,47 @@ class _ContactsScreenState extends State<ContactsScreen> {
                         topRight: Radius.circular(50),
                         topLeft: Radius.circular(50)),
                     color: Theme.of(context).primaryColorLight),
-                child: FutureBuilder(
-                    future: _coreController.getAllUsersFromDB(),
-                    builder: (context, snapshot) {
+                child: Obx(() {
+                  final allUsers = _coreController.okoaUsers.value;
+                  List<Contact> contactsOnOkoa = <Contact>[];
 
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: LottieLoader());
-                      }
+                  if (_partnerController.contacts.value != null &&
+                      allUsers != null) {
+                    contactsOnOkoa = _partnerController.contacts.value!
+                        .where((contact) => contact.phones
+                            .map((phone) => phone.number.replaceAll(' ', ''))
+                            .toList()
+                            .any((number) => allUsers
+                                .map((user) => user.phone.replaceAll(' ', ''))
+                                .toList()
+                                .contains(number)))
+                        .toList();
+                  }
 
-                      return Obx(
-                        () => _partnerController.contacts.value == null
+                  return Obx(
+                    () => _partnerController.contacts.value == null
+                        ? Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            color: Theme.of(context).primaryColorLight,
+                            child: const Center(child: LottieLoader()))
+                        : _partnerController.contacts.value!.isEmpty
                             ? Container(
                                 width: double.infinity,
                                 height: double.infinity,
                                 color: Theme.of(context).primaryColorLight,
-                                child: const Center(child: LottieLoader()))
-                            : _partnerController.contacts.value!.isEmpty
-                                ? Container(
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    color: Theme.of(context).primaryColorLight,
-                                    child: const Center(
-                                      child: Text("No contacts found."),
-                                    ),
-                                  )
-                                : ListView.builder(
-                                    physics: const BouncingScrollPhysics(),
-                                    itemBuilder: (context, index) =>
-                                        ContactCard(
-                                            contact: _partnerController
-                                                .contacts.value![index]),
-                                    itemCount: _partnerController
-                                        .contacts.value!.length,
-                                  ),
-                      );
-                    })),
+                                child: const Center(
+                                  child: Text("No contacts found."),
+                                ),
+                              )
+                            : ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemBuilder: (context, index) =>
+                                    ContactCard(contact: contactsOnOkoa[index]),
+                                itemCount: contactsOnOkoa.length,
+                              ),
+                  );
+                })),
           )
         ],
       ),

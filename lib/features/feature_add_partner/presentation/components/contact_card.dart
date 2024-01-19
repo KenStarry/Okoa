@@ -60,12 +60,15 @@ class _ContactCardState extends State<ContactCard> {
                 ),
 
                 const SizedBox(height: 12),
-            
+
                 //  phone number
                 Text(
-                  widget.contact.phones[0].number,
+                  widget.contact.phones.isEmpty
+                      ? 'No contact'
+                      : widget.contact.phones[0].number,
                   style: TextStyle(
-                      fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
+                      fontSize:
+                          Theme.of(context).textTheme.bodyMedium!.fontSize,
                       fontWeight:
                           Theme.of(context).textTheme.bodySmall!.fontWeight,
                       color: Theme.of(context).textTheme.bodyMedium!.color),
