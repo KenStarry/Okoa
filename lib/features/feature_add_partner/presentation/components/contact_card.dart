@@ -82,25 +82,44 @@ class ContactCard extends StatelessWidget {
                                 .withOpacity(0.3)),
                   ),
 
-                  const SizedBox(height: 12),
-
                   //  phone number
-                  Text(
-                    contact.phones.isEmpty
-                        ? 'No contact'
-                        : contact.phones[0].number,
-                    style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.bodyMedium!.fontSize,
-                        fontWeight:
-                            Theme.of(context).textTheme.bodySmall!.fontWeight,
-                        color: isOkoaUser
-                            ? Theme.of(context).textTheme.bodyMedium!.color
-                            : Theme.of(context)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        contact.phones.isEmpty
+                            ? 'No contact'
+                            : contact.phones[0].number,
+                        style: TextStyle(
+                            fontSize: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
-                                .color!
-                                .withOpacity(0.3)),
+                                .fontSize,
+                            fontWeight: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .fontWeight,
+                            color: isOkoaUser
+                                ? Theme.of(context).textTheme.bodyMedium!.color
+                                : Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .color!
+                                    .withOpacity(0.3)),
+                      ),
+                      Visibility(
+                        visible: !isOkoaUser,
+                        child: TextButton(
+                            onPressed: () {},
+                            child: const Row(
+                              children: [
+                                Icon(Icons.share_rounded),
+                                SizedBox(width: 8),
+                                Text("Invite"),
+                              ],
+                            )),
+                      )
+                    ],
                   ),
                 ],
               ),
