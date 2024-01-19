@@ -18,6 +18,19 @@ class CoreRepositoryimpl extends CoreRepository {
       InternetConnectionChecker().onStatusChange.listen(onStatusChanged);
 
   @override
+  Future<void> getAllUsersFromDB(
+      {required Function(List<OkoaUser> users) onFetchUsers}) async {
+    try {
+      final List<Map<String, dynamic>> users =
+          await supabase.from('users').select();
+
+      onFetchUsers(users.map((user) => OkoaUser.fromJson(user)).toList());
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
+  @override
   Future<void> getUserDataFromDatabase(
       {required String uid,
       required Function(OkoaUser okoaUser) onGetUserData}) async {

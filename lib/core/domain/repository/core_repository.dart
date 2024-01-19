@@ -5,9 +5,9 @@ import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 abstract class CoreRepository {
-
   /// Fetch all users
-  Future<void> getAllUsersFromDB({required Function(List<OkoaUser>) onFetchUsers});
+  Future<void> getAllUsersFromDB(
+      {required Function(List<OkoaUser> users) onFetchUsers});
 
   /// Get User Data
   Future<void> getUserDataFromDatabase(
