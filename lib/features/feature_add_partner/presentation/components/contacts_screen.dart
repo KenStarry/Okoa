@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_add_partner/presentation/components/contact_card.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../feature_track/presentation/components/track_partner_card.dart';
@@ -227,14 +228,29 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                               .selectedPartnersIdAgainstName
                                               .keys
                                               .contains(currentUser?.userId),
-                                          onTap: currentUser == null ? (){} : () {
-                                            //  add user to list of selected user
-                                            _partnerController.togglePartner(
-                                                uid: currentUser.userId,
-                                                contactName: _partnerController
-                                                    .contacts
-                                                    .value![index]
-                                                    .displayName);
+                                          onTap: currentUser == null
+                                              ? () {}
+                                              : () {
+                                                  //  add user to list of selected user
+                                                  _partnerController
+                                                      .togglePartner(
+                                                          uid: currentUser
+                                                              .userId,
+                                                          contactName:
+                                                              _partnerController
+                                                                  .contacts
+                                                                  .value![index]
+                                                                  .displayName);
+                                                },
+                                          onInviteTap: () async {
+                                            final result =
+                                                await Share.shareWithResult(
+                                                    "Welcome to Okoa");
+
+                                            if (result.status ==
+                                                ShareResultStatus.success) {
+                                              //  show a message here
+                                            }
                                           },
                                         ),
                                       );

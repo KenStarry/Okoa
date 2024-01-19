@@ -8,6 +8,7 @@ class ContactCard extends StatelessWidget {
   final bool isOkoaUser;
   final bool isSelected;
   final VoidCallback onTap;
+  final VoidCallback onInviteTap;
 
   const ContactCard(
       {super.key,
@@ -15,7 +16,8 @@ class ContactCard extends StatelessWidget {
       required this.contactUserImage,
       required this.isOkoaUser,
       required this.isSelected,
-      required this.onTap});
+      required this.onTap,
+      required this.onInviteTap});
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +104,10 @@ class ContactCard extends StatelessWidget {
                                         .withOpacity(0.3)),
                           ),
 
+                          isOkoaUser
+                              ? const SizedBox(height: 12)
+                              : const SizedBox.shrink(),
+
                           //  phone number
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,7 +139,7 @@ class ContactCard extends StatelessWidget {
                               Visibility(
                                 visible: !isOkoaUser,
                                 child: TextButton(
-                                    onPressed: () {},
+                                    onPressed: onInviteTap,
                                     child: const Row(
                                       children: [
                                         Icon(Icons.share_rounded),
