@@ -204,38 +204,42 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                     padding: EdgeInsets.zero,
                                     physics: const BouncingScrollPhysics(),
                                     itemBuilder: (context, index) {
-                                      final currentUser = allUsers?.firstWhere(
-                                          (user) =>
-                                              user.phone.replaceAll(' ', '') ==
-                                              contactsOnOkoa[index]
-                                                  .phones
-                                                  .map((phone) => phone.number
-                                                      .replaceAll(' ', ''))
-                                                  .toList()[0]);
-                                      final contactImage = currentUser == null
-                                          ? ''
-                                          : currentUser.avatarUrl;
+                                      final currentUser =
+                                          allUsers?.firstWhereOrNull((user) {
+                                        final phones = _partnerController
+                                            .contacts.value![index].phones
+                                            .map((phone) => phone.number
+                                                .replaceAll(' ', ''))
+                                            .toList();
+
+                                        return user.phone.replaceAll(' ', '') ==
+                                            (phones.isEmpty ? '' : phones[0]);
+                                      });
 
                                       return Obx(
                                         () => ContactCard(
-                                          contact: contactsOnOkoa[index],
-                                          contactUserImage: contactImage,
+                                          contact: _partnerController
+                                              .contacts.value![index],
+                                          contactUserImage:
+                                              currentUser?.avatarUrl ?? '',
                                           isSelected: _partnerController
                                               .selectedPartnersIdAgainstName
                                               .keys
                                               .contains(currentUser?.userId),
-                                          onTap: () {
+                                          onTap: currentUser == null ? (){} : () {
                                             //  add user to list of selected user
                                             _partnerController.togglePartner(
-                                                uid: currentUser?.userId,
-                                                contactName:
-                                                    contactsOnOkoa[index]
-                                                        .displayName);
+                                                uid: currentUser.userId,
+                                                contactName: _partnerController
+                                                    .contacts
+                                                    .value![index]
+                                                    .displayName);
                                           },
                                         ),
                                       );
                                     },
-                                    itemCount: contactsOnOkoa.length,
+                                    itemCount: _partnerController
+                                        .contacts.value!.length,
                                   ),
                                 );
                     }),
