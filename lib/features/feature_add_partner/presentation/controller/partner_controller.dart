@@ -3,9 +3,6 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:get/get.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_add_partner/domain/use_cases/partner_use_cases.dart';
-import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
-import 'package:permission_handler/permission_handler.dart'
-    as permission_handler;
 
 class PartnerController extends GetxController {
   final useCase = locator.get<PartnerUseCases>();

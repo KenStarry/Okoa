@@ -214,16 +214,23 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                           ? ''
                                           : currentUser.avatarUrl;
 
-                                      return ContactCard(
-                                        contact: contactsOnOkoa[index],
-                                        contactUserImage: contactImage,
-                                        onTap: () {
-                                          //  add user to list of selected user
-                                          _partnerController.togglePartner(
-                                              uid: currentUser?.userId,
-                                              contactName: contactsOnOkoa[index]
-                                                  .displayName);
-                                        },
+                                      return Obx(
+                                        () => ContactCard(
+                                          contact: contactsOnOkoa[index],
+                                          contactUserImage: contactImage,
+                                          isSelected: _partnerController
+                                              .selectedPartnersIdAgainstName
+                                              .keys
+                                              .contains(currentUser?.userId),
+                                          onTap: () {
+                                            //  add user to list of selected user
+                                            _partnerController.togglePartner(
+                                                uid: currentUser?.userId,
+                                                contactName:
+                                                    contactsOnOkoa[index]
+                                                        .displayName);
+                                          },
+                                        ),
                                       );
                                     },
                                     itemCount: contactsOnOkoa.length,

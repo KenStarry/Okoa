@@ -2,31 +2,28 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 
-class ContactCard extends StatefulWidget {
+class ContactCard extends StatelessWidget {
   final Contact contact;
   final String contactUserImage;
+  final bool isSelected;
   final VoidCallback onTap;
 
   const ContactCard(
       {super.key,
       required this.contact,
       required this.contactUserImage,
+      required this.isSelected,
       required this.onTap});
 
   @override
-  State<ContactCard> createState() => _ContactCardState();
-}
-
-class _ContactCardState extends State<ContactCard> {
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: onTap,
       child: Container(
         width: double.infinity,
         height: 100,
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColorLight,
+          color: isSelected ? Theme.of(context).scaffoldBackgroundColor : Theme.of(context).primaryColorLight,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -40,12 +37,12 @@ class _ContactCardState extends State<ContactCard> {
                 borderRadius: BorderRadius.circular(100),
                 color: Theme.of(context).scaffoldBackgroundColor,
               ),
-              child: widget.contactUserImage.isEmpty
+              child: contactUserImage.isEmpty
                   ? const Icon(Icons.person_rounded)
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: CachedNetworkImage(
-                        imageUrl: widget.contactUserImage,
+                        imageUrl: contactUserImage,
                         placeholder: (context, url) =>
                             CircularProgressIndicator(
                                 color: Theme.of(context).primaryColor),
@@ -61,7 +58,7 @@ class _ContactCardState extends State<ContactCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.contact.displayName,
+                    contact.displayName,
                     style: TextStyle(
                         fontSize:
                             Theme.of(context).textTheme.bodyLarge!.fontSize,
@@ -74,9 +71,9 @@ class _ContactCardState extends State<ContactCard> {
 
                   //  phone number
                   Text(
-                    widget.contact.phones.isEmpty
+                    contact.phones.isEmpty
                         ? 'No contact'
-                        : widget.contact.phones[0].number,
+                        : contact.phones[0].number,
                     style: TextStyle(
                         fontSize:
                             Theme.of(context).textTheme.bodyMedium!.fontSize,
