@@ -39,9 +39,10 @@ class ContactCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             //  profile pic
-            Container(
-              width: 60,
-              height: 60,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 350),
+              width: isSelected ? 65 : 60,
+              height: isSelected ? 65 : 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
                 color: Theme.of(context).scaffoldBackgroundColor,
@@ -56,6 +57,8 @@ class ContactCard extends StatelessWidget {
                             CircularProgressIndicator(
                                 color: Theme.of(context).primaryColor),
                         fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
                       ),
                     ),
             ),
