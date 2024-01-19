@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
+import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_add_partner/presentation/components/contact_card.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -16,12 +17,14 @@ class ContactsScreen extends StatefulWidget {
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
+  late final CoreController _coreController;
   late final PartnerController _partnerController;
 
   @override
   void initState() {
     super.initState();
 
+    _coreController = Get.find<CoreController>();
     _partnerController = Get.find<PartnerController>();
 
     _partnerController.getContacts();
@@ -89,44 +92,52 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     color: Theme.of(context).textTheme.bodyLarge!.color)),
           ),
           const SizedBox(height: 16),
-          //  contacts list
           Expanded(
             flex: 4,
             child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      topRight: Radius.circular(50),
-                      topLeft: Radius.circular(50)),
-                  color: Theme.of(context).primaryColorLight),
-              child: Obx(
-                () => _partnerController.contacts.value == null
-                    ? Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        color: Theme.of(context).primaryColorLight,
-                        child: const Center(child: LottieLoader()))
-                    : _partnerController.contacts.value!.isEmpty
-                        ? Container(
-                            width: double.infinity,
-                            height: double.infinity,
-                            color: Theme.of(context).primaryColorLight,
-                            child: const Center(
-                              child: Text("No contacts found."),
-                            ),
-                          )
-                        : ListView.builder(
-                            physics: const BouncingScrollPhysics(),
-                            itemBuilder: (context, index) => ContactCard(
-                                contact:
-                                    _partnerController.contacts.value![index]),
-                            itemCount:
-                                _partnerController.contacts.value!.length,
-                          ),
-              ),
-            ),
+                width: double.infinity,
+                height: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(50),
+                        topLeft: Radius.circular(50)),
+                    color: Theme.of(context).primaryColorLight),
+                child: FutureBuilder(
+                    future: _coreController.getAllUsersFromDB(),
+                    builder: (context, snapshot) {
+
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: LottieLoader());
+                      }
+
+                      return Obx(
+                        () => _partnerController.contacts.value == null
+                            ? Container(
+                                width: double.infinity,
+                                height: double.infinity,
+                                color: Theme.of(context).primaryColorLight,
+                                child: const Center(child: LottieLoader()))
+                            : _partnerController.contacts.value!.isEmpty
+                                ? Container(
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    color: Theme.of(context).primaryColorLight,
+                                    child: const Center(
+                                      child: Text("No contacts found."),
+                                    ),
+                                  )
+                                : ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
+                                    itemBuilder: (context, index) =>
+                                        ContactCard(
+                                            contact: _partnerController
+                                                .contacts.value![index]),
+                                    itemCount: _partnerController
+                                        .contacts.value!.length,
+                                  ),
+                      );
+                    })),
           )
         ],
       ),
