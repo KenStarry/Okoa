@@ -66,18 +66,25 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     width: double.infinity,
                     height: double.infinity,
                     color: Theme.of(context).scaffoldBackgroundColor,
-                    child: ListView.separated(
-                      itemBuilder: (context, index) => index == 0
-                          ? const Padding(
-                              padding: EdgeInsets.only(left: 16),
-                              child: TrackPartnerCard(),
+                    child: Obx(
+                      () => _partnerController.selectedPartners.isEmpty
+                          ? const Center(
+                              child: Text("No partners selected"),
                             )
-                          : const TrackPartnerCard(),
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(width: 24),
-                      itemCount: 10,
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
+                          : ListView.separated(
+                              itemBuilder: (context, index) => index == 0
+                                  ? const Padding(
+                                      padding: EdgeInsets.only(left: 16),
+                                      child: TrackPartnerCard(),
+                                    )
+                                  : const TrackPartnerCard(),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(width: 24),
+                              itemCount:
+                                  _partnerController.selectedPartners.length,
+                              scrollDirection: Axis.horizontal,
+                              physics: const BouncingScrollPhysics(),
+                            ),
                     ),
                   ),
                 )
@@ -142,21 +149,26 @@ class _ContactsScreenState extends State<ContactsScreen> {
                             : ListView.builder(
                                 physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
-                                  final contactImage = allUsers == null
+                                  final currentUser = allUsers?.firstWhere(
+                                      (user) =>
+                                          user.phone.replaceAll(' ', '') ==
+                                          contactsOnOkoa[index]
+                                              .phones
+                                              .map((phone) => phone.number
+                                                  .replaceAll(' ', ''))
+                                              .toList()[0]);
+                                  final contactImage = currentUser == null
                                       ? ''
-                                      : allUsers
-                                          .firstWhere((user) =>
-                                              user.phone.replaceAll(' ', '') ==
-                                              contactsOnOkoa[index]
-                                                  .phones
-                                                  .map((phone) => phone.number
-                                                      .replaceAll(' ', ''))
-                                                  .toList()[0])
-                                          .avatarUrl;
+                                      : currentUser.avatarUrl;
 
                                   return ContactCard(
                                     contact: contactsOnOkoa[index],
                                     contactUserImage: contactImage,
+                                    onTap: () {
+                                      //  add user to list of selected user
+                                      _partnerController.togglePartner(
+                                          user: currentUser);
+                                    },
                                   );
                                 },
                                 itemCount: contactsOnOkoa.length,

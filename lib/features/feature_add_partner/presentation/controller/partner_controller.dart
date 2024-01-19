@@ -37,11 +37,13 @@ class PartnerController extends GetxController {
       });
 
   //  select a partner
-  void togglePartner({required OkoaUser user}) {
-    if (selectedPartners.contains(user)) {
-      selectedPartners.removeWhere((myUser) => myUser.userId == user.userId);
-    } else {
-      selectedPartners.add(user);
+  void togglePartner({required OkoaUser? user}) {
+    if (user != null) {
+      if (selectedPartners.contains(user)) {
+        selectedPartners.removeWhere((myUser) => myUser.userId == user.userId);
+      } else {
+        selectedPartners.add(user);
+      }
     }
   }
 }
