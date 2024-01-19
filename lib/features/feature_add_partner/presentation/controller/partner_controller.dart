@@ -1,10 +1,13 @@
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:get/get.dart';
+import 'package:okoa/di/di.dart';
+import 'package:okoa/features/feature_add_partner/domain/use_cases/partner_use_cases.dart';
 import 'package:permission_handler/permission_handler.dart'
     as permission_handler;
 
 class PartnerController extends GetxController {
+  final useCase = locator.get<PartnerUseCases>();
   final contactsPermissionGranted = false.obs;
 
   final contacts = <Contact>[].obs;
@@ -16,21 +19,18 @@ class PartnerController extends GetxController {
     checkContactPermission();
   }
 
-  void checkContactPermission() async {
-    final status = await permission_handler.Permission.contacts.status;
+  void checkContactPermission() =>
+      useCase.checkContactPermission.call(onCheckPermission: (isGranted) {
+        contactsPermissionGranted.value = isGranted;
+      });
 
-    contactsPermissionGranted.value = status.isGranted;
-  }
+  void requestContactPermission() =>
+      useCase.requestContactPermission.call(onRequestPermission: (isGranted) {
+        contactsPermissionGranted.value = isGranted;
+      });
 
-  void requestContactPermission() async {
-    final status = await permission_handler.Permission.contacts.request();
-
-    contactsPermissionGranted.value = status.isGranted;
-  }
-
-  void getContacts() async {
-    if (contactsPermissionGranted.value) {
-      contacts.value = await FlutterContacts.getContacts(withProperties: true);
-    }
-  }
+  void getContacts() =>
+      useCase.getContactsUseCase.call(onContactsFetched: (contacts) {
+        this.contacts.value = contacts;
+      });
 }
