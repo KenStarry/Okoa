@@ -39,7 +39,7 @@ class _AlertsPageState extends State<AlertsPage> {
               height: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Colors.red
+                color: Theme.of(context).primaryColorLight
               ),
             ))
             //  navigation toolbar
