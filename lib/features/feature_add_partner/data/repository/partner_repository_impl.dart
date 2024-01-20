@@ -59,13 +59,18 @@ class PartnerRepositoryImpl extends PartnerRepository {
             .map((request) => OkoaPartner.fromJson(request))
             .toList();
 
-        requests.add(partner);
+        if (!requests.contains(partner)) {
+          requests.add(partner);
+        }
 
         //  update received list of partners
         await supabase.from('users').update({
           'received_requests': requests.map((r) => r.toJson()).toList()
         }).eq('id', partner.receiverId);
         //  update sent list of current user
+        await supabase.from('users').update({
+          'sent_requests': requests.map((r) => r.toJson()).toList()
+        }).eq('id', partner.senderId);
       }
     } catch (error) {
       throw Exception(error);
