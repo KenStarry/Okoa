@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class AlertCarouselCard extends StatefulWidget {
   final String title;
+  final Widget content;
 
-  const AlertCarouselCard({super.key, required this.title});
+  const AlertCarouselCard(
+      {super.key, required this.title, required this.content});
 
   @override
   State<AlertCarouselCard> createState() => _AlertCarouselCardState();
@@ -29,10 +31,12 @@ class _AlertCarouselCardState extends State<AlertCarouselCard> {
             child: Container(
               width: double.infinity,
               height: double.infinity,
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: Theme.of(context).primaryColorLight,
               ),
+              child: widget.content,
             ),
           )
         ],

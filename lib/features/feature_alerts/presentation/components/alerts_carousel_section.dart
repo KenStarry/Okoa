@@ -20,7 +20,8 @@ class _AlertsCarouselSectionState extends State<AlertsCarouselSection> {
       child: CarouselSlider(
           items: alertCategories
               .map((category) => AlertCarouselCard(
-                    title: category,
+                    title: category.title,
+                    content: category.content,
                   ))
               .toList(),
           options: CarouselOptions(
