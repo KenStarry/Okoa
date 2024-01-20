@@ -217,9 +217,11 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                   ),
                                 )
                               : Expanded(
-                                  child: ListView.builder(
+                                  child: ListView.separated(
                                     padding: EdgeInsets.zero,
                                     physics: const BouncingScrollPhysics(),
+                                    separatorBuilder: (context, index) =>
+                                        SizedBox(height: 16),
                                     itemBuilder: (context, index) {
                                       final currentUser =
                                           allUsers?.firstWhereOrNull((user) {
@@ -242,22 +244,21 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                               currentUser?.avatarUrl ?? '',
                                           isOkoaUser: currentUser != null,
                                           isSelected: _partnerController
-                                                  .selectedPartners
-                                                  .map((partner) =>
-                                                      partner.receiverId)
-                                                  .contains(
-                                                      currentUser?.userId) ||
-                                              _coreController
-                                                  .okoaUser.value!.sentRequests
-                                                  .map((user) =>
-                                                      user.receiverContactPhone)
-                                                  .toList()
-                                                  .contains(
-                                                      rearrangedContactsOnOkoa[
-                                                              index]
-                                                          .phones
-                                                          .map((e) => e.number)
-                                                          .toList()[0]),
+                                              .selectedPartners
+                                              .map((partner) =>
+                                                  partner.receiverId)
+                                              .contains(currentUser?.userId),
+                                          isRequested: _coreController
+                                              .okoaUser.value!.sentRequests
+                                              .map((user) =>
+                                                  user.receiverContactPhone)
+                                              .toList()
+                                              .contains(
+                                                  rearrangedContactsOnOkoa[
+                                                          index]
+                                                      .phones
+                                                      .map((e) => e.number)
+                                                      .toList()[0]),
                                           onTap: currentUser == null ||
                                                   _coreController.okoaUser
                                                       .value!.sentRequests

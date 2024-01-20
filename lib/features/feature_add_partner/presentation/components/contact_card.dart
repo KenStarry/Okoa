@@ -7,6 +7,7 @@ class ContactCard extends StatelessWidget {
   final String contactUserImage;
   final bool isOkoaUser;
   final bool isSelected;
+  final bool isRequested;
   final VoidCallback onTap;
   final VoidCallback onInviteTap;
 
@@ -16,6 +17,7 @@ class ContactCard extends StatelessWidget {
       required this.contactUserImage,
       required this.isOkoaUser,
       required this.isSelected,
+      required this.isRequested,
       required this.onTap,
       required this.onInviteTap});
 
@@ -26,10 +28,10 @@ class ContactCard extends StatelessWidget {
       child: AnimatedContainer(
           duration: const Duration(milliseconds: 350),
           width: double.infinity,
-          height: 100,
+          height: 90,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-              color: isSelected
+              color: isSelected || isRequested
                   ? Theme.of(context).scaffoldBackgroundColor
                   : Theme.of(context).primaryColorLight,
               borderRadius: BorderRadius.circular(24)),
@@ -38,11 +40,11 @@ class ContactCard extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                padding: isSelected
+                padding: isSelected || isRequested
                     ? const EdgeInsets.symmetric(horizontal: 16)
                     : EdgeInsets.zero,
                 decoration: BoxDecoration(
-                    color: isSelected
+                    color: isSelected || isRequested
                         ? Theme.of(context).scaffoldBackgroundColor
                         : Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(24)),
@@ -53,8 +55,8 @@ class ContactCard extends StatelessWidget {
                     //  profile pic
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 350),
-                      width: isSelected ? 65 : 60,
-                      height: isSelected ? 65 : 60,
+                      width: isSelected || isRequested ? 65 : 60,
+                      height: isSelected || isRequested ? 65 : 60,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         color: Theme.of(context).scaffoldBackgroundColor,
