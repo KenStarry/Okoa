@@ -37,7 +37,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
               glowShape: BoxShape.circle,
               glowCount: 2,
               glowRadiusFactor: 0.3,
-              glowColor: accent,
+              glowColor: Theme.of(context).primaryColor,
               child: GestureDetector(
                 onTap: () {
                   //  open SOS bottomsheet
@@ -59,7 +59,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                       children: [
                         //  logo to represent current status
                         Center(
-                          child: Icon(Icons.shield_moon_rounded,
+                          child: Icon(Icons.gpp_good_rounded,
                               size: 120, color: Theme.of(context).primaryColor),
                         ),
                       ],

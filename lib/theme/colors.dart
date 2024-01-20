@@ -24,6 +24,6 @@ const textWhite500 = Color(0xFFCECECE);
 const textWhite300 = Color(0xFFB9B9B9);
 const textWhite100 = Color(0xFFA0A0A0);
 
-const sosRed = Color(0xffef233c);
+const sosRed = Color(0xffff0054);
 const sosOrange = Color(0xfffcbf49);
 const sosGreen = Color(0xff2ec4b6);

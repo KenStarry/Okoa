@@ -242,11 +242,35 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                               currentUser?.avatarUrl ?? '',
                                           isOkoaUser: currentUser != null,
                                           isSelected: _partnerController
-                                              .selectedPartners
-                                              .map((partner) =>
-                                                  partner.receiverId)
-                                              .contains(currentUser?.userId),
-                                          onTap: currentUser == null
+                                                  .selectedPartners
+                                                  .map((partner) =>
+                                                      partner.receiverId)
+                                                  .contains(
+                                                      currentUser?.userId) ||
+                                              _coreController
+                                                  .okoaUser.value!.sentRequests
+                                                  .map((user) =>
+                                                      user.receiverContactPhone)
+                                                  .toList()
+                                                  .contains(
+                                                      rearrangedContactsOnOkoa[
+                                                              index]
+                                                          .phones
+                                                          .map((e) => e.number)
+                                                          .toList()[0]),
+                                          onTap: currentUser == null ||
+                                                  _coreController.okoaUser
+                                                      .value!.sentRequests
+                                                      .map((user) => user
+                                                          .receiverContactPhone)
+                                                      .toList()
+                                                      .contains(
+                                                          rearrangedContactsOnOkoa[
+                                                                  index]
+                                                              .phones
+                                                              .map((e) =>
+                                                                  e.number)
+                                                              .toList()[0])
                                               ? () {}
                                               : () {
                                                   _partnerController.togglePartner(
