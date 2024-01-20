@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 //Copy this CustomPainter code to the Bottom of the File
 class PartnersIcon extends CustomPainter {
@@ -2643,7 +2644,7 @@ class PartnersIcon extends CustomPainter {
     path_50.close();
 
     Paint paint_50_fill = Paint()..style = PaintingStyle.fill;
-    paint_50_fill.color = Color(0xff6c63ff).withOpacity(1.0);
+    paint_50_fill.color = Theme.of(Get.context!).primaryColor;
     canvas.drawPath(path_50, paint_50_fill);
 
     Path path_51 = Path();
@@ -2681,7 +2682,7 @@ class PartnersIcon extends CustomPainter {
     path_51.close();
 
     Paint paint_51_fill = Paint()..style = PaintingStyle.fill;
-    paint_51_fill.color = Color(0xff6c63ff).withOpacity(1.0);
+    paint_51_fill.color = Theme.of(Get.context!).primaryColor;
     canvas.drawPath(path_51, paint_51_fill);
 
     Path path_52 = Path();
@@ -2747,7 +2748,7 @@ class PartnersIcon extends CustomPainter {
     path_53.close();
 
     Paint paint_53_fill = Paint()..style = PaintingStyle.fill;
-    paint_53_fill.color = Color(0xff6c63ff).withOpacity(1.0);
+    paint_53_fill.color = Theme.of(Get.context!).primaryColor;
     canvas.drawPath(path_53, paint_53_fill);
 
     Paint paint_54_fill = Paint()..style = PaintingStyle.fill;
@@ -4030,7 +4031,7 @@ class PartnersIcon extends CustomPainter {
     path_63.close();
 
     Paint paint_63_fill = Paint()..style = PaintingStyle.fill;
-    paint_63_fill.color = Color(0xff6c63ff).withOpacity(1.0);
+    paint_63_fill.color = Theme.of(Get.context!).primaryColor;
     canvas.drawPath(path_63, paint_63_fill);
 
     Path path_64 = Path();
@@ -4181,7 +4182,7 @@ class PartnersIcon extends CustomPainter {
     path_65.close();
 
     Paint paint_65_fill = Paint()..style = PaintingStyle.fill;
-    paint_65_fill.color = Color(0xff6c63ff).withOpacity(1.0);
+    paint_65_fill.color = Theme.of(Get.context!).primaryColor;
     canvas.drawPath(path_65, paint_65_fill);
 
     Path path_66 = Path();
@@ -4332,7 +4333,7 @@ class PartnersIcon extends CustomPainter {
     path_67.close();
 
     Paint paint_67_fill = Paint()..style = PaintingStyle.fill;
-    paint_67_fill.color = Color(0xff6c63ff).withOpacity(1.0);
+    paint_67_fill.color = Theme.of(Get.context!).primaryColor;
     canvas.drawPath(path_67, paint_67_fill);
 
     Path path_68 = Path();
