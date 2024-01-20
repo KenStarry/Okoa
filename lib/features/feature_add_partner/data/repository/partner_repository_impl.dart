@@ -49,23 +49,22 @@ class PartnerRepositoryImpl extends PartnerRepository {
       {required List<OkoaPartner> requestedPartners}) async {
     try {
       for (OkoaPartner partner in requestedPartners) {
-        dynamic receivedRequests = await supabase
+        final receivedRequests = await supabase
             .from('users')
             .select('received_requests')
             .eq('id', partner.receiverId)
             .single();
 
-        final requests = receivedRequests
+        final requests = (receivedRequests['received_requests'] as List? ?? [])
             .map((request) => OkoaPartner.fromJson(request))
-            .toList() as List<OkoaPartner>;
+            .toList();
 
         requests.add(partner);
 
         //  update received list of partners
-        await supabase
-            .from('users')
-            .update({'received_requests': requests.map((r) => r.toJson())}).eq(
-                'id', partner.receiverId);
+        await supabase.from('users').update({
+          'received_requests': requests.map((r) => r.toJson()).toList()
+        }).eq('id', partner.receiverId);
         //  update sent list of current user
       }
     } catch (error) {

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
+import 'package:okoa/features/feature_add_partner/domain/model/okoa_partner.dart';
 import 'package:okoa/features/feature_add_partner/presentation/components/contact_card.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -49,7 +50,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
               decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,
               ),
-              child: _partnerController.selectedPartnersIdAgainstName.isEmpty
+              child: _partnerController.selectedPartners.isEmpty
                   ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,15 +99,17 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                           avatarUrl: _coreController
                                               .okoaUsers.value!
                                               .firstWhere((user) =>
-                                                  user.userId ==
                                                   _partnerController
-                                                      .selectedPartnersIdAgainstName
-                                                      .keys
-                                                      .toList()[index])
+                                                      .selectedPartners
+                                                      .map((partner) =>
+                                                          partner.receiverId)
+                                                      .toList()
+                                                      .contains(user.userId))
                                               .avatarUrl,
                                           contactName: _partnerController
-                                              .selectedPartnersIdAgainstName
-                                              .values
+                                              .selectedPartners
+                                              .map((partner) =>
+                                                  partner.receiverContactName)
                                               .toList()[index],
                                         ),
                                       )
@@ -114,21 +117,23 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                         avatarUrl: _coreController
                                             .okoaUsers.value!
                                             .firstWhere((user) =>
-                                                user.userId ==
                                                 _partnerController
-                                                    .selectedPartnersIdAgainstName
-                                                    .keys
-                                                    .toList()[index])
+                                                    .selectedPartners
+                                                    .map((partner) =>
+                                                        partner.receiverId)
+                                                    .toList()
+                                                    .contains(user.userId))
                                             .avatarUrl,
                                         contactName: _partnerController
-                                            .selectedPartnersIdAgainstName
-                                            .values
+                                            .selectedPartners
+                                            .map((partner) =>
+                                                partner.receiverContactName)
                                             .toList()[index],
                                       ),
                                 separatorBuilder: (context, index) =>
                                     const SizedBox(width: 24),
-                                itemCount: _partnerController
-                                    .selectedPartnersIdAgainstName.length,
+                                itemCount:
+                                    _partnerController.selectedPartners.length,
                                 scrollDirection: Axis.horizontal,
                                 physics: const BouncingScrollPhysics(),
                               )),
@@ -225,22 +230,36 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                               currentUser?.avatarUrl ?? '',
                                           isOkoaUser: currentUser != null,
                                           isSelected: _partnerController
-                                              .selectedPartnersIdAgainstName
-                                              .keys
+                                              .selectedPartners
+                                              .map((partner) =>
+                                                  partner.receiverId)
                                               .contains(currentUser?.userId),
                                           onTap: currentUser == null
                                               ? () {}
                                               : () {
-                                                  //  add user to list of selected user
-                                                  _partnerController
-                                                      .togglePartner(
-                                                          uid: currentUser
-                                                              .userId,
-                                                          contactName:
+                                                  _partnerController.togglePartner(
+                                                      okoaPartner: OkoaPartner(
+                                                          senderId:
+                                                              _coreController
+                                                                  .okoaUser
+                                                                  .value!
+                                                                  .userId,
+                                                          receiverId:
+                                                              currentUser
+                                                                  .userId,
+                                                          receiverContactName:
                                                               _partnerController
                                                                   .contacts
                                                                   .value![index]
-                                                                  .displayName);
+                                                                  .displayName,
+                                                          receiverContactPhone:
+                                                              _partnerController
+                                                                  .contacts
+                                                                  .value![index]
+                                                                  .phones
+                                                                  .map((p) =>
+                                                                      p.number)
+                                                                  .toList()[0]));
                                                 },
                                           onInviteTap: () async {
                                             final result =
