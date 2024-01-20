@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_add_partner/domain/use_cases/partner_use_cases.dart';
 
+import '../../domain/model/okoa_partner.dart';
+
 class PartnerController extends GetxController {
   final useCase = locator.get<PartnerUseCases>();
   final contactsPermissionGranted = false.obs;
@@ -46,4 +48,9 @@ class PartnerController extends GetxController {
       }
     }
   }
+
+  Future<void> sendPartnerRequest(
+          {required List<OkoaPartner> requestedPartners}) async =>
+      await useCase.sendPartnerRequest
+          .call(requestedPartners: requestedPartners);
 }
