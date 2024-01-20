@@ -16,14 +16,19 @@ class _AlertsCarouselSectionState extends State<AlertsCarouselSection> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: Theme.of(context).primaryColorLight,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: CarouselSlider(
           items: alertCategories
               .map((category) => AlertCarouselCard(
                     title: category,
                   ))
               .toList(),
-          options: CarouselOptions(height: double.infinity)),
+          options: CarouselOptions(
+              height: double.infinity,
+              viewportFraction: 1,
+              enableInfiniteScroll: false,
+              scrollPhysics: const BouncingScrollPhysics(),
+              padEnds: false)),
     );
   }
 }

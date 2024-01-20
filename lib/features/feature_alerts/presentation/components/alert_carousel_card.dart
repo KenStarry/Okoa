@@ -16,8 +16,8 @@ class _AlertCarouselCardState extends State<AlertCarouselCard> {
       width: double.infinity,
       height: double.infinity,
       padding: const EdgeInsets.all(16),
-      color: Colors.yellow,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //  title
           Text(widget.title, style: Theme.of(context).textTheme.titleMedium),
