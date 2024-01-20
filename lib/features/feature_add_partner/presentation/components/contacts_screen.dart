@@ -98,14 +98,12 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                         child: TrackPartnerCard(
                                           avatarUrl: _coreController
                                               .okoaUsers.value!
-                                              .firstWhere((user) =>
+                                              .firstWhereOrNull((user) =>
+                                                  user.userId ==
                                                   _partnerController
-                                                      .selectedPartners
-                                                      .map((partner) =>
-                                                          partner.receiverId)
-                                                      .toList()
-                                                      .contains(user.userId))
-                                              .avatarUrl,
+                                                      .selectedPartners[index]
+                                                      .receiverId)
+                                              ?.avatarUrl,
                                           contactName: _partnerController
                                               .selectedPartners
                                               .map((partner) =>
@@ -116,14 +114,12 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                     : TrackPartnerCard(
                                         avatarUrl: _coreController
                                             .okoaUsers.value!
-                                            .firstWhere((user) =>
+                                            .firstWhereOrNull((user) =>
+                                                user.userId ==
                                                 _partnerController
-                                                    .selectedPartners
-                                                    .map((partner) =>
-                                                        partner.receiverId)
-                                                    .toList()
-                                                    .contains(user.userId))
-                                            .avatarUrl,
+                                                    .selectedPartners[index]
+                                                    .receiverId)
+                                            ?.avatarUrl,
                                         contactName: _partnerController
                                             .selectedPartners
                                             .map((partner) =>
