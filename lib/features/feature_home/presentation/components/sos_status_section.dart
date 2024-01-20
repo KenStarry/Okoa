@@ -7,6 +7,8 @@ import 'package:okoa/features/feature_home/presentation/components/sos_quick_act
 import 'package:okoa/features/feature_home/presentation/utils/home_constants.dart';
 import 'package:okoa/theme/colors.dart';
 
+import '../../../../core/presentation/controller/core_controller.dart';
+
 class SOSStatusSection extends StatefulWidget {
   const SOSStatusSection({super.key});
 
@@ -15,6 +17,15 @@ class SOSStatusSection extends StatefulWidget {
 }
 
 class _SOSStatusSectionState extends State<SOSStatusSection> {
+  late final CoreController _coreController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _coreController = Get.find<CoreController>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -59,8 +70,14 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                       children: [
                         //  logo to represent current status
                         Center(
-                          child: Icon(Icons.gpp_good_rounded,
-                              size: 120, color: Theme.of(context).primaryColor),
+                          child: Icon(
+                              _coreController.okoaUser.value != null &&
+                                      _coreController.okoaUser.value!
+                                          .sentRequests.isNotEmpty
+                                  ? Icons.gpp_maybe_rounded
+                                  : Icons.gpp_good_rounded,
+                              size: 120,
+                              color: Theme.of(context).primaryColor),
                         ),
                       ],
                     )),
