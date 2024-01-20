@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AlertCarouselCard extends StatefulWidget {
-
   final String title;
 
   const AlertCarouselCard({super.key, required this.title});
@@ -13,6 +12,31 @@ class AlertCarouselCard extends StatefulWidget {
 class _AlertCarouselCardState extends State<AlertCarouselCard> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      padding: const EdgeInsets.all(16),
+      color: Colors.yellow,
+      child: Column(
+        children: [
+          //  title
+          Text(widget.title, style: Theme.of(context).textTheme.titleMedium),
+
+          const SizedBox(height: 24),
+
+          //  content
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Theme.of(context).primaryColorLight,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
