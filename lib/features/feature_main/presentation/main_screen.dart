@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:okoa/features/feature_alerts/presentation/alerts_page.dart';
 import 'package:okoa/features/feature_home/presentation/home_page.dart';
 import 'package:okoa/features/feature_main/presentation/controller/main_controller.dart';
 import 'package:okoa/features/feature_track/presentation/track_page.dart';
@@ -47,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
     pages = const [
       HomePage(),
       TrackPage(),
-      HomePage(),
+      AlertsPage(),
       HomePage(),
     ];
 
