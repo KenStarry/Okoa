@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
+import 'package:okoa/theme/colors.dart';
 
 class ContactCard extends StatelessWidget {
   final Contact contact;
@@ -139,6 +140,21 @@ class ContactCard extends StatelessWidget {
                                             .withOpacity(0.3)),
                               ),
                               Visibility(
+                                  visible: isRequested,
+                                  child: Text(
+                                    "Pending",
+                                    style: TextStyle(
+                                        fontSize: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .fontSize,
+                                        fontWeight: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .fontWeight,
+                                        color: sosOrange),
+                                  )),
+                              Visibility(
                                 visible: !isOkoaUser,
                                 child: TextButton(
                                     onPressed: onInviteTap,
@@ -161,7 +177,7 @@ class ContactCard extends StatelessWidget {
 
               //  tick icon
               Visibility(
-                visible: isOkoaUser && isSelected,
+                visible: isOkoaUser && (isSelected || isRequested),
                 child: Align(
                   alignment: AlignmentDirectional.topEnd,
                   child: Container(
