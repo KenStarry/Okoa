@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/di/controllers_di.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/presentation/auth_page.dart';
@@ -34,12 +35,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late final AuthController _authController;
+  late final CoreController _coreController;
 
   @override
   void initState() {
     super.initState();
 
     _authController = Get.find<AuthController>();
+    _coreController = Get.find<CoreController>();
   }
 
   @override
@@ -50,8 +53,18 @@ class _MyAppState extends State<MyApp> {
             ? const MainScreen()
             : const AuthPage(),
         debugShowCheckedModeBanner: false,
-        theme: MyTheme(accent: accent).lightTheme,
-        darkTheme: MyTheme(accent: accent).darkTheme,
+        theme: MyTheme(
+                accent: _coreController.okoaUser.value != null &&
+                        _coreController.okoaUser.value!.sentRequests.isNotEmpty
+                    ? sosOrange
+                    : accent)
+            .lightTheme,
+        darkTheme: MyTheme(
+                accent: _coreController.okoaUser.value != null &&
+                        _coreController.okoaUser.value!.sentRequests.isNotEmpty
+                    ? sosOrange
+                    : accent)
+            .darkTheme,
       ),
     );
   }
