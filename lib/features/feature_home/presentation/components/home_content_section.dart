@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okoa/features/feature_home/presentation/components/partners_icon.dart';
 
 class HomeContentSection extends StatefulWidget {
   const HomeContentSection({super.key});
@@ -19,13 +20,31 @@ class _HomeContentSectionState extends State<HomeContentSection> {
           color: Theme.of(context).primaryColorLight,
         ),
         child: Wrap(
+          runSpacing: 24,
           children: [
-            Text("Partners", style: Theme.of(context).textTheme.titleMedium,),
-
+            Text(
+              "Partners",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
             Container(
               width: double.infinity,
-              height: 800,
+              height: 300,
               color: Theme.of(context).primaryColorLight,
+              child: Column(
+                children: [
+                  UnconstrainedBox(
+                    child: CustomPaint(
+                      size: Size(250, (250 * 0.7235251364447527).toDouble()),
+                      //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                      painter: PartnersIcon(),
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  Text("No Partners yet")
+                ],
+              ),
             )
           ],
         ),
