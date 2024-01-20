@@ -5,35 +5,32 @@ import 'package:okoa/theme/material_generator.dart';
 import 'colors.dart';
 
 class MyTheme {
+  final Color accent;
+
+  MyTheme({required this.accent});
+
   /// Light Theme
-  static ThemeData get lightTheme => ThemeData(
+  ThemeData get lightTheme => ThemeData(
       primaryColor: accent,
       primaryColorLight: generateMaterialColor(accent).shade50,
       primarySwatch: generateMaterialColor(accent),
       scaffoldBackgroundColor: bgColorLightMode,
       iconTheme: const IconThemeData(color: textBlack300),
       textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          foregroundColor: accent,
-          backgroundColor: Colors.transparent
-        )
-      ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: accent,
-          foregroundColor: textBlack700
-      ),
+          style: TextButton.styleFrom(
+              foregroundColor: accent, backgroundColor: Colors.transparent)),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: accent, foregroundColor: textBlack700),
       filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
               backgroundColor: accent, foregroundColor: textBlack500)),
-      textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: accent
-      ),
-      inputDecorationTheme: const InputDecorationTheme(
+      textSelectionTheme: TextSelectionThemeData(cursorColor: accent),
+      inputDecorationTheme: InputDecorationTheme(
           iconColor: accent,
           prefixIconColor: textBlack300,
           suffixIconColor: textBlack300,
           focusedBorder:
-          UnderlineInputBorder(borderSide: BorderSide(color: accent))),
+              UnderlineInputBorder(borderSide: BorderSide(color: accent))),
       useMaterial3: true,
       fontFamily: 'DMSans',
       textTheme: const TextTheme(
@@ -52,29 +49,22 @@ class MyTheme {
       ));
 
   /// Dark Theme
-  static ThemeData get darkTheme => ThemeData(
+  ThemeData get darkTheme => ThemeData(
       primaryColor: accent,
       primaryColorLight: bgColorDarkModeAlt,
       primarySwatch: generateMaterialColor(accent),
       scaffoldBackgroundColor: bgColorDarkMode,
       iconTheme: const IconThemeData(color: textWhite300),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: accent,
-        foregroundColor: textBlack700
-      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: accent, foregroundColor: textBlack700),
       textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
-              foregroundColor: accent,
-              backgroundColor: Colors.transparent
-          )
-      ),
+              foregroundColor: accent, backgroundColor: Colors.transparent)),
       filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
               backgroundColor: accent, foregroundColor: textBlack500)),
-      textSelectionTheme: const TextSelectionThemeData(
-        cursorColor: accent
-      ),
-      inputDecorationTheme: const InputDecorationTheme(
+      textSelectionTheme: TextSelectionThemeData(cursorColor: accent),
+      inputDecorationTheme: InputDecorationTheme(
           iconColor: accent,
           prefixIconColor: textWhite300,
           suffixIconColor: textWhite300,
