@@ -170,6 +170,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     Obx(() {
                       final allUsers = _coreController.okoaUsers.value;
                       List<Contact> contactsOnOkoa = <Contact>[];
+                      List<Contact> rearrangedContactsOnOkoa = <Contact>[];
 
                       if (_partnerController.contacts.value != null &&
                           allUsers != null) {
@@ -184,6 +185,20 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                     .toList()
                                     .contains(number)))
                             .toList();
+
+                        rearrangedContactsOnOkoa = [
+                          ...contactsOnOkoa,
+                        ];
+
+                        //  remove contacts already in contacts on okoa from partner contacts value
+                        for (Contact contact in contactsOnOkoa) {
+                          _partnerController.contacts.value!.removeWhere((c) =>
+                              c.phones == contact.phones &&
+                              c.displayName == contact.displayName);
+                        }
+
+                        rearrangedContactsOnOkoa
+                            .addAll(_partnerController.contacts.value!);
                       }
 
                       return _partnerController.contacts.value == null
@@ -212,11 +227,12 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                     itemBuilder: (context, index) {
                                       final currentUser =
                                           allUsers?.firstWhereOrNull((user) {
-                                        final phones = _partnerController
-                                            .contacts.value![index].phones
-                                            .map((phone) => phone.number
-                                                .replaceAll(' ', ''))
-                                            .toList();
+                                        final phones =
+                                            rearrangedContactsOnOkoa[index]
+                                                .phones
+                                                .map((phone) => phone.number
+                                                    .replaceAll(' ', ''))
+                                                .toList();
 
                                         return user.phone.replaceAll(' ', '') ==
                                             (phones.isEmpty ? '' : phones[0]);
@@ -224,8 +240,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
                                       return Obx(
                                         () => ContactCard(
-                                          contact: _partnerController
-                                              .contacts.value![index],
+                                          contact:
+                                              rearrangedContactsOnOkoa[index],
                                           contactUserImage:
                                               currentUser?.avatarUrl ?? '',
                                           isOkoaUser: currentUser != null,
@@ -248,14 +264,12 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                                               currentUser
                                                                   .userId,
                                                           receiverContactName:
-                                                              _partnerController
-                                                                  .contacts
-                                                                  .value![index]
+                                                              rearrangedContactsOnOkoa[
+                                                                      index]
                                                                   .displayName,
                                                           receiverContactPhone:
-                                                              _partnerController
-                                                                  .contacts
-                                                                  .value![index]
+                                                              rearrangedContactsOnOkoa[
+                                                                      index]
                                                                   .phones
                                                                   .map((p) =>
                                                                       p.number)
@@ -274,8 +288,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                         ),
                                       );
                                     },
-                                    itemCount: _partnerController
-                                        .contacts.value!.length,
+                                    itemCount: rearrangedContactsOnOkoa.length,
                                   ),
                                 );
                     }),
