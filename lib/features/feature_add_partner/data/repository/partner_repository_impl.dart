@@ -9,7 +9,6 @@ import '../../../../di/di.dart';
 import '../../domain/model/okoa_partner.dart';
 
 class PartnerRepositoryImpl extends PartnerRepository {
-
   final supabase = locator.get<SupabaseClient>();
 
   ///  Check contacts permission
@@ -46,13 +45,29 @@ class PartnerRepositoryImpl extends PartnerRepository {
 
   /// Send Partnering request
   @override
-  Future<void> sendPartnerRequest({required List<OkoaPartner> requestedPartners}) async {
+  Future<void> sendPartnerRequest(
+      {required List<OkoaPartner> requestedPartners}) async {
     try {
+      for (OkoaPartner partner in requestedPartners) {
+        dynamic receivedRequests = await supabase
+            .from('users')
+            .select('received_requests')
+            .eq('id', partner.receiverId)
+            .single();
 
-      //  update received list of partners
+        final requests = receivedRequests
+            .map((request) => OkoaPartner.fromJson(request))
+            .toList() as List<OkoaPartner>;
 
-      //  update sent list of current user
+        requests.add(partner);
 
+        //  update received list of partners
+        await supabase
+            .from('users')
+            .update({'received_requests': requests.map((r) => r.toJson())}).eq(
+                'id', partner.receiverId);
+        //  update sent list of current user
+      }
     } catch (error) {
       throw Exception(error);
     }
