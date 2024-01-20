@@ -55,7 +55,17 @@ class PartnerRepositoryImpl extends PartnerRepository {
             .eq('id', partner.receiverId)
             .single();
 
+        final sentRequests = await supabase
+            .from('users')
+            .select('sent_requests')
+            .eq('id', partner.senderId)
+            .single();
+
         final requests = (receivedRequests['received_requests'] as List? ?? [])
+            .map((request) => OkoaPartner.fromJson(request))
+            .toList();
+
+        final sentRequestsList = (sentRequests['sent_requests'] as List? ?? [])
             .map((request) => OkoaPartner.fromJson(request))
             .toList();
 
@@ -63,13 +73,18 @@ class PartnerRepositoryImpl extends PartnerRepository {
           requests.add(partner);
         }
 
+        if (!sentRequestsList.contains(partner)) {
+          sentRequestsList.add(partner);
+        }
+
         //  update received list of partners
         await supabase.from('users').update({
           'received_requests': requests.map((r) => r.toJson()).toList()
         }).eq('id', partner.receiverId);
+
         //  update sent list of current user
         await supabase.from('users').update({
-          'sent_requests': requests.map((r) => r.toJson()).toList()
+          'sent_requests': sentRequestsList.map((r) => r.toJson()).toList()
         }).eq('id', partner.senderId);
       }
     } catch (error) {
