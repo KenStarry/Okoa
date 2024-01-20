@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:okoa/features/feature_alerts/presentation/components/alert_carousel_card.dart';
+import 'package:okoa/features/feature_alerts/presentation/utils/alerts_constants.dart';
 
 class AlertsCarouselSection extends StatefulWidget {
   const AlertsCarouselSection({super.key});
@@ -16,7 +18,12 @@ class _AlertsCarouselSectionState extends State<AlertsCarouselSection> {
       height: double.infinity,
       color: Theme.of(context).primaryColorLight,
       child: CarouselSlider(
-          items: items, options: CarouselOptions(height: double.infinity)),
+          items: alertCategories
+              .map((category) => AlertCarouselCard(
+                    title: category,
+                  ))
+              .toList(),
+          options: CarouselOptions(height: double.infinity)),
     );
   }
 }
