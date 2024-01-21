@@ -4,6 +4,7 @@ import 'package:okoa/core/presentation/components/avatar.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_add_partner/domain/model/okoa_partner.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
+import 'package:okoa/theme/colors.dart';
 
 class AlertPartnerRequestCard extends StatefulWidget {
   final OkoaPartner partner;
@@ -38,7 +39,7 @@ class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
       duration: const Duration(milliseconds: 350),
       width: double.infinity,
       height: 90,
-      color: Colors.red,
+      color: Theme.of(context).primaryColorLight,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -49,7 +50,8 @@ class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
               currentUser?.userName ?? "No username",
               style: TextStyle(
                   fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
-                  fontWeight: Theme.of(context).textTheme.titleMedium!.fontWeight,
+                  fontWeight:
+                      Theme.of(context).textTheme.titleMedium!.fontWeight,
                   color: Theme.of(context).textTheme.bodyLarge!.color),
             ),
           ),
@@ -61,8 +63,29 @@ class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
                 width: 35,
                 height: 35,
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.greenAccent
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).scaffoldBackgroundColor),
+                child: const Center(
+                  child: Icon(
+                    Icons.done_rounded,
+                    size: 24,
+                    color: sosGreen,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Container(
+                width: 35,
+                height: 35,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).scaffoldBackgroundColor),
+                child: const Center(
+                  child: Icon(
+                    Icons.cancel_rounded,
+                    size: 24,
+                    color: sosRed,
+                  ),
                 ),
               )
             ],
