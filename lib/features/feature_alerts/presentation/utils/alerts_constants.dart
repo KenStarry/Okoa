@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:okoa/features/feature_alerts/presentation/components/alert_partners_section.dart';
+import 'package:okoa/features/feature_alerts/presentation/components/partners_section/alert_partners_section.dart';
 import 'package:okoa/features/feature_alerts/presentation/model/alert_section_model.dart';
 
 var alertCategories = <AlertSectionModel>[
