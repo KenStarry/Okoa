@@ -129,7 +129,34 @@ class PartnerRepositoryImpl extends PartnerRepository {
       //  update the table with the new values
       await supabase
           .from('users')
-          .update({'partners': currentUserPartnersToList}).eq('id', receiverId);
+          .update({'partners': currentUserPartnersToList})
+          .eq('id', receiverId)
+          .then((value) async {
+            //  remove the partner(sender) with this id from the list of received requests only
+            final receivedRequests = await supabase
+                .from('users')
+                .select('received_requests')
+                .eq('id', receiverId)
+                .single();
+
+            final requestsList =
+                (receivedRequests['received_requests'] as List? ?? [])
+                    .map((request) => OkoaPartner.fromJson(request))
+                    .toList();
+
+            final requestIds =
+                [...requestsList].map((partner) => partner.senderId);
+
+            if (requestIds.contains(senderId)) {
+              requestsList
+                  .removeWhere((partner) => partner.senderId == senderId);
+            }
+
+            //  update the received requests list
+            await supabase.from('users').update({
+              'received_requests': requestsList.map((r) => r.toJson()).toList()
+            }).eq('id', receiverId);
+          });
 
       await supabase
           .from('users')
