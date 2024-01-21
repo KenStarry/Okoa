@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_alerts/presentation/components/partners_section/alert_partner_request_card.dart';
@@ -37,16 +38,27 @@ class _AlertPartnersSectionState extends State<AlertPartnersSection> {
           height: double.infinity,
           color: Theme.of(context).primaryColorLight,
           child: Obx(
-            () => ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => AlertPartnerRequestCard(
-                      partner: _coreController
-                          .okoaUser.value!.receivedRequests[index],
-                    ),
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 24),
-                itemCount:
-                    _coreController.okoaUser.value!.receivedRequests.length),
+            () => _coreController.okoaUser.value == null ||
+                    _coreController.okoaUser.value!.receivedRequests.isEmpty
+                ? Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/partner_request_orange.svg',
+                        width: 150,
+                        height: 150,
+                      )
+                    ],
+                  )
+                : ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) => AlertPartnerRequestCard(
+                          partner: _coreController
+                              .okoaUser.value!.receivedRequests[index],
+                        ),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 24),
+                    itemCount: _coreController
+                        .okoaUser.value!.receivedRequests.length),
           ),
         ))
       ],
