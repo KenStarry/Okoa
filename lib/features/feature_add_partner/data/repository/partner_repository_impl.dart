@@ -100,10 +100,40 @@ class PartnerRepositoryImpl extends PartnerRepository {
       required Function(ResponseState response) onResponse}) async {
     try {
       //  get current user's partners
+      final currentUserPartners = await supabase
+          .from('users')
+          .select('partners')
+          .eq('id', receiverId)
+          .single();
       //  get sender user's partners (current user)
+      final senderPartners = await supabase
+          .from('users')
+          .select('partners')
+          .eq('id', senderId)
+          .single();
+
+      final currentUserPartnersToList =
+          (currentUserPartners['partners'] as List<String>? ?? <String>[]);
+      final senderPartnersToList =
+          (senderPartners['partners'] as List<String>? ?? <String>[]);
 
       //  update the current user's partners with the sender ID
+      if (!currentUserPartnersToList.contains(senderId)) {
+        currentUserPartnersToList.add(senderId);
+      }
       //  update the sender user's partners with the current user's id (receiver id)
+      if (!senderPartnersToList.contains(receiverId)) {
+        senderPartnersToList.add(receiverId);
+      }
+
+      //  update the table with the new values
+      await supabase
+          .from('users')
+          .update({'partners': currentUserPartnersToList}).eq('id', receiverId);
+
+      await supabase
+          .from('users')
+          .update({'partners': senderPartnersToList}).eq('id', senderId);
     } catch (error) {
       throw Exception(error);
     }
