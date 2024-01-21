@@ -39,7 +39,7 @@ class _AlertsPageState extends State<AlertsPage> {
             //  alerts content
             const Expanded(
                 child: AlertsCarouselSection())
-            //  navigation toolbar
+            //  page indicator
           ],
         ),
       )),
