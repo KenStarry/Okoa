@@ -29,7 +29,7 @@ class CoreController extends GetxController {
 
     //  toggle SOS State
     ever(okoaUser, (user) {
-      sosState.value = user != null && user.sentRequests.isNotEmpty
+      sosState.value = user != null && user.receivedRequests.isNotEmpty
           ? SosState.orange
           : SosState.blue;
     });

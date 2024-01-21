@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
@@ -6,9 +5,7 @@ import 'package:okoa/di/controllers_di.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/presentation/auth_page.dart';
 import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
-import 'package:okoa/features/feature_home/presentation/home_page.dart';
 import 'package:okoa/features/feature_main/presentation/main_screen.dart';
-import 'package:okoa/theme/colors.dart';
 import 'package:okoa/theme/my_theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:get/get.dart';
