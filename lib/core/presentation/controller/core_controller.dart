@@ -16,7 +16,7 @@ class CoreController extends GetxController {
   final okoaUsers = Rxn<List<OkoaUser>>();
 
   final hasInternet = false.obs;
-  final sosState = SosState.blue.obs;
+  final sosState = SosState.safe.obs;
   final sosColor = accent.obs;
 
   @override
@@ -30,20 +30,20 @@ class CoreController extends GetxController {
     //  toggle SOS State
     ever(okoaUser, (user) {
       sosState.value = user != null && user.receivedRequests.isNotEmpty
-          ? SosState.orange
-          : SosState.blue;
+          ? SosState.warning
+          : SosState.safe;
     });
 
     //  toggle SOS Color
     ever(sosState, (state) {
       switch (state) {
-        case SosState.blue:
+        case SosState.safe:
           sosColor.value = accent;
           break;
-        case SosState.orange:
+        case SosState.warning:
           sosColor.value = sosOrange;
           break;
-        case SosState.red:
+        case SosState.sos:
           sosColor.value = sosRed;
           break;
       }

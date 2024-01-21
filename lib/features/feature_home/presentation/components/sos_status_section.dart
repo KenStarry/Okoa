@@ -2,6 +2,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:okoa/core/domain/model/sos_state.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
 import 'package:okoa/features/feature_home/presentation/components/sos_quick_actions.dart';
 import 'package:okoa/features/feature_home/presentation/utils/home_constants.dart';
@@ -71,11 +72,12 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                         //  logo to represent current status
                         Center(
                           child: Icon(
-                              _coreController.okoaUser.value != null &&
-                                      _coreController.okoaUser.value!
-                                          .sentRequests.isNotEmpty
-                                  ? Icons.gpp_maybe_rounded
-                                  : Icons.gpp_good_rounded,
+                              _coreController.sosState.value == SosState.safe
+                                  ? Icons.gpp_good_rounded
+                                  : _coreController.sosState.value ==
+                                          SosState.warning
+                                      ? Icons.gpp_maybe_rounded
+                                      : Icons.gpp_bad_rounded,
                               size: 120,
                               color: Theme.of(context).primaryColor),
                         ),

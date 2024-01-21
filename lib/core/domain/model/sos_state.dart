@@ -1,1 +1,1 @@
-enum SosState { blue, orange, red }
+enum SosState { safe, warning, sos }
