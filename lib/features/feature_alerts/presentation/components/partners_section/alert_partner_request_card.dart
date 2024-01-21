@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:okoa/core/presentation/components/avatar.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_add_partner/domain/model/okoa_partner.dart';
+import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 
 class AlertPartnerRequestCard extends StatefulWidget {
   final OkoaPartner partner;
@@ -16,12 +17,19 @@ class AlertPartnerRequestCard extends StatefulWidget {
 
 class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
   late final CoreController _coreController;
+  OkoaUser? currentUser;
 
   @override
   void initState() {
     super.initState();
 
     _coreController = Get.find<CoreController>();
+
+    _coreController.getUserDataFromDatabase(
+        uid: widget.partner.senderId,
+        onGetUserData: (data) {
+          currentUser = data;
+        });
   }
 
   @override
@@ -34,10 +42,7 @@ class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Avatar(
-              avatarUrl:
-                  "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-              size: Size(60, 60))
+          Avatar(avatarUrl: currentUser?.avatarUrl, size: const Size(60, 60))
         ],
       ),
     );

@@ -63,10 +63,11 @@ class CoreController extends GetxController {
       .call(onFetchUsers: (users) => okoaUsers.value = users);
 
   //  get user data from DB
-  Future<void> getUserDataFromDatabase(
+  void getUserDataFromDatabase(
           {required String uid,
           required Function(OkoaUser okoaUser) onGetUserData}) async =>
-      useCase.getUserDataFromDB.call(uid: uid, onGetUserData: onGetUserData);
+      await useCase.getUserDataFromDB
+          .call(uid: uid, onGetUserData: onGetUserData);
 
   //  update user data
   Future<void> updateUserDataOnDB(
