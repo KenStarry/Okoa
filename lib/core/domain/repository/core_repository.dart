@@ -19,12 +19,6 @@ abstract class CoreRepository {
       String? uid,
       required Function(ResponseState response) onResponse});
 
-  /// Update Partner Data
-  Future<void> updatePartnersOnDB(
-      {required String senderId,
-      required String receiverId,
-      required Function(ResponseState response) onResponse});
-
   /// Listen to User Data
   void listenToUserDataonDB(
       {required String uid,

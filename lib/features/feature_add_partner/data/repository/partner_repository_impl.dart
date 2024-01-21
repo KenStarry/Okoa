@@ -5,6 +5,7 @@ import 'package:permission_handler/permission_handler.dart'
     as permission_handler;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../core/domain/model/response_state.dart';
 import '../../../../di/di.dart';
 import '../../domain/model/okoa_partner.dart';
 
@@ -87,6 +88,22 @@ class PartnerRepositoryImpl extends PartnerRepository {
           'sent_requests': sentRequestsList.map((r) => r.toJson()).toList()
         }).eq('id', partner.senderId);
       }
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
+  @override
+  Future<void> updatePartnersOnDB(
+      {required String senderId,
+      required String receiverId,
+      required Function(ResponseState response) onResponse}) async {
+    try {
+      //  get current user's partners
+      //  get sender user's partners (current user)
+
+      //  update the current user's partners with the sender ID
+      //  update the sender user's partners with the current user's id (receiver id)
     } catch (error) {
       throw Exception(error);
     }

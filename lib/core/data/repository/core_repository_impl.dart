@@ -62,18 +62,6 @@ class CoreRepositoryimpl extends CoreRepository {
   }
 
   @override
-  Future<void> updatePartnersOnDB(
-      {required String senderId,
-      required String receiverId,
-      required Function(ResponseState response) onResponse}) async {
-    try {
-
-    } catch (error) {
-      throw Exception(error);
-    }
-  }
-
-  @override
   void listenToUserDataonDB(
       {required String uid,
       required Function(OkoaUser okoaUser) onGetUserData}) {
