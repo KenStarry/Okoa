@@ -7,6 +7,7 @@ import 'package:okoa/features/feature_add_partner/domain/use_cases/get_contacts.
 import 'package:okoa/features/feature_add_partner/domain/use_cases/partner_use_cases.dart';
 import 'package:okoa/features/feature_add_partner/domain/use_cases/request_contact_permission.dart';
 import 'package:okoa/features/feature_add_partner/domain/use_cases/send_partner_request.dart';
+import 'package:okoa/features/feature_add_partner/domain/use_cases/update_partners_on_db.dart';
 import 'package:okoa/features/feature_track/data/repository/track_repository_impl.dart';
 import 'package:okoa/features/feature_track/domain/repository/track_repository.dart';
 import 'package:okoa/features/feature_track/domain/use_case/listen_to_current_location.dart';
@@ -23,5 +24,6 @@ void partnerDI({required GetIt locator}) {
       checkContactPermission: CheckContactPermission(),
       requestContactPermission: RequestContactPermission(),
       getContactsUseCase: GetContactsUseCase(),
-      sendPartnerRequest: SendPartnerRequest()));
+      sendPartnerRequest: SendPartnerRequest(),
+      updatePartnersOnDB: UpdatePartnersOnDB()));
 }
