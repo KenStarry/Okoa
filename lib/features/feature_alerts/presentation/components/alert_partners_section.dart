@@ -11,6 +11,7 @@ class _AlertPartnersSectionState extends State<AlertPartnersSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //  title
         Text("Pending Requests", style: Theme.of(context).textTheme.titleSmall),
