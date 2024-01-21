@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:okoa/core/domain/model/sos_state.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_alerts/presentation/components/partners_section/alert_partner_request_card.dart';
 
@@ -41,12 +42,16 @@ class _AlertPartnersSectionState extends State<AlertPartnersSection> {
             () => _coreController.okoaUser.value == null ||
                     _coreController.okoaUser.value!.receivedRequests.isEmpty
                 ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
-                        'assets/images/partner_request_orange.svg',
-                        width: 150,
-                        height: 150,
-                      )
+                        'assets/images/partner_request_${_coreController.sosState.value == SosState.safe ? 'blue' : _coreController.sosState.value == SosState.warning ? 'orange' : 'red'}.svg',
+                        width: 200,
+                        height: 200,
+                      ),
+                      const SizedBox(height: 24),
+                      Text("No requests yet.",
+                          style: Theme.of(context).textTheme.bodyMedium)
                     ],
                   )
                 : ListView.separated(
