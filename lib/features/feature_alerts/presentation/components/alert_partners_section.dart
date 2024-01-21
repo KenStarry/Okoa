@@ -10,6 +10,21 @@ class AlertPartnersSection extends StatefulWidget {
 class _AlertPartnersSectionState extends State<AlertPartnersSection> {
   @override
   Widget build(BuildContext context) {
-    return Text("Hello there");
+    return Column(
+      children: [
+        //  title
+        Text("Pending Requests", style: Theme.of(context).textTheme.titleSmall),
+
+        const SizedBox(height: 24),
+
+        //  requests content
+        Expanded(
+            child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.red,
+        ))
+      ],
+    );
   }
 }
