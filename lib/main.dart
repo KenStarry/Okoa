@@ -53,18 +53,8 @@ class _MyAppState extends State<MyApp> {
             ? const MainScreen()
             : const AuthPage(),
         debugShowCheckedModeBanner: false,
-        theme: MyTheme(
-                accent: _coreController.okoaUser.value != null &&
-                        _coreController.okoaUser.value!.sentRequests.isNotEmpty
-                    ? sosOrange
-                    : accent)
-            .lightTheme,
-        darkTheme: MyTheme(
-                accent: _coreController.okoaUser.value != null &&
-                        _coreController.okoaUser.value!.sentRequests.isNotEmpty
-                    ? sosOrange
-                    : accent)
-            .darkTheme,
+        theme: MyTheme(accent: _coreController.sosColor.value).lightTheme,
+        darkTheme: MyTheme(accent: _coreController.sosColor.value).darkTheme,
       ),
     );
   }
