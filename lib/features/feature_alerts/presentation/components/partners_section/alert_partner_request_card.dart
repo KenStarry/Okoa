@@ -64,7 +64,13 @@ class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
                 height: 35,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Theme.of(context).scaffoldBackgroundColor),
+                    color: Theme.of(context).primaryColorLight,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          spreadRadius: 5,
+                          blurRadius: 10)
+                    ]),
                 child: const Center(
                   child: Icon(
                     Icons.done_rounded,
@@ -79,7 +85,13 @@ class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
                 height: 35,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Theme.of(context).scaffoldBackgroundColor),
+                    color: Theme.of(context).primaryColorLight,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          spreadRadius: 5,
+                          blurRadius: 10)
+                    ]),
                 child: const Center(
                   child: Icon(
                     Icons.cancel_rounded,
