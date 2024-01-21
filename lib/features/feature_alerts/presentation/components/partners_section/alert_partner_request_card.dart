@@ -42,7 +42,31 @@ class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Avatar(avatarUrl: currentUser?.avatarUrl, size: const Size(60, 60))
+          Avatar(avatarUrl: currentUser?.avatarUrl, size: const Size(60, 60)),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              currentUser?.userName ?? "No username",
+              style: TextStyle(
+                  fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
+                  fontWeight: Theme.of(context).textTheme.titleMedium!.fontWeight,
+                  color: Theme.of(context).textTheme.bodyLarge!.color),
+            ),
+          ),
+
+          //  accept or decline requests button
+          Row(
+            children: [
+              Container(
+                width: 35,
+                height: 35,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.greenAccent
+                ),
+              )
+            ],
+          )
         ],
       ),
     );
