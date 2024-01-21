@@ -31,7 +31,7 @@ class _AlertCarouselCardState extends State<AlertCarouselCard> {
             child: Container(
               width: double.infinity,
               height: double.infinity,
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 24, bottom: 16),
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 24, bottom: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: Theme.of(context).primaryColorLight,
