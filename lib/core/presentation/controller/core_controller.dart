@@ -22,6 +22,9 @@ class CoreController extends GetxController {
     listenToInternetStatus(onStatusChanged: (status) {
       hasInternet.value = status == InternetConnectionStatus.connected;
     });
+
+    //  toggle SOS Status
+    ever(okoaUser, (callback) {});
   }
 
   void setOkoaUserData({required OkoaUser okoaUser}) =>
