@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_add_partner/domain/use_cases/partner_use_cases.dart';
 
+import '../../../../core/domain/model/response_state.dart';
 import '../../domain/model/okoa_partner.dart';
 
 class PartnerController extends GetxController {
@@ -48,4 +49,11 @@ class PartnerController extends GetxController {
           {required List<OkoaPartner> requestedPartners}) async =>
       await useCase.sendPartnerRequest
           .call(requestedPartners: requestedPartners);
+
+  Future<void> updatePartnersOnDB(
+          {required String senderId,
+          required String receiverId,
+          required Function(ResponseState response) onResponse}) async =>
+      await useCase.updatePartnersOnDB.call(
+          senderId: senderId, receiverId: receiverId, onResponse: onResponse);
 }
