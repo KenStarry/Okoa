@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/contact.dart';
 import 'package:get/get.dart';
 import 'package:okoa/core/presentation/components/avatar.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_add_partner/domain/model/okoa_partner.dart';
+import 'package:okoa/features/feature_add_partner/presentation/controller/partner_controller.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:okoa/theme/colors.dart';
 
@@ -18,13 +20,16 @@ class AlertPartnerRequestCard extends StatefulWidget {
 
 class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
   late final CoreController _coreController;
+  late final PartnerController _partnerController;
   OkoaUser? currentUser;
+  Contact? contact;
 
   @override
   void initState() {
     super.initState();
 
     _coreController = Get.find<CoreController>();
+    _partnerController = Get.find<PartnerController>();
 
     _coreController.getUserDataFromDatabase(
         uid: widget.partner.senderId,
@@ -59,23 +64,28 @@ class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
           //  accept or decline requests button
           Row(
             children: [
-              Container(
-                width: 35,
-                height: 35,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColorLight,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          spreadRadius: 5,
-                          blurRadius: 10)
-                    ]),
-                child: const Center(
-                  child: Icon(
-                    Icons.done_rounded,
-                    size: 24,
-                    color: sosGreen,
+              GestureDetector(
+                onTap: (){
+
+                },
+                child: Container(
+                  width: 35,
+                  height: 35,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).primaryColorLight,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            spreadRadius: 5,
+                            blurRadius: 10)
+                      ]),
+                  child: const Center(
+                    child: Icon(
+                      Icons.done_rounded,
+                      size: 24,
+                      color: sosGreen,
+                    ),
                   ),
                 ),
               ),
