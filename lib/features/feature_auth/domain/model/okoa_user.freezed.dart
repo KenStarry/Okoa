@@ -41,7 +41,7 @@ mixin _$OkoaUser {
   @JsonKey(name: 'received_requests')
   List<OkoaPartner> get receivedRequests => throw _privateConstructorUsedError;
   @JsonKey(name: 'partners')
-  List<OkoaPartner> get partners => throw _privateConstructorUsedError;
+  List<String> get partners => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -65,7 +65,7 @@ abstract class $OkoaUserCopyWith<$Res> {
       @JsonKey(name: 'longitude') double longitude,
       @JsonKey(name: 'sent_requests') List<OkoaPartner> sentRequests,
       @JsonKey(name: 'received_requests') List<OkoaPartner> receivedRequests,
-      @JsonKey(name: 'partners') List<OkoaPartner> partners});
+      @JsonKey(name: 'partners') List<String> partners});
 }
 
 /// @nodoc
@@ -137,7 +137,7 @@ class _$OkoaUserCopyWithImpl<$Res, $Val extends OkoaUser>
       partners: null == partners
           ? _value.partners
           : partners // ignore: cast_nullable_to_non_nullable
-              as List<OkoaPartner>,
+              as List<String>,
     ) as $Val);
   }
 }
@@ -161,7 +161,7 @@ abstract class _$$OkoaUserImplCopyWith<$Res>
       @JsonKey(name: 'longitude') double longitude,
       @JsonKey(name: 'sent_requests') List<OkoaPartner> sentRequests,
       @JsonKey(name: 'received_requests') List<OkoaPartner> receivedRequests,
-      @JsonKey(name: 'partners') List<OkoaPartner> partners});
+      @JsonKey(name: 'partners') List<String> partners});
 }
 
 /// @nodoc
@@ -231,7 +231,7 @@ class __$$OkoaUserImplCopyWithImpl<$Res>
       partners: null == partners
           ? _value._partners
           : partners // ignore: cast_nullable_to_non_nullable
-              as List<OkoaPartner>,
+              as List<String>,
     ));
   }
 }
@@ -253,7 +253,7 @@ class _$OkoaUserImpl implements _OkoaUser {
       final List<OkoaPartner> sentRequests = const [],
       @JsonKey(name: 'received_requests')
       final List<OkoaPartner> receivedRequests = const [],
-      @JsonKey(name: 'partners') final List<OkoaPartner> partners = const []})
+      @JsonKey(name: 'partners') final List<String> partners = const []})
       : _sentRequests = sentRequests,
         _receivedRequests = receivedRequests,
         _partners = partners;
@@ -304,10 +304,10 @@ class _$OkoaUserImpl implements _OkoaUser {
     return EqualUnmodifiableListView(_receivedRequests);
   }
 
-  final List<OkoaPartner> _partners;
+  final List<String> _partners;
   @override
   @JsonKey(name: 'partners')
-  List<OkoaPartner> get partners {
+  List<String> get partners {
     if (_partners is EqualUnmodifiableListView) return _partners;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_partners);
@@ -375,19 +375,18 @@ class _$OkoaUserImpl implements _OkoaUser {
 
 abstract class _OkoaUser implements OkoaUser {
   const factory _OkoaUser(
-          {@JsonKey(name: 'id') final String userId,
-          @JsonKey(name: 'email_address') final String email,
-          @JsonKey(name: 'created_at') final String createdAt,
-          @JsonKey(name: 'username') final String userName,
-          @JsonKey(name: 'phone_number') final String phone,
-          @JsonKey(name: 'avatar_url') final String avatarUrl,
-          @JsonKey(name: 'latitude') final double latitude,
-          @JsonKey(name: 'longitude') final double longitude,
-          @JsonKey(name: 'sent_requests') final List<OkoaPartner> sentRequests,
-          @JsonKey(name: 'received_requests')
-          final List<OkoaPartner> receivedRequests,
-          @JsonKey(name: 'partners') final List<OkoaPartner> partners}) =
-      _$OkoaUserImpl;
+      {@JsonKey(name: 'id') final String userId,
+      @JsonKey(name: 'email_address') final String email,
+      @JsonKey(name: 'created_at') final String createdAt,
+      @JsonKey(name: 'username') final String userName,
+      @JsonKey(name: 'phone_number') final String phone,
+      @JsonKey(name: 'avatar_url') final String avatarUrl,
+      @JsonKey(name: 'latitude') final double latitude,
+      @JsonKey(name: 'longitude') final double longitude,
+      @JsonKey(name: 'sent_requests') final List<OkoaPartner> sentRequests,
+      @JsonKey(name: 'received_requests')
+      final List<OkoaPartner> receivedRequests,
+      @JsonKey(name: 'partners') final List<String> partners}) = _$OkoaUserImpl;
 
   factory _OkoaUser.fromJson(Map<String, dynamic> json) =
       _$OkoaUserImpl.fromJson;
@@ -424,7 +423,7 @@ abstract class _OkoaUser implements OkoaUser {
   List<OkoaPartner> get receivedRequests;
   @override
   @JsonKey(name: 'partners')
-  List<OkoaPartner> get partners;
+  List<String> get partners;
   @override
   @JsonKey(ignore: true)
   _$$OkoaUserImplCopyWith<_$OkoaUserImpl> get copyWith =>

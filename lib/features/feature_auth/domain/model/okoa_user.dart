@@ -23,7 +23,7 @@ class OkoaUser with _$OkoaUser {
           @JsonKey(name: 'received_requests')
           @Default([])
           List<OkoaPartner> receivedRequests,
-          @JsonKey(name: 'partners') @Default([]) List<OkoaPartner> partners}) =
+          @JsonKey(name: 'partners') @Default([]) List<String> partners}) =
       _OkoaUser;
 
   factory OkoaUser.fromJson(Map<String, dynamic> json) =>

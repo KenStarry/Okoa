@@ -65,8 +65,12 @@ class _AlertPartnerRequestCardState extends State<AlertPartnerRequestCard> {
           Row(
             children: [
               GestureDetector(
-                onTap: (){
-
+                onTap: () async {
+                  //  update partner on DB
+                  await _partnerController.updatePartnersOnDB(
+                      senderId: widget.partner.senderId,
+                      receiverId: widget.partner.receiverId,
+                      onResponse: (state) {});
                 },
                 child: Container(
                   width: 35,
