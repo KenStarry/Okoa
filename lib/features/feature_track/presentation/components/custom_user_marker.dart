@@ -29,7 +29,8 @@ class CustomUserMarker extends StatelessWidget {
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [bgColorLightMode, accent])),
-                  child: Avatar(avatarUrl: avatarUrl, size: const Size(50, 50))),
+                  child:
+                      Avatar(avatarUrl: avatarUrl, size: const Size(50, 50))),
             ),
 
             //  triangle cutout
@@ -38,8 +39,8 @@ class CustomUserMarker extends StatelessWidget {
               child: ClipPath(
                 clipper: TriangleClipper(),
                 child: Container(
-                  width: 20,
-                  height: 20,
+                  width: 18,
+                  height: 18,
                   color: accent,
                 ),
               ),
