@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:okoa/core/presentation/components/avatar.dart';
 
 import '../../../../theme/colors.dart';
 
@@ -17,6 +18,9 @@ class TrackPartnerCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         //  image
+        Avatar(avatarUrl: avatarUrl, size: const Size(80, 80), showShadow: true,),
+
+        const SizedBox(height: 12),
         // Container(
         //   width: 80,
         //   height: 80,
@@ -51,7 +55,10 @@ class TrackPartnerCard extends StatelessWidget {
         // ),
 
         //  partner name
-        Text(contactName ?? "No name", style: Theme.of(context).textTheme.bodyMedium)
+        Text(contactName ?? "No name", style: Theme
+            .of(context)
+            .textTheme
+            .bodyMedium)
       ],
     );
   }

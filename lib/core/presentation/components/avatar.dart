@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 class Avatar extends StatelessWidget {
   final String? avatarUrl;
   final Size size;
+  final bool showShadow;
 
-  const Avatar({super.key, required this.avatarUrl, required this.size});
+  const Avatar(
+      {super.key,
+      required this.avatarUrl,
+      required this.size,
+      this.showShadow = false});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +18,16 @@ class Avatar extends StatelessWidget {
       width: size.width,
       height: size.height,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Theme.of(context).scaffoldBackgroundColor,
-      ),
+          shape: BoxShape.circle,
+          color: Theme.of(context).scaffoldBackgroundColor,
+          boxShadow: showShadow
+              ? [
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      spreadRadius: 5)
+                ]
+              : null),
       child: avatarUrl == null || avatarUrl!.isEmpty
           ? const Icon(Icons.person_rounded)
           : ClipRRect(
