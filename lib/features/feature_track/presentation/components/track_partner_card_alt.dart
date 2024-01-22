@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/avatar.dart';
 
 import '../../../../core/presentation/controller/core_controller.dart';
+import '../../../feature_add_partner/presentation/controller/partner_controller.dart';
 import '../../../feature_auth/domain/model/okoa_user.dart';
 
 class TrackPartnerCardAlt extends StatefulWidget {
@@ -17,6 +18,7 @@ class TrackPartnerCardAlt extends StatefulWidget {
 
 class _TrackPartnerCardAltState extends State<TrackPartnerCardAlt> {
   late final CoreController _coreController;
+  late final PartnerController _partnerController;
   OkoaUser? currentUser;
 
   @override
@@ -24,6 +26,7 @@ class _TrackPartnerCardAltState extends State<TrackPartnerCardAlt> {
     super.initState();
 
     _coreController = Get.find<CoreController>();
+    _partnerController = Get.find<PartnerController>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _coreController.getUserDataFromDatabase(

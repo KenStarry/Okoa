@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:get/get.dart';
@@ -19,6 +21,8 @@ class PartnerController extends GetxController {
     super.onInit();
 
     checkContactPermission();
+
+    getContacts();
   }
 
   void checkContactPermission() =>
@@ -35,6 +39,20 @@ class PartnerController extends GetxController {
       useCase.getContactsUseCase.call(onContactsFetched: (contacts) {
         this.contacts.value = contacts;
       });
+
+  Contact? getUserContactDetails({required String phoneNumber}) {
+    if (contacts.value != null) {
+      final contact = contacts.value!.firstWhereOrNull((contact) => contact
+          .phones
+          .map((phone) => phone.normalizedNumber)
+          .toList()
+          .contains(phoneNumber.replaceAll(' ', '')));
+
+      return contact;
+    }
+
+    return null;
+  }
 
   //  select a partner
   void togglePartner({required OkoaPartner okoaPartner}) {

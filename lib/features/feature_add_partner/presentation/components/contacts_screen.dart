@@ -31,8 +31,6 @@ class _ContactsScreenState extends State<ContactsScreen> {
     _coreController = Get.find<CoreController>();
     _partnerController = Get.find<PartnerController>();
 
-    _partnerController.getContacts();
-
     _coreController.getAllUsersFromDB();
   }
 
