@@ -31,6 +31,15 @@ class PartnerRepositoryImpl extends PartnerRepository {
             await FlutterContacts.getContacts(withProperties: true);
 
         onContactsFetched(contacts);
+      } else {
+        requestContactPermission(onRequestPermission: (isGranted) async {
+          if (isGranted) {
+            final contacts =
+                await FlutterContacts.getContacts(withProperties: true);
+
+            onContactsFetched(contacts);
+          }
+        });
       }
     });
   }

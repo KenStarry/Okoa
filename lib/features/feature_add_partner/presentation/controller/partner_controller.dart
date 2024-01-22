@@ -21,7 +21,6 @@ class PartnerController extends GetxController {
     super.onInit();
 
     checkContactPermission();
-
     getContacts();
   }
 

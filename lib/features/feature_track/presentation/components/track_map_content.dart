@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
+import 'package:okoa/features/feature_add_partner/presentation/controller/partner_controller.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_partner_card.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_partner_card_alt.dart';
 
@@ -16,12 +17,16 @@ class TrackMapContent extends StatefulWidget {
 
 class _TrackMapContentState extends State<TrackMapContent> {
   late final CoreController _coreController;
+  late final PartnerController _partnerController;
 
   @override
   void initState() {
     super.initState();
 
     _coreController = Get.find<CoreController>();
+    _partnerController = Get.find<PartnerController>();
+
+    _partnerController.getContacts();
   }
 
   @override

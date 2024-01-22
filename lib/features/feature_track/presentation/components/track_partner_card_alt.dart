@@ -55,14 +55,27 @@ class _TrackPartnerCardAltState extends State<TrackPartnerCardAlt> {
         const SizedBox(height: 12),
 
         //  partner name - check if the user is in the list of contacts and use their names instead
-        Text(
-            currentUser?.userName == null
-                ? "No name"
-                : currentUser?.userName ==
-                        _coreController.okoaUser.value!.userName
-                    ? "${currentUser?.userName} (Me)"
-                    : currentUser!.userName,
-            style: Theme.of(context).textTheme.bodyMedium)
+        Obx(
+          () {
+            final contact = _partnerController.contacts.value != null
+                ? _partnerController.getUserContactDetails(
+                    phoneNumber: currentUser!.phone)
+                : null;
+
+            print("CONTACT DETAILS : ${contact}");
+
+            return Text(
+                currentUser?.userName == null
+                    ? "No name"
+                    : currentUser?.userName ==
+                            _coreController.okoaUser.value!.userName
+                        ? "${currentUser?.userName} (Me)"
+                        : contact != null
+                            ? contact.displayName
+                            : currentUser!.userName,
+                style: Theme.of(context).textTheme.bodyMedium);
+          },
+        )
       ],
     );
   }

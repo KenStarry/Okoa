@@ -30,7 +30,6 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
     _coreController = Get.find<CoreController>();
     _partnerController = Get.find<PartnerController>();
-
     _coreController.getAllUsersFromDB();
   }
 
@@ -163,12 +162,12 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     const SizedBox(height: 16),
                     Obx(() {
                       final allUsers = _coreController.okoaUsers.value;
+                      List<Contact>? originalContacts = <Contact>[..._partnerController.contacts.value ?? []];
                       List<Contact> contactsOnOkoa = <Contact>[];
                       List<Contact> rearrangedContactsOnOkoa = <Contact>[];
 
-                      if (_partnerController.contacts.value != null &&
-                          allUsers != null) {
-                        contactsOnOkoa = _partnerController.contacts.value!
+                      if (allUsers != null) {
+                        contactsOnOkoa = originalContacts
                             .where((contact) => contact.phones
                                 .map(
                                     (phone) => phone.number.replaceAll(' ', ''))
@@ -186,13 +185,13 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
                         //  remove contacts already in contacts on okoa from partner contacts value
                         for (Contact contact in contactsOnOkoa) {
-                          _partnerController.contacts.value!.removeWhere((c) =>
+                          originalContacts.removeWhere((c) =>
                               c.phones == contact.phones &&
                               c.displayName == contact.displayName);
                         }
 
                         rearrangedContactsOnOkoa
-                            .addAll(_partnerController.contacts.value!);
+                            .addAll(originalContacts);
                       }
 
                       return _partnerController.contacts.value == null
@@ -251,12 +250,18 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                               .map((user) =>
                                                   user.receiverContactPhone)
                                               .toList()
-                                              .contains(
-                                                  rearrangedContactsOnOkoa[
+                                              .contains(rearrangedContactsOnOkoa[
                                                           index]
                                                       .phones
                                                       .map((e) => e.number)
-                                                      .toList()[0]),
+                                                      .toList()
+                                                      .isNotEmpty
+                                                  ? rearrangedContactsOnOkoa[
+                                                          index]
+                                                      .phones
+                                                      .map((e) => e.number)
+                                                      .toList()[0]
+                                                  : ''),
                                           onTap: currentUser == null ||
                                                   _coreController.okoaUser
                                                       .value!.sentRequests
