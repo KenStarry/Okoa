@@ -46,21 +46,31 @@ class _TrackMapContentState extends State<TrackMapContent> {
             children: [
               Text("Focus", style: Theme.of(context).textTheme.titleSmall),
 
-              //  live location sharing on
-              Row(
-                children: [
-                  const Icon(Icons.my_location_rounded,
-                      color: Colors.greenAccent),
-                  const SizedBox(width: 8),
-                  Text("Live location on",
-                      style: TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.bodySmall!.fontSize,
-                          fontWeight:
-                              Theme.of(context).textTheme.bodySmall!.fontWeight,
-                          color: Colors.greenAccent))
-                ],
-              )
+              //  live location button
+              GestureDetector(
+                onTap: (){
+                  //  open bottomsheet to choose who can see current location
+                },
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            spreadRadius: 5,
+                            blurRadius: 10)
+                      ]),
+                  child: Center(
+                    child: Icon(
+                      Icons.my_location_rounded,
+                      color: Theme.of(context).iconTheme.color!,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
 
