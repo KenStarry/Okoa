@@ -28,11 +28,15 @@ class _TrackPartnerCardAltState extends State<TrackPartnerCardAlt> {
 
     _coreController = Get.find<CoreController>();
 
-    _coreController.getUserDataFromDatabase(
-        uid: widget.partnerId,
-        onGetUserData: (data) {
-          currentUser = data;
-        });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _coreController.getUserDataFromDatabase(
+          uid: widget.partnerId,
+          onGetUserData: (data) {
+            currentUser = data;
+
+            setState(() {});
+          });
+    });
   }
 
   @override
@@ -82,8 +86,14 @@ class _TrackPartnerCardAltState extends State<TrackPartnerCardAlt> {
         //   ),
         // ),
 
-        //  partner name
-        Text(currentUser?.userName ?? "No name",
+        //  partner name - check if the user is in the list of contacts and use their names instead
+        Text(
+            currentUser?.userName == null
+                ? "No name"
+                : currentUser?.userName ==
+                        _coreController.okoaUser.value!.userName
+                    ? "${currentUser?.userName} (Me)"
+                    : currentUser!.userName,
             style: Theme.of(context).textTheme.bodyMedium)
       ],
     );
