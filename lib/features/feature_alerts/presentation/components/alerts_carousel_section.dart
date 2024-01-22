@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:okoa/features/feature_alerts/presentation/components/alert_carousel_card.dart';
+import 'package:okoa/features/feature_alerts/presentation/controller/alerts_controller.dart';
 import 'package:okoa/features/feature_alerts/presentation/utils/alerts_constants.dart';
 
 class AlertsCarouselSection extends StatefulWidget {
@@ -11,6 +13,15 @@ class AlertsCarouselSection extends StatefulWidget {
 }
 
 class _AlertsCarouselSectionState extends State<AlertsCarouselSection> {
+  late final AlertsController _alertsController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _alertsController = Get.find<AlertsController>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +40,10 @@ class _AlertsCarouselSectionState extends State<AlertsCarouselSection> {
               viewportFraction: 1,
               enableInfiniteScroll: false,
               scrollPhysics: const BouncingScrollPhysics(),
-              padEnds: false)),
+              padEnds: false,
+              onPageChanged: (index, reason) {
+                _alertsController.setCurrentAlertSectionIndex(index: index);
+              })),
     );
   }
 }
