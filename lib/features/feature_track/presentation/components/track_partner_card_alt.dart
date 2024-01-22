@@ -1,12 +1,9 @@
-import 'package:avatar_glow/avatar_glow.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/avatar.dart';
 
 import '../../../../core/presentation/controller/core_controller.dart';
-import '../../../../theme/colors.dart';
 import '../../../feature_auth/domain/model/okoa_user.dart';
 
 class TrackPartnerCardAlt extends StatefulWidget {
@@ -53,38 +50,6 @@ class _TrackPartnerCardAltState extends State<TrackPartnerCardAlt> {
         ),
 
         const SizedBox(height: 12),
-        // Container(
-        //   width: 80,
-        //   height: 80,
-        //   margin: const EdgeInsets.only(bottom: 10, top: 8),
-        //   decoration: BoxDecoration(
-        //       borderRadius: BorderRadius.circular(200),
-        //       color: Theme.of(context).scaffoldBackgroundColor,
-        //       boxShadow: [
-        //         BoxShadow(
-        //             color: Colors.black.withOpacity(0.1),
-        //             blurRadius: 10,
-        //             spreadRadius: 5)
-        //       ]),
-        //   child: ClipRRect(
-        //     borderRadius: BorderRadius.circular(200),
-        //     child: avatarUrl == null
-        //         ? Image.asset(
-        //             "assets/images/curly_hair_man.png",
-        //             width: double.infinity,
-        //             height: double.infinity,
-        //           )
-        //         : avatarUrl != null && avatarUrl!.isNotEmpty
-        //             ? CachedNetworkImage(
-        //                 imageUrl: avatarUrl!,
-        //                 placeholder: (context, url) =>
-        //                     CircularProgressIndicator(
-        //                         color: Theme.of(context).primaryColor),
-        //                 fit: BoxFit.cover,
-        //               )
-        //             : const Icon(Icons.person_rounded),
-        //   ),
-        // ),
 
         //  partner name - check if the user is in the list of contacts and use their names instead
         Text(
