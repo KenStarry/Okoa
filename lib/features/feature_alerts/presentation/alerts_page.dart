@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:okoa/features/feature_alerts/presentation/components/alerts_carousel_section.dart';
+import 'package:okoa/features/feature_alerts/presentation/controller/alerts_controller.dart';
+import 'package:okoa/features/feature_alerts/presentation/utils/alerts_constants.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class AlertsPage extends StatefulWidget {
   const AlertsPage({super.key});
@@ -9,6 +13,15 @@ class AlertsPage extends StatefulWidget {
 }
 
 class _AlertsPageState extends State<AlertsPage> {
+  late final AlertsController _alertsController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _alertsController = Get.find<AlertsController>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,10 +49,30 @@ class _AlertsPageState extends State<AlertsPage> {
             ),
 
             const SizedBox(height: 24),
+
             //  alerts content
-            const Expanded(
-                child: AlertsCarouselSection())
+            const Expanded(child: AlertsCarouselSection()),
+
             //  page indicator
+            Container(
+              width: double.infinity,
+              height: 30,
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: Obx(
+                () => Center(
+                  child: AnimatedSmoothIndicator(
+                      effect: JumpingDotEffect(
+                          dotHeight: 8,
+                          dotWidth: 8,
+                          dotColor: Theme.of(context).iconTheme.color!,
+                          activeDotColor: Theme.of(context).primaryColor),
+                      activeIndex:
+                          _alertsController.currentAlertSectionIndex.value,
+                      count: alertCategories.length,
+                      duration: const Duration(milliseconds: 350)),
+                ),
+              ),
+            )
           ],
         ),
       )),
