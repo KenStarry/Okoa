@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:okoa/core/data/api/api.dart';
+import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_track/presentation/components/custom_user_marker.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_map_content.dart';
@@ -24,9 +25,9 @@ class TrackMap extends StatefulWidget {
 
 class _TrackMapState extends State<TrackMap> {
   late final TrackController _trackController;
+  late final CoreController _coreController;
   late final Completer<GoogleMapController> _googleMapController;
-  late final List<Map<String, dynamic>> markersData;
-  final Map<String, BitmapDescriptor> _markerIcons = {};
+  List<Map<String, dynamic>> markersData = <Map<String, dynamic>>[];
 
   final LatLng destination =
       const LatLng(0.28312695556758094, 34.75168063532842);
@@ -38,29 +39,28 @@ class _TrackMapState extends State<TrackMap> {
     super.initState();
 
     _trackController = Get.find<TrackController>();
+    _coreController = Get.find<CoreController>();
     _googleMapController = Completer<GoogleMapController>();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _buildMarkers();
-      _trackController.getPolylinePoints(
-          sourceLocation: LatLng(
-              _trackController.currentLocation.value!.latitude!,
-              _trackController.currentLocation.value!.longitude!),
-          destination: destination);
-    });
+    ever(_coreController.okoaUser, (user) {
+      if (user != null) {
+        markersData = _coreController.okoaUser.value!.partners
+            .map((partnerId) => <String, dynamic>{
+                  'id': partnerId,
+                  'widget': const CustomUserMarker()
+                })
+            .toList();
 
-    markersData = [
-      {
-        'id': 'starry',
-        'globalKey': GlobalKey(),
-        'widget': const CustomUserMarker()
-      },
-      {
-        'id': 'equity',
-        'globalKey': GlobalKey(),
-        'widget': const CustomUserMarker()
-      },
-    ];
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await _buildMarkers(markersData: markersData);
+          _trackController.getPolylinePoints(
+              sourceLocation: LatLng(
+                  _trackController.currentLocation.value!.latitude!,
+                  _trackController.currentLocation.value!.longitude!),
+              destination: destination);
+        });
+      }
+    });
 
     ever(_trackController.currentLocation, (currentLocation) async {
       if (currentLocation != null) {
@@ -93,62 +93,54 @@ class _TrackMapState extends State<TrackMap> {
               return currentUserLocation == null
                   ? const Expanded(
                       flex: 3,
-                      child: Center(child: CircularProgressIndicator()))
+                      child: Center(child: LottieLoader()))
                   : Expanded(
                       flex: 3,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
-                        child: _markerIcons.isEmpty
+                        child: _trackController.markerIcons.isEmpty
                             ? const UnconstrainedBox(
                                 child: CircularProgressIndicator())
                             : Obx(
                                 () => GoogleMap(
-                                    mapType: MapType.normal,
-                                    initialCameraPosition: CameraPosition(
-                                        target: LatLng(
-                                            currentUserLocation.latitude!,
-                                            currentUserLocation.longitude!),
-                                        zoom: 18),
-                                    myLocationButtonEnabled: false,
-                                    myLocationEnabled: false,
-                                    onMapCreated:
-                                        (GoogleMapController controller) {
-                                      _googleMapController.complete(controller);
-                                    },
-                                    polylines: _trackController
-                                            .polylineCoordinates.isNotEmpty
-                                        ? {
-                                            Polyline(
-                                                polylineId: const PolylineId(
-                                                    "Equity bank polyline"),
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                startCap: Cap.roundCap,
-                                                endCap: Cap.roundCap,
-                                                width: 5,
-                                                points: _trackController
-                                                    .polylineCoordinates)
-                                          }
-                                        : {},
-                                    markers: {
-                                      Marker(
-                                          markerId: const MarkerId('starry'),
-                                          position: LatLng(
+                                      mapType: MapType.normal,
+                                      initialCameraPosition: CameraPosition(
+                                          target: LatLng(
                                               currentUserLocation.latitude!,
                                               currentUserLocation.longitude!),
-                                          icon: _markerIcons['starry']!,
-                                          onTap: () {
-                                            //  open bottomsheet for current user
-                                          }),
-                                      Marker(
-                                          markerId: const MarkerId('equity'),
-                                          position: LatLng(destination.latitude,
-                                              destination.longitude),
-                                          icon: _markerIcons['equity']!,
-                                          onTap: () {
-                                            //  open bottomsheet for current user
-                                          }),
-                                    }),
+                                          zoom: 18),
+                                      myLocationButtonEnabled: false,
+                                      myLocationEnabled: false,
+                                      onMapCreated:
+                                          (GoogleMapController controller) {
+                                        _googleMapController
+                                            .complete(controller);
+                                      },
+                                      polylines: _trackController
+                                              .polylineCoordinates.isNotEmpty
+                                          ? {
+                                              Polyline(
+                                                  polylineId: const PolylineId(
+                                                      "Equity bank polyline"),
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  startCap: Cap.roundCap,
+                                                  endCap: Cap.roundCap,
+                                                  width: 5,
+                                                  points: _trackController
+                                                      .polylineCoordinates)
+                                            }
+                                          : {},
+                                      markers: markersData
+                                          .map((data) => Marker(
+                                              markerId: MarkerId(data['id']),
+                                              icon: _trackController
+                                                  .markerIcons[data['id']]!,
+                                              position: LatLng(
+                                                  currentUserLocation.latitude!,
+                                                  currentUserLocation
+                                                      .longitude!)))
+                                          .toSet()),
                               ),
                       ),
                     );
@@ -160,16 +152,17 @@ class _TrackMapState extends State<TrackMap> {
     );
   }
 
-  Future<BitmapDescriptor> getBitmapDescriptor() async =>
-      await const CustomUserMarker()
-          .toBitmapDescriptor(waitToRender: const Duration(seconds: 1));
+  Future<BitmapDescriptor> getBitmapDescriptor(
+          {required Widget customMarker}) async =>
+      await customMarker.toBitmapDescriptor(
+          waitToRender: const Duration(seconds: 4));
 
-  Future<void> _buildMarkers() async {
+  Future<void> _buildMarkers(
+      {required List<Map<String, dynamic>> markersData}) async {
     await Future.wait(markersData.map((data) async {
-      BitmapDescriptor marker = await getBitmapDescriptor();
-      _markerIcons[data['id']] = marker;
+      BitmapDescriptor marker =
+          await getBitmapDescriptor(customMarker: data['widget']);
+      _trackController.markerIcons[data['id']] = marker;
     }));
-
-    setState(() {});
   }
 }

@@ -20,6 +20,7 @@ class TrackController extends GetxController {
   final currentLocation = Rxn<LocationData>();
 
   final polylineCoordinates = <LatLng>[].obs;
+  final markerIcons = <String, BitmapDescriptor>{}.obs;
 
   @override
   void onInit() {
@@ -59,8 +60,7 @@ class TrackController extends GetxController {
 
   /// Get Polyline points and coordinates
   void getPolylinePoints(
-      {required LatLng sourceLocation,
-      required LatLng destination}) async {
+      {required LatLng sourceLocation, required LatLng destination}) async {
     PolylinePoints polylinePoints = PolylinePoints();
 
     PolylineResult polylineResult =
@@ -75,4 +75,7 @@ class TrackController extends GetxController {
       }
     }
   }
+
+  void setMarkerIcons({required Map<String, BitmapDescriptor> markerIcons}) =>
+      this.markerIcons.value = markerIcons;
 }
