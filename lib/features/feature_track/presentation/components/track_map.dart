@@ -44,7 +44,8 @@ class _TrackMapState extends State<TrackMap> {
 
     ever(_coreController.okoaUser, (user) {
       if (user != null) {
-        _coreController.getPartnerDetails(partnerIds: user.partners);
+        _coreController
+            .getPartnerDetails(partnerIds: [user.userId, ...user.partners]);
       }
     });
 
@@ -53,7 +54,9 @@ class _TrackMapState extends State<TrackMap> {
         markersData = okoaPartners
             .map((partner) => <String, dynamic>{
                   'id': partner.userId,
-                  'widget': CustomUserMarker(avatarUrl: partner.avatarUrl)
+                  'latitude': partner.latitude,
+                  'longitude': partner.longitude,
+                  'widget': CustomUserMarker(avatarUrl: partner.avatarUrl),
                 })
             .toList();
 
@@ -140,10 +143,8 @@ class _TrackMapState extends State<TrackMap> {
                                             markerId: MarkerId(data['id']),
                                             icon: _trackController
                                                 .markerIcons[data['id']]!,
-                                            position: LatLng(
-                                                currentUserLocation.latitude!,
-                                                currentUserLocation
-                                                    .longitude!)))
+                                            position: LatLng(data['latitude'],
+                                                data['longitude'])))
                                         .toSet()),
                               ),
                       ),
