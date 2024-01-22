@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_partner_card.dart';
+import 'package:okoa/features/feature_track/presentation/components/track_partner_card_alt.dart';
 
 import '../../../../core/presentation/controller/core_controller.dart';
 
@@ -73,8 +74,10 @@ class _TrackMapContentState extends State<TrackMapContent> {
                     : _coreController.okoaUser.value!.partners.isEmpty
                         ? const Center(child: Text("No Partners found"))
                         : ListView.separated(
-                            itemBuilder: (context, index) =>
-                                const TrackPartnerCard(),
+                            itemBuilder: (context, index) => TrackPartnerCardAlt(
+                              partnerId: _coreController
+                                  .okoaUser.value!.partners[index],
+                            ),
                             separatorBuilder: (context, index) =>
                                 const SizedBox(width: 24),
                             itemCount:
