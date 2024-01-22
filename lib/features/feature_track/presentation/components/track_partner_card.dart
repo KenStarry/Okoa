@@ -17,38 +17,38 @@ class TrackPartnerCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         //  image
-        Container(
-          width: 80,
-          height: 80,
-          margin: const EdgeInsets.only(bottom: 10, top: 8),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(200),
-              color: Theme.of(context).scaffoldBackgroundColor,
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 10,
-                    spreadRadius: 5)
-              ]),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(200),
-            child: avatarUrl == null
-                ? Image.asset(
-                    "assets/images/curly_hair_man.png",
-                    width: double.infinity,
-                    height: double.infinity,
-                  )
-                : avatarUrl != null && avatarUrl!.isNotEmpty
-                    ? CachedNetworkImage(
-                        imageUrl: avatarUrl!,
-                        placeholder: (context, url) =>
-                            CircularProgressIndicator(
-                                color: Theme.of(context).primaryColor),
-                        fit: BoxFit.cover,
-                      )
-                    : const Icon(Icons.person_rounded),
-          ),
-        ),
+        // Container(
+        //   width: 80,
+        //   height: 80,
+        //   margin: const EdgeInsets.only(bottom: 10, top: 8),
+        //   decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(200),
+        //       color: Theme.of(context).scaffoldBackgroundColor,
+        //       boxShadow: [
+        //         BoxShadow(
+        //             color: Colors.black.withOpacity(0.1),
+        //             blurRadius: 10,
+        //             spreadRadius: 5)
+        //       ]),
+        //   child: ClipRRect(
+        //     borderRadius: BorderRadius.circular(200),
+        //     child: avatarUrl == null
+        //         ? Image.asset(
+        //             "assets/images/curly_hair_man.png",
+        //             width: double.infinity,
+        //             height: double.infinity,
+        //           )
+        //         : avatarUrl != null && avatarUrl!.isNotEmpty
+        //             ? CachedNetworkImage(
+        //                 imageUrl: avatarUrl!,
+        //                 placeholder: (context, url) =>
+        //                     CircularProgressIndicator(
+        //                         color: Theme.of(context).primaryColor),
+        //                 fit: BoxFit.cover,
+        //               )
+        //             : const Icon(Icons.person_rounded),
+        //   ),
+        // ),
 
         //  partner name
         Text(contactName ?? "No name", style: Theme.of(context).textTheme.bodyMedium)
