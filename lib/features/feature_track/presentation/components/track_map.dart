@@ -45,7 +45,7 @@ class _TrackMapState extends State<TrackMap> {
     ever(_coreController.okoaUser, (user) {
       if (user != null) {
         _coreController
-            .getPartnerDetails(partnerIds: [user.userId, ...user.partners]);
+            .getPartnerDetails(partnerIds: [...user.partners]);
       }
     });
 

@@ -71,7 +71,7 @@ class CoreController extends GetxController {
           .call(uid: uid, onGetUserData: onGetUserData);
 
   void getPartnerDetails({required List<String> partnerIds}) async {
-    var partnerData = <OkoaUser>[];
+    var partnerData = <OkoaUser>[okoaUser.value!];
 
     for (String id in partnerIds) {
       //  get data from the DB

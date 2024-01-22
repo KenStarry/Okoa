@@ -74,28 +74,31 @@ class _TrackMapContentState extends State<TrackMapContent> {
               height: double.infinity,
               color: Theme.of(context).scaffoldBackgroundColor,
               child: Obx(
-                () => _coreController.okoaUser.value == null
-                    ? const Center(child: LottieLoader())
-                    : _coreController.okoaUser.value!.partners.isEmpty
-                        ? const Center(child: Text("No Partners found"))
-                        : ListView.separated(
-                            itemBuilder: (context, index) =>
-                                TrackPartnerCardAlt(
-                              partnerId: [
-                                _coreController.okoaUser.value!.userId
-                                    .toString(),
-                                ..._coreController.okoaUser.value!.partners
-                              ][index],
-                            ),
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(width: 24),
-                            itemCount: [
-                              _coreController.okoaUser.value!.userId.toString(),
-                              ..._coreController.okoaUser.value!.partners
-                            ].length,
-                            scrollDirection: Axis.horizontal,
-                            physics: const BouncingScrollPhysics(),
-                          ),
+                () {
+                  final user = _coreController.okoaUser.value;
+
+                  return user == null
+                      ? const Center(child: LottieLoader())
+                      : user.partners.isEmpty
+                          ? const Center(child: Text("No Partners found"))
+                          : ListView.separated(
+                              itemBuilder: (context, index) =>
+                                  TrackPartnerCardAlt(
+                                partnerId: [
+                                  user.userId.toString(),
+                                  ...user.partners
+                                ][index],
+                              ),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(width: 24),
+                              itemCount: [
+                                user.userId.toString(),
+                                ...user.partners
+                              ].length,
+                              scrollDirection: Axis.horizontal,
+                              physics: const BouncingScrollPhysics(),
+                            );
+                },
               ),
             ),
           )
