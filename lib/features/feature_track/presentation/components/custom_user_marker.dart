@@ -24,7 +24,7 @@ class CustomUserMarker extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 10),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(color: accent, width: 4),
+                      border: Border.all(color: accent, width: 3),
                       gradient: const LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -39,8 +39,8 @@ class CustomUserMarker extends StatelessWidget {
               child: ClipPath(
                 clipper: TriangleClipper(),
                 child: Container(
-                  width: 18,
-                  height: 18,
+                  width: 16,
+                  height: 16,
                   color: accent,
                 ),
               ),
