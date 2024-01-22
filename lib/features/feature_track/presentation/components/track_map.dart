@@ -44,9 +44,16 @@ class _TrackMapState extends State<TrackMap> {
 
     ever(_coreController.okoaUser, (user) {
       if (user != null) {
-        markersData = _coreController.okoaUser.value!.partners
-            .map((partnerId) => <String, dynamic>{
-                  'id': partnerId,
+        _coreController.getPartnerDetails(partnerIds: user.partners);
+      }
+    });
+
+    ever(_coreController.partnerDetails, (okoaPartners) {
+      if (okoaPartners != null) {
+
+        markersData = okoaPartners
+            .map((partner) => <String, dynamic>{
+                  'id': partner.userId,
                   'widget': const CustomUserMarker()
                 })
             .toList();
@@ -55,8 +62,8 @@ class _TrackMapState extends State<TrackMap> {
           await _buildMarkers(markersData: markersData);
           _trackController.getPolylinePoints(
               sourceLocation: LatLng(
-                  _trackController.currentLocation.value!.latitude!,
-                  _trackController.currentLocation.value!.longitude!),
+                  _trackController.currentLocation.value?.latitude! ?? 0.0,
+                  _trackController.currentLocation.value?.longitude! ?? 0.0),
               destination: destination);
         });
       }
@@ -92,8 +99,7 @@ class _TrackMapState extends State<TrackMap> {
                   _trackController.currentLocation.value;
               return currentUserLocation == null
                   ? const Expanded(
-                      flex: 3,
-                      child: Center(child: LottieLoader()))
+                      flex: 3, child: Center(child: LottieLoader()))
                   : Expanded(
                       flex: 3,
                       child: ClipRRect(
@@ -103,44 +109,43 @@ class _TrackMapState extends State<TrackMap> {
                                 child: CircularProgressIndicator())
                             : Obx(
                                 () => GoogleMap(
-                                      mapType: MapType.normal,
-                                      initialCameraPosition: CameraPosition(
-                                          target: LatLng(
-                                              currentUserLocation.latitude!,
-                                              currentUserLocation.longitude!),
-                                          zoom: 18),
-                                      myLocationButtonEnabled: false,
-                                      myLocationEnabled: false,
-                                      onMapCreated:
-                                          (GoogleMapController controller) {
-                                        _googleMapController
-                                            .complete(controller);
-                                      },
-                                      polylines: _trackController
-                                              .polylineCoordinates.isNotEmpty
-                                          ? {
-                                              Polyline(
-                                                  polylineId: const PolylineId(
-                                                      "Equity bank polyline"),
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  startCap: Cap.roundCap,
-                                                  endCap: Cap.roundCap,
-                                                  width: 5,
-                                                  points: _trackController
-                                                      .polylineCoordinates)
-                                            }
-                                          : {},
-                                      markers: markersData
-                                          .map((data) => Marker(
-                                              markerId: MarkerId(data['id']),
-                                              icon: _trackController
-                                                  .markerIcons[data['id']]!,
-                                              position: LatLng(
-                                                  currentUserLocation.latitude!,
-                                                  currentUserLocation
-                                                      .longitude!)))
-                                          .toSet()),
+                                    mapType: MapType.normal,
+                                    initialCameraPosition: CameraPosition(
+                                        target: LatLng(
+                                            currentUserLocation.latitude!,
+                                            currentUserLocation.longitude!),
+                                        zoom: 18),
+                                    myLocationButtonEnabled: false,
+                                    myLocationEnabled: false,
+                                    onMapCreated:
+                                        (GoogleMapController controller) {
+                                      _googleMapController.complete(controller);
+                                    },
+                                    polylines: _trackController
+                                            .polylineCoordinates.isNotEmpty
+                                        ? {
+                                            Polyline(
+                                                polylineId: const PolylineId(
+                                                    "Equity bank polyline"),
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                                startCap: Cap.roundCap,
+                                                endCap: Cap.roundCap,
+                                                width: 5,
+                                                points: _trackController
+                                                    .polylineCoordinates)
+                                          }
+                                        : {},
+                                    markers: markersData
+                                        .map((data) => Marker(
+                                            markerId: MarkerId(data['id']),
+                                            icon: _trackController
+                                                .markerIcons[data['id']]!,
+                                            position: LatLng(
+                                                currentUserLocation.latitude!,
+                                                currentUserLocation
+                                                    .longitude!)))
+                                        .toSet()),
                               ),
                       ),
                     );
@@ -163,6 +168,8 @@ class _TrackMapState extends State<TrackMap> {
       BitmapDescriptor marker =
           await getBitmapDescriptor(customMarker: data['widget']);
       _trackController.markerIcons[data['id']] = marker;
+
+      print("MARKER ICONS : ${_trackController.markerIcons}");
     }));
   }
 }

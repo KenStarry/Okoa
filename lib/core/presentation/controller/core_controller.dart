@@ -64,7 +64,7 @@ class CoreController extends GetxController {
       .call(onFetchUsers: (users) => okoaUsers.value = users);
 
   //  get user data from DB
-  void getUserDataFromDatabase(
+  Future<void> getUserDataFromDatabase(
           {required String uid,
           required Function(OkoaUser okoaUser) onGetUserData}) async =>
       await useCase.getUserDataFromDB
@@ -75,13 +75,12 @@ class CoreController extends GetxController {
 
     for (String id in partnerIds) {
       //  get data from the DB
-      getUserDataFromDatabase(
+      await getUserDataFromDatabase(
           uid: id,
           onGetUserData: (user) {
             partnerData.add(user);
           });
     }
-
     partnerDetails.value = partnerData;
   }
 

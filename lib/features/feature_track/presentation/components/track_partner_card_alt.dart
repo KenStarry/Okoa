@@ -59,10 +59,8 @@ class _TrackPartnerCardAltState extends State<TrackPartnerCardAlt> {
           () {
             final contact = _partnerController.contacts.value != null
                 ? _partnerController.getUserContactDetails(
-                    phoneNumber: currentUser!.phone)
+                    phoneNumber: currentUser?.phone ?? '')
                 : null;
-
-            print("CONTACT DETAILS : ${contact}");
 
             return Text(
                 currentUser?.userName == null
