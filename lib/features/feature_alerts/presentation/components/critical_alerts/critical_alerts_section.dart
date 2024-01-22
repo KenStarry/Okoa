@@ -6,14 +6,14 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../../core/domain/model/sos_state.dart';
 import '../../../../../core/presentation/controller/core_controller.dart';
 
-class MessageAlertsSection extends StatefulWidget {
-  const MessageAlertsSection({super.key});
+class CriticalAlertsSection extends StatefulWidget {
+  const CriticalAlertsSection({super.key});
 
   @override
-  State<MessageAlertsSection> createState() => _MessageAlertsSectionState();
+  State<CriticalAlertsSection> createState() => _CriticalAlertsSectionState();
 }
 
-class _MessageAlertsSectionState extends State<MessageAlertsSection> {
+class _CriticalAlertsSectionState extends State<CriticalAlertsSection> {
   late final CoreController _coreController;
 
   @override
@@ -32,12 +32,12 @@ class _MessageAlertsSectionState extends State<MessageAlertsSection> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            'assets/images/mailbox_${_coreController.sosState.value == SosState.safe ? 'blue' : _coreController.sosState.value == SosState.warning ? 'orange' : 'red'}.svg',
+            'assets/images/warning_${_coreController.sosState.value == SosState.safe ? 'blue' : _coreController.sosState.value == SosState.warning ? 'orange' : 'red'}.svg',
             width: 200,
             height: 200,
           ),
           const SizedBox(height: 24),
-          Text("No messages yet.",
+          Text("No critical alerts yet.",
               style: Theme.of(context).textTheme.bodyMedium)
         ],
       ),
