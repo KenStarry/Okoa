@@ -50,11 +50,10 @@ class _TrackMapState extends State<TrackMap> {
 
     ever(_coreController.partnerDetails, (okoaPartners) {
       if (okoaPartners != null) {
-
         markersData = okoaPartners
             .map((partner) => <String, dynamic>{
                   'id': partner.userId,
-                  'widget': const CustomUserMarker()
+                  'widget': CustomUserMarker(avatarUrl: partner.avatarUrl)
                 })
             .toList();
 
@@ -160,7 +159,7 @@ class _TrackMapState extends State<TrackMap> {
   Future<BitmapDescriptor> getBitmapDescriptor(
           {required Widget customMarker}) async =>
       await customMarker.toBitmapDescriptor(
-          waitToRender: const Duration(seconds: 4));
+          waitToRender: const Duration(seconds: 10));
 
   Future<void> _buildMarkers(
       {required List<Map<String, dynamic>> markersData}) async {
@@ -168,8 +167,6 @@ class _TrackMapState extends State<TrackMap> {
       BitmapDescriptor marker =
           await getBitmapDescriptor(customMarker: data['widget']);
       _trackController.markerIcons[data['id']] = marker;
-
-      print("MARKER ICONS : ${_trackController.markerIcons}");
     }));
   }
 }
