@@ -74,14 +74,20 @@ class _TrackMapContentState extends State<TrackMapContent> {
                     : _coreController.okoaUser.value!.partners.isEmpty
                         ? const Center(child: Text("No Partners found"))
                         : ListView.separated(
-                            itemBuilder: (context, index) => TrackPartnerCardAlt(
-                              partnerId: _coreController
-                                  .okoaUser.value!.partners[index],
+                            itemBuilder: (context, index) =>
+                                TrackPartnerCardAlt(
+                              partnerId: [
+                                _coreController.okoaUser.value!.userId
+                                    .toString(),
+                                ..._coreController.okoaUser.value!.partners
+                              ][index],
                             ),
                             separatorBuilder: (context, index) =>
                                 const SizedBox(width: 24),
-                            itemCount:
-                                _coreController.okoaUser.value!.partners.length,
+                            itemCount: [
+                              _coreController.okoaUser.value!.userId.toString(),
+                              ..._coreController.okoaUser.value!.partners
+                            ].length,
                             scrollDirection: Axis.horizontal,
                             physics: const BouncingScrollPhysics(),
                           ),
