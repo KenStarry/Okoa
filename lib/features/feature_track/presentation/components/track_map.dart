@@ -27,7 +27,6 @@ class _TrackMapState extends State<TrackMap> {
   late final TrackController _trackController;
   late final CoreController _coreController;
   late final Completer<GoogleMapController> _googleMapController;
-  List<Map<String, dynamic>> markersData = <Map<String, dynamic>>[];
 
   final LatLng destination =
       const LatLng(0.28312695556758094, 34.75168063532842);
@@ -49,7 +48,7 @@ class _TrackMapState extends State<TrackMap> {
     });
 
     ever(_coreController.partnerDetails, (okoaPartners) {
-      markersData = okoaPartners.entries
+      final markersData = okoaPartners.entries
           .map((partner) => <String, dynamic>{
                 'id': partner.value.userId,
                 'latitude': partner.value.latitude,
@@ -57,6 +56,8 @@ class _TrackMapState extends State<TrackMap> {
                 'widget': CustomUserMarker(avatarUrl: partner.value.avatarUrl),
               })
           .toList();
+
+      _trackController.setMarkerData(markersData: markersData);
 
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         await _buildMarkers(markersData: markersData);
@@ -135,7 +136,7 @@ class _TrackMapState extends State<TrackMap> {
                                                     .polylineCoordinates)
                                           }
                                         : {},
-                                    markers: markersData
+                                    markers: _trackController.markersData
                                         .map((data) => Marker(
                                             markerId: MarkerId(data['id']),
                                             icon: _trackController

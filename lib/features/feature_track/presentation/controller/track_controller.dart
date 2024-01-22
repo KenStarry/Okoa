@@ -21,6 +21,7 @@ class TrackController extends GetxController {
 
   final polylineCoordinates = <LatLng>[].obs;
   final markerIcons = <String, BitmapDescriptor>{}.obs;
+  final markersData = <Map<String, dynamic>>[].obs;
 
   @override
   void onInit() {
@@ -78,4 +79,7 @@ class TrackController extends GetxController {
 
   void setMarkerIcons({required Map<String, BitmapDescriptor> markerIcons}) =>
       this.markerIcons.value = markerIcons;
+
+  void setMarkerData({required List<Map<String, dynamic>> markersData}) =>
+      this.markersData.value = markersData;
 }

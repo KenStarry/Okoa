@@ -29,7 +29,7 @@ class _TrackPartnerCardAltState extends State<TrackPartnerCardAlt> {
     _partnerController = Get.find<PartnerController>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _coreController.getUserDataFromDatabase(
+      _coreController.listenToUserDataonDB(
           uid: widget.partnerId,
           onGetUserData: (data) {
             currentUser = data;
