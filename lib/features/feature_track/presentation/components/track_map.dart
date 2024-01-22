@@ -44,31 +44,28 @@ class _TrackMapState extends State<TrackMap> {
 
     ever(_coreController.okoaUser, (user) {
       if (user != null) {
-        _coreController
-            .getPartnerDetails(partnerIds: [...user.partners]);
+        _coreController.getPartnerDetails(partnerIds: [...user.partners]);
       }
     });
 
     ever(_coreController.partnerDetails, (okoaPartners) {
-      if (okoaPartners != null) {
-        markersData = okoaPartners
-            .map((partner) => <String, dynamic>{
-                  'id': partner.userId,
-                  'latitude': partner.latitude,
-                  'longitude': partner.longitude,
-                  'widget': CustomUserMarker(avatarUrl: partner.avatarUrl),
-                })
-            .toList();
+      markersData = okoaPartners.entries
+          .map((partner) => <String, dynamic>{
+                'id': partner.value.userId,
+                'latitude': partner.value.latitude,
+                'longitude': partner.value.longitude,
+                'widget': CustomUserMarker(avatarUrl: partner.value.avatarUrl),
+              })
+          .toList();
 
-        WidgetsBinding.instance.addPostFrameCallback((_) async {
-          await _buildMarkers(markersData: markersData);
-          _trackController.getPolylinePoints(
-              sourceLocation: LatLng(
-                  _trackController.currentLocation.value?.latitude! ?? 0.0,
-                  _trackController.currentLocation.value?.longitude! ?? 0.0),
-              destination: destination);
-        });
-      }
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await _buildMarkers(markersData: markersData);
+        _trackController.getPolylinePoints(
+            sourceLocation: LatLng(
+                _trackController.currentLocation.value?.latitude! ?? 0.0,
+                _trackController.currentLocation.value?.longitude! ?? 0.0),
+            destination: destination);
+      });
     });
 
     ever(_trackController.currentLocation, (currentLocation) async {

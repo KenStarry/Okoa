@@ -14,7 +14,7 @@ class CoreController extends GetxController {
   /// User Data
   final okoaUser = Rxn<OkoaUser>();
   final okoaUsers = Rxn<List<OkoaUser>>();
-  final partnerDetails = Rxn<List<OkoaUser>>();
+  final partnerDetails = <String, OkoaUser>{}.obs;
 
   final hasInternet = false.obs;
   final sosState = SosState.safe.obs;
@@ -70,18 +70,19 @@ class CoreController extends GetxController {
       await useCase.getUserDataFromDB
           .call(uid: uid, onGetUserData: onGetUserData);
 
-  void getPartnerDetails({required List<String> partnerIds}) async {
-    var partnerData = <OkoaUser>[okoaUser.value!];
+  void getPartnerDetails({required List<String> partnerIds}) {
+    var partnerData = <String, OkoaUser>{okoaUser.value!.userId.toString(): okoaUser.value!};
 
     for (String id in partnerIds) {
       //  get data from the DB
-      await getUserDataFromDatabase(
+      listenToUserDataonDB(
           uid: id,
           onGetUserData: (user) {
-            partnerData.add(user);
+            partnerData[id] = user;
+
+            partnerDetails.value = partnerData;
           });
     }
-    partnerDetails.value = partnerData;
   }
 
   //  update user data
