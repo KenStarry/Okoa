@@ -72,19 +72,20 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                       const SizedBox(width: 8),
 
                       //  name + phone number
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Obx(
-                            () {
-                              final contact = _partnerController
-                                          .contacts.value !=
-                                      null
-                                  ? _partnerController.getUserContactDetails(
-                                      phoneNumber: currentUser?.phone ?? '')
-                                  : null;
+                      Obx(
+                        () {
+                          final contact = _partnerController
+                                      .contacts.value !=
+                                  null
+                              ? _partnerController.getUserContactDetails(
+                                  phoneNumber: currentUser?.phone ?? '')
+                              : null;
 
-                              return Text(
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
                                   currentUser?.userName == null
                                       ? "No name"
                                       : currentUser?.userName ==
@@ -107,10 +108,26 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                                         .textTheme
                                         .titleSmall!
                                         .color,
-                                  ));
-                            },
-                          )
-                        ],
+                                  )),
+
+                              const SizedBox(height: 8),
+
+                              //  phone
+                              Text(
+                                contact != null &&
+                                        contact.phones
+                                            .map((phone) => phone.number)
+                                            .toList()[0]
+                                            .isNotEmpty
+                                    ? contact.phones
+                                        .map((phone) => phone.number)
+                                        .toList()[0]
+                                    : currentUser!.phone,
+                                style: Theme.of(context).textTheme.bodySmall,
+                              )
+                            ],
+                          );
+                        },
                       )
                     ],
                   )
