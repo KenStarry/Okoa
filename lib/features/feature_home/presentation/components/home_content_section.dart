@@ -47,6 +47,7 @@ class _HomeContentSectionState extends State<HomeContentSection> {
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
+          const SliverToBoxAdapter(child: SizedBox(height: 24)),
           Obx(
             () {
               final user = _coreController.okoaUser.value;
