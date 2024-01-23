@@ -39,7 +39,7 @@ class _HomeContentSectionState extends State<HomeContentSection> {
         color: Theme.of(context).primaryColorLight,
       ),
       sliver: SliverPadding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         sliver: MultiSliver(children: [
           SliverToBoxAdapter(
             child: Text(
