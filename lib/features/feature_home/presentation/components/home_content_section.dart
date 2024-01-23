@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okoa/features/feature_home/presentation/components/partners_icon.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
 class HomeContentSection extends StatefulWidget {
   const HomeContentSection({super.key});
@@ -11,6 +12,29 @@ class HomeContentSection extends StatefulWidget {
 class _HomeContentSectionState extends State<HomeContentSection> {
   @override
   Widget build(BuildContext context) {
+    return DecoratedSliver(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(topRight: Radius.circular(50)),
+        color: Theme.of(context).primaryColorLight,
+      ),
+      sliver: SliverPadding(
+        padding: const EdgeInsets.all(16),
+        sliver: MultiSliver(children: [
+          SliverToBoxAdapter(
+            child: Text(
+              "Partners",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ),
+
+          SliverToBoxAdapter(
+            child: Container(
+              height: 400,
+            ),
+          )
+        ]),
+      ),
+    );
     return SliverToBoxAdapter(
       child: Container(
         width: double.infinity,
@@ -34,7 +58,7 @@ class _HomeContentSectionState extends State<HomeContentSection> {
                 children: [
                   UnconstrainedBox(
                     child: CustomPaint(
-                      size: Size(250, (250 * 0.7235251364447527).toDouble()),
+                      size: Size(200, (200 * 0.7235251364447527).toDouble()),
                       //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
                       painter: PartnersIcon(),
                     ),
