@@ -49,7 +49,13 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             color: Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: BorderRadius.circular(24)),
+            borderRadius: BorderRadius.circular(32),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  spreadRadius: 5,
+                  blurRadius: 15)
+            ]),
       ),
     );
   }
