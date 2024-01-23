@@ -13,14 +13,17 @@ class HomePartnerCard extends StatefulWidget {
 class _HomePartnerCardState extends State<HomePartnerCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 300,
-      margin: const EdgeInsets.only(bottom: 24),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.circular(24)
+    return AspectRatio(
+      aspectRatio: 3 / 2.2,
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        margin: const EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(24)
+        ),
       ),
     );
   }
