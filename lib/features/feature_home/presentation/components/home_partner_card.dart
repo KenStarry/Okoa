@@ -51,13 +51,7 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             color: Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: BorderRadius.circular(32),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  spreadRadius: 5,
-                  blurRadius: 15)
-            ]),
+            borderRadius: BorderRadius.circular(32)),
         child: currentUser == null
             ? const Center(child: LottieLoader())
             : Column(
@@ -67,19 +61,18 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                     children: [
                       Avatar(
                           avatarUrl: currentUser!.avatarUrl,
-                          size: const Size(80, 80)),
+                          size: const Size(70, 70)),
 
                       const SizedBox(width: 8),
 
                       //  name + phone number
                       Obx(
                         () {
-                          final contact = _partnerController
-                                      .contacts.value !=
-                                  null
-                              ? _partnerController.getUserContactDetails(
-                                  phoneNumber: currentUser?.phone ?? '')
-                              : null;
+                          final contact =
+                              _partnerController.contacts.value != null
+                                  ? _partnerController.getUserContactDetails(
+                                      phoneNumber: currentUser?.phone ?? '')
+                                  : null;
 
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
