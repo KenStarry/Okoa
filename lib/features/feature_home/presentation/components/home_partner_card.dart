@@ -67,7 +67,51 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                     children: [
                       Avatar(
                           avatarUrl: currentUser!.avatarUrl,
-                          size: const Size(80, 80))
+                          size: const Size(80, 80)),
+
+                      const SizedBox(width: 8),
+
+                      //  name + phone number
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Obx(
+                            () {
+                              final contact = _partnerController
+                                          .contacts.value !=
+                                      null
+                                  ? _partnerController.getUserContactDetails(
+                                      phoneNumber: currentUser?.phone ?? '')
+                                  : null;
+
+                              return Text(
+                                  currentUser?.userName == null
+                                      ? "No name"
+                                      : currentUser?.userName ==
+                                              _coreController
+                                                  .okoaUser.value!.userName
+                                          ? "${currentUser?.userName} (Me)"
+                                          : contact != null
+                                              ? contact.displayName
+                                              : currentUser!.userName,
+                                  style: TextStyle(
+                                    fontSize: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .fontSize,
+                                    fontWeight: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
+                                        .fontWeight,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .titleSmall!
+                                        .color,
+                                  ));
+                            },
+                          )
+                        ],
+                      )
                     ],
                   )
                 ],
