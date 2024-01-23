@@ -39,10 +39,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
+          statusBarColor: Theme.of(context).scaffoldBackgroundColor,
           statusBarIconBrightness: context.isDarkMode ? Brightness.light : Brightness.dark),
       child: Scaffold(
-          extendBodyBehindAppBar: true,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -69,6 +68,7 @@ class _HomePageState extends State<HomePage> {
                 color: Theme.of(context).scaffoldBackgroundColor,
               ),
               const CustomScrollView(
+                physics: ClampingScrollPhysics(),
                 slivers: [SOSStatusSection(), HomeContentSection()],
               )
             ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:okoa/core/presentation/components/avatar.dart';
+import 'package:okoa/core/presentation/components/lottie_loader.dart';
 
 import '../../../../core/presentation/controller/core_controller.dart';
 import '../../../feature_add_partner/presentation/controller/partner_controller.dart';
@@ -56,6 +58,20 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                   spreadRadius: 5,
                   blurRadius: 15)
             ]),
+        child: currentUser == null
+            ? const Center(child: LottieLoader())
+            : Column(
+                children: [
+                  //  top section
+                  Row(
+                    children: [
+                      Avatar(
+                          avatarUrl: currentUser!.avatarUrl,
+                          size: const Size(80, 80))
+                    ],
+                  )
+                ],
+              ),
       ),
     );
   }
