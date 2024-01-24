@@ -17,6 +17,11 @@ class _HomePartnerBottomSheetState extends State<HomePartnerBottomSheet> {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.75,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+        color: Theme.of(context).scaffoldBackgroundColor,
+      ),
       child: Text("Hello"),
     );
   }
