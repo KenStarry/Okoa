@@ -133,13 +133,33 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                   //  current location
                   Row(
                     children: [
-                      Icon(Icons.my_location_rounded,
-                          color: Theme.of(context).iconTheme.color!, size: 20),
-                      const SizedBox(width: 8),
-                      Text(
-                        "Nairobi, Kenya",
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      )
+                      //  current user location
+                      Row(
+                        children: [
+                          Icon(Icons.location_on_rounded,
+                              color: Theme.of(context).iconTheme.color!, size: 20),
+                          const SizedBox(width: 8),
+                          Text(
+                            "Nairobi, Kenya",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        ],
+                      ),
+
+                      const SizedBox(width: 16),
+
+                      //  distance away from current user
+                      Row(
+                        children: [
+                          Icon(Icons.my_location_rounded,
+                              color: Theme.of(context).iconTheme.color!, size: 20),
+                          const SizedBox(width: 8),
+                          Text(
+                            "33km",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        ],
+                      ),
                     ],
                   ),
 
