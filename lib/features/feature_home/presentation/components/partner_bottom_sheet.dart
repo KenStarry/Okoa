@@ -1,5 +1,7 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
+import 'package:okoa/theme/colors.dart';
 
 import 'home_partner_card_action_btn.dart';
 
@@ -38,6 +40,40 @@ class _HomePartnerBottomSheetState extends State<HomePartnerBottomSheet> {
                 icon: Icons.call_rounded,
                 size: const Size(50, 50),
                 onTap: () {},
+              ),
+
+              const SizedBox(width: 16),
+
+              //  sos button
+              AvatarGlow(
+                glowShape: BoxShape.circle,
+                glowCount: 2,
+                glowRadiusFactor: 0.3,
+                glowColor: sosRed,
+                child: GestureDetector(
+                  onTap: () {
+                    //  open SOS bottomsheet
+                  },
+                  child: Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: sosRed,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 10,
+                                spreadRadius: 5)
+                          ]),
+                      child: Center(
+                        child: Text("SOS",style: TextStyle(
+                          fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
+                          fontWeight: Theme.of(context).textTheme.titleLarge!.fontWeight,
+                          color: Colors.white,
+                        ),)
+                      )),
+                ),
               ),
 
               const SizedBox(width: 16),
