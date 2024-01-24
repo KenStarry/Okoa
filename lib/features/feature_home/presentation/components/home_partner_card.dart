@@ -55,6 +55,8 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
         child: currentUser == null
             ? const Center(child: LottieLoader())
             : Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //  top section
                   Row(
@@ -121,6 +123,19 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                             ],
                           );
                         },
+                      )
+                    ],
+                  ),
+
+                  //  current location
+                  Row(
+                    children: [
+                      Icon(Icons.my_location_rounded,
+                          color: Theme.of(context).iconTheme.color!, size: 20),
+                      const SizedBox(width: 8),
+                      Text(
+                        "Nairobi, Kenya",
+                        style: Theme.of(context).textTheme.bodyMedium,
                       )
                     ],
                   )
