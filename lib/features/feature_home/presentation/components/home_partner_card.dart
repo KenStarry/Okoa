@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -5,6 +6,7 @@ import 'package:okoa/core/presentation/components/avatar.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_partner_card_action_btn.dart';
 
+import '../../../../core/domain/model/sos_state.dart';
 import '../../../../core/presentation/controller/core_controller.dart';
 import '../../../feature_add_partner/presentation/controller/partner_controller.dart';
 import '../../../feature_auth/domain/model/okoa_user.dart';
@@ -143,13 +145,62 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
 
                   //  controls
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      //  call
-                      HomePartnerCardActionBtn(icon: Icons.call_rounded, size: const Size(50, 50), onTap: (){},),
-                      const SizedBox(width: 8),
-                      //  message
-                      HomePartnerCardActionBtn(icon: Icons.sms_rounded, size: const Size(50, 50), onTap: (){},),
-                      //  sos
+
+                      //  phone call and message section
+                      Row(
+                        children: [
+                          //  call
+                          HomePartnerCardActionBtn(icon: Icons.call_rounded, size: const Size(50, 50), onTap: (){},),
+                          const SizedBox(width: 8),
+                          //  message
+                          HomePartnerCardActionBtn(icon: Icons.sms_rounded, size: const Size(50, 50), onTap: (){},),
+                          //  sos
+                        ],
+                      ),
+
+                      //  sos status button
+                      AvatarGlow(
+                        glowShape: BoxShape.circle,
+                        glowCount: 2,
+                        glowRadiusFactor: 0.3,
+                        glowColor: Theme.of(context).primaryColor,
+                        child: GestureDetector(
+                          onTap: () {
+                            //  open SOS bottomsheet
+                          },
+                          child: Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).scaffoldBackgroundColor,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 10,
+                                        spreadRadius: 5)
+                                  ]),
+                              child: Stack(
+                                children: [
+                                  //  logo to represent current status
+                                  Center(
+                                    child: Icon(
+                                        _coreController.sosState.value == SosState.safe
+                                            ? Icons.gpp_good_rounded
+                                            : _coreController.sosState.value ==
+                                            SosState.warning
+                                            ? Icons.gpp_maybe_rounded
+                                            : Icons.gpp_bad_rounded,
+                                        size: 32,
+                                        color: Theme.of(context).primaryColor),
+                                  ),
+                                ],
+                              )),
+                        ),
+                      ),
                     ],
                   )
                 ],
