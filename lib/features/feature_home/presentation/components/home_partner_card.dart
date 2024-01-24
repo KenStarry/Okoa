@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/avatar.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
+import 'package:okoa/features/feature_home/presentation/components/home_partner_card_action_btn.dart';
 
 import '../../../../core/presentation/controller/core_controller.dart';
 import '../../../feature_add_partner/presentation/controller/partner_controller.dart';
@@ -55,7 +56,7 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
         child: currentUser == null
             ? const Center(child: LottieLoader())
             : Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //  top section
@@ -144,7 +145,10 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                   Row(
                     children: [
                       //  call
+                      HomePartnerCardActionBtn(icon: Icons.call_rounded, size: const Size(50, 50), onTap: (){},),
+                      const SizedBox(width: 8),
                       //  message
+                      HomePartnerCardActionBtn(icon: Icons.sms_rounded, size: const Size(50, 50), onTap: (){},),
                       //  sos
                     ],
                   )
