@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/avatar.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_partner_card_action_btn.dart';
+import 'package:okoa/features/feature_home/presentation/components/partner_bottom_sheet.dart';
 
 import '../../../../core/domain/model/sos_state.dart';
 import '../../../../core/presentation/controller/core_controller.dart';
@@ -47,192 +48,204 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 3 / 2.2,
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        margin: const EdgeInsets.only(bottom: 24),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: BorderRadius.circular(32)),
-        child: currentUser == null
-            ? const Center(child: LottieLoader())
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //  top section
-                  Row(
-                    children: [
-                      Avatar(
-                          avatarUrl: currentUser!.avatarUrl,
-                          size: const Size(70, 70)),
+      child: InkWell(
+        onTap: currentUser != null
+            ? () {
+                //  open partner bottomsheet
+                Get.bottomSheet(HomePartnerBottomSheet(partner: currentUser!),
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor);
+              }
+            : null,
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          margin: const EdgeInsets.only(bottom: 24),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              borderRadius: BorderRadius.circular(32)),
+          child: currentUser == null
+              ? const Center(child: LottieLoader())
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //  top section
+                    Row(
+                      children: [
+                        Avatar(
+                            avatarUrl: currentUser!.avatarUrl,
+                            size: const Size(70, 70)),
 
-                      const SizedBox(width: 8),
+                        const SizedBox(width: 8),
 
-                      //  name + phone number
-                      Obx(
-                        () {
-                          final contact =
-                              _partnerController.contacts.value != null
-                                  ? _partnerController.getUserContactDetails(
-                                      phoneNumber: currentUser?.phone ?? '')
-                                  : null;
+                        //  name + phone number
+                        Obx(
+                          () {
+                            final contact =
+                                _partnerController.contacts.value != null
+                                    ? _partnerController.getUserContactDetails(
+                                        phoneNumber: currentUser?.phone ?? '')
+                                    : null;
 
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                  currentUser?.userName == null
-                                      ? "No name"
-                                      : currentUser?.userName ==
-                                              _coreController
-                                                  .okoaUser.value!.userName
-                                          ? "${currentUser?.userName} (Me)"
-                                          : contact != null
-                                              ? contact.displayName
-                                              : currentUser!.userName,
-                                  style: TextStyle(
-                                    fontSize: Theme.of(context)
-                                        .textTheme
-                                        .titleSmall!
-                                        .fontSize,
-                                    fontWeight: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge!
-                                        .fontWeight,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .titleSmall!
-                                        .color,
-                                  )),
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                    currentUser?.userName == null
+                                        ? "No name"
+                                        : currentUser?.userName ==
+                                                _coreController
+                                                    .okoaUser.value!.userName
+                                            ? "${currentUser?.userName} (Me)"
+                                            : contact != null
+                                                ? contact.displayName
+                                                : currentUser!.userName,
+                                    style: TextStyle(
+                                      fontSize: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall!
+                                          .fontSize,
+                                      fontWeight: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge!
+                                          .fontWeight,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall!
+                                          .color,
+                                    )),
 
-                              const SizedBox(height: 8),
+                                const SizedBox(height: 8),
 
-                              //  phone
-                              Text(
-                                contact != null &&
-                                        contact.phones
-                                            .map((phone) => phone.number)
-                                            .toList()[0]
-                                            .isNotEmpty
-                                    ? contact.phones
-                                        .map((phone) => phone.number)
-                                        .toList()[0]
-                                    : currentUser!.phone,
-                                style: Theme.of(context).textTheme.bodySmall,
-                              )
-                            ],
-                          );
-                        },
-                      )
-                    ],
-                  ),
-
-                  //  current location
-                  Row(
-                    children: [
-                      //  current user location
-                      Row(
-                        children: [
-                          Icon(Icons.location_on_rounded,
-                              color: Theme.of(context).iconTheme.color!, size: 20),
-                          const SizedBox(width: 8),
-                          Text(
-                            "Nairobi, Kenya",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          )
-                        ],
-                      ),
-
-                      const SizedBox(width: 16),
-
-                      //  distance away from current user
-                      Row(
-                        children: [
-                          Icon(Icons.my_location_rounded,
-                              color: Theme.of(context).iconTheme.color!, size: 20),
-                          const SizedBox(width: 8),
-                          Text(
-                            "33km",
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  //  controls
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      //  phone call and message section
-                      Row(
-                        children: [
-                          //  call
-                          HomePartnerCardActionBtn(
-                            icon: Icons.call_rounded,
-                            size: const Size(50, 50),
-                            onTap: () {},
-                          ),
-                          const SizedBox(width: 8),
-                          //  message
-                          HomePartnerCardActionBtn(
-                            icon: Icons.sms_rounded,
-                            size: const Size(50, 50),
-                            onTap: () {},
-                          ),
-                          //  sos
-                        ],
-                      ),
-
-                      //  sos status button
-                      AvatarGlow(
-                        glowShape: BoxShape.circle,
-                        glowCount: 2,
-                        glowRadiusFactor: 0.3,
-                        glowColor: Theme.of(context).primaryColor,
-                        child: GestureDetector(
-                          onTap: () {
-                            //  open SOS bottomsheet
+                                //  phone
+                                Text(
+                                  contact != null &&
+                                          contact.phones
+                                              .map((phone) => phone.number)
+                                              .toList()[0]
+                                              .isNotEmpty
+                                      ? contact.phones
+                                          .map((phone) => phone.number)
+                                          .toList()[0]
+                                      : currentUser!.phone,
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                )
+                              ],
+                            );
                           },
-                          child: Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Theme.of(context).primaryColor,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withOpacity(0.1),
-                                        blurRadius: 10,
-                                        spreadRadius: 5)
-                                  ]),
-                              child: Stack(
-                                children: [
-                                  //  logo to represent current status
-                                  Center(
-                                    child: Icon(
-                                        _coreController.sosState.value ==
-                                                SosState.safe
-                                            ? Icons.gpp_good_rounded
-                                            : _coreController.sosState.value ==
-                                                    SosState.warning
-                                                ? Icons.gpp_maybe_rounded
-                                                : Icons.gpp_bad_rounded,
-                                        size: 32,
-                                        color: Colors.black),
-                                  ),
-                                ],
-                              )),
+                        )
+                      ],
+                    ),
+
+                    //  current location
+                    Row(
+                      children: [
+                        //  current user location
+                        Row(
+                          children: [
+                            Icon(Icons.location_on_rounded,
+                                color: Theme.of(context).iconTheme.color!,
+                                size: 20),
+                            const SizedBox(width: 8),
+                            Text(
+                              "Nairobi, Kenya",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            )
+                          ],
                         ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+
+                        const SizedBox(width: 16),
+
+                        //  distance away from current user
+                        Row(
+                          children: [
+                            Icon(Icons.my_location_rounded,
+                                color: Theme.of(context).iconTheme.color!,
+                                size: 20),
+                            const SizedBox(width: 8),
+                            Text(
+                              "33km",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+
+                    //  controls
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        //  phone call and message section
+                        Row(
+                          children: [
+                            //  call
+                            HomePartnerCardActionBtn(
+                              icon: Icons.call_rounded,
+                              size: const Size(50, 50),
+                              onTap: () {},
+                            ),
+                            const SizedBox(width: 8),
+                            //  message
+                            HomePartnerCardActionBtn(
+                              icon: Icons.sms_rounded,
+                              size: const Size(50, 50),
+                              onTap: () {},
+                            ),
+                            //  sos
+                          ],
+                        ),
+
+                        //  sos status button
+                        AvatarGlow(
+                          glowShape: BoxShape.circle,
+                          glowCount: 2,
+                          glowRadiusFactor: 0.3,
+                          glowColor: Theme.of(context).primaryColor,
+                          child: GestureDetector(
+                            onTap: () {
+                              //  open SOS bottomsheet
+                            },
+                            child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Theme.of(context).primaryColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black.withOpacity(0.1),
+                                          blurRadius: 10,
+                                          spreadRadius: 5)
+                                    ]),
+                                child: Stack(
+                                  children: [
+                                    //  logo to represent current status
+                                    Center(
+                                      child: Icon(
+                                          _coreController.sosState.value ==
+                                                  SosState.safe
+                                              ? Icons.gpp_good_rounded
+                                              : _coreController
+                                                          .sosState.value ==
+                                                      SosState.warning
+                                                  ? Icons.gpp_maybe_rounded
+                                                  : Icons.gpp_bad_rounded,
+                                          size: 32,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+        ),
       ),
     );
   }
