@@ -138,6 +138,15 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                         style: Theme.of(context).textTheme.bodyMedium,
                       )
                     ],
+                  ),
+
+                  //  controls
+                  Row(
+                    children: [
+                      //  call
+                      //  message
+                      //  sos
+                    ],
                   )
                 ],
               ),
