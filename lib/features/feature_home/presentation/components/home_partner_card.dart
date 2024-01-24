@@ -148,15 +148,22 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-
                       //  phone call and message section
                       Row(
                         children: [
                           //  call
-                          HomePartnerCardActionBtn(icon: Icons.call_rounded, size: const Size(50, 50), onTap: (){},),
+                          HomePartnerCardActionBtn(
+                            icon: Icons.call_rounded,
+                            size: const Size(50, 50),
+                            onTap: () {},
+                          ),
                           const SizedBox(width: 8),
                           //  message
-                          HomePartnerCardActionBtn(icon: Icons.sms_rounded, size: const Size(50, 50), onTap: (){},),
+                          HomePartnerCardActionBtn(
+                            icon: Icons.sms_rounded,
+                            size: const Size(50, 50),
+                            onTap: () {},
+                          ),
                           //  sos
                         ],
                       ),
@@ -172,11 +179,11 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                             //  open SOS bottomsheet
                           },
                           child: Container(
-                              width: 60,
-                              height: 60,
+                              width: 50,
+                              height: 50,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Theme.of(context).scaffoldBackgroundColor,
+                                  color: Theme.of(context).primaryColor,
                                   boxShadow: [
                                     BoxShadow(
                                         color: Colors.black.withOpacity(0.1),
@@ -188,14 +195,15 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                                   //  logo to represent current status
                                   Center(
                                     child: Icon(
-                                        _coreController.sosState.value == SosState.safe
+                                        _coreController.sosState.value ==
+                                                SosState.safe
                                             ? Icons.gpp_good_rounded
                                             : _coreController.sosState.value ==
-                                            SosState.warning
-                                            ? Icons.gpp_maybe_rounded
-                                            : Icons.gpp_bad_rounded,
+                                                    SosState.warning
+                                                ? Icons.gpp_maybe_rounded
+                                                : Icons.gpp_bad_rounded,
                                         size: 32,
-                                        color: Theme.of(context).primaryColor),
+                                        color: Colors.black),
                                   ),
                                 ],
                               )),
