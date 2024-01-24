@@ -53,7 +53,7 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
             ? () {
                 //  open partner bottomsheet
                 Get.bottomSheet(HomePartnerBottomSheet(partner: currentUser!),
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor);
+                    backgroundColor: Colors.transparent, elevation: 0);
               }
             : null,
         child: Container(
