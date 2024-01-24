@@ -39,7 +39,7 @@ class _HomeContentSectionState extends State<HomeContentSection> {
         color: Theme.of(context).primaryColorLight,
       ),
       sliver: SliverPadding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+        padding: const EdgeInsets.all(16),
         sliver: MultiSliver(children: [
           SliverToBoxAdapter(
             child: Text(
@@ -69,6 +69,7 @@ class _HomeContentSectionState extends State<HomeContentSection> {
                                   .okoaUser.value!.partners.length));
             },
           ),
+          const SliverToBoxAdapter(child: SizedBox(height: 80)),
         ]),
       ),
     );
