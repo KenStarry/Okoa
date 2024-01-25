@@ -314,6 +314,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                               //  show a message here
                                             }
                                           },
+                                          onPartnerTap: () async {},
                                         ),
                                       );
                                     },

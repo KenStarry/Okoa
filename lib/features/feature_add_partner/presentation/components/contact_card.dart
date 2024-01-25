@@ -12,6 +12,7 @@ class ContactCard extends StatelessWidget {
   final bool isRequested;
   final VoidCallback onTap;
   final VoidCallback onInviteTap;
+  final VoidCallback onPartnerTap;
 
   const ContactCard(
       {super.key,
@@ -22,7 +23,8 @@ class ContactCard extends StatelessWidget {
       required this.isSelected,
       required this.isRequested,
       required this.onTap,
-      required this.onInviteTap});
+      required this.onInviteTap,
+      required this.onPartnerTap});
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +148,7 @@ class ContactCard extends StatelessWidget {
                               Visibility(
                                 visible: isPartner,
                                 child: TextButton(
-                                    onPressed: () {},
+                                    onPressed: onPartnerTap,
                                     child: Row(
                                       children: [
                                         Text(
