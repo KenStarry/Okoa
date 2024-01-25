@@ -1,6 +1,8 @@
+import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
+import 'package:okoa/core/utils/extensions/string_extensions.dart';
 import 'package:okoa/di/controllers_di.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/presentation/auth_page.dart';
@@ -11,6 +13,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:get/get.dart';
 
 import 'core/data/api/api.dart';
+import 'core/data/isolates/timer_isolates.dart';
 
 void main() async {
   //  Supabase
@@ -40,6 +43,19 @@ class _MyAppState extends State<MyApp> {
 
     _authController = Get.find<AuthController>();
     _coreController = Get.find<CoreController>();
+
+    initializeTimerIsolate();
+  }
+
+  void initializeTimerIsolate() async {
+    final receivePort = ReceivePort();
+    await Isolate.spawn(trackCurrentTimeIsolate, receivePort.sendPort);
+
+    receivePort.listen((message) {
+      final currentDate = message as DateTime;
+      final currentHour = int.parse(currentDate.toString().getCurrentHourIn24);
+      final currentMinute = int.parse(currentDate.toString().getCurrentMinutes);
+    });
   }
 
   @override
