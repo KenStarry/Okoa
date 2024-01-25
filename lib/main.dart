@@ -53,8 +53,8 @@ class _MyAppState extends State<MyApp> {
 
     receivePort.listen((message) {
       final currentDate = message as DateTime;
-      final currentHour = int.parse(currentDate.toString().getCurrentHourIn24);
-      final currentMinute = int.parse(currentDate.toString().getCurrentMinutes);
+
+      _coreController.updateCurrentDateTime(date: currentDate);
     });
   }
 

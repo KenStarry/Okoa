@@ -17,6 +17,7 @@ class CoreController extends GetxController {
   final partnerDetails = <String, OkoaUser>{}.obs;
 
   final hasInternet = false.obs;
+  final currentDateTime = DateTime.now().obs;
   final sosState = SosState.safe.obs;
   final sosColor = accent.obs;
 
@@ -50,6 +51,8 @@ class CoreController extends GetxController {
       }
     });
   }
+
+  void updateCurrentDateTime({required DateTime date}) => currentDateTime.value = date;
 
   void setOkoaUserData({required OkoaUser okoaUser}) =>
       this.okoaUser.value = okoaUser;
