@@ -39,8 +39,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(
-          statusBarColor: Theme.of(context).scaffoldBackgroundColor,
-          statusBarIconBrightness: context.isDarkMode ? Brightness.light : Brightness.dark),
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Get.context!.isDarkMode ? Brightness.dark : Brightness.light),
       child: Scaffold(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           floatingActionButton: FloatingActionButton(

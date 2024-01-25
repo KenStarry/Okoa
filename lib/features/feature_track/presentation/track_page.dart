@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_location_page.dart';
@@ -25,16 +26,21 @@ class _TrackPageState extends State<TrackPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Obx(
-        () => SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: _trackController.locationPermissionStatus.value ==
-                    PermissionStatus.granted
-                ? const TrackMap()
-                : const TrackLocationPage()),
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Get.context!.isDarkMode ? Brightness.dark : Brightness.dark),
+      child: Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        body: Obx(
+          () => SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: _trackController.locationPermissionStatus.value ==
+                      PermissionStatus.granted
+                  ? const TrackMap()
+                  : const TrackLocationPage()),
+        ),
       ),
     );
   }
