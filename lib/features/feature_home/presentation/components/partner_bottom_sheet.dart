@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
+import 'package:okoa/features/feature_home/presentation/components/partner_bottom_sheet_content.dart';
 import 'package:okoa/theme/colors.dart';
 
 import 'home_partner_card_action_btn.dart';
@@ -29,7 +30,7 @@ class _HomePartnerBottomSheetState extends State<HomePartnerBottomSheet> {
       child: Column(
         children: [
           //  content
-          Expanded(child: Text("Hello")),
+          Expanded(child: PartnerBottomSheetContent(partner: widget.partner)),
           //  actions
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -68,12 +69,18 @@ class _HomePartnerBottomSheetState extends State<HomePartnerBottomSheet> {
                                 spreadRadius: 5)
                           ]),
                       child: Center(
-                        child: Text("SOS",style: TextStyle(
-                          fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
-                          fontWeight: Theme.of(context).textTheme.titleLarge!.fontWeight,
+                          child: Text(
+                        "SOS",
+                        style: TextStyle(
+                          fontSize:
+                              Theme.of(context).textTheme.titleLarge!.fontSize,
+                          fontWeight: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .fontWeight,
                           color: Colors.white,
-                        ),)
-                      )),
+                        ),
+                      ))),
                 ),
               ),
 
