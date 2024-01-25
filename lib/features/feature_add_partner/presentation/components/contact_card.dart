@@ -34,7 +34,7 @@ class ContactCard extends StatelessWidget {
           height: 90,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-              color: isPartner || isSelected || isRequested
+              color: isSelected || isRequested
                   ? Theme.of(context).scaffoldBackgroundColor
                   : Theme.of(context).primaryColorLight,
               borderRadius: BorderRadius.circular(24)),
@@ -43,11 +43,11 @@ class ContactCard extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                padding: isPartner || isSelected || isRequested
+                padding: isSelected || isRequested
                     ? const EdgeInsets.symmetric(horizontal: 16)
                     : EdgeInsets.zero,
                 decoration: BoxDecoration(
-                    color: isPartner || isSelected || isRequested
+                    color: isSelected || isRequested
                         ? Theme.of(context).scaffoldBackgroundColor
                         : Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(24)),
@@ -58,8 +58,8 @@ class ContactCard extends StatelessWidget {
                     //  profile pic
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 350),
-                      width: isPartner || isSelected || isRequested ? 65 : 60,
-                      height: isPartner || isSelected || isRequested ? 65 : 60,
+                      width: isSelected || isRequested ? 65 : 60,
+                      height: isSelected || isRequested ? 65 : 60,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         color: Theme.of(context).scaffoldBackgroundColor,
@@ -117,38 +117,61 @@ class ContactCard extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                contact.phones.isEmpty
-                                    ? 'No contact'
-                                    : contact.phones[0].number,
-                                style: TextStyle(
-                                    fontSize: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .fontSize,
-                                    fontWeight: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .fontWeight,
-                                    color: isOkoaUser
-                                        ? Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .color
-                                        : Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .color!
-                                            .withOpacity(0.3)),
+                              Expanded(
+                                child: Text(
+                                  contact.phones.isEmpty
+                                      ? 'No contact'
+                                      : contact.phones[0].number,
+                                  style: TextStyle(
+                                      fontSize: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .fontSize,
+                                      fontWeight: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall!
+                                          .fontWeight,
+                                      color: isOkoaUser
+                                          ? Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .color
+                                          : Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .color!
+                                              .withOpacity(0.3)),
+                                ),
                               ),
                               Visibility(
-                                  visible: isRequested || isPartner,
+                                visible: isPartner,
+                                child: TextButton(
+                                    onPressed: () {},
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "Partner",
+                                          style: TextStyle(
+                                              fontSize: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .fontSize,
+                                              fontWeight: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .fontWeight,
+                                              color: Theme.of(context)
+                                                  .primaryColor),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Icon(Icons.open_in_new_rounded, color: Theme.of(context).primaryColor,)
+                                      ],
+                                    )),
+                              ),
+                              Visibility(
+                                  visible: isRequested,
                                   child: Text(
-                                    isRequested
-                                        ? "Pending"
-                                        : isPartner
-                                            ? "Partner"
-                                            : "",
+                                    "Pending",
                                     style: TextStyle(
                                         fontSize: Theme.of(context)
                                             .textTheme
@@ -158,11 +181,7 @@ class ContactCard extends StatelessWidget {
                                             .textTheme
                                             .bodySmall!
                                             .fontWeight,
-                                        color: isRequested
-                                            ? sosOrange
-                                            : isPartner
-                                                ? Theme.of(context).primaryColor
-                                                : Colors.transparent),
+                                        color: sosOrange),
                                   )),
                               Visibility(
                                 visible: !isOkoaUser,
