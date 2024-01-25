@@ -19,7 +19,7 @@ class _HomePartnerBottomSheetState extends State<HomePartnerBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height * 0.85,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
