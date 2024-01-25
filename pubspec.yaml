@@ -93,6 +93,7 @@ flutter:
   assets:
     - assets/images/
     - assets/lottie/
+    - assets/json/map_styles/
 
   fonts:
     - family: DMSans

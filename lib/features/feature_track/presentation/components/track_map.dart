@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
@@ -40,6 +41,8 @@ class _TrackMapState extends State<TrackMap> {
     _trackController = Get.find<TrackController>();
     _coreController = Get.find<CoreController>();
     _googleMapController = Completer<GoogleMapController>();
+
+    _loadMapStyles();
 
     ever(_coreController.okoaUser, (user) {
       if (user != null) {
@@ -84,6 +87,15 @@ class _TrackMapState extends State<TrackMap> {
                     currentLocation.latitude!, currentLocation.longitude!))));
       }
     });
+  }
+
+  Future _loadMapStyles() async {
+    final darkMapStyle = await rootBundle
+        .loadString('assets/json/map_styles/dark_mode_style.json');
+
+    final GoogleMapController myController = await _googleMapController.future;
+
+    myController.setMapStyle(darkMapStyle);
   }
 
   @override

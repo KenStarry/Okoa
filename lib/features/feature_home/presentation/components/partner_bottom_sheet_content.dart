@@ -1,4 +1,3 @@
-import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -56,9 +55,12 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                   child: Stack(
                     children: [
                       Center(
-                        child: Avatar(
-                            avatarUrl: widget.partner.avatarUrl,
-                            size: const Size(140, 140)),
+                        child: Hero(
+                          tag: 'partner_avatar',
+                          child: Avatar(
+                              avatarUrl: widget.partner.avatarUrl,
+                              size: const Size(140, 140)),
+                        ),
                       ),
 
                       //  is user safe
@@ -97,6 +99,8 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                     ],
                   )),
 
+              const SizedBox(height: 8),
+
               //  user name
               Obx(
                 () {
@@ -106,28 +110,31 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                       : null;
 
                   return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                          widget.partner.userName ==
-                                  _coreController.okoaUser.value!.userName
-                              ? "${widget.partner.userName} (Me)"
-                              : contact != null
-                                  ? contact.displayName
-                                  : widget.partner.userName,
-                          style: TextStyle(
-                            fontSize: Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .fontSize,
-                            fontWeight: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .fontWeight,
-                            color:
-                                Theme.of(context).textTheme.titleSmall!.color,
-                          )),
+                      Hero(
+                        tag: 'partner_name',
+                        child: Text(
+                            widget.partner.userName ==
+                                    _coreController.okoaUser.value!.userName
+                                ? "${widget.partner.userName} (Me)"
+                                : contact != null
+                                    ? contact.displayName
+                                    : widget.partner.userName,
+                            style: TextStyle(
+                              fontSize: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .fontSize,
+                              fontWeight: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .fontWeight,
+                              color:
+                                  Theme.of(context).textTheme.titleSmall!.color,
+                            )),
+                      ),
 
                       const SizedBox(height: 8),
 
@@ -142,7 +149,7 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                                 .map((phone) => phone.number)
                                 .toList()[0]
                             : widget.partner.phone,
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       )
                     ],
                   );
