@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/avatar.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
+import 'package:okoa/core/presentation/components/open_bottom_sheet.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_partner_card_action_btn.dart';
 import 'package:okoa/features/feature_home/presentation/components/partner_bottom_sheet.dart';
 
@@ -51,9 +52,9 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
       child: InkWell(
         onTap: currentUser != null
             ? () {
-                //  open partner bottomsheet
-                Get.bottomSheet(HomePartnerBottomSheet(partner: currentUser!),
-                    backgroundColor: Colors.transparent, elevation: 0);
+                openBottomSheet(
+                    content: HomePartnerBottomSheet(partner: currentUser!),
+                    onComplete: () {});
               }
             : null,
         child: Container(

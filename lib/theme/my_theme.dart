@@ -31,6 +31,16 @@ class MyTheme {
           suffixIconColor: textBlack300,
           focusedBorder:
               UnderlineInputBorder(borderSide: BorderSide(color: accent))),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: bgColorLightMode,
+        elevation: 0,
+        dragHandleColor: textBlack500,
+        showDragHandle: true,
+        surfaceTintColor: bgColorLightMode,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(24), topRight: Radius.circular(24))),
+      ),
       useMaterial3: true,
       fontFamily: 'DMSans',
       textTheme: const TextTheme(
@@ -70,6 +80,16 @@ class MyTheme {
           suffixIconColor: textWhite300,
           focusedBorder:
               UnderlineInputBorder(borderSide: BorderSide(color: accent))),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: bgColorDarkMode,
+        elevation: 0,
+        dragHandleColor: textWhite500,
+        showDragHandle: true,
+        surfaceTintColor: bgColorDarkMode,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(24), topRight: Radius.circular(24))),
+      ),
       useMaterial3: true,
       fontFamily: 'DMSans',
       textTheme: const TextTheme(
