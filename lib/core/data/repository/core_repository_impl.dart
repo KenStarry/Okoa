@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:isolate';
 
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:okoa/core/data/isolates/core_repository_isolates.dart';
 import 'package:okoa/core/domain/repository/core_repository.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
