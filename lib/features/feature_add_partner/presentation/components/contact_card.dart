@@ -34,7 +34,7 @@ class ContactCard extends StatelessWidget {
           height: 90,
           margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-              color: isSelected || isRequested
+              color: isPartner || isSelected || isRequested
                   ? Theme.of(context).scaffoldBackgroundColor
                   : Theme.of(context).primaryColorLight,
               borderRadius: BorderRadius.circular(24)),
@@ -43,11 +43,11 @@ class ContactCard extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: double.infinity,
-                padding: isSelected || isRequested
+                padding: isPartner || isSelected || isRequested
                     ? const EdgeInsets.symmetric(horizontal: 16)
                     : EdgeInsets.zero,
                 decoration: BoxDecoration(
-                    color: isSelected || isRequested
+                    color: isPartner || isSelected || isRequested
                         ? Theme.of(context).scaffoldBackgroundColor
                         : Theme.of(context).primaryColorLight,
                     borderRadius: BorderRadius.circular(24)),
@@ -58,8 +58,8 @@ class ContactCard extends StatelessWidget {
                     //  profile pic
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 350),
-                      width: isSelected || isRequested ? 65 : 60,
-                      height: isSelected || isRequested ? 65 : 60,
+                      width: isPartner || isSelected || isRequested ? 65 : 60,
+                      height: isPartner || isSelected || isRequested ? 65 : 60,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
                         color: Theme.of(context).scaffoldBackgroundColor,
