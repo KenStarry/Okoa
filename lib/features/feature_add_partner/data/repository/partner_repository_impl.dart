@@ -160,7 +160,7 @@ class PartnerRepositoryImpl extends PartnerRepository {
                     .toList();
 
             final sentRequestsList =
-                (receivedRequests['sent_requests'] as List? ?? [])
+                (sentRequests['sent_requests'] as List? ?? [])
                     .map((request) => OkoaPartner.fromJson(request))
                     .toList();
 
