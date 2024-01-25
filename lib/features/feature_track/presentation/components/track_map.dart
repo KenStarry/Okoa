@@ -91,7 +91,7 @@ class _TrackMapState extends State<TrackMap> {
 
   Future _loadMapStyles() async {
     final darkMapStyle = await rootBundle
-        .loadString('assets/json/map_styles/dark_mode_style.json');
+        .loadString('assets/json/map_styles/dark_mode_style_1.json');
 
     final GoogleMapController myController = await _googleMapController.future;
 
