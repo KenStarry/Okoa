@@ -19,7 +19,7 @@ class _HomePartnerBottomSheetState extends State<HomePartnerBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.75,
+      height: MediaQuery.of(context).size.height,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
@@ -33,7 +33,7 @@ class _HomePartnerBottomSheetState extends State<HomePartnerBottomSheet> {
           //  actions
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               //  call
               HomePartnerCardActionBtn(
@@ -57,6 +57,7 @@ class _HomePartnerBottomSheetState extends State<HomePartnerBottomSheet> {
                   child: Container(
                       width: 80,
                       height: 80,
+                      margin: const EdgeInsets.symmetric(vertical: 16),
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: sosRed,

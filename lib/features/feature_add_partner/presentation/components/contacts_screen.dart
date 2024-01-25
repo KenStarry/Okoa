@@ -162,7 +162,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
                     const SizedBox(height: 16),
                     Obx(() {
                       final allUsers = _coreController.okoaUsers.value;
-                      List<Contact>? originalContacts = <Contact>[..._partnerController.contacts.value ?? []];
+                      List<Contact>? originalContacts = <Contact>[
+                        ..._partnerController.contacts.value ?? []
+                      ];
                       List<Contact> contactsOnOkoa = <Contact>[];
                       List<Contact> rearrangedContactsOnOkoa = <Contact>[];
 
@@ -190,8 +192,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                               c.displayName == contact.displayName);
                         }
 
-                        rearrangedContactsOnOkoa
-                            .addAll(originalContacts);
+                        rearrangedContactsOnOkoa.addAll(originalContacts);
                       }
 
                       return _partnerController.contacts.value == null
@@ -240,6 +241,10 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                           contactUserImage:
                                               currentUser?.avatarUrl ?? '',
                                           isOkoaUser: currentUser != null,
+                                          isPartner: currentUser != null &&
+                                              _coreController
+                                                  .okoaUser.value!.partners
+                                                  .contains(currentUser.userId),
                                           isSelected: _partnerController
                                               .selectedPartners
                                               .map((partner) =>

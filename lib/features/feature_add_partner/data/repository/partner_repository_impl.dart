@@ -148,23 +148,49 @@ class PartnerRepositoryImpl extends PartnerRepository {
                 .eq('id', receiverId)
                 .single();
 
-            final requestsList =
+            final sentRequests = await supabase
+                .from('users')
+                .select('sent_requests')
+                .eq('id', senderId)
+                .single();
+
+            final receivedRequestsList =
                 (receivedRequests['received_requests'] as List? ?? [])
                     .map((request) => OkoaPartner.fromJson(request))
                     .toList();
 
+            final sentRequestsList =
+                (receivedRequests['sent_requests'] as List? ?? [])
+                    .map((request) => OkoaPartner.fromJson(request))
+                    .toList();
+
             final requestIds =
-                [...requestsList].map((partner) => partner.senderId);
+                [...receivedRequestsList].map((partner) => partner.senderId);
+
+            final sentIds =
+                [...sentRequestsList].map((partner) => partner.receiverId);
 
             if (requestIds.contains(senderId)) {
-              requestsList
+              receivedRequestsList
                   .removeWhere((partner) => partner.senderId == senderId);
+            }
+
+            if (sentIds.contains(receiverId)) {
+              sentRequestsList
+                  .removeWhere((partner) => partner.receiverId == receiverId);
             }
 
             //  update the received requests list
             await supabase.from('users').update({
-              'received_requests': requestsList.map((r) => r.toJson()).toList()
+              'received_requests':
+                  receivedRequestsList.map((r) => r.toJson()).toList()
             }).eq('id', receiverId);
+
+            //  update the sent requests list
+            await supabase.from('users').update({
+              'sent_requests':
+                  receivedRequestsList.map((r) => r.toJson()).toList()
+            }).eq('id', senderId);
           });
 
       await supabase

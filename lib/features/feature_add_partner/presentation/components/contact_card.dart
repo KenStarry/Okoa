@@ -7,6 +7,7 @@ class ContactCard extends StatelessWidget {
   final Contact contact;
   final String contactUserImage;
   final bool isOkoaUser;
+  final bool isPartner;
   final bool isSelected;
   final bool isRequested;
   final VoidCallback onTap;
@@ -17,6 +18,7 @@ class ContactCard extends StatelessWidget {
       required this.contact,
       required this.contactUserImage,
       required this.isOkoaUser,
+      required this.isPartner,
       required this.isSelected,
       required this.isRequested,
       required this.onTap,
@@ -140,9 +142,13 @@ class ContactCard extends StatelessWidget {
                                             .withOpacity(0.3)),
                               ),
                               Visibility(
-                                  visible: isRequested,
+                                  visible: isRequested || isPartner,
                                   child: Text(
-                                    "Pending",
+                                    isRequested
+                                        ? "Pending"
+                                        : isPartner
+                                            ? "Partner"
+                                            : "",
                                     style: TextStyle(
                                         fontSize: Theme.of(context)
                                             .textTheme
@@ -152,7 +158,11 @@ class ContactCard extends StatelessWidget {
                                             .textTheme
                                             .bodySmall!
                                             .fontWeight,
-                                        color: sosOrange),
+                                        color: isRequested
+                                            ? sosOrange
+                                            : isPartner
+                                                ? Theme.of(context).primaryColor
+                                                : Colors.transparent),
                                   )),
                               Visibility(
                                 visible: !isOkoaUser,
