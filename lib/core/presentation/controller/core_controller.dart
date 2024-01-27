@@ -35,6 +35,9 @@ class CoreController extends GetxController {
             uid: authController.getAuthUser()!.id,
             onGetUserData: (user) {
               setOkoaUserData(okoaUser: user);
+
+              //  retrive partner details
+              getPartnerDetails(partnerIds: user.partners);
             });
       }
     });

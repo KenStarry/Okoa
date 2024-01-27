@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -70,7 +71,8 @@ class _TrackMapState extends State<TrackMap> {
             sourceLocation: LatLng(
                 _trackController.currentLocation.value?.latitude! ?? 0.0,
                 _trackController.currentLocation.value?.longitude! ?? 0.0),
-            destination: destination);
+            destination: LatLng(okoaPartners.entries.toList()[1].value.latitude,
+                okoaPartners.entries.toList()[1].value.longitude));
       });
     });
 
@@ -145,7 +147,8 @@ class _TrackMapState extends State<TrackMap> {
                                                     .primaryColor,
                                                 startCap: Cap.roundCap,
                                                 endCap: Cap.roundCap,
-                                                width: 5,
+                                                jointType: JointType.mitered,
+                                                width: 4,
                                                 points: _trackController
                                                     .polylineCoordinates)
                                           }
