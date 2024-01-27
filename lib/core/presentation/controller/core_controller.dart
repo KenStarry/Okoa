@@ -4,12 +4,14 @@ import 'package:okoa/core/domain/model/sos_state.dart';
 import 'package:okoa/core/domain/use_case/core_use_cases.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
+import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
 import 'package:okoa/theme/colors.dart';
 
 import '../../domain/model/response_state.dart';
 
 class CoreController extends GetxController {
   final useCase = locator.get<CoreUseCases>();
+  final authController = Get.find<AuthController>();
 
   /// User Data
   final okoaUser = Rxn<OkoaUser>();
@@ -27,6 +29,14 @@ class CoreController extends GetxController {
 
     listenToInternetStatus(onStatusChanged: (status) {
       hasInternet.value = status == InternetConnectionStatus.connected;
+
+      if (status == InternetConnectionStatus.connected) {
+        listenToUserDataonDB(
+            uid: authController.getAuthUser()!.id,
+            onGetUserData: (user) {
+              setOkoaUserData(okoaUser: user);
+            });
+      }
     });
 
     //  toggle SOS State
@@ -52,7 +62,8 @@ class CoreController extends GetxController {
     });
   }
 
-  void updateCurrentDateTime({required DateTime date}) => currentDateTime.value = date;
+  void updateCurrentDateTime({required DateTime date}) =>
+      currentDateTime.value = date;
 
   void setOkoaUserData({required OkoaUser okoaUser}) =>
       this.okoaUser.value = okoaUser;
@@ -74,7 +85,9 @@ class CoreController extends GetxController {
           .call(uid: uid, onGetUserData: onGetUserData);
 
   void getPartnerDetails({required List<String> partnerIds}) {
-    var partnerData = <String, OkoaUser>{okoaUser.value!.userId.toString(): okoaUser.value!};
+    var partnerData = <String, OkoaUser>{
+      okoaUser.value!.userId.toString(): okoaUser.value!
+    };
 
     for (String id in partnerIds) {
       //  get data from the DB
