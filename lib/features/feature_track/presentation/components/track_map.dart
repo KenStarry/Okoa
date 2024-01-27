@@ -42,7 +42,9 @@ class _TrackMapState extends State<TrackMap> {
     _coreController = Get.find<CoreController>();
     _googleMapController = Completer<GoogleMapController>();
 
-    _loadMapStyles();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadMapStyles();
+    });
 
     ever(_coreController.okoaUser, (user) {
       if (user != null) {
@@ -90,8 +92,8 @@ class _TrackMapState extends State<TrackMap> {
   }
 
   Future _loadMapStyles() async {
-    final darkMapStyle = await rootBundle
-        .loadString('assets/json/map_styles/light_mode_style_1.json');
+    final darkMapStyle = await rootBundle.loadString(
+        'assets/json/map_styles/${context.isDarkMode ? 'dark' : 'light'}_mode_style_3.json');
 
     final GoogleMapController myController = await _googleMapController.future;
 
