@@ -46,9 +46,9 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                   height: 150,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: _coreController.sosState.value == SosState.safe
+                    color: widget.partner.sosState == SosState.safe.toString()
                         ? Theme.of(context).primaryColor
-                        : _coreController.sosState.value == SosState.warning
+                        : widget.partner.sosState == SosState.warning.toString()
                             ? sosOrange
                             : sosRed,
                   ),
@@ -71,25 +71,26 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                             height: 50,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context).primaryColor,
+                                color: widget.partner.sosState ==
+                                        SosState.safe.toString()
+                                    ? Theme.of(context).primaryColor
+                                    : widget.partner.sosState ==
+                                            SosState.warning.toString()
+                                        ? sosOrange
+                                        : sosRed,
                                 border: Border.all(
                                     color: Theme.of(context)
                                         .scaffoldBackgroundColor,
                                     width: 5,
-                                    strokeAlign: BorderSide.strokeAlignOutside),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 10,
-                                      spreadRadius: 5)
-                                ]),
+                                    strokeAlign:
+                                        BorderSide.strokeAlignOutside)),
                             child: Center(
                               child: Icon(
-                                  _coreController.sosState.value ==
-                                          SosState.safe
+                                  widget.partner.sosState ==
+                                          SosState.safe.toString()
                                       ? Icons.gpp_good_rounded
-                                      : _coreController.sosState.value ==
-                                              SosState.warning
+                                      : widget.partner.sosState ==
+                                              SosState.warning.toString()
                                           ? Icons.gpp_maybe_rounded
                                           : Icons.gpp_bad_rounded,
                                   size: 32,
@@ -106,7 +107,7 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                 () {
                   final contact = _partnerController.contacts.value != null
                       ? _partnerController.getUserContactDetails(
-                          phoneNumber: widget.partner.phone ?? '')
+                          phoneNumber: widget.partner.phone)
                       : null;
 
                   return Column(

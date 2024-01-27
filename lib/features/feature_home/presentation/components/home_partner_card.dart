@@ -10,6 +10,7 @@ import 'package:okoa/features/feature_home/presentation/components/partner_botto
 
 import '../../../../core/domain/model/sos_state.dart';
 import '../../../../core/presentation/controller/core_controller.dart';
+import '../../../../theme/colors.dart';
 import '../../../feature_add_partner/presentation/controller/partner_controller.dart';
 import '../../../feature_auth/domain/model/okoa_user.dart';
 
@@ -211,7 +212,13 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                           glowShape: BoxShape.circle,
                           glowCount: 2,
                           glowRadiusFactor: 0.3,
-                          glowColor: Theme.of(context).primaryColor,
+                          glowColor:
+                              currentUser?.sosState == SosState.safe.toString()
+                                  ? Theme.of(context).primaryColor
+                                  : currentUser?.sosState ==
+                                          SosState.warning.toString()
+                                      ? sosOrange
+                                      : sosRed,
                           child: GestureDetector(
                             onTap: () {
                               //  open SOS bottomsheet
@@ -221,7 +228,13 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                                 height: 50,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Theme.of(context).primaryColor,
+                                    color: currentUser?.sosState ==
+                                            SosState.safe.toString()
+                                        ? Theme.of(context).primaryColor
+                                        : currentUser?.sosState ==
+                                                SosState.warning.toString()
+                                            ? sosOrange
+                                            : sosRed,
                                     boxShadow: [
                                       BoxShadow(
                                           color: Colors.black.withOpacity(0.1),
@@ -233,12 +246,12 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                                     //  logo to represent current status
                                     Center(
                                       child: Icon(
-                                          _coreController.sosState.value ==
-                                                  SosState.safe
+                                          currentUser?.sosState ==
+                                                  SosState.safe.toString()
                                               ? Icons.gpp_good_rounded
-                                              : _coreController
-                                                          .sosState.value ==
+                                              : currentUser?.sosState ==
                                                       SosState.warning
+                                                          .toString()
                                                   ? Icons.gpp_maybe_rounded
                                                   : Icons.gpp_bad_rounded,
                                           size: 32,
