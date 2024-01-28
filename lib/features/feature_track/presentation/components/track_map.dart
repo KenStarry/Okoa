@@ -1,22 +1,16 @@
 import 'dart:async';
-import 'dart:ffi';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
-import 'package:okoa/core/data/api/api.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_track/presentation/components/custom_user_marker.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_map_content.dart';
 import 'package:okoa/features/feature_track/presentation/controller/track_controller.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 class TrackMap extends StatefulWidget {
   const TrackMap({super.key});
@@ -95,7 +89,7 @@ class _TrackMapState extends State<TrackMap> {
 
   Future _loadMapStyles() async {
     final darkMapStyle = await rootBundle.loadString(
-        'assets/json/map_styles/${context.isDarkMode ? 'dark' : 'light'}_mode_style_3.json');
+        'assets/json/map_styles/${Get.isDarkMode ? 'dark' : 'light'}_mode_style_3.json');
 
     final GoogleMapController myController = await _googleMapController.future;
 
