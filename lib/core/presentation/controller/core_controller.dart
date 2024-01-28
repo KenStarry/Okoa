@@ -17,6 +17,7 @@ class CoreController extends GetxController {
   final okoaUser = Rxn<OkoaUser>();
   final okoaUsers = Rxn<List<OkoaUser>>();
   final partnerDetails = <String, OkoaUser>{}.obs;
+  final partnerSosStates = <String>[].obs;
 
   final hasInternet = false.obs;
   final currentDateTime = DateTime.now().obs;
@@ -44,7 +45,7 @@ class CoreController extends GetxController {
 
     //  toggle SOS State
     ever(partnerDetails, (partners) {
-      final partnerSosStates = partners.values
+      partnerSosStates.value = partners.values
           .toList()
           .map((partner) => partner.sos.sosState)
           .toList();

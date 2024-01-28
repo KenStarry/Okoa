@@ -6,7 +6,10 @@ import 'package:okoa/core/domain/model/sos.dart';
 import 'package:okoa/core/domain/model/sos_state.dart';
 import 'package:okoa/core/presentation/components/open_bottom_sheet.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
+import 'package:okoa/features/feature_home/presentation/components/sos_partner_content.dart';
+import 'package:okoa/features/feature_home/presentation/components/sos_personal_content.dart';
 import 'package:okoa/features/feature_home/presentation/components/sos_quick_actions.dart';
+import 'package:okoa/features/feature_home/presentation/components/sos_safe_content.dart';
 import 'package:okoa/features/feature_home/presentation/utils/home_constants.dart';
 import 'package:okoa/theme/colors.dart';
 
@@ -55,7 +58,14 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
               child: GestureDetector(
                 onTap: () {
                   //  open SOS bottomsheet
-                  openBottomSheet(content: content, onComplete: (){});
+                  openBottomSheet(
+                      content: _coreController.okoaUser.value!.sos.sosState ==
+                              SosState.sos.toString()
+                          ? const SosPersonal()
+                          : _coreController.partnerSosStates.isNotEmpty
+                              ? const SosPartnerContent()
+                              : const SosSafeContent(),
+                      onComplete: () {});
                 },
                 onLongPress: () async {
                   //  change SOS Status to sos
