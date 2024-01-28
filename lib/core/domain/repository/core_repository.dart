@@ -29,5 +29,5 @@ abstract class CoreRepository {
       {required Function(InternetConnectionStatus status) onStatusChanged});
 
   /// Encrypt Data
-  dynamic encryptData({required dynamic data});
+  dynamic encryptAES({required dynamic data, required String key});
 }

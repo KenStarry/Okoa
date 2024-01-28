@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:encrypt/encrypt.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:okoa/core/data/isolates/core_repository_isolates.dart';
 import 'package:okoa/core/domain/repository/core_repository.dart';
@@ -78,5 +79,18 @@ class CoreRepositoryimpl extends CoreRepository {
 
           onGetUserData(OkoaUser.fromJson(userDataJson));
         });
+  }
+
+  @override
+  encryptAES({required data, required String key}) {
+    final encryptionKey = Key.fromUtf8(key);
+    final iv = IV.fromLength(16);
+    final encrypter = Encrypter(AES(encryptionKey));
+
+    final encryptedData = encrypter.encrypt(data, iv: iv);
+
+    print("--------------ENCRYPTED DATA : ${encryptedData}");
+
+    return encryptedData;
   }
 }
