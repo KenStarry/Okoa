@@ -10,6 +10,10 @@ class SosPartnerContent extends StatefulWidget {
 class _SosPartnerContentState extends State<SosPartnerContent> {
   @override
   Widget build(BuildContext context) {
-    return Text("Partner SOS implementation");
+    return Container(
+      width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.8,
+      color: Theme.of(context).scaffoldBackgroundColor,
+    );
   }
 }
