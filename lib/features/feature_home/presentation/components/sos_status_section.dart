@@ -2,6 +2,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:okoa/core/domain/model/sos.dart';
 import 'package:okoa/core/domain/model/sos_state.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
 import 'package:okoa/features/feature_home/presentation/components/sos_quick_actions.dart';
@@ -55,9 +56,13 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                   //  open SOS bottomsheet
                   Get.bottomSheet(Text("Hello"));
                 },
-                onLongPress: (){
+                onLongPress: () async {
                   //  change SOS Status to sos
-                  print("HELLO");
+                  await _coreController.updateUserDataOnDB(data: {
+                    'sos': SOS(
+                        sosState: SosState.sos.toString(),
+                        sosDate: DateTime.now().toString()),
+                  }, onResponse: (state) {});
                 },
                 child: Container(
                     width: 180,
