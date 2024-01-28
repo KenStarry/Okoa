@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:okoa/core/data/repository/core_repository_impl.dart';
 import 'package:okoa/core/domain/repository/core_repository.dart';
 import 'package:okoa/core/domain/use_case/core_use_cases.dart';
+import 'package:okoa/core/domain/use_case/encryot_aes.dart';
 import 'package:okoa/core/domain/use_case/get_all_users_from_db.dart';
 import 'package:okoa/core/domain/use_case/get_user_data_from_db.dart';
 import 'package:okoa/core/domain/use_case/listen_to_internet_status.dart';
@@ -22,5 +23,6 @@ void coreDI({required GetIt locator}) {
       getUserDataFromDB: GetUserDataFromDB(),
       updateUserDataOnDB: UpdateUserDataOnDB(),
       listenToUserDataOnDB: ListenToUserDataOnDB(),
-      listenToInternetStatus: ListenToInternetStatus()));
+      listenToInternetStatus: ListenToInternetStatus(),
+      encryptAES: EncryptAES()));
 }

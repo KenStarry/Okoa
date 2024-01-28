@@ -124,4 +124,7 @@ class CoreController extends GetxController {
           {required String uid,
           required Function(OkoaUser okoaUser) onGetUserData}) =>
       useCase.listenToUserDataOnDB.call(uid: uid, onGetUserData: onGetUserData);
+
+  encryptAES({required data, required String key}) =>
+      useCase.encryptAES.call(data: data, key: key);
 }
