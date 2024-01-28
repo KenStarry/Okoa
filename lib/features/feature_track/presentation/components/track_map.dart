@@ -157,7 +157,10 @@ class _TrackMapState extends State<TrackMap> {
                                         .map((data) => Marker(
                                             markerId: MarkerId(data['id']),
                                             icon: _trackController
-                                                .markerIcons[data['id']]!,
+                                                    .markerIcons.isEmpty
+                                                ? BitmapDescriptor.defaultMarker
+                                                : _trackController
+                                                    .markerIcons[data['id']]!,
                                             position: LatLng(data['latitude'],
                                                 data['longitude'])))
                                         .toSet()),

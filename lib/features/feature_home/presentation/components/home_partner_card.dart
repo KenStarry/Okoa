@@ -214,7 +214,7 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                           glowRadiusFactor: 0.3,
                           glowColor:
                               currentUser?.sos.sosState == SosState.safe.toString()
-                                  ? Theme.of(context).primaryColor
+                                  ? accent
                                   : currentUser?.sos.sosState ==
                                           SosState.warning.toString()
                                       ? sosOrange
@@ -230,7 +230,7 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                                     shape: BoxShape.circle,
                                     color: currentUser?.sos.sosState ==
                                             SosState.safe.toString()
-                                        ? Theme.of(context).primaryColor
+                                        ? accent
                                         : currentUser?.sos.sosState ==
                                                 SosState.warning.toString()
                                             ? sosOrange
@@ -255,7 +255,7 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                                                   ? Icons.gpp_maybe_rounded
                                                   : Icons.gpp_bad_rounded,
                                           size: 32,
-                                          color: Colors.black),
+                                          color: Colors.white),
                                     ),
                                   ],
                                 )),

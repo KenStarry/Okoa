@@ -42,12 +42,12 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
           Column(
             children: [
               Container(
-                  width: 150,
-                  height: 150,
+                  width: 140,
+                  height: 140,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: widget.partner.sos.sosState == SosState.safe.toString()
-                        ? Theme.of(context).primaryColor
+                        ? Theme.of(context).scaffoldBackgroundColor
                         : widget.partner.sos.sosState == SosState.warning.toString()
                             ? sosOrange
                             : sosRed,
@@ -73,7 +73,7 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                                 shape: BoxShape.circle,
                                 color: widget.partner.sos.sosState ==
                                         SosState.safe.toString()
-                                    ? Theme.of(context).primaryColor
+                                    ? accent
                                     : widget.partner.sos.sosState ==
                                             SosState.warning.toString()
                                         ? sosOrange
@@ -94,7 +94,7 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                                           ? Icons.gpp_maybe_rounded
                                           : Icons.gpp_bad_rounded,
                                   size: 32,
-                                  color: Colors.black),
+                                  color: Colors.white),
                             )),
                       )
                     ],
