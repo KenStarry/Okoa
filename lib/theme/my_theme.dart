@@ -12,7 +12,7 @@ class MyTheme {
   /// Light Theme
   ThemeData get lightTheme => ThemeData(
       primaryColor: accent,
-      primaryColorLight: generateMaterialColor(accent).shade50,
+      primaryColorLight: bgColorLightModeAlt, // generateMaterialColor(accent).shade50
       primarySwatch: generateMaterialColor(accent),
       scaffoldBackgroundColor: bgColorLightMode,
       iconTheme: const IconThemeData(color: textBlack300),
@@ -37,6 +37,7 @@ class MyTheme {
         dragHandleColor: textBlack500,
         showDragHandle: true,
         surfaceTintColor: bgColorLightMode,
+        modalBackgroundColor: bgColorLightMode,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(24), topRight: Radius.circular(24))),
@@ -86,6 +87,7 @@ class MyTheme {
         dragHandleColor: textWhite500,
         showDragHandle: true,
         surfaceTintColor: bgColorDarkMode,
+        modalBackgroundColor: bgColorDarkMode,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(24), topRight: Radius.circular(24))),

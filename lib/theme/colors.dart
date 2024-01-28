@@ -7,6 +7,7 @@ const backgroundDark = Color(0xff071423);
 
 /// Light Mode Colors
 const bgColorLightMode = Color(0xFFFFFFFF);
+const bgColorLightModeAlt = Color(0xFFF8F9FF);
 const textBlack900 = Color(0xFF000000);
 const textBlack700 = Color(0xFF171717);
 const textBlack500 = Color(0xFF353535);
