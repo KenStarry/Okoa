@@ -17,8 +17,6 @@ class CoreController extends GetxController {
   final okoaUser = Rxn<OkoaUser>();
   final okoaUsers = Rxn<List<OkoaUser>>();
   final partnerDetails = <String, OkoaUser>{}.obs;
-  var partnersWithWarnings = [].obs;
-  var partnersWithSos = [].obs;
 
   final hasInternet = false.obs;
   final currentDateTime = DateTime.now().obs;
@@ -45,11 +43,16 @@ class CoreController extends GetxController {
     });
 
     //  toggle SOS State
-    ever(okoaUser, (user) {
-      if (user != null) {
-        sosState.value = SosState.values
-            .firstWhere((state) => state.toString() == user.sosState);
-      }
+    ever(partnerDetails, (partners) {
+      final partnerSosStates =
+          partners.values.toList().map((partner) => partner.sosState).toList();
+
+      sosState.value = partners.isNotEmpty &&
+              partnerSosStates.contains(SosState.sos.toString())
+          ? SosState.sos
+          : partnerSosStates.contains(SosState.warning.toString())
+              ? SosState.warning
+              : SosState.safe;
     });
 
     //  toggle SOS Color
@@ -101,20 +104,9 @@ class CoreController extends GetxController {
           uid: id,
           onGetUserData: (user) {
             partnerData[id] = user;
-
             partnerDetails.value = partnerData;
-
-            if (user.sosState == SosState.warning.toString()) {
-              partnersWithWarnings.add(user.userId);
-            }
-
-            if (user.sosState == SosState.sos.toString()) {
-              partnersWithSos.add(user.userId);
-            }
           });
     }
-
-    print("THOSE WITH SOS---------------------------${partnersWithSos}");
   }
 
   //  update user data
