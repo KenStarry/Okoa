@@ -8,8 +8,8 @@ part 'sos.g.dart';
 class SOS with _$SOS {
   @JsonSerializable(explicitToJson: true)
   const factory SOS({
-    @JsonKey(name: 'sos_state') @Default('SosState.safe') String sosState,
-    @JsonKey(name: 'sos_date') @Default('') String sosDate,
+    @JsonKey(name: 'sosState') @Default('SosState.safe') String sosState,
+    @JsonKey(name: 'sosDate') @Default('') String sosDate,
   }) = _SOS;
 
   factory SOS.fromJson(Map<String, dynamic> json) => _$SOSFromJson(json);

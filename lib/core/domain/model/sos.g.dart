@@ -7,11 +7,11 @@ part of 'sos.dart';
 // **************************************************************************
 
 _$SOSImpl _$$SOSImplFromJson(Map<String, dynamic> json) => _$SOSImpl(
-      sosState: json['sos_state'] as String? ?? 'SosState.safe',
-      sosDate: json['sos_date'] as String? ?? '',
+      sosState: json['sosState'] as String? ?? 'SosState.safe',
+      sosDate: json['sosDate'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$SOSImplToJson(_$SOSImpl instance) => <String, dynamic>{
-      'sos_state': instance.sosState,
-      'sos_date': instance.sosDate,
+      'sosState': instance.sosState,
+      'sosDate': instance.sosDate,
     };

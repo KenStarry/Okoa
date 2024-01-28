@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:okoa/core/domain/model/sos.dart';
 import 'package:okoa/features/feature_add_partner/domain/model/okoa_partner.dart';
 
 part 'okoa_user.freezed.dart';
@@ -22,7 +23,9 @@ class OkoaUser with _$OkoaUser {
     @Default([])
     List<OkoaPartner> receivedRequests,
     @JsonKey(name: 'partners') @Default([]) List<String> partners,
-    @JsonKey(name: 'sos_state') @Default('SosState.safe') String sosState,
+    @JsonKey(name: 'sos')
+    @Default(SOS(sosState: 'SosState.safe', sosDate: '2024-01-28'))
+    SOS sos,
   }) = _OkoaUser;
 
   factory OkoaUser.fromJson(Map<String, dynamic> json) =>

@@ -46,9 +46,9 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                   height: 150,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: widget.partner.sosState == SosState.safe.toString()
+                    color: widget.partner.sos.sosState == SosState.safe.toString()
                         ? Theme.of(context).primaryColor
-                        : widget.partner.sosState == SosState.warning.toString()
+                        : widget.partner.sos.sosState == SosState.warning.toString()
                             ? sosOrange
                             : sosRed,
                   ),
@@ -71,10 +71,10 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                             height: 50,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: widget.partner.sosState ==
+                                color: widget.partner.sos.sosState ==
                                         SosState.safe.toString()
                                     ? Theme.of(context).primaryColor
-                                    : widget.partner.sosState ==
+                                    : widget.partner.sos.sosState ==
                                             SosState.warning.toString()
                                         ? sosOrange
                                         : sosRed,
@@ -86,10 +86,10 @@ class _PartnerBottomSheetContentState extends State<PartnerBottomSheetContent> {
                                         BorderSide.strokeAlignOutside)),
                             child: Center(
                               child: Icon(
-                                  widget.partner.sosState ==
+                                  widget.partner.sos.sosState ==
                                           SosState.safe.toString()
                                       ? Icons.gpp_good_rounded
-                                      : widget.partner.sosState ==
+                                      : widget.partner.sos.sosState ==
                                               SosState.warning.toString()
                                           ? Icons.gpp_maybe_rounded
                                           : Icons.gpp_bad_rounded,

@@ -20,9 +20,9 @@ SOS _$SOSFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SOS {
-  @JsonKey(name: 'sos_state')
+  @JsonKey(name: 'sosState')
   String get sosState => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sos_date')
+  @JsonKey(name: 'sosDate')
   String get sosDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,8 +36,8 @@ abstract class $SOSCopyWith<$Res> {
       _$SOSCopyWithImpl<$Res, SOS>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'sos_state') String sosState,
-      @JsonKey(name: 'sos_date') String sosDate});
+      {@JsonKey(name: 'sosState') String sosState,
+      @JsonKey(name: 'sosDate') String sosDate});
 }
 
 /// @nodoc
@@ -75,8 +75,8 @@ abstract class _$$SOSImplCopyWith<$Res> implements $SOSCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'sos_state') String sosState,
-      @JsonKey(name: 'sos_date') String sosDate});
+      {@JsonKey(name: 'sosState') String sosState,
+      @JsonKey(name: 'sosDate') String sosDate});
 }
 
 /// @nodoc
@@ -109,17 +109,17 @@ class __$$SOSImplCopyWithImpl<$Res> extends _$SOSCopyWithImpl<$Res, _$SOSImpl>
 @JsonSerializable(explicitToJson: true)
 class _$SOSImpl implements _SOS {
   const _$SOSImpl(
-      {@JsonKey(name: 'sos_state') this.sosState = 'SosState.safe',
-      @JsonKey(name: 'sos_date') this.sosDate = ''});
+      {@JsonKey(name: 'sosState') this.sosState = 'SosState.safe',
+      @JsonKey(name: 'sosDate') this.sosDate = ''});
 
   factory _$SOSImpl.fromJson(Map<String, dynamic> json) =>
       _$$SOSImplFromJson(json);
 
   @override
-  @JsonKey(name: 'sos_state')
+  @JsonKey(name: 'sosState')
   final String sosState;
   @override
-  @JsonKey(name: 'sos_date')
+  @JsonKey(name: 'sosDate')
   final String sosDate;
 
   @override
@@ -157,16 +157,16 @@ class _$SOSImpl implements _SOS {
 
 abstract class _SOS implements SOS {
   const factory _SOS(
-      {@JsonKey(name: 'sos_state') final String sosState,
-      @JsonKey(name: 'sos_date') final String sosDate}) = _$SOSImpl;
+      {@JsonKey(name: 'sosState') final String sosState,
+      @JsonKey(name: 'sosDate') final String sosDate}) = _$SOSImpl;
 
   factory _SOS.fromJson(Map<String, dynamic> json) = _$SOSImpl.fromJson;
 
   @override
-  @JsonKey(name: 'sos_state')
+  @JsonKey(name: 'sosState')
   String get sosState;
   @override
-  @JsonKey(name: 'sos_date')
+  @JsonKey(name: 'sosDate')
   String get sosDate;
   @override
   @JsonKey(ignore: true)

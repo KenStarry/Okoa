@@ -44,8 +44,10 @@ class CoreController extends GetxController {
 
     //  toggle SOS State
     ever(partnerDetails, (partners) {
-      final partnerSosStates =
-          partners.values.toList().map((partner) => partner.sosState).toList();
+      final partnerSosStates = partners.values
+          .toList()
+          .map((partner) => partner.sos.sosState)
+          .toList();
 
       sosState.value = partners.isNotEmpty &&
               partnerSosStates.contains(SosState.sos.toString())

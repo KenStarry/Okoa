@@ -28,7 +28,9 @@ _$OkoaUserImpl _$$OkoaUserImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      sosState: json['sos_state'] as String? ?? 'SosState.safe',
+      sos: json['sos'] == null
+          ? const SOS(sosState: 'SosState.safe', sosDate: '2024-01-28')
+          : SOS.fromJson(json['sos'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$OkoaUserImplToJson(_$OkoaUserImpl instance) =>
@@ -45,5 +47,5 @@ Map<String, dynamic> _$$OkoaUserImplToJson(_$OkoaUserImpl instance) =>
       'received_requests':
           instance.receivedRequests.map((e) => e.toJson()).toList(),
       'partners': instance.partners,
-      'sos_state': instance.sosState,
+      'sos': instance.sos.toJson(),
     };

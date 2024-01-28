@@ -213,9 +213,9 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                           glowCount: 2,
                           glowRadiusFactor: 0.3,
                           glowColor:
-                              currentUser?.sosState == SosState.safe.toString()
+                              currentUser?.sos.sosState == SosState.safe.toString()
                                   ? Theme.of(context).primaryColor
-                                  : currentUser?.sosState ==
+                                  : currentUser?.sos.sosState ==
                                           SosState.warning.toString()
                                       ? sosOrange
                                       : sosRed,
@@ -228,10 +228,10 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                                 height: 50,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: currentUser?.sosState ==
+                                    color: currentUser?.sos.sosState ==
                                             SosState.safe.toString()
                                         ? Theme.of(context).primaryColor
-                                        : currentUser?.sosState ==
+                                        : currentUser?.sos.sosState ==
                                                 SosState.warning.toString()
                                             ? sosOrange
                                             : sosRed,
@@ -246,10 +246,10 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                                     //  logo to represent current status
                                     Center(
                                       child: Icon(
-                                          currentUser?.sosState ==
+                                          currentUser?.sos.sosState ==
                                                   SosState.safe.toString()
                                               ? Icons.gpp_good_rounded
-                                              : currentUser?.sosState ==
+                                              : currentUser?.sos.sosState ==
                                                       SosState.warning
                                                           .toString()
                                                   ? Icons.gpp_maybe_rounded

@@ -42,8 +42,8 @@ mixin _$OkoaUser {
   List<OkoaPartner> get receivedRequests => throw _privateConstructorUsedError;
   @JsonKey(name: 'partners')
   List<String> get partners => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sos_state')
-  String get sosState => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sos')
+  SOS get sos => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,7 +68,9 @@ abstract class $OkoaUserCopyWith<$Res> {
       @JsonKey(name: 'sent_requests') List<OkoaPartner> sentRequests,
       @JsonKey(name: 'received_requests') List<OkoaPartner> receivedRequests,
       @JsonKey(name: 'partners') List<String> partners,
-      @JsonKey(name: 'sos_state') String sosState});
+      @JsonKey(name: 'sos') SOS sos});
+
+  $SOSCopyWith<$Res> get sos;
 }
 
 /// @nodoc
@@ -95,7 +97,7 @@ class _$OkoaUserCopyWithImpl<$Res, $Val extends OkoaUser>
     Object? sentRequests = null,
     Object? receivedRequests = null,
     Object? partners = null,
-    Object? sosState = null,
+    Object? sos = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -142,11 +144,19 @@ class _$OkoaUserCopyWithImpl<$Res, $Val extends OkoaUser>
           ? _value.partners
           : partners // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      sosState: null == sosState
-          ? _value.sosState
-          : sosState // ignore: cast_nullable_to_non_nullable
-              as String,
+      sos: null == sos
+          ? _value.sos
+          : sos // ignore: cast_nullable_to_non_nullable
+              as SOS,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SOSCopyWith<$Res> get sos {
+    return $SOSCopyWith<$Res>(_value.sos, (value) {
+      return _then(_value.copyWith(sos: value) as $Val);
+    });
   }
 }
 
@@ -170,7 +180,10 @@ abstract class _$$OkoaUserImplCopyWith<$Res>
       @JsonKey(name: 'sent_requests') List<OkoaPartner> sentRequests,
       @JsonKey(name: 'received_requests') List<OkoaPartner> receivedRequests,
       @JsonKey(name: 'partners') List<String> partners,
-      @JsonKey(name: 'sos_state') String sosState});
+      @JsonKey(name: 'sos') SOS sos});
+
+  @override
+  $SOSCopyWith<$Res> get sos;
 }
 
 /// @nodoc
@@ -195,7 +208,7 @@ class __$$OkoaUserImplCopyWithImpl<$Res>
     Object? sentRequests = null,
     Object? receivedRequests = null,
     Object? partners = null,
-    Object? sosState = null,
+    Object? sos = null,
   }) {
     return _then(_$OkoaUserImpl(
       userId: null == userId
@@ -242,10 +255,10 @@ class __$$OkoaUserImplCopyWithImpl<$Res>
           ? _value._partners
           : partners // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      sosState: null == sosState
-          ? _value.sosState
-          : sosState // ignore: cast_nullable_to_non_nullable
-              as String,
+      sos: null == sos
+          ? _value.sos
+          : sos // ignore: cast_nullable_to_non_nullable
+              as SOS,
     ));
   }
 }
@@ -268,7 +281,8 @@ class _$OkoaUserImpl implements _OkoaUser {
       @JsonKey(name: 'received_requests')
       final List<OkoaPartner> receivedRequests = const [],
       @JsonKey(name: 'partners') final List<String> partners = const [],
-      @JsonKey(name: 'sos_state') this.sosState = 'SosState.safe'})
+      @JsonKey(name: 'sos')
+      this.sos = const SOS(sosState: 'SosState.safe', sosDate: '2024-01-28')})
       : _sentRequests = sentRequests,
         _receivedRequests = receivedRequests,
         _partners = partners;
@@ -329,12 +343,12 @@ class _$OkoaUserImpl implements _OkoaUser {
   }
 
   @override
-  @JsonKey(name: 'sos_state')
-  final String sosState;
+  @JsonKey(name: 'sos')
+  final SOS sos;
 
   @override
   String toString() {
-    return 'OkoaUser(userId: $userId, email: $email, createdAt: $createdAt, userName: $userName, phone: $phone, avatarUrl: $avatarUrl, latitude: $latitude, longitude: $longitude, sentRequests: $sentRequests, receivedRequests: $receivedRequests, partners: $partners, sosState: $sosState)';
+    return 'OkoaUser(userId: $userId, email: $email, createdAt: $createdAt, userName: $userName, phone: $phone, avatarUrl: $avatarUrl, latitude: $latitude, longitude: $longitude, sentRequests: $sentRequests, receivedRequests: $receivedRequests, partners: $partners, sos: $sos)';
   }
 
   @override
@@ -360,8 +374,7 @@ class _$OkoaUserImpl implements _OkoaUser {
             const DeepCollectionEquality()
                 .equals(other._receivedRequests, _receivedRequests) &&
             const DeepCollectionEquality().equals(other._partners, _partners) &&
-            (identical(other.sosState, sosState) ||
-                other.sosState == sosState));
+            (identical(other.sos, sos) || other.sos == sos));
   }
 
   @JsonKey(ignore: true)
@@ -379,7 +392,7 @@ class _$OkoaUserImpl implements _OkoaUser {
       const DeepCollectionEquality().hash(_sentRequests),
       const DeepCollectionEquality().hash(_receivedRequests),
       const DeepCollectionEquality().hash(_partners),
-      sosState);
+      sos);
 
   @JsonKey(ignore: true)
   @override
@@ -409,7 +422,7 @@ abstract class _OkoaUser implements OkoaUser {
       @JsonKey(name: 'received_requests')
       final List<OkoaPartner> receivedRequests,
       @JsonKey(name: 'partners') final List<String> partners,
-      @JsonKey(name: 'sos_state') final String sosState}) = _$OkoaUserImpl;
+      @JsonKey(name: 'sos') final SOS sos}) = _$OkoaUserImpl;
 
   factory _OkoaUser.fromJson(Map<String, dynamic> json) =
       _$OkoaUserImpl.fromJson;
@@ -448,8 +461,8 @@ abstract class _OkoaUser implements OkoaUser {
   @JsonKey(name: 'partners')
   List<String> get partners;
   @override
-  @JsonKey(name: 'sos_state')
-  String get sosState;
+  @JsonKey(name: 'sos')
+  SOS get sos;
   @override
   @JsonKey(ignore: true)
   _$$OkoaUserImplCopyWith<_$OkoaUserImpl> get copyWith =>
