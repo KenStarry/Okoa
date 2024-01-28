@@ -87,10 +87,18 @@ class CoreRepositoryimpl extends CoreRepository {
     final iv = IV.fromLength(16);
     final encrypter = Encrypter(AES(encryptionKey));
 
-    final encryptedData = encrypter.encrypt(data, iv: iv);
+    final encryptedData = encrypter.encrypt(data.toString(), iv: iv);
 
-    print("--------------ENCRYPTED DATA : ${encryptedData}");
+    return encryptedData.base64;
+  }
 
-    return encryptedData;
+  @override
+  decryptAES({required encryptedData, required String key}) {
+    final decryptionKey = Key.fromUtf8(key);
+    final iv = IV.fromLength(16);
+    final encrypter = Encrypter(AES(decryptionKey));
+
+    final decryptedData = encrypter.decrypt(encryptedData, iv: iv);
+    return decryptedData;
   }
 }

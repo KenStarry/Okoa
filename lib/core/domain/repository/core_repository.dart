@@ -30,4 +30,7 @@ abstract class CoreRepository {
 
   /// Encrypt Data
   dynamic encryptAES({required dynamic data, required String key});
+
+  /// Decrypt Data
+  dynamic decryptAES({required dynamic encryptedData, required String key});
 }
