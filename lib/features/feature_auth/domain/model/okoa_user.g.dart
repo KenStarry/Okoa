@@ -14,8 +14,8 @@ _$OkoaUserImpl _$$OkoaUserImplFromJson(Map<String, dynamic> json) =>
       userName: json['username'] as String? ?? '',
       phone: json['phone_number'] as String? ?? '',
       avatarUrl: json['avatar_url'] as String? ?? '',
-      latitude: (json['latitude'] as num?)?.toDouble() ?? 0.0,
-      longitude: (json['longitude'] as num?)?.toDouble() ?? 0.0,
+      latitude: json['latitude'] as String? ?? '',
+      longitude: json['longitude'] as String? ?? '',
       sentRequests: (json['sent_requests'] as List<dynamic>?)
               ?.map((e) => OkoaPartner.fromJson(e as Map<String, dynamic>))
               .toList() ??

@@ -33,9 +33,9 @@ mixin _$OkoaUser {
   @JsonKey(name: 'avatar_url')
   String get avatarUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'latitude')
-  double get latitude => throw _privateConstructorUsedError;
+  String get latitude => throw _privateConstructorUsedError;
   @JsonKey(name: 'longitude')
-  double get longitude => throw _privateConstructorUsedError;
+  String get longitude => throw _privateConstructorUsedError;
   @JsonKey(name: 'sent_requests')
   List<OkoaPartner> get sentRequests => throw _privateConstructorUsedError;
   @JsonKey(name: 'received_requests')
@@ -63,8 +63,8 @@ abstract class $OkoaUserCopyWith<$Res> {
       @JsonKey(name: 'username') String userName,
       @JsonKey(name: 'phone_number') String phone,
       @JsonKey(name: 'avatar_url') String avatarUrl,
-      @JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'longitude') double longitude,
+      @JsonKey(name: 'latitude') String latitude,
+      @JsonKey(name: 'longitude') String longitude,
       @JsonKey(name: 'sent_requests') List<OkoaPartner> sentRequests,
       @JsonKey(name: 'received_requests') List<OkoaPartner> receivedRequests,
       @JsonKey(name: 'partners') List<String> partners,
@@ -127,11 +127,11 @@ class _$OkoaUserCopyWithImpl<$Res, $Val extends OkoaUser>
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       sentRequests: null == sentRequests
           ? _value.sentRequests
           : sentRequests // ignore: cast_nullable_to_non_nullable
@@ -175,8 +175,8 @@ abstract class _$$OkoaUserImplCopyWith<$Res>
       @JsonKey(name: 'username') String userName,
       @JsonKey(name: 'phone_number') String phone,
       @JsonKey(name: 'avatar_url') String avatarUrl,
-      @JsonKey(name: 'latitude') double latitude,
-      @JsonKey(name: 'longitude') double longitude,
+      @JsonKey(name: 'latitude') String latitude,
+      @JsonKey(name: 'longitude') String longitude,
       @JsonKey(name: 'sent_requests') List<OkoaPartner> sentRequests,
       @JsonKey(name: 'received_requests') List<OkoaPartner> receivedRequests,
       @JsonKey(name: 'partners') List<String> partners,
@@ -238,11 +238,11 @@ class __$$OkoaUserImplCopyWithImpl<$Res>
       latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       sentRequests: null == sentRequests
           ? _value._sentRequests
           : sentRequests // ignore: cast_nullable_to_non_nullable
@@ -274,8 +274,8 @@ class _$OkoaUserImpl implements _OkoaUser {
       @JsonKey(name: 'username') this.userName = '',
       @JsonKey(name: 'phone_number') this.phone = '',
       @JsonKey(name: 'avatar_url') this.avatarUrl = '',
-      @JsonKey(name: 'latitude') this.latitude = 0.0,
-      @JsonKey(name: 'longitude') this.longitude = 0.0,
+      @JsonKey(name: 'latitude') this.latitude = '',
+      @JsonKey(name: 'longitude') this.longitude = '',
       @JsonKey(name: 'sent_requests')
       final List<OkoaPartner> sentRequests = const [],
       @JsonKey(name: 'received_requests')
@@ -310,10 +310,10 @@ class _$OkoaUserImpl implements _OkoaUser {
   final String avatarUrl;
   @override
   @JsonKey(name: 'latitude')
-  final double latitude;
+  final String latitude;
   @override
   @JsonKey(name: 'longitude')
-  final double longitude;
+  final String longitude;
   final List<OkoaPartner> _sentRequests;
   @override
   @JsonKey(name: 'sent_requests')
@@ -416,8 +416,8 @@ abstract class _OkoaUser implements OkoaUser {
       @JsonKey(name: 'username') final String userName,
       @JsonKey(name: 'phone_number') final String phone,
       @JsonKey(name: 'avatar_url') final String avatarUrl,
-      @JsonKey(name: 'latitude') final double latitude,
-      @JsonKey(name: 'longitude') final double longitude,
+      @JsonKey(name: 'latitude') final String latitude,
+      @JsonKey(name: 'longitude') final String longitude,
       @JsonKey(name: 'sent_requests') final List<OkoaPartner> sentRequests,
       @JsonKey(name: 'received_requests')
       final List<OkoaPartner> receivedRequests,
@@ -447,10 +447,10 @@ abstract class _OkoaUser implements OkoaUser {
   String get avatarUrl;
   @override
   @JsonKey(name: 'latitude')
-  double get latitude;
+  String get latitude;
   @override
   @JsonKey(name: 'longitude')
-  double get longitude;
+  String get longitude;
   @override
   @JsonKey(name: 'sent_requests')
   List<OkoaPartner> get sentRequests;

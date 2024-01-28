@@ -16,8 +16,8 @@ class OkoaUser with _$OkoaUser {
     @JsonKey(name: 'username') @Default('') String userName,
     @JsonKey(name: 'phone_number') @Default('') String phone,
     @JsonKey(name: 'avatar_url') @Default('') String avatarUrl,
-    @JsonKey(name: 'latitude') @Default(0.0) double latitude,
-    @JsonKey(name: 'longitude') @Default(0.0) double longitude,
+    @JsonKey(name: 'latitude') @Default('') String latitude,
+    @JsonKey(name: 'longitude') @Default('') String longitude,
     @JsonKey(name: 'sent_requests') @Default([]) List<OkoaPartner> sentRequests,
     @JsonKey(name: 'received_requests')
     @Default([])
