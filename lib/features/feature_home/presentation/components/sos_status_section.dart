@@ -55,12 +55,16 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                   //  open SOS bottomsheet
                   Get.bottomSheet(Text("Hello"));
                 },
+                onLongPress: (){
+                  //  change SOS Status to sos
+                  print("HELLO");
+                },
                 child: Container(
                     width: 180,
                     height: 180,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Theme.of(context).scaffoldBackgroundColor,
+                        color: Theme.of(context).primaryColor,
                         boxShadow: [
                           BoxShadow(
                               color: Colors.black.withOpacity(0.1),
@@ -79,7 +83,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                                       ? Icons.gpp_maybe_rounded
                                       : Icons.gpp_bad_rounded,
                               size: 120,
-                              color: Theme.of(context).primaryColor),
+                              color: Colors.white),
                         ),
                       ],
                     )),
