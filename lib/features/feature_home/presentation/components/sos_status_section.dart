@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:okoa/core/domain/model/sos.dart';
 import 'package:okoa/core/domain/model/sos_state.dart';
+import 'package:okoa/core/presentation/components/open_bottom_sheet.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_appbar.dart';
 import 'package:okoa/features/feature_home/presentation/components/sos_quick_actions.dart';
 import 'package:okoa/features/feature_home/presentation/utils/home_constants.dart';
@@ -54,7 +55,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
               child: GestureDetector(
                 onTap: () {
                   //  open SOS bottomsheet
-                  Get.bottomSheet(Text("Hello"));
+                  openBottomSheet(content: content, onComplete: (){});
                 },
                 onLongPress: () async {
                   //  change SOS Status to sos
