@@ -27,4 +27,7 @@ abstract class CoreRepository {
   /// Listen to Internet Status
   void listenToInternetStatus(
       {required Function(InternetConnectionStatus status) onStatusChanged});
+
+  /// Encrypt Data
+  dynamic encryptData({required dynamic data});
 }
