@@ -1,3 +1,4 @@
+import 'package:encrypt/encrypt.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:okoa/core/domain/model/response_state.dart';
@@ -29,8 +30,8 @@ abstract class CoreRepository {
       {required Function(InternetConnectionStatus status) onStatusChanged});
 
   /// Encrypt Data
-  dynamic encryptAES({required dynamic data, required String key});
+  dynamic encryptAES({required dynamic data, required Encrypter encrypter, required String key});
 
   /// Decrypt Data
-  dynamic decryptAES({required dynamic encryptedData, required String key});
+  dynamic decryptAES({required Encrypted encryptedData, required Encrypter encrypter, required String key});
 }

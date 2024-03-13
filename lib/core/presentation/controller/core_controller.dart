@@ -1,3 +1,4 @@
+import 'package:encrypt/encrypt.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:okoa/core/domain/model/sos_state.dart';
@@ -125,6 +126,14 @@ class CoreController extends GetxController {
           required Function(OkoaUser okoaUser) onGetUserData}) =>
       useCase.listenToUserDataOnDB.call(uid: uid, onGetUserData: onGetUserData);
 
-  encryptAES({required data, required String key}) =>
-      useCase.encryptAES.call(data: data, key: key);
+  encryptAES(
+          {required data, required Encrypter encrypter, required String key}) =>
+      useCase.encryptAES.call(data: data, encrypter: encrypter, key: key);
+
+  decryptAES(
+          {required Encrypted encryptedData,
+          required Encrypter encrypter,
+          required String key}) =>
+      useCase.decryptAES
+          .call(encryptedData: encryptedData, encrypter: encrypter, key: key);
 }

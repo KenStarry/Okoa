@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:encrypt/encrypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -51,8 +52,14 @@ class _TrackMapState extends State<TrackMap> {
       final markersData = okoaPartners.entries
           .map((partner) => <String, dynamic>{
                 'id': partner.value.userId,
-                'latitude': partner.value.latitude,
-                'longitude': partner.value.longitude,
+                'latitude':
+                    okoaPartners.entries.toList()[0].value == partner.value
+                        ? double.parse(okoaPartners.entries.toList()[0].value.latitude)
+                        : double.parse(partner.value.latitude),
+                'longitude':
+                    okoaPartners.entries.toList()[0].value == partner.value
+                        ? double.parse(okoaPartners.entries.toList()[0].value.longitude)
+                        : double.parse(partner.value.longitude),
                 'widget': CustomUserMarker(avatarUrl: partner.value.avatarUrl),
               })
           .toList();
@@ -65,8 +72,10 @@ class _TrackMapState extends State<TrackMap> {
             sourceLocation: LatLng(
                 _trackController.currentLocation.value?.latitude! ?? 0.0,
                 _trackController.currentLocation.value?.longitude! ?? 0.0),
-            destination: LatLng(okoaPartners.entries.toList()[1].value.latitude,
-                okoaPartners.entries.toList()[1].value.longitude));
+            destination: LatLng(
+              double.parse(okoaPartners.entries.toList()[1].value.latitude),
+              double.parse(okoaPartners.entries.toList()[1].value.longitude),
+            ));
       });
     });
 

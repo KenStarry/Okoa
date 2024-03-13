@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:isolate';
 
 import 'package:encrypt/encrypt.dart';
@@ -82,23 +83,22 @@ class CoreRepositoryimpl extends CoreRepository {
   }
 
   @override
-  encryptAES({required data, required String key}) {
+  encryptAES({required data, required Encrypter encrypter, required String key}) {
     final encryptionKey = Key.fromUtf8(key);
     final iv = IV.fromLength(16);
-    final encrypter = Encrypter(AES(encryptionKey));
 
-    final encryptedData = encrypter.encrypt(data.toString(), iv: iv);
-
+    final Encrypted encryptedData = encrypter.encrypt(data.toString(), iv: iv);
     return encryptedData.base64;
   }
 
   @override
-  decryptAES({required encryptedData, required String key}) {
+  decryptAES({required Encrypted encryptedData, required Encrypter encrypter, required String key}) {
     final decryptionKey = Key.fromUtf8(key);
     final iv = IV.fromLength(16);
-    final encrypter = Encrypter(AES(decryptionKey));
 
     final decryptedData = encrypter.decrypt(encryptedData, iv: iv);
+
+    print("------------------DECRYPTED DATA IMPLEMENTATION : ${base64.decode(decryptedData)}");
     return decryptedData;
   }
 }

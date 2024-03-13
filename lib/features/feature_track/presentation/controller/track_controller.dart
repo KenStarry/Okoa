@@ -1,3 +1,4 @@
+import 'package:encrypt/encrypt.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -23,6 +24,8 @@ class TrackController extends GetxController {
   final markerIcons = <String, BitmapDescriptor>{}.obs;
   final markersData = <Map<String, dynamic>>[].obs;
 
+  final encrypter = Rxn<Encrypter>();
+
   @override
   void onInit() {
     super.onInit();
@@ -30,13 +33,20 @@ class TrackController extends GetxController {
     checkLocationPermissionStatus();
     requestLocationService();
 
+    ever(coreController.okoaUser, (user) {
+      if (user != null) {
+        encrypter.value = Encrypter(AES(
+            Key.fromUtf8(user.userId.substring(0, 32))));
+      }
+    });
+
     listenToCurrentLocation(onLocationChanged: (locationData) async {
       currentLocation.value = locationData;
 
       //  update latitude and longitude in core controller
       await coreController.updateUserDataOnDB(data: {
-        'latitude': locationData.latitude,
-        'longitude': locationData.longitude,
+        'latitude': locationData.latitude.toString(),
+        'longitude': locationData.longitude.toString(),
       }, onResponse: (state) {});
     });
   }

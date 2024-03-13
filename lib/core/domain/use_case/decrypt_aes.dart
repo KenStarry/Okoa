@@ -5,6 +5,6 @@ import 'package:okoa/di/di.dart';
 class DecryptAES {
   final repo = locator.get<CoreRepository>();
 
-  call({required Encrypted encryptedData, required String key}) =>
-      repo.decryptAES(encryptedData: encryptedData, key: key);
+  call({required Encrypted encryptedData, required Encrypter encrypter, required String key}) =>
+      repo.decryptAES(encryptedData: encryptedData, encrypter: encrypter, key: key);
 }
