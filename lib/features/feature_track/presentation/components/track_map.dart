@@ -102,7 +102,7 @@ class _TrackMapState extends State<TrackMap> {
 
     final GoogleMapController myController = await _googleMapController.future;
 
-    myController.setMapStyle(darkMapStyle);
+    // myController.setMapStyle(darkMapStyle);
   }
 
   @override
@@ -118,9 +118,9 @@ class _TrackMapState extends State<TrackMap> {
                   _trackController.currentLocation.value;
               return currentUserLocation == null
                   ? const Expanded(
-                      flex: 3, child: Center(child: LottieLoader()))
+                      flex: 6, child: Center(child: LottieLoader()))
                   : Expanded(
-                      flex: 3,
+                      flex: 5,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: _trackController.markerIcons.isEmpty
@@ -172,7 +172,7 @@ class _TrackMapState extends State<TrackMap> {
                     );
             },
           ),
-          const Expanded(flex: 1, child: TrackMapContent())
+          const Expanded(flex: 2, child: TrackMapContent())
         ],
       ),
     );

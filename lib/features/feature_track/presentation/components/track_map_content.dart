@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/features/feature_add_partner/presentation/controller/partner_controller.dart';
-import 'package:okoa/features/feature_track/presentation/components/track_partner_card.dart';
 import 'package:okoa/features/feature_track/presentation/components/track_partner_card_alt.dart';
 
 import '../../../../core/presentation/controller/core_controller.dart';

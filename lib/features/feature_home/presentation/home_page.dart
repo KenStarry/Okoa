@@ -43,14 +43,14 @@ class _HomePageState extends State<HomePage> {
           statusBarIconBrightness: Get.context!.isDarkMode ? Brightness.dark : Brightness.light),
       child: Scaffold(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () {
-          //     //  add partner page
-          //     Get.to(() => const AddPartnerPage());
-          //   },
-          //   backgroundColor: Theme.of(context).primaryColor,
-          //   child: const Icon(Icons.add_rounded),
-          // ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              //  add partner page
+              Get.to(() => const AddPartnerPage());
+            },
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(Icons.add_rounded),
+          ),
           body: Stack(
             children: [
               //  Main background color
