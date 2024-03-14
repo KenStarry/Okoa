@@ -140,22 +140,22 @@ class _TrackMapState extends State<TrackMap> {
                                         (GoogleMapController controller) {
                                       _googleMapController.complete(controller);
                                     },
-                                    polylines: _trackController
-                                            .polylineCoordinates.isNotEmpty
-                                        ? {
-                                            Polyline(
-                                                polylineId: const PolylineId(
-                                                    "Equity bank polyline"),
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                startCap: Cap.roundCap,
-                                                endCap: Cap.roundCap,
-                                                jointType: JointType.mitered,
-                                                width: 4,
-                                                points: _trackController
-                                                    .polylineCoordinates)
-                                          }
-                                        : {},
+                                    // polylines: _trackController
+                                    //         .polylineCoordinates.isNotEmpty
+                                    //     ? {
+                                    //         Polyline(
+                                    //             polylineId: const PolylineId(
+                                    //                 "Equity bank polyline"),
+                                    //             color: Theme.of(context)
+                                    //                 .primaryColor,
+                                    //             startCap: Cap.roundCap,
+                                    //             endCap: Cap.roundCap,
+                                    //             jointType: JointType.mitered,
+                                    //             width: 4,
+                                    //             points: _trackController
+                                    //                 .polylineCoordinates)
+                                    //       }
+                                    //     : {},
                                     markers: _trackController.markersData
                                         .map((data) => Marker(
                                             markerId: MarkerId(data['id']),

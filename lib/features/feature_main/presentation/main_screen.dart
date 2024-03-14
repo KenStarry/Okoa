@@ -4,6 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:okoa/features/feature_alerts/presentation/alerts_page.dart';
 import 'package:okoa/features/feature_home/presentation/home_page.dart';
 import 'package:okoa/features/feature_main/presentation/controller/main_controller.dart';
+import 'package:okoa/features/feature_settings/presentation/settings_page.dart';
 import 'package:okoa/features/feature_track/presentation/track_page.dart';
 
 class MainScreen extends StatefulWidget {
@@ -49,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
       HomePage(),
       TrackPage(),
       AlertsPage(),
-      HomePage(),
+      SettingsPage(),
     ];
 
     _mainController = Get.find<MainController>();

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/core/utils/extensions/string_extensions.dart';
+import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
 
 class HomeAppBar extends StatefulWidget {
   const HomeAppBar({super.key});
@@ -13,12 +14,14 @@ class HomeAppBar extends StatefulWidget {
 
 class _HomeAppBarState extends State<HomeAppBar> {
   late final CoreController _coreController;
+  late final AuthController _authController;
 
   @override
   void initState() {
     super.initState();
 
     _coreController = Get.find<CoreController>();
+    _authController = Get.find<AuthController>();
   }
 
   @override
@@ -102,17 +105,30 @@ class _HomeAppBarState extends State<HomeAppBar> {
               )),
 
           //  daytime
-          Obx(
-            () {
-              int currentHour = int.parse(_coreController.currentDateTime.value
-                  .toString()
-                  .getCurrentHourIn24);
-              return Icon(currentHour > 0 && currentHour < 12
-                  ? Icons.wb_sunny_rounded
-                  : currentHour >= 12 && currentHour < 17
-                      ? Icons.wb_cloudy_rounded
-                      : Icons.dark_mode_rounded);
-            },
+          Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    _authController.signOut();
+                  },
+                  icon: Icon(
+                    Icons.logout_rounded,
+                    color: Theme.of(context).iconTheme.color!,
+                  )),
+              Obx(
+                () {
+                  int currentHour = int.parse(_coreController
+                      .currentDateTime.value
+                      .toString()
+                      .getCurrentHourIn24);
+                  return Icon(currentHour > 0 && currentHour < 12
+                      ? Icons.wb_sunny_rounded
+                      : currentHour >= 12 && currentHour < 17
+                          ? Icons.wb_cloudy_rounded
+                          : Icons.dark_mode_rounded);
+                },
+              )
+            ],
           )
         ],
       ),
