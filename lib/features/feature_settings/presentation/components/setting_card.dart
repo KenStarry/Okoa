@@ -9,17 +9,20 @@ class SettingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: Row(
-        children: [
-          Icon(setting.icon, color: Theme.of(context).iconTheme.color!),
-          const SizedBox(width: 16),
-          Expanded(
-              child: Text(setting.title,
-                  style: Theme.of(context).textTheme.bodyLarge))
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Row(
+          children: [
+            Icon(setting.icon, color: Theme.of(context).iconTheme.color!),
+            const SizedBox(width: 16),
+            Expanded(
+                child: Text(setting.title,
+                    style: Theme.of(context).textTheme.bodyLarge))
+          ],
+        ),
       ),
     );
   }

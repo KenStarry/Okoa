@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:okoa/features/feature_settings/presentation/components/setting_card.dart';
+import 'package:okoa/features/feature_settings/presentation/screens/sos_settings_page.dart';
 import 'package:okoa/features/feature_settings/utils/settings_constants.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -36,6 +38,15 @@ class SettingSection extends StatelessWidget {
                       setting: settings[index],
                       onTap: () {
                         //  open setting page
+                        switch (settings[index].title) {
+                          case 'Live Tracking':
+                            break;
+                          case 'SOS':
+                            Get.to(() => const SosSettingsPage());
+                            break;
+                          case 'Logout':
+                            break;
+                        }
                       }),
                   childCount: settings.length))
         ]),
