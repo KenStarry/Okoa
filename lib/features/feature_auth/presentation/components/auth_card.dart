@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:okoa/core/presentation/controller/core_controller.dart';
 import 'package:okoa/features/feature_auth/presentation/components/login_content.dart';
 import 'package:okoa/features/feature_auth/presentation/components/sign_up_content.dart';
 import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
@@ -16,11 +17,13 @@ class AuthCard extends StatefulWidget {
 
 class _AuthCardState extends State<AuthCard> {
   late final AuthController _authController;
+  late final CoreController _coreController;
   late final TextEditingController loginEmailController;
   late final TextEditingController loginPassController;
   late final TextEditingController emailController;
   late final TextEditingController usernameController;
   late final TextEditingController newPassController;
+  late final TextEditingController phoneController;
   late final TextEditingController confirmPassController;
 
   @override
@@ -28,12 +31,14 @@ class _AuthCardState extends State<AuthCard> {
     super.initState();
 
     _authController = Get.find<AuthController>();
+    _coreController = Get.find<CoreController>();
 
     loginEmailController = TextEditingController();
     loginPassController = TextEditingController();
     emailController = TextEditingController();
     usernameController = TextEditingController();
     newPassController = TextEditingController();
+    phoneController = TextEditingController();
     confirmPassController = TextEditingController();
   }
 
@@ -70,6 +75,7 @@ class _AuthCardState extends State<AuthCard> {
                               emailController: emailController,
                               usernameController: usernameController,
                               newPassController: newPassController,
+                              phoneController: phoneController,
                               confirmPassController: confirmPassController,
                             ))),
             ),
@@ -85,9 +91,17 @@ class _AuthCardState extends State<AuthCard> {
                       }
                     : () async {
                         //  Sign Up
-                        await _authController.signUp(
-                            email: emailController.text,
-                            password: newPassController.text);
+                        await _authController
+                            .signUp(
+                                email: emailController.text,
+                                password: newPassController.text)
+                            .then((value) {
+                          //  update values created in DB
+                          _coreController.updateUserDataOnDB(data: {
+                            'username': usernameController.text,
+                            'phone_number': phoneController.text
+                          }, onResponse: (response) {});
+                        });
                       },
                 child:
                     Text(_authController.isLogin.value ? "Login" : "Sign Up"))
