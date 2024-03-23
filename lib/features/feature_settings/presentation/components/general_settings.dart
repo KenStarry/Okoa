@@ -13,21 +13,32 @@ class GeneralSettings extends StatefulWidget {
 class _GeneralSettingsState extends State<GeneralSettings> {
   @override
   Widget build(BuildContext context) {
-    return MultiSliver(children: [
-      //  title
-      SliverToBoxAdapter(
-          child:
-              Text('General', style: Theme.of(context).textTheme.titleSmall)),
+    return DecoratedSliver(
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColorLight,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      sliver: SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        sliver: MultiSliver(children: [
+          //  title
+          SliverToBoxAdapter(
+              child: Text('General',
+                  style: Theme.of(context).textTheme.titleSmall)),
 
-      //  list of settings
-      SliverList(
-          delegate: SliverChildBuilderDelegate(
-              (context, index) => SettingCard(
-                  setting: SettingsConstants.generalSettings[index],
-                  onTap: () {
-                    //  open setting page
-                  }),
-              childCount: SettingsConstants.generalSettings.length))
-    ]);
+          const SliverToBoxAdapter(child: SizedBox(height: 8)),
+
+          //  list of settings
+          SliverList(
+              delegate: SliverChildBuilderDelegate(
+                  (context, index) => SettingCard(
+                      setting: SettingsConstants.generalSettings[index],
+                      onTap: () {
+                        //  open setting page
+                      }),
+                  childCount: SettingsConstants.generalSettings.length))
+        ]),
+      ),
+    );
   }
 }
