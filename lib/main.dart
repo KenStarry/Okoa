@@ -1,9 +1,7 @@
 import 'dart:isolate';
 
-import 'package:encrypt/encrypt.dart' as enc;
 import 'package:flutter/material.dart';
 import 'package:okoa/core/presentation/controller/core_controller.dart';
-import 'package:okoa/core/utils/extensions/string_extensions.dart';
 import 'package:okoa/di/controllers_di.dart';
 import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/presentation/auth_page.dart';
@@ -45,18 +43,18 @@ class _MyAppState extends State<MyApp> {
     _authController = Get.find<AuthController>();
     _coreController = Get.find<CoreController>();
 
-    final plainText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit';
-    final key = enc.Key.fromUtf8('my 32 length key................');
-    final iv = enc.IV.fromLength(16);
-
-    final encrypter = enc.Encrypter(enc.AES(key));
-
-    final encrypted = encrypter.encrypt(plainText, iv: iv);
-    final decrypted = encrypter.decrypt(encrypted, iv: iv);
-
-    print('------------------DECRYPTED FROM MAIN ${decrypted}'); // Lorem ipsum dolor sit amet, consectetur adipiscing elit
-    print('------------------ENCRYPTED FROM MAIN ${encrypted.base64}'); // Lorem ipsum dolor sit amet, consectetur adipiscing elit
-    print(encrypted.base64);
+    // final plainText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit';
+    // final key = enc.Key.fromUtf8('my 32 length key................');
+    // final iv = enc.IV.fromLength(16);
+    //
+    // final encrypter = enc.Encrypter(enc.AES(key));
+    //
+    // final encrypted = encrypter.encrypt(plainText, iv: iv);
+    // final decrypted = encrypter.decrypt(encrypted, iv: iv);
+    //
+    // print('------------------DECRYPTED FROM MAIN ${decrypted}'); // Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    // print('------------------ENCRYPTED FROM MAIN ${encrypted.base64}'); // Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    // print(encrypted.base64);
 
     initializeTimerIsolate();
   }
