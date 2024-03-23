@@ -11,7 +11,7 @@ class SettingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         children: [
           Icon(setting.icon, color: Theme.of(context).iconTheme.color!),

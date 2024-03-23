@@ -16,7 +16,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
     return DecoratedSliver(
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColorLight,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(24),
       ),
       sliver: SliverPadding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),

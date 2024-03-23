@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class SettingsConstants {
 
   static const generalSettings = <Setting>[
-    Setting(title: 'SOS Settings', icon: Icons.emergency_rounded),
+    Setting(title: 'Live Tracking', icon: Icons.location_on_rounded),
+    Setting(title: 'SOS', icon: Icons.emergency_rounded),
   ];
 }
