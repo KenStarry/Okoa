@@ -35,8 +35,8 @@ class _MessageTemplatesSectionState extends State<MessageTemplatesSection> {
       SliverToBoxAdapter(
         child: Container(
           width: double.infinity,
-          height: 300,
-          color: Colors.red,
+          height: 250,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: ListView.separated(
             itemBuilder: (context, index) => SosMessageCard(
                 sosMessage: SettingsConstants.sosMessages[index],

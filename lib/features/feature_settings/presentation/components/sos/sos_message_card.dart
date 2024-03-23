@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okoa/features/feature_settings/domain/model/sos_message.dart';
+import 'package:okoa/features/feature_settings/utils/settings_constants.dart';
 
 class SosMessageCard extends StatelessWidget {
   final SosMessage sosMessage;
@@ -20,12 +21,40 @@ class SosMessageCard extends StatelessWidget {
         child: Container(
           width: 300,
           height: 250,
-          color: Colors.blue,
+          decoration:
+              BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
           child: Column(
             children: [
               //  message section
+              Expanded(
+                  child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                    color: Theme.of(context).primaryColorLight),
+                child: SingleChildScrollView(
+                  child: Text(
+                    sosMessage.message,
+                    style: Theme.of(context).textTheme.bodyMedium
+                  ),
+                ),
+              )),
 
               //  radio button section
+              Row(
+                children: [
+                  Radio(
+                      value: isActive,
+                      groupValue: false,
+                      onChanged: (value) {}),
+                  const SizedBox(width: 12),
+                  Text(
+                      'Message ${SettingsConstants.sosMessages.indexOf(sosMessage) + 1}',
+                      style: Theme.of(context).textTheme.bodyMedium)
+                ],
+              )
             ],
           ),
         ),
