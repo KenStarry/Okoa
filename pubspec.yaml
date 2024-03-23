@@ -56,7 +56,6 @@ dependencies:
   timeago: ^3.6.0
   encrypt: ^5.0.3
   background_sms: ^0.0.4
-#  flutter_phone_direct_caller: ^2.1.1
 
 # Dev Dependencies
 dev_dependencies:
