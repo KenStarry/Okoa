@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:okoa/features/feature_settings/presentation/components/general_settings.dart';
+import 'package:okoa/features/feature_settings/presentation/components/setting_section.dart';
+import 'package:okoa/features/feature_settings/utils/settings_constants.dart';
 
 import '../../../core/presentation/controller/core_controller.dart';
 import '../../feature_auth/presentation/controller/auth_controller.dart';
@@ -92,7 +93,15 @@ class _SettingsPageState extends State<SettingsPage> {
               const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
               //  settings seciton
-              GeneralSettings()
+              const SettingSection(
+                  title: 'General',
+                  settings: SettingsConstants.generalSettings),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+              //  settings seciton
+              const SettingSection(
+                  title: 'Other', settings: SettingsConstants.otherSettings)
             ],
           ),
         ),

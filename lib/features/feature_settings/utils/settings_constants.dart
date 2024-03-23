@@ -7,4 +7,8 @@ class SettingsConstants {
     Setting(title: 'Live Tracking', icon: Icons.location_on_rounded),
     Setting(title: 'SOS', icon: Icons.emergency_rounded),
   ];
+
+  static const otherSettings = <Setting>[
+    Setting(title: 'Logout', icon: Icons.logout_rounded),
+  ];
 }

@@ -3,14 +3,15 @@ import 'package:okoa/features/feature_settings/presentation/components/setting_c
 import 'package:okoa/features/feature_settings/utils/settings_constants.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-class GeneralSettings extends StatefulWidget {
-  const GeneralSettings({super.key});
+import '../../domain/model/settings.dart';
 
-  @override
-  State<GeneralSettings> createState() => _GeneralSettingsState();
-}
+class SettingSection extends StatelessWidget {
+  final String title;
+  final List<Setting> settings;
 
-class _GeneralSettingsState extends State<GeneralSettings> {
+  const SettingSection(
+      {super.key, required this.title, required this.settings});
+
   @override
   Widget build(BuildContext context) {
     return DecoratedSliver(
@@ -23,8 +24,8 @@ class _GeneralSettingsState extends State<GeneralSettings> {
         sliver: MultiSliver(children: [
           //  title
           SliverToBoxAdapter(
-              child: Text('General',
-                  style: Theme.of(context).textTheme.titleSmall)),
+              child:
+                  Text(title, style: Theme.of(context).textTheme.titleSmall)),
 
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
 
@@ -32,11 +33,11 @@ class _GeneralSettingsState extends State<GeneralSettings> {
           SliverList(
               delegate: SliverChildBuilderDelegate(
                   (context, index) => SettingCard(
-                      setting: SettingsConstants.generalSettings[index],
+                      setting: settings[index],
                       onTap: () {
                         //  open setting page
                       }),
-                  childCount: SettingsConstants.generalSettings.length))
+                  childCount: settings.length))
         ]),
       ),
     );
