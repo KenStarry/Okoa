@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:okoa/features/feature_settings/presentation/components/sos/message_templates_section.dart';
 
 class SosSettingsPage extends StatefulWidget {
   const SosSettingsPage({super.key});
@@ -26,10 +27,12 @@ class _SosSettingsPageState extends State<SosSettingsPage> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
+        padding: const EdgeInsets.all(16),
         color: Theme.of(context).scaffoldBackgroundColor,
         child: CustomScrollView(
           slivers: [
             //  message templates
+            MessageTemplatesSection()
 
             //  sim card choices
 
