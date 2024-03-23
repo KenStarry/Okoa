@@ -6,8 +6,8 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:okoa/features/feature_settings/presentation/components/setting_section.dart';
 import 'package:okoa/features/feature_settings/utils/settings_constants.dart';
 
-import '../../../core/presentation/controller/core_controller.dart';
-import '../../feature_auth/presentation/controller/auth_controller.dart';
+import '../../../../core/presentation/controller/core_controller.dart';
+import '../../../feature_auth/presentation/controller/auth_controller.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
