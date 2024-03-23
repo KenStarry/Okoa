@@ -7,12 +7,14 @@ import 'package:okoa/core/presentation/components/lottie_loader.dart';
 import 'package:okoa/core/presentation/components/open_bottom_sheet.dart';
 import 'package:okoa/features/feature_home/presentation/components/home_partner_card_action_btn.dart';
 import 'package:okoa/features/feature_home/presentation/components/partner_bottom_sheet.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/domain/model/sos_state.dart';
 import '../../../../core/presentation/controller/core_controller.dart';
 import '../../../../theme/colors.dart';
 import '../../../feature_add_partner/presentation/controller/partner_controller.dart';
 import '../../../feature_auth/domain/model/okoa_user.dart';
+import 'package:background_sms/background_sms.dart';
 
 class HomePartnerCard extends StatefulWidget {
   final String partnerId;
@@ -201,7 +203,27 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                             HomePartnerCardActionBtn(
                               icon: Icons.sms_rounded,
                               size: const Size(50, 50),
-                              onTap: () {},
+                              onTap: () async {
+                                final status = await Permission.sms.request();
+
+                                if (status.isGranted) {
+                                  final SmsStatus status =
+                                      await BackgroundSms.sendMessage(
+                                          phoneNumber: '+254104546040',
+                                          message: 'Hey testi',
+                                          simSlot: 1);
+
+                                  if (status == SmsStatus.sent) {
+                                    print(
+                                        "--------------MESSAGE SENT!!!!!!!!!!1");
+                                  }
+
+                                  if (status == SmsStatus.failed) {
+                                    print(
+                                        "--------------MESSAGE FAILED!!!!!!!!!!1");
+                                  }
+                                }
+                              },
                             ),
                             //  sos
                           ],
@@ -212,13 +234,13 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                           glowShape: BoxShape.circle,
                           glowCount: 2,
                           glowRadiusFactor: 0.3,
-                          glowColor:
-                              currentUser?.sos.sosState == SosState.safe.toString()
-                                  ? accent
-                                  : currentUser?.sos.sosState ==
-                                          SosState.warning.toString()
-                                      ? sosOrange
-                                      : sosRed,
+                          glowColor: currentUser?.sos.sosState ==
+                                  SosState.safe.toString()
+                              ? accent
+                              : currentUser?.sos.sosState ==
+                                      SosState.warning.toString()
+                                  ? sosOrange
+                                  : sosRed,
                           child: GestureDetector(
                             onTap: () {
                               //  open SOS bottomsheet
