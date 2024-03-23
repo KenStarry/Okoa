@@ -1,5 +1,13 @@
-import 'package:get/get.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class SettingsController extends GetxController {
-  final sim = '1'.obs;
+part 'settings_controller.g.dart';
+
+@riverpod
+class SimCardToggle extends _$SimCardToggle {
+  @override
+  int build() => 1;
+
+  //  toggle sim card state
+  void setDefaultSimCard({required int defaultSim}) => state = defaultSim;
 }
