@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:okoa/features/feature_settings/presentation/components/sos/message_templates_section.dart';
+import 'package:okoa/features/feature_settings/presentation/components/sos/sim_card_section.dart';
 
 class SosSettingsPage extends StatefulWidget {
   const SosSettingsPage({super.key});
@@ -17,6 +18,7 @@ class _SosSettingsPageState extends State<SosSettingsPage> {
       appBar: AppBar(
         title: Text('SOS', style: Theme.of(context).textTheme.titleSmall),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        surfaceTintColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
@@ -30,11 +32,15 @@ class _SosSettingsPageState extends State<SosSettingsPage> {
         padding: const EdgeInsets.all(16),
         color: Theme.of(context).scaffoldBackgroundColor,
         child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
           slivers: [
-            //  message templates
-            MessageTemplatesSection()
-
             //  sim card choices
+            SimCardSection(),
+
+            SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+            //  message templates
+            MessageTemplatesSection(),
 
             //  countdown timer for sos to take place
           ],
