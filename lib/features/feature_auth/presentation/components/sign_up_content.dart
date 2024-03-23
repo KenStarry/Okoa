@@ -6,6 +6,7 @@ import 'auth_textfield.dart';
 class SignUpContent extends StatefulWidget {
   final TextEditingController emailController;
   final TextEditingController usernameController;
+  final TextEditingController phoneController;
   final TextEditingController newPassController;
   final TextEditingController confirmPassController;
 
@@ -13,6 +14,7 @@ class SignUpContent extends StatefulWidget {
       {super.key,
       required this.emailController,
       required this.usernameController,
+      required this.phoneController,
       required this.newPassController,
       required this.confirmPassController});
 
@@ -48,6 +50,13 @@ class _SignUpContentState extends State<SignUpContent> {
           hintText: "Username",
           controller: widget.usernameController,
           prefixIcon: Icons.email_rounded,
+          onChanged: (value) {},
+        ),
+
+        AuthTextField(
+          hintText: "Phone number",
+          controller: widget.phoneController,
+          prefixIcon: Icons.phone_rounded,
           onChanged: (value) {},
         ),
 

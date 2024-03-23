@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:okoa/features/feature_alerts/presentation/alerts_page.dart';
@@ -58,28 +59,36 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Obx(
-        () => IndexedStack(
-          index: _mainController.activeBottomBarIndex.value,
-          children: pages,
-        ),
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(
+        systemNavigationBarColor: Theme.of(context).scaffoldBackgroundColor,
+        systemNavigationBarIconBrightness: Brightness.dark,
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.dark
       ),
-      bottomNavigationBar: Container(
-        color: Colors.transparent,
-        padding: const EdgeInsets.all(8.0),
-        child: SafeArea(
-          child: GNav(
-            haptic: true,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            tabBackgroundColor: Theme.of(context).primaryColorLight,
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
-            activeColor: Theme.of(context).primaryColor,
-            tabs: tabs,
-            onTabChange: (index) {
-              _mainController.setActiveBottomBarIndex(index: index);
-            },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        body: Obx(
+          () => IndexedStack(
+            index: _mainController.activeBottomBarIndex.value,
+            children: pages,
+          ),
+        ),
+        bottomNavigationBar: Container(
+          color: Colors.transparent,
+          padding: const EdgeInsets.all(8.0),
+          child: SafeArea(
+            child: GNav(
+              haptic: true,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              tabBackgroundColor: Theme.of(context).primaryColorLight,
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+              activeColor: Theme.of(context).primaryColor,
+              tabs: tabs,
+              onTabChange: (index) {
+                _mainController.setActiveBottomBarIndex(index: index);
+              },
+            ),
           ),
         ),
       ),

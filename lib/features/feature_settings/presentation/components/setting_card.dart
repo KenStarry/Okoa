@@ -15,7 +15,7 @@ class SettingCard extends StatelessWidget {
       child: Row(
         children: [
           Icon(setting.icon, color: Theme.of(context).iconTheme.color!),
-          const SizedBox(width: 8),
+          const SizedBox(width: 16),
           Expanded(
               child: Text(setting.title,
                   style: Theme.of(context).textTheme.bodyLarge))

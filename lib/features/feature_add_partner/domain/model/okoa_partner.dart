@@ -4,7 +4,7 @@ part 'okoa_partner.freezed.dart';
 
 part 'okoa_partner.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class OkoaPartner with _$OkoaPartner {
   @JsonSerializable(explicitToJson: true)
   const factory OkoaPartner(
