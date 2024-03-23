@@ -38,6 +38,11 @@ class _SettingsPageState extends State<SettingsPage> {
           child: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
+              SliverToBoxAdapter(
+                child: Text('Settings',
+                    style: Theme.of(context).textTheme.titleLarge),
+              ),
+              const SliverToBoxAdapter(child: SizedBox(height: 24)),
               //  avatar
               SliverToBoxAdapter(
                 child: Obx(
@@ -50,11 +55,13 @@ class _SettingsPageState extends State<SettingsPage> {
                         color: Theme.of(context).scaffoldBackgroundColor,
                       ),
                       child: _coreController.okoaUser.value != null &&
-                              _coreController.okoaUser.value!.avatarUrl.isNotEmpty
+                              _coreController
+                                  .okoaUser.value!.avatarUrl.isNotEmpty
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: CachedNetworkImage(
-                                imageUrl: _coreController.okoaUser.value!.avatarUrl,
+                                imageUrl:
+                                    _coreController.okoaUser.value!.avatarUrl,
                                 placeholder: (context, url) =>
                                     CircularProgressIndicator(
                                         color: Theme.of(context).primaryColor),
@@ -68,6 +75,18 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
+
+              const SliverToBoxAdapter(child: SizedBox(height: 24)),
+
+              //  User name
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    Text(_coreController.okoaUser.value?.userName ?? '',
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ],
+                ),
+              )
             ],
           ),
         ),
