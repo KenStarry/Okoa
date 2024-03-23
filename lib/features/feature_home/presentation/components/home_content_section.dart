@@ -53,9 +53,9 @@ class _HomeContentSectionState extends State<HomeContentSection> {
               final user = _coreController.okoaUser.value;
 
               return user == null
-                  ? SliverToBoxAdapter(
+                  ? const SliverToBoxAdapter(
                       child: Center(
-                          child: Container(
+                          child: SizedBox(
                               width: 100, height: 100, child: LottieLoader())))
                   : user.partners.isEmpty
                       ? const SliverToBoxAdapter(

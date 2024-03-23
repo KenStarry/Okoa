@@ -19,7 +19,7 @@ class Avatar extends StatelessWidget {
       height: size.height,
       decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(context).primaryColorLight,
           boxShadow: showShadow
               ? [
                   BoxShadow(
