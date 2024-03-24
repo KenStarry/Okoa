@@ -3,6 +3,8 @@ import 'package:okoa/core/domain/use_case/encrypt_aes.dart';
 import 'package:okoa/core/domain/use_case/get_all_users_from_db.dart';
 import 'package:okoa/core/domain/use_case/get_user_data_from_db.dart';
 import 'package:okoa/core/domain/use_case/listen_to_user_data_on_db.dart';
+import 'package:okoa/core/domain/use_case/make_phone_call.dart';
+import 'package:okoa/core/domain/use_case/send_sms.dart';
 import 'package:okoa/core/domain/use_case/update_user_data_on_db.dart';
 
 import 'listen_to_internet_status.dart';
@@ -15,6 +17,8 @@ class CoreUseCases {
   final ListenToInternetStatus listenToInternetStatus;
   final EncryptAES encryptAES;
   final DecryptAES decryptAES;
+  final MakePhoneCall makePhoneCall;
+  final SendSMS sendSMS;
 
   CoreUseCases(
       {required this.getAllUsersFromDB,
@@ -23,5 +27,7 @@ class CoreUseCases {
       required this.listenToUserDataOnDB,
       required this.listenToInternetStatus,
       required this.encryptAES,
-      required this.decryptAES});
+      required this.decryptAES,
+      required this.makePhoneCall,
+      required this.sendSMS});
 }

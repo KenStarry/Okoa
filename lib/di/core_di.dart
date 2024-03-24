@@ -8,6 +8,8 @@ import 'package:okoa/core/domain/use_case/get_all_users_from_db.dart';
 import 'package:okoa/core/domain/use_case/get_user_data_from_db.dart';
 import 'package:okoa/core/domain/use_case/listen_to_internet_status.dart';
 import 'package:okoa/core/domain/use_case/listen_to_user_data_on_db.dart';
+import 'package:okoa/core/domain/use_case/make_phone_call.dart';
+import 'package:okoa/core/domain/use_case/send_sms.dart';
 import 'package:okoa/core/domain/use_case/update_user_data_on_db.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -26,5 +28,7 @@ void coreDI({required GetIt locator}) {
       listenToUserDataOnDB: ListenToUserDataOnDB(),
       listenToInternetStatus: ListenToInternetStatus(),
       encryptAES: EncryptAES(),
-      decryptAES: DecryptAES()));
+      decryptAES: DecryptAES(),
+      makePhoneCall: MakePhoneCall(),
+      sendSMS: SendSMS()));
 }
