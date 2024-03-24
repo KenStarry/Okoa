@@ -196,7 +196,9 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                             HomePartnerCardActionBtn(
                               icon: Icons.call_rounded,
                               size: const Size(50, 50),
-                              onTap: () {},
+                              onTap: () async {
+                                await _coreController.makePhoneCall(phoneNumber: '+254700692069');
+                              },
                             ),
                             const SizedBox(width: 8),
                             //  message
