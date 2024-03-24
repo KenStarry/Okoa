@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:isolate';
 
 import 'package:encrypt/encrypt.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:okoa/core/data/isolates/core_repository_isolates.dart';
 import 'package:okoa/core/domain/repository/core_repository.dart';
@@ -14,6 +15,10 @@ import '../../domain/model/response_state.dart';
 
 class CoreRepositoryimpl extends CoreRepository {
   final supabase = locator.get<SupabaseClient>();
+
+  @override
+  Future<void> makePhoneCall({required String phoneNumber}) async =>
+      await FlutterPhoneDirectCaller.callNumber(phoneNumber);
 
   @override
   void listenToInternetStatus(
@@ -83,7 +88,8 @@ class CoreRepositoryimpl extends CoreRepository {
   }
 
   @override
-  encryptAES({required data, required Encrypter encrypter, required String key}) {
+  encryptAES(
+      {required data, required Encrypter encrypter, required String key}) {
     final encryptionKey = Key.fromUtf8(key);
     final iv = IV.fromLength(16);
 
@@ -92,13 +98,17 @@ class CoreRepositoryimpl extends CoreRepository {
   }
 
   @override
-  decryptAES({required Encrypted encryptedData, required Encrypter encrypter, required String key}) {
+  decryptAES(
+      {required Encrypted encryptedData,
+      required Encrypter encrypter,
+      required String key}) {
     final decryptionKey = Key.fromUtf8(key);
     final iv = IV.fromLength(16);
 
     final decryptedData = encrypter.decrypt(encryptedData, iv: iv);
 
-    print("------------------DECRYPTED DATA IMPLEMENTATION : ${base64.decode(decryptedData)}");
+    print(
+        "------------------DECRYPTED DATA IMPLEMENTATION : ${base64.decode(decryptedData)}");
     return decryptedData;
   }
 }

@@ -6,6 +6,9 @@ import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 abstract class CoreRepository {
+  /// Make Phone Call
+  Future<void> makePhoneCall({required String phoneNumber});
+
   /// Fetch all users
   Future<void> getAllUsersFromDB(
       {required Function(List<OkoaUser> users) onFetchUsers});
@@ -30,8 +33,14 @@ abstract class CoreRepository {
       {required Function(InternetConnectionStatus status) onStatusChanged});
 
   /// Encrypt Data
-  dynamic encryptAES({required dynamic data, required Encrypter encrypter, required String key});
+  dynamic encryptAES(
+      {required dynamic data,
+      required Encrypter encrypter,
+      required String key});
 
   /// Decrypt Data
-  dynamic decryptAES({required Encrypted encryptedData, required Encrypter encrypter, required String key});
+  dynamic decryptAES(
+      {required Encrypted encryptedData,
+      required Encrypter encrypter,
+      required String key});
 }
