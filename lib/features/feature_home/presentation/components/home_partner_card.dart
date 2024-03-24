@@ -204,25 +204,7 @@ class _HomePartnerCardState extends State<HomePartnerCard> {
                               icon: Icons.sms_rounded,
                               size: const Size(50, 50),
                               onTap: () async {
-                                final status = await Permission.sms.request();
 
-                                if (status.isGranted) {
-                                  final SmsStatus status =
-                                      await BackgroundSms.sendMessage(
-                                          phoneNumber: '+254104546040',
-                                          message: 'Hey testi',
-                                          simSlot: 1);
-
-                                  if (status == SmsStatus.sent) {
-                                    print(
-                                        "--------------MESSAGE SENT!!!!!!!!!!1");
-                                  }
-
-                                  if (status == SmsStatus.failed) {
-                                    print(
-                                        "--------------MESSAGE FAILED!!!!!!!!!!1");
-                                  }
-                                }
                               },
                             ),
                             //  sos

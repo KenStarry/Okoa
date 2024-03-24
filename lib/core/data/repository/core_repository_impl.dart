@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:isolate';
 
+import 'package:background_sms/background_sms.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:okoa/core/data/isolates/core_repository_isolates.dart';
 import 'package:okoa/core/domain/repository/core_repository.dart';
 import 'package:okoa/features/feature_auth/domain/model/okoa_user.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../di/di.dart';
@@ -19,6 +19,29 @@ class CoreRepositoryimpl extends CoreRepository {
   @override
   Future<void> makePhoneCall({required String phoneNumber}) async =>
       await FlutterPhoneDirectCaller.callNumber(phoneNumber);
+
+  @override
+  Future<void> sendSMS(
+      {required String phone,
+      required String message,
+      required int sim}) async {
+    final granted = await Permission.sms.isGranted;
+
+    if (granted) {
+      final SmsStatus status = await BackgroundSms.sendMessage(
+          phoneNumber: phone, message: message, simSlot: sim);
+
+      if (status == SmsStatus.sent) {
+        print("--------------MESSAGE SENT!!!!!!!!!!1");
+      }
+
+      if (status == SmsStatus.failed) {
+        print("--------------MESSAGE FAILED!!!!!!!!!!1");
+      }
+    } else {
+      await Permission.sms.request();
+    }
+  }
 
   @override
   void listenToInternetStatus(
