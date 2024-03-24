@@ -13,6 +13,11 @@ class SettingsController extends GetxController {
       await useCases.getSimCards.call(onSimCardsFetched: (sims) {
         simCards.value = sims;
 
-        print("SIM CARDS FETCHED!!!!!!!!!!!!!!!!!! : ${sims.map((e) => e.carrierName)}");
+        print(
+            "SIM CARDS FETCHED!!!!!!!!!!!!!!!!!! : ${sims.map((e) => e.carrierName)}");
       });
+
+  /// Save Data To Prefs
+  Future<void> saveDataToPrefs({required String key, required value}) async =>
+      await useCases.saveDataToPrefs.call(key: key, value: value);
 }
