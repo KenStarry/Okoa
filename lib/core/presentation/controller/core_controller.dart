@@ -86,6 +86,17 @@ class CoreController extends GetxController {
               onStatusChanged}) =>
       useCase.listenToInternetStatus.call(onStatusChanged: onStatusChanged);
 
+  //  make phone call
+  Future<void> makePhoneCall({required String phoneNumber}) async =>
+      await useCase.makePhoneCall.call(phoneNumber: phoneNumber);
+
+  // Send SMS
+  Future<void> sendSMS(
+          {required String phone,
+          required String message,
+          required int sim}) async =>
+      await useCase.sendSMS.call(phone: phone, message: message, sim: sim);
+
   //  get all users from DB
   void getAllUsersFromDB() async => await useCase.getAllUsersFromDB
       .call(onFetchUsers: (users) => okoaUsers.value = users);
