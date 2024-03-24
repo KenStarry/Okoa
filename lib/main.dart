@@ -7,7 +7,10 @@ import 'package:okoa/di/di.dart';
 import 'package:okoa/features/feature_auth/presentation/auth_page.dart';
 import 'package:okoa/features/feature_auth/presentation/controller/auth_controller.dart';
 import 'package:okoa/features/feature_main/presentation/main_screen.dart';
+import 'package:okoa/features/feature_settings/domain/model/sos_message.dart';
+import 'package:okoa/features/feature_settings/presentation/controller/settings_controller.dart';
 import 'package:okoa/theme/my_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:get/get.dart';
 
@@ -35,6 +38,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late final AuthController _authController;
   late final CoreController _coreController;
+  late final SettingsController _settingsController;
 
   @override
   void initState() {
@@ -42,6 +46,7 @@ class _MyAppState extends State<MyApp> {
 
     _authController = Get.find<AuthController>();
     _coreController = Get.find<CoreController>();
+    _settingsController = Get.find<SettingsController>();
 
     // final plainText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit';
     // final key = enc.Key.fromUtf8('my 32 length key................');
@@ -56,7 +61,17 @@ class _MyAppState extends State<MyApp> {
     // print('------------------ENCRYPTED FROM MAIN ${encrypted.base64}'); // Lorem ipsum dolor sit amet, consectetur adipiscing elit
     // print(encrypted.base64);
 
+    initializePrefs();
     initializeTimerIsolate();
+  }
+
+  void initializePrefs() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    /// set default message
+    _settingsController.setDefaultMessage(
+        messageEnumValue: SosMessageEnum.values.firstWhere((messageValue) =>
+            messageValue.name == prefs.getString('default_message')));
   }
 
   void initializeTimerIsolate() async {

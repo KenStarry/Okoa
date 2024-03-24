@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/features/feature_settings/domain/model/sos_message.dart';
 import 'package:okoa/features/feature_settings/utils/settings_constants.dart';
 
-class SosMessageCard extends StatelessWidget {
+import '../../controller/settings_controller.dart';
+
+class SosMessageCard extends StatefulWidget {
   final SosMessage sosMessage;
   final bool isActive;
   final VoidCallback onTap;
@@ -14,10 +18,24 @@ class SosMessageCard extends StatelessWidget {
       required this.onTap});
 
   @override
+  State<SosMessageCard> createState() => _SosMessageCardState();
+}
+
+class _SosMessageCardState extends State<SosMessageCard> {
+  late final SettingsController _settingsController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _settingsController = Get.find<SettingsController>();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return UnconstrainedBox(
       child: GestureDetector(
-        onTap: onTap,
+        onTap: widget.onTap,
         child: Container(
           width: 300,
           height: 250,
@@ -35,23 +53,23 @@ class SosMessageCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                     color: Theme.of(context).primaryColorLight),
                 child: SingleChildScrollView(
-                  child: Text(
-                    sosMessage.message,
-                    style: Theme.of(context).textTheme.bodyMedium
-                  ),
+                  child: Text(widget.sosMessage.message,
+                      style: Theme.of(context).textTheme.bodyMedium),
                 ),
               )),
 
               //  radio button section
               Row(
                 children: [
-                  Radio(
-                      value: isActive,
-                      groupValue: false,
-                      onChanged: (value) {}),
+                  Obx(
+                    () => Radio(
+                        value: widget.sosMessage.messageEnum,
+                        groupValue: _settingsController.defaultMessage.value,
+                        onChanged: (value) async => widget.onTap()),
+                  ),
                   const SizedBox(width: 12),
                   Text(
-                      'Message ${SettingsConstants.sosMessages.indexOf(sosMessage) + 1}',
+                      'Message ${SettingsConstants.sosMessages.indexOf(widget.sosMessage) + 1}',
                       style: Theme.of(context).textTheme.bodyMedium)
                 ],
               )
