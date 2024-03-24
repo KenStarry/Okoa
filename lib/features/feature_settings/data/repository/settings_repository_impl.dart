@@ -7,16 +7,13 @@ class SettingsRepositoryImpl extends SettingsRepository {
       {required Function(List<SimCard> simCards) onSimCardsFetched}) async {
     final isPremissionGranted = await MobileNumber.hasPhonePermission;
 
-    MobileNumber.listenPhonePermission((isPermissionGranted) async {
-      if (isPremissionGranted) {
-        //  get sim cards
-        final List<SimCard> simCards = await MobileNumber.getSimCards ?? [];
-        onSimCardsFetched(simCards);
-      } else {
-        //  Request phone permission
-        await MobileNumber.requestPhonePermission;
-        onSimCardsFetched([]);
-      }
-    });
+    if (isPremissionGranted) {
+      //  get sim cards
+      final List<SimCard> simCards = await MobileNumber.getSimCards ?? [];
+      onSimCardsFetched(simCards);
+    } else {
+      //  Request phone permission
+      await MobileNumber.requestPhonePermission;
+    }
   }
 }

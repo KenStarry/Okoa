@@ -12,5 +12,7 @@ class SettingsController extends GetxController {
   Future<void> getSimCards() async =>
       await useCases.getSimCards.call(onSimCardsFetched: (sims) {
         simCards.value = sims;
+
+        print("SIM CARDS FETCHED!!!!!!!!!!!!!!!!!! : ${sims.map((e) => e.carrierName)}");
       });
 }

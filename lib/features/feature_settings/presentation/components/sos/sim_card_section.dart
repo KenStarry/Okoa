@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:okoa/features/feature_settings/domain/model/settings.dart';
 import 'package:okoa/features/feature_settings/presentation/components/sos/sos_message_card.dart';
+import 'package:okoa/features/feature_settings/presentation/components/sos/sos_sim_card.dart';
 import 'package:okoa/features/feature_settings/utils/settings_constants.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+
+import '../../controller/settings_controller.dart';
 
 class SimCardSection extends StatefulWidget {
   const SimCardSection({super.key});
@@ -12,6 +17,15 @@ class SimCardSection extends StatefulWidget {
 }
 
 class _SimCardSectionState extends State<SimCardSection> {
+  late final SettingsController _settingsController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _settingsController = Get.find<SettingsController>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiSliver(children: [
@@ -34,17 +48,19 @@ class _SimCardSectionState extends State<SimCardSection> {
       SliverToBoxAdapter(
         child: Container(
           width: double.infinity,
-          height: 250,
+          height: 180,
           color: Theme.of(context).scaffoldBackgroundColor,
-          child: ListView.separated(
-            itemBuilder: (context, index) => SosMessageCard(
-                sosMessage: SettingsConstants.sosMessages[index],
-                isActive: false,
-                onTap: () {}),
-            separatorBuilder: (context, index) => SizedBox(width: 16),
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemCount: SettingsConstants.sosMessages.length,
+          child: Obx(
+            () => ListView.separated(
+              itemBuilder: (context, index) => SosSimCard(
+                  simCard: _settingsController.simCards[index],
+                  isActive: false,
+                  onTap: () {}),
+              separatorBuilder: (context, index) => const SizedBox(width: 16),
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              itemCount: _settingsController.simCards.length,
+            ),
           ),
         ),
       )
