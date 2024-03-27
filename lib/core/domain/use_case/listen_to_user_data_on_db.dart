@@ -7,7 +7,7 @@ class ListenToUserDataOnDB {
   final repo = locator.get<CoreRepository>();
 
   void call(
-          {required String uid,
+          {required String? uid,
           required Function(OkoaUser okoaUser) onGetUserData}) =>
       repo.listenToUserDataonDB(uid: uid, onGetUserData: onGetUserData);
 }

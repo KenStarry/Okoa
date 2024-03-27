@@ -34,7 +34,7 @@ class CoreController extends GetxController {
 
       if (status == InternetConnectionStatus.connected) {
         listenToUserDataonDB(
-            uid: authController.getAuthUser()!.id,
+            uid: authController.getAuthUser()?.id,
             onGetUserData: (user) {
               setOkoaUserData(okoaUser: user);
 
@@ -133,7 +133,7 @@ class CoreController extends GetxController {
           .call(data: data, onResponse: onResponse, uid: uid);
 
   void listenToUserDataonDB(
-          {required String uid,
+          {required String? uid,
           required Function(OkoaUser okoaUser) onGetUserData}) =>
       useCase.listenToUserDataOnDB.call(uid: uid, onGetUserData: onGetUserData);
 

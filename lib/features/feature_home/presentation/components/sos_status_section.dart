@@ -62,7 +62,7 @@ class _SOSStatusSectionState extends State<SOSStatusSection> {
                       content: _coreController.okoaUser.value!.sos.sosState ==
                               SosState.sos.toString()
                           ? const SosPersonal()
-                          : _coreController.partnerSosStates.isNotEmpty
+                          : _coreController.partnerSosStates.contains(SosState.sos.toString())
                               ? const SosPartnerContent()
                               : const SosSafeContent(),
                       onComplete: () {});

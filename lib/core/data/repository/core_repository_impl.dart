@@ -95,19 +95,21 @@ class CoreRepositoryimpl extends CoreRepository {
 
   @override
   void listenToUserDataonDB(
-      {required String uid,
+      {required String? uid,
       required Function(OkoaUser okoaUser) onGetUserData}) {
-    supabase
-        .from('users')
-        .stream(primaryKey: ['id'])
-        .eq('id', uid)
-        .limit(1)
-        .listen((data) {
-          //  get the first element
-          final userDataJson = data[0];
+    if (uid != null) {
+      supabase
+          .from('users')
+          .stream(primaryKey: ['id'])
+          .eq('id', uid)
+          .limit(1)
+          .listen((data) {
+        //  get the first element
+        final userDataJson = data[0];
 
-          onGetUserData(OkoaUser.fromJson(userDataJson));
-        });
+        onGetUserData(OkoaUser.fromJson(userDataJson));
+      });
+    }
   }
 
   @override

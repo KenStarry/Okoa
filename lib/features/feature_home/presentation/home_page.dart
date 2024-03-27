@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
 
     if (_authController.currentSession.value != null) {
       _coreController.listenToUserDataonDB(
-          uid: _authController.getAuthUser()!.id,
+          uid: _authController.getAuthUser()?.id,
           onGetUserData: (user) {
             _coreController.setOkoaUserData(okoaUser: user);
           });

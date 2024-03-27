@@ -27,7 +27,7 @@ abstract class CoreRepository {
     required Function(ResponseState response) onResponse});
 
   /// Listen to User Data
-  void listenToUserDataonDB({required String uid,
+  void listenToUserDataonDB({required String? uid,
     required Function(OkoaUser okoaUser) onGetUserData});
 
   /// Listen to Internet Status

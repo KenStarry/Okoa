@@ -10,6 +10,11 @@ class SosSafeContent extends StatefulWidget {
 class _SosSafeContentState extends State<SosSafeContent> {
   @override
   Widget build(BuildContext context) {
-    return Text("SOS Safe implementation");
+    return Container(
+      width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.5,
+      color: Colors.red,
+      child: Text("Hello"),
+    );
   }
 }
